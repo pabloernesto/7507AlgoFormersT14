@@ -32,6 +32,6 @@ public class AlgoFormerTest
     public void testMoverPasaSuArgumentoATablero()
     {
         af.mover(Movimiento.DERECHA);
-        verify(tablero).mover(Movimiento.DERECHA);
+        verify(tablero).mover(Movimiento.DERECHA, af);
     }
 }

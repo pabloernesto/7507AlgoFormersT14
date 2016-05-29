@@ -2,7 +2,7 @@ package fiuba.algo3.algoformers.modelo;
 
 public class AlgoFormer
 {
-    Tablero tablero = Tablero.getUniqueInstance();
+    Tablero tablero = Tablero.getInstance();
 //    File especificacionAF;
     
     public AlgoFormer(){}
@@ -20,6 +20,11 @@ public class AlgoFormer
 */
     public void mover(Movimiento d)
     {
-        tablero.mover(d);
+        tablero.mover(d, this);
+    }
+
+    public void moverACelda(Celda c)
+    {
+        ;
     }
 }

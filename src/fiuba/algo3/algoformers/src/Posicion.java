@@ -41,5 +41,8 @@ public class Posicion {
 		return true;
 	}
 	
-	
+	public int calcularDistanciaCon(Posicion unaPosicion)
+	{
+	    return 0;
+	}
 }

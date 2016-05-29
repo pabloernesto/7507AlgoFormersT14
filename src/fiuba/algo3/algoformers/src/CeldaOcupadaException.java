@@ -1,4 +1,4 @@
-package TP2;
+package fiuba.algo3.algoformers.modelo;
 
 public class CeldaOcupadaException extends RuntimeException {
 
