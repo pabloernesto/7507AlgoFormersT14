@@ -18,7 +18,7 @@ public class AlgoFormer
         // leer especificacionAF y cargar datos
     }
 */
-    public void mover(Direccion d)
+    public void mover(Movimiento d)
     {
         tablero.mover(d);
     }

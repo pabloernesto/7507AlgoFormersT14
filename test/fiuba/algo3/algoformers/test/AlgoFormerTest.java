@@ -2,7 +2,7 @@ package fiuba.algo3.algoformers.test;
 
 import fiuba.algo3.algoformers.modelo.AlgoFormer;
 import fiuba.algo3.algoformers.modelo.Tablero;
-import fiuba.algo3.algoformers.modelo.Direccion;
+import fiuba.algo3.algoformers.modelo.Movimiento;
 
 import junit.framework.Assert;
 import org.junit.Before;
@@ -31,7 +31,7 @@ public class AlgoFormerTest
     @Test
     public void testMoverPasaSuArgumentoATablero()
     {
-        af.mover(Direccion.DERECHA);
-        verify(tablero).mover(Direccion.DERECHA);
+        af.mover(Movimiento.DERECHA);
+        verify(tablero).mover(Movimiento.DERECHA);
     }
 }

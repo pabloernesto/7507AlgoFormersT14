@@ -7,5 +7,5 @@ public class Tablero
         return new Tablero();
     }
     
-    public void mover(Direccion d) {}
+    public void mover(Movimiento d) {}
 }
