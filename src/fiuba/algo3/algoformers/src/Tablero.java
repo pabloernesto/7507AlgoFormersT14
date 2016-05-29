@@ -1,4 +1,4 @@
-package TP2;
+package fiuba.algo3.algoformers.modelo;
 
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
@@ -9,7 +9,7 @@ public class Tablero {
 		/* --------------------------------------------- 
 		 * Si vamos a hacer este hashmap de algoformers, las celdas
 		 * no deberian saber si estan ocupadas o no, para evitar acoplamiento */
-		HashMap <Algoformer,Posicion> MapaAlgoformers;	
+		HashMap <AlgoFormer,Posicion> MapaAlgoformers;	
 		/*---------------------------------------------- */
 		HashMap <Posicion,Celda> celdas;
 		public static final int ALTO = 60;
@@ -45,34 +45,35 @@ public class Tablero {
 		}
 		
 		/* Cuando comienza el juego se llama a esta funcion */
-		public void ColocarAlgoformer (Posicion posicion,Algoformer algoformer){
-			validarMovimiento (algoformer,posicion);
+		public void ColocarAlgoformer (Posicion posicion,AlgoFormer algoformer){
+			validarMovimiento(algoformer,posicion);
 			this.MapaAlgoformers.put(algoformer,posicion);
 			algoformer.moverACelda(this.celdas.get(posicion));
 		}
 		
-		public void mover(Direccion direccion,Algoformer algoformer){
+		public void mover(Movimiento movimiento,AlgoFormer algoformer){
 			Posicion posicionInicial = this.MapaAlgoformers.get(algoformer);
-			Posicion posicionFinal = posicionInicial.sumarMovimiento(direccion);
+			Posicion posicionFinal = posicionInicial.sumarMovimiento(movimiento);
 			validarMovimiento (algoformer,posicionFinal);
 			this.MapaAlgoformers.put (algoformer,posicionFinal);
 			algoformer.moverACelda(this.celdas.get(posicionFinal));
 		}
 		
-		private void validarMovimiento (Algoformer algoformer,Posicion posicionFinal){;
+		private void validarMovimiento (AlgoFormer algoformer,Posicion posicionFinal){;
 			if (this.celdas.get(posicionFinal)==null)
 				throw new PosicionInvalidaException();
 			if (this.MapaAlgoformers.containsValue(posicionFinal))
 				throw new CeldaOcupadaException();
 		}
 		
-		public Posicion devolverPosicionAlgoformer (Algoformer algoformer){
+		public Posicion devolverPosicionAlgoformer (AlgoFormer algoformer){
 			return this.MapaAlgoformers.get(algoformer);
 		}
 		
-		public int distanciaEntreAlgoformers (Algoformer algoformerAtacante,Algoformer algoformerAtacado){
+		public int distanciaEntreAlgoformers (AlgoFormer algoformerAtacante,AlgoFormer algoformerAtacado){
 			/* Asumo la clase Posicion tiene un metodo posicion.calcularDistanciaCon(Posicion posicion)*/
 			Posicion posicionAtacante = this.MapaAlgoformers.get(algoformerAtacante);
-			return posicionAtacante.calcularDistanciaCon(this.MapaAlgoformers.get(algoformerAtacado);
+			return posicionAtacante.calcularDistanciaCon(this.MapaAlgoformers.get(algoformerAtacado));
+			//Quizas calcular la distancia corresponde mas al tablero que a la clase posicion
 		}
 }
