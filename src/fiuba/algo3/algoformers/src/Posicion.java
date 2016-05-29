@@ -1,6 +1,6 @@
 package fiuba.algo3.algoformers.modelo;
 
-/** Representa una posición de dos coordenadas */
+/** Representa una posicion de dos coordenadas */
 public class Posicion {
 	private int x;
 	private int y;
@@ -10,7 +10,7 @@ public class Posicion {
 		this.y = y;
 	}
 	
-	/** Crea y devuelve una nueva posición, que es el resultado de mover la posición respecto del movimiento recibido */
+	/** Crea y devuelve una nueva posicion, que es el resultado de mover la posicion respecto del movimiento recibido */
 	public Posicion sumarMovimiento(Movimiento movimiento){
 		Posicion nuevaPosicion = new Posicion(this.x,this.y);
 		nuevaPosicion.x += movimiento.getMovimientoEnX();
