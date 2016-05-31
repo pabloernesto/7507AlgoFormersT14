@@ -1,0 +1,3 @@
+Megatron
+Humanoide,550,10,1,3
+Aerea,550,55,8,2

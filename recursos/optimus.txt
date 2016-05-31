@@ -1,0 +1,3 @@
+Optimus Prime
+Humanoide,500,50,2,2
+Terrestre,500,15,4,5

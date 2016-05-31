@@ -1,0 +1,3 @@
+Bumblebee
+Humanoide,350,40,2,1
+Terrestre,350,20,5,3

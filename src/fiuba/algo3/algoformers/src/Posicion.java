@@ -43,6 +43,8 @@ public class Posicion {
 	
 	public int calcularDistanciaCon(Posicion unaPosicion)
 	{
-	    return 0;
-	}
+		if (this.x>this.y)
+			return (Math.abs(this.x-unaPosicion.x));
+		return (Math.abs(this.y-unaPosicion.y));
+	}	
 }
