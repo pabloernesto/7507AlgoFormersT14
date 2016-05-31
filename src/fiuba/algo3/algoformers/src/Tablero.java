@@ -47,6 +47,7 @@ public class Tablero {
 			validarMovimiento(algoformer, posicion);
 			this.MapaAlgoformers.put(algoformer,posicion);
 			algoformer.moverACelda(this.celdas.get(posicion));
+			//faltaria agregar el algoformer a la celda?
 		}
 		
 		public void mover(Movimiento direccion, AlgoFormer algoformer)
@@ -57,6 +58,7 @@ public class Tablero {
 			validarMovimiento(algoformer, posicionFinal);
 			this.MapaAlgoformers.put(algoformer, posicionFinal);
 			algoformer.moverACelda(this.celdas.get(posicionFinal));
+			//faltaria agregar el algoformer a la celda?
 		}
 		
 		private void validarMovimiento(AlgoFormer algoformer,
@@ -77,6 +79,7 @@ public class Tablero {
 		{
 		    /* Asumo la clase Posicion tiene un metodo
 		       posicion.calcularDistanciaCon(Posicion posicion) */
+			//Se me hace que es mas una responsabilidad de tablero ese metodo (Joaquin)
 			Posicion posicionAtacante =
 			    this.MapaAlgoformers.get(algoformerAtacante);
 			return posicionAtacante.calcularDistanciaCon(

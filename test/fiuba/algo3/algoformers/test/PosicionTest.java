@@ -25,8 +25,7 @@ public class PosicionTest {
 	@Test
 	public void testSumarPosicionesDaUnaNuevaPosicionQueEsCorrecta(){
 		Posicion posicion = new Posicion(1,1);
-		Movimiento movimiento = Movimiento.ARRIBA;
-		Posicion nuevaPosicion = posicion.sumarMovimiento(movimiento);
+		Posicion nuevaPosicion = posicion.sumarMovimiento(Movimiento.ARRIBA);
 		Posicion mismaPosicion = new Posicion(1,0);
 		assertTrue(nuevaPosicion.equals(mismaPosicion));
 	}
