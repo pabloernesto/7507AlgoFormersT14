@@ -29,4 +29,13 @@ public class PosicionTest {
 		Posicion mismaPosicion = new Posicion(1,0);
 		assertTrue(nuevaPosicion.equals(mismaPosicion));
 	}
+	
+	@Test
+	public void testDistanciaOrigen_MenosDosUno_EsDos()
+	{
+	    Posicion origen = new Posicion(0, 0);
+	    Posicion destino = new Posicion(-2, 1);
+	    
+	    assertEquals(2, origen.calcularDistanciaCon(destino));
+	}
 }
