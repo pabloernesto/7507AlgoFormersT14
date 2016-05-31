@@ -28,7 +28,7 @@ public class AlgoFormer
     public void moverACelda(Celda c)
     {
         int costo = c.getCostoDeEntrada(ModoAlgoFormer.HUMANOIDE);
-        if (costo > 9000)
+        if (costo > movimientoRestante)
             throw new RuntimeException();
         movimientoRestante -= costo;
     }
