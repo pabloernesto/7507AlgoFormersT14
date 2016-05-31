@@ -55,4 +55,17 @@ public class AlgoFormerTest
         ).thenReturn(20000);    // It's over 9000!!!
         af.moverACelda(c);
     }
+
+    @Test
+    public void testMoverACeldaReduceMovimientoRestante()
+    {
+        int movimientoInicial = af.getMovimientoRestante();
+        Celda c = mock(Celda.class);
+        when(
+            c.getCostoDeEntrada(ModoAlgoFormer.HUMANOIDE)
+        ).thenReturn(1);
+        af.moverACelda(c);
+        
+        Assert.assertTrue(af.getMovimientoRestante() < movimientoInicial);
+    }
 }

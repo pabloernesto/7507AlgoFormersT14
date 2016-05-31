@@ -4,6 +4,7 @@ public class AlgoFormer
 {
     Tablero tablero = Tablero.getInstance();
     ModoAlgoFormer modoActual;
+    int movimientoRestante = 8;
 //    File especificacionAF;
     
     public AlgoFormer(){}
@@ -26,7 +27,14 @@ public class AlgoFormer
 
     public void moverACelda(Celda c)
     {
-        if (c.getCostoDeEntrada(ModoAlgoFormer.HUMANOIDE) > 9000)
+        int costo = c.getCostoDeEntrada(ModoAlgoFormer.HUMANOIDE);
+        if (costo > 9000)
             throw new RuntimeException();
+        movimientoRestante -= costo;
+    }
+    
+    public int getMovimientoRestante()
+    {
+        return movimientoRestante;
     }
 }
