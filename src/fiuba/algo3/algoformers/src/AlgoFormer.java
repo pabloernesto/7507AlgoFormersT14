@@ -7,7 +7,7 @@ public class AlgoFormer
     int movimientoRestante = 8;
 //    File especificacionAF;
     
-    public AlgoFormer(){}
+    public AlgoFormer(String nombreDeArchivo){}
 /*    
     public AlgoFormer(String nombreDeArchivo)
     {
