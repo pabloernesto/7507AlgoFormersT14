@@ -3,6 +3,7 @@ package fiuba.algo3.algoformers.modelo;
 public class AlgoFormer
 {
     Tablero tablero = Tablero.getInstance();
+    ModoAlgoFormer modoActual;
 //    File especificacionAF;
     
     public AlgoFormer(){}
@@ -25,6 +26,6 @@ public class AlgoFormer
 
     public void moverACelda(Celda c)
     {
-        ;
+        c.getCostoDeEntrada(ModoAlgoFormer.HUMANOIDE);
     }
 }

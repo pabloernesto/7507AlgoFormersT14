@@ -33,6 +33,11 @@ public class Celda {
 		return this.algoformer != null;
 	}
 	
+	public int getCostoDeEntrada(ModoAlgoFormer modo)
+	{
+	    return 0;
+	}
+	
 	/*
 	public void setBonus(Bonus bonus){
 		this.setBonus = bonus;

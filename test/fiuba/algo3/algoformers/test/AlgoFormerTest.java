@@ -3,6 +3,8 @@ package fiuba.algo3.algoformers.test;
 import fiuba.algo3.algoformers.modelo.AlgoFormer;
 import fiuba.algo3.algoformers.modelo.Tablero;
 import fiuba.algo3.algoformers.modelo.Movimiento;
+import fiuba.algo3.algoformers.modelo.Celda;
+import fiuba.algo3.algoformers.modelo.ModoAlgoFormer;
 
 import junit.framework.Assert;
 import org.junit.Before;
@@ -33,5 +35,13 @@ public class AlgoFormerTest
     {
         af.mover(Movimiento.DERECHA);
         verify(tablero).mover(Movimiento.DERECHA, af);
+    }
+
+    @Test
+    public void testMoverACeldaPideACeldaSuCostoDeEntrada()
+    {
+        Celda c = mock(Celda.class);
+        af.moverACelda(c);
+        verify(c).getCostoDeEntrada(ModoAlgoFormer.HUMANOIDE);
     }
 }
