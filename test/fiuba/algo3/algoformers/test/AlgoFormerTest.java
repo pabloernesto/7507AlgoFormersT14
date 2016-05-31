@@ -44,4 +44,15 @@ public class AlgoFormerTest
         af.moverACelda(c);
         verify(c).getCostoDeEntrada(ModoAlgoFormer.HUMANOIDE);
     }
+
+    @Test(expected = RuntimeException.class)
+    public void testMoverACeldaFallaSiCostoDeEntradaEsDemasiadoAlto()
+    {
+        // Crear una celda que tiene un costo de entrada prohibitivo.
+        Celda c = mock(Celda.class);
+        when(
+            c.getCostoDeEntrada(ModoAlgoFormer.HUMANOIDE)
+        ).thenReturn(20000);    // It's over 9000!!!
+        af.moverACelda(c);
+    }
 }

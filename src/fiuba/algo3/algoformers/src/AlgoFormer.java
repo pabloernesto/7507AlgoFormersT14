@@ -26,6 +26,7 @@ public class AlgoFormer
 
     public void moverACelda(Celda c)
     {
-        c.getCostoDeEntrada(ModoAlgoFormer.HUMANOIDE);
+        if (c.getCostoDeEntrada(ModoAlgoFormer.HUMANOIDE) > 9000)
+            throw new RuntimeException();
     }
 }
