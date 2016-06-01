@@ -6,12 +6,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Tablero {
 		/* --------------------------------------------- 
 		 * Si vamos a hacer este hashmap de algoformers, las celdas
-		 * no deberian saber si estan ocupadas o no, para evitar acoplamiento */
-		HashMap <AlgoFormer,Posicion> MapaAlgoformers;	
-		/*---------------------------------------------- */
-		HashMap <Posicion,Celda> celdas;
-		public static final int ALTO = 60;
-		public static final int ANCHO = 20;
+		 * no deberian saber si estan ocupadas o no, para evitar acoplamiento 
+		 * ---------------------------------------------*/
+		public HashMap <AlgoFormer,Posicion> MapaAlgoformers;
+		public HashMap <Posicion,Celda> celdas;
+		public static final int ALTO = 20;
+		public static final int ANCHO = 60;
 		public static Tablero instanciaTablero = null;
 		/* Para poder hacer un singleton necesito constantes predefinidas, sino solo puedo hacer 
 		 * un get instance con parametros que es medio feo, o hacerlo publico nomas */		
@@ -21,8 +21,8 @@ public class Tablero {
 		    MapaAlgoformers = new HashMap<AlgoFormer,Posicion>();
 		    
 			this.celdas= new HashMap <Posicion,Celda>();
-			for (int i=0;i<ALTO;i++){
-				for (int j=0;j<ANCHO;j++){
+			for (int i=0;i<ANCHO;i++){
+				for (int j=0;j<ALTO;j++){
 					/* Asumo todas las celdas se crean iguales por ahora, luego podemos poner algo que
 					 * haga cosas random para crear celdas con distintos efectos */
 					Celda nuevaCelda = new Celda();
@@ -30,22 +30,27 @@ public class Tablero {
 					this.celdas.put (nuevaPosicion,nuevaCelda);
 				}
 			}
-			/*
-			 *	Para colocar los bonuses lo hace el tablero? O es responsabilidad de la celda??
-			 *
-			Posicion medio = new Posicion (ALTO/2,ANCHO/2);
-			this.celdas.get(medio).colocarChispaSuprema();
-			
-			*/
 		}
-		
+
 		public static Tablero getInstance (){
 			if (instanciaTablero == null)
 				instanciaTablero = new Tablero();
 			return instanciaTablero;
 		}
 		
-		public static void borrarInstance(){
+		public Posicion devolverPosicionChispaSuprema(){
+			for (int i=0;i<ANCHO;i++){
+				for (int j=0;j<ALTO;j++){
+					Posicion posicion = new Posicion (i,j);
+					if (this.celdas.get(posicion).contieneChispaSuprema()){
+						return posicion;
+						}	
+					}
+				}
+			throw new RuntimeException();
+		}
+		
+		public static void borrarInstancia(){
 			Tablero.instanciaTablero = null;
 		}
 		
@@ -53,7 +58,8 @@ public class Tablero {
 		public void ColocarAlgoformer (Posicion posicion,AlgoFormer algoformer){
 			validarMovimiento(algoformer, posicion);
 			this.MapaAlgoformers.put(algoformer,posicion);
-			celdas.get(posicion).activarEfecto(algoformer);
+			this.celdas.get(posicion).aplicarEfectos(algoformer);
+			//faltaria agregar el algoformer a la celda?
 		}
 		
 		public void mover(Movimiento direccion, AlgoFormer algoformer)
@@ -65,6 +71,19 @@ public class Tablero {
 			this.MapaAlgoformers.put(algoformer, posicionFinal);
 			algoformer.moverACelda(this.celdas.get(posicionFinal));
 			//faltaria agregar el algoformer a la celda?
+		}
+
+		public void colocarChispaSuprema(ChispaSuprema chispa){
+			Posicion medio = new Posicion (ALTO/2,ANCHO/2);
+			this.celdas.get(medio).colocarChispaSuprema(chispa);
+		}
+		
+		public int devolverExtremoIzquierdo(){
+			return 0;
+		}
+		
+		public int devolverExtremoDerecho(){
+			return ANCHO;
 		}
 		
 		private void validarMovimiento(AlgoFormer algoformer,
