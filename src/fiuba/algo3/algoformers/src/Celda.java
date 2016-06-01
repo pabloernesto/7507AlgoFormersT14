@@ -38,6 +38,11 @@ public class Celda {
 	    return 0;
 	}
 	
+	public void activarEfecto(AlgoFormer af)
+	{
+	    ;
+    }
+	
 	/*
 	public void setBonus(Bonus bonus){
 		this.setBonus = bonus;

@@ -68,4 +68,13 @@ public class AlgoFormerTest
         
         Assert.assertTrue(af.getMovimientoRestante() < movimientoInicial);
     }
+
+    @Test
+    public void testMoverACeldaActivaEfectoDeCelda()
+    {
+        int movimientoInicial = af.getMovimientoRestante();
+        Celda c = mock(Celda.class);
+        af.moverACelda(c);
+        verify(c).activarEfecto(af);
+   }
 }

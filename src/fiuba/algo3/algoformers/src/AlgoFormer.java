@@ -141,6 +141,7 @@ public class AlgoFormer
         if (costo > movimientoRestante)
             throw new RuntimeException();
         movimientoRestante -= costo;
+        c.activarEfecto(this);
     }
     
     public int getMovimientoRestante()
