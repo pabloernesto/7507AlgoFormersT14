@@ -23,4 +23,11 @@ public class Equipo {
 	public AlgoFormer getCapitan(){
 		return listaAlgoFormer.get(0);
 	}
+	public ArrayList<AlgoFormer> getListaAlgoFormer(){
+		return listaAlgoFormer;
+	}
+	public AlgoFormer elegirAlgoformer(){
+		AlgoFormer algoformer = new AlgoFormer("algo");//regvisar este metodo!
+		return algoformer;
+	}
 }
