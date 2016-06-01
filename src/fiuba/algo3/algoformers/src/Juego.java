@@ -1,20 +1,21 @@
-/*package fiuba.algo3.algoformers.modelo;
+/*
+package fiuba.algo3.algoformers.modelo;
 
+import java.util.List;
 import java.util.ArrayList;
 import fiuba.algo3.algoformers.modelo.Tablero;
 import fiuba.algo3.algoformers.modelo.Posicion;
 import fiuba.algo3.algoformers.modelo.Movimiento;
 
 public class Juego {
-	public Tablero tablero = Tablero.getInstance();
+
 	private Equipo equipoActual;
 	private Equipo equipoInactivo;
-	private AlgoFormer algoformerActual;	
 	
 	public void jugar() {
 		
-		ArrayList<String> listaArchivosAutobots = new ArrayList<String>();
-		ArrayList<String> listaArchivosDecepticons = new ArrayList<String>();
+		List<String> archivosAutobots = new ArrayList<String>();
+		List<String> archivosDecepticons = new ArrayList<String>();
 		
 		Equipo equipoTurnoActual = new Equipo(listaArchivosDecepticons);
 		Equipo otroEquipo =  new Equipo(listaArchivosAutobots);
@@ -55,8 +56,9 @@ public class Juego {
 		}	
 	}
 	
-	public void ubicarChispa(ChispaSuprema chispa){
-		tablero.colocarChispaSuprema(chispa);
+	public void ubicarChispa()
+	{
+		tablero.colocarChispaSuprema();
 	}
 	
 	public boolean turnoEquipo(Equipo equipo){
@@ -80,5 +82,5 @@ public class Juego {
 		equipoActual = otroEquipo;
 		otroEquipo = equipoAux;
 	}
-
-}*/
+}
+*/
