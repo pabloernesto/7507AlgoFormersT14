@@ -36,7 +36,7 @@ public class Celda {
 	
 	public int getCostoDeEntrada(Unidad Algoformer)
 	{
-	    return 0;
+	    return 1;
 	}
 	
 	public void activarEfecto(AlgoFormer af)

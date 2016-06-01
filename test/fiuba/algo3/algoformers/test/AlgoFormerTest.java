@@ -1,10 +1,21 @@
 package fiuba.algo3.algoformers.test;
 
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.Test;
 import fiuba.algo3.algoformers.modelo.AlgoFormer;
 
+import fiuba.algo3.algoformers.modelo.Celda;
+
 public class AlgoFormerTest {
+
+    AlgoFormer af;
+
+    @Before
+    public void setUp()
+    {
+        af = new AlgoFormer();
+    }
 
 	@Test
 	public void testCrearUnAlgoFormerNoEsNull(){
@@ -24,4 +35,14 @@ public class AlgoFormerTest {
 		assertEquals(algoformer.getEstado_inactivo().getVelocidad(), 4);
 		assertEquals(algoformer.getEstado_inactivo().getDist_ataque(), 5);
 	}
+
+    @Test
+    public void testMoverACeldaReduceMovimientoRestante()
+    {
+        int movimientoInicial = af.getMovimientoRestante();
+        Celda c = new Celda(); 
+        af.moverACelda(c);
+        
+        assertTrue(af.getMovimientoRestante() < movimientoInicial);
+    }
 }

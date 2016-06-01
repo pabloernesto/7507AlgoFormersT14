@@ -14,8 +14,9 @@ public class AlgoFormer
  
 
     //Constructor auxiliar para pruebas de otras clases
-    public AlgoFormer(){
-    	
+    public AlgoFormer()
+    {
+    	movimientoRestante = 2;
     }
 	public AlgoFormer(String nombreDeArchivo)
     {
