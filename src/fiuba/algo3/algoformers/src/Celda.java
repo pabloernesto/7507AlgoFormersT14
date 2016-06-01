@@ -43,6 +43,16 @@ public class Celda {
 	{
 	    ;
     }
+    
+    public void colocarChispaSuprema()
+    {
+        ;
+    }
+    
+    public boolean contieneChispaSuprema()
+    {
+        return false;
+    }
 	
 /*
 	public void setBonus(Bonus bonus){

@@ -14,7 +14,7 @@ public class TableroTest
 {
     @Test()
     public void test01TableroColocarAlgoformer (){
-    	Tablero.borrarInstance();
+    	Tablero.borrarInstancia();
     	Tablero tablero= Tablero.getInstance();
     	AlgoFormer algoformer= new AlgoFormer();
     	Posicion posicion= new Posicion (0,0);
@@ -24,7 +24,7 @@ public class TableroTest
     
     @Test()
     public void test02TableroCalculaDistanciasEntreAlgoformers(){
-		Tablero.borrarInstance();
+		Tablero.borrarInstancia();
     	Tablero tablero=Tablero.getInstance();
     	AlgoFormer algoformer= new AlgoFormer();
     	AlgoFormer algoformer2= new AlgoFormer();
@@ -42,7 +42,7 @@ public class TableroTest
     
     @Test(expected=PosicionInvalidaException.class)
     public void test03TableroColocarAlgoFormerEnPosicionInvalida(){
-		Tablero.borrarInstance();
+		Tablero.borrarInstancia();
     	Tablero tablero=Tablero.getInstance();
     	AlgoFormer algoformer= new AlgoFormer();
     	Posicion posicion= new Posicion (-1,0);
@@ -51,7 +51,7 @@ public class TableroTest
     
     @Test(expected=CeldaOcupadaException.class)
     public void test03TableroColocarAlgoFormerEnUnaCeldaOcupada(){
-		Tablero.borrarInstance();
+		Tablero.borrarInstancia();
     	Tablero tablero=Tablero.getInstance();
     	AlgoFormer algoformer= new AlgoFormer();
     	AlgoFormer algoformer2= new AlgoFormer();
@@ -63,7 +63,7 @@ public class TableroTest
     @Test()
     public void test04TableroMoverAlgoformer()
     {
-		Tablero.borrarInstance();
+		Tablero.borrarInstancia();
     	Tablero tablero = Tablero.getInstance();
     	
     	AlgoFormer algoformer= new AlgoFormer();
@@ -82,7 +82,7 @@ public class TableroTest
     
     @Test(expected=PosicionInvalidaException.class)
     public void test05TableroMoverAlgoformerPosicionInvalida(){
-		Tablero.borrarInstance();
+		Tablero.borrarInstancia();
     	Tablero tablero=Tablero.getInstance();
     	AlgoFormer algoformer= new AlgoFormer();
     	Posicion posicion= new Posicion (0,0);
@@ -93,7 +93,7 @@ public class TableroTest
     
     @Test(expected=CeldaOcupadaException.class)
     public void test06TableroMoverAlgoformerCeldaOcupada(){
-		Tablero.borrarInstance();
+		Tablero.borrarInstancia();
     	Tablero tablero=Tablero.getInstance();
     	AlgoFormer algoformer= new AlgoFormer();
     	Posicion posicion= new Posicion (0,0);

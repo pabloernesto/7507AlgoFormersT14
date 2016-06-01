@@ -39,14 +39,13 @@ public class Tablero {
 		}
 		
 		public Posicion devolverPosicionChispaSuprema(){
-			for (int i=0;i<ANCHO;i++){
-				for (int j=0;j<ALTO;j++){
+			for (int i=0;i<ANCHO;i++) {
+				for (int j=0;j<ALTO;j++) {
 					Posicion posicion = new Posicion (i,j);
-					if (this.celdas.get(posicion).contieneChispaSuprema()){
+					if (this.celdas.get(posicion).contieneChispaSuprema())
 						return posicion;
-						}	
-					}
 				}
+			}
 			throw new RuntimeException();
 		}
 		
@@ -58,8 +57,7 @@ public class Tablero {
 		public void ColocarAlgoformer (Posicion posicion,AlgoFormer algoformer){
 			validarMovimiento(algoformer, posicion);
 			this.MapaAlgoformers.put(algoformer,posicion);
-			this.celdas.get(posicion).aplicarEfectos(algoformer);
-			//faltaria agregar el algoformer a la celda?
+			celdas.get(posicion).activarEfecto(algoformer);
 		}
 		
 		public void mover(Movimiento direccion, AlgoFormer algoformer)
@@ -73,9 +71,10 @@ public class Tablero {
 			//faltaria agregar el algoformer a la celda?
 		}
 
-		public void colocarChispaSuprema(ChispaSuprema chispa){
+		public void colocarChispaSuprema()
+		{
 			Posicion medio = new Posicion (ALTO/2,ANCHO/2);
-			this.celdas.get(medio).colocarChispaSuprema(chispa);
+			this.celdas.get(medio).colocarChispaSuprema();
 		}
 		
 		public int devolverExtremoIzquierdo(){
