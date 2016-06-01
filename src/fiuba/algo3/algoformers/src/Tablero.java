@@ -16,7 +16,10 @@ public class Tablero {
 		/* Para poder hacer un singleton necesito constantes predefinidas, sino solo puedo hacer 
 		 * un get instance con parametros que es medio feo, o hacerlo publico nomas */		
 		
-		private Tablero(){
+		private Tablero()
+		{
+		    MapaAlgoformers = new HashMap<AlgoFormer,Posicion>();
+		    
 			this.celdas= new HashMap <Posicion,Celda>();
 			for (int i=0;i<ALTO;i++){
 				for (int j=0;j<ANCHO;j++){
