@@ -108,6 +108,8 @@ public class TableroTest
     	AlgoFormer algoformer= new AlgoFormer();
     	Posicion posicion= new Posicion (-1,0);
     	tablero.ColocarAlgoformer (posicion,algoformer);
+    }
+    
     /*	
     @Test()
     public void test09devolverExtremosDevuelveExtremos(){
