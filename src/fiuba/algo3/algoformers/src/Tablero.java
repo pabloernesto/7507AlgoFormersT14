@@ -42,6 +42,10 @@ public class Tablero {
 			return instanciaTablero;
 		}
 		
+		public static void borrarInstance(){
+			Tablero.instanciaTablero = null;
+		}
+		
 		/* Cuando comienza el juego se llama a esta funcion */
 		public void ColocarAlgoformer (Posicion posicion,AlgoFormer algoformer){
 			validarMovimiento(algoformer, posicion);
