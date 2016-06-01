@@ -1,24 +1,18 @@
 package fiuba.algo3.algoformers.modelo;
 
 import java.util.HashMap;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Tablero {
-		/* --------------------------------------------- 
-		 * Si vamos a hacer este hashmap de algoformers, las celdas
-		 * no deberian saber si estan ocupadas o no, para evitar acoplamiento 
-		 * ---------------------------------------------*/
-		public HashMap <AlgoFormer,Posicion> MapaAlgoformers;
+	
+		public HashMap <AlgoFormer,Posicion> mapaAlgoformers;
 		public HashMap <Posicion,Celda> celdas;
 		public static final int ALTO = 20;
 		public static final int ANCHO = 60;
-		public static Tablero instanciaTablero = null;
-		/* Para poder hacer un singleton necesito constantes predefinidas, sino solo puedo hacer 
-		 * un get instance con parametros que es medio feo, o hacerlo publico nomas */		
+		public static Tablero instanciaTablero = null;	
 		
 		private Tablero()
 		{
-		    MapaAlgoformers = new HashMap<AlgoFormer,Posicion>();
+		    mapaAlgoformers = new HashMap<AlgoFormer,Posicion>();
 		    
 			this.celdas= new HashMap <Posicion,Celda>();
 			for (int i=0;i<ANCHO;i++){
@@ -56,57 +50,53 @@ public class Tablero {
 		/* Cuando comienza el juego se llama a esta funcion */
 		public void ColocarAlgoformer (Posicion posicion,AlgoFormer algoformer){
 			validarMovimiento(algoformer, posicion);
-			this.MapaAlgoformers.put(algoformer,posicion);
+			this.mapaAlgoformers.put(algoformer,posicion);
 			celdas.get(posicion).activarEfecto(algoformer);
 		}
 		
 		public void mover(Movimiento direccion, AlgoFormer algoformer)
 		{
-			Posicion posicionInicial = this.MapaAlgoformers.get(algoformer);
+			Posicion posicionInicial = this.mapaAlgoformers.get(algoformer);
 			Posicion posicionFinal = posicionInicial.sumarMovimiento(direccion);
 			
 			validarMovimiento(algoformer, posicionFinal);
-			this.MapaAlgoformers.put(algoformer, posicionFinal);
 			algoformer.moverACelda(this.celdas.get(posicionFinal));
-			//faltaria agregar el algoformer a la celda?
+			this.mapaAlgoformers.put(algoformer, posicionFinal);
 		}
 
 		public void colocarChispaSuprema()
 		{
-			Posicion medio = new Posicion (ALTO/2,ANCHO/2);
+			Posicion medio = new Posicion (ANCHO/2, ALTO/2);
 			this.celdas.get(medio).colocarChispaSuprema();
 		}
 		
-		public int devolverExtremoIzquierdo(){
-			return 0;
-		}
-		
-		public int devolverExtremoDerecho(){
+		public int devolverExtremoDeAncho(){
 			return ANCHO;
 		}
 		
+		public int devolverExtremoDeAlto(){
+			return ALTO;
+		}
+		
 		private void validarMovimiento(AlgoFormer algoformer,
-		    Posicion posicionFinal)
+		    Posicion posicion)
 		{
-			if (this.celdas.get(posicionFinal) == null)
+			if (this.celdas.get(posicion) == null)
 				throw new PosicionInvalidaException();
-			if (this.MapaAlgoformers.containsValue(posicionFinal))
+			if (this.mapaAlgoformers.containsValue(posicion))
 				throw new CeldaOcupadaException();
 		}
 		
 		public Posicion devolverPosicionAlgoformer (AlgoFormer algoformer){
-			return this.MapaAlgoformers.get(algoformer);
+			return this.mapaAlgoformers.get(algoformer);
 		}
 		
 		public int distanciaEntreAlgoformers(AlgoFormer algoformerAtacante, 
 		    AlgoFormer algoformerAtacado)
 		{
-		    /* Asumo la clase Posicion tiene un metodo
-		       posicion.calcularDistanciaCon(Posicion posicion) */
-			//Se me hace que es mas una responsabilidad de tablero ese metodo (Joaquin)
 			Posicion posicionAtacante =
-			    this.MapaAlgoformers.get(algoformerAtacante);
+			    this.mapaAlgoformers.get(algoformerAtacante);
 			return posicionAtacante.calcularDistanciaCon(
-			    this.MapaAlgoformers.get(algoformerAtacado));
+			    this.mapaAlgoformers.get(algoformerAtacado));
 		}
 }
