@@ -33,7 +33,8 @@ public class Celda {
 		return this.algoformer != null;
 	}
 	
-	public int getCostoDeEntrada(ModoAlgoFormer modo)
+	
+	public int getCostoDeEntrada(Unidad Algoformer)
 	{
 	    return 0;
 	}
@@ -43,7 +44,7 @@ public class Celda {
 	    ;
     }
 	
-	/*
+/*
 	public void setBonus(Bonus bonus){
 		this.setBonus = bonus;
 	}

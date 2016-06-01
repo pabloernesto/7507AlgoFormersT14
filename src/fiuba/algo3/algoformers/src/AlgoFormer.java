@@ -1,143 +1,87 @@
 package fiuba.algo3.algoformers.modelo;
 
-import java.io.StreamTokenizer;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.FileInputStream;
-
 import java.io.IOException;
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class AlgoFormer
 {
-    Tablero tablero = Tablero.getInstance();
+	Tablero tablero = Tablero.getInstance();
+    private String nombre;
+    private int vida;
+    private int movimientoRestante;
+    private Unidad estado;
+    private Unidad estadoInactivo;
+ 
 
-    String nombre;
-    int vidaActual;
-    int vidaMaxima;
-    int movimientoRestante = 8;
-    EstadoAF estadoActivo;
-    EstadoAF estadoAlterno;
+    //Constructor auxiliar para pruebas de otras clases
+    public AlgoFormer(){
+    	
+    }
+	public AlgoFormer(String nombreDeArchivo)
+    {
+        this.init(nombreDeArchivo);
+    }
+
+    public void init(String nombreDeArchivo)
+    {
+    	
+    	ArrayList<String[]> especificaciones = null;
+		try {
+			especificaciones = CSV_Parser.csvToArraysOfStrings(nombreDeArchivo);
+		} catch (IOException e) {
+			// hacer algo
+		}
+    	
+		//especificaciones.get(i) es la linea i del archivo, separado por comas
+		//especificaciones.get(i)[x] es el campo x de la linea i del archivo
+    	this.nombre = especificaciones.get(0)[0];
+    	this.vida = Integer.parseInt(especificaciones.get(0)[1]);
+    	String tipoAlterno = especificaciones.get(0)[2];
+    	int[] valoresAlgoformer = new int[3];
+    	
+    	convertirANumeros(especificaciones.get(1), valoresAlgoformer);
+    	this.estado = crearUnidad("Humanoide", valoresAlgoformer[0], valoresAlgoformer[1], valoresAlgoformer[2]);
+        
+    	convertirANumeros(especificaciones.get(2), valoresAlgoformer);
+        this.estadoInactivo = crearUnidad(tipoAlterno, valoresAlgoformer[0], valoresAlgoformer[1], valoresAlgoformer[2]);
+    }
     
-    public AlgoFormer(){}
-
-    public AlgoFormer(String nombreDeArchivo)
-    {
-        FileInputStream fis;
-        try {
-            fis = new FileInputStream(nombreDeArchivo);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException();
-        }
-        StreamTokenizer tokenStream =
-            new StreamTokenizer(
-                new BufferedReader(
-                new InputStreamReader(fis)));
-        
-        // Cargar datos de AlgoFormer
-        try {
-            tokenStream.nextToken();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        String nombre = tokenStream.sval;
-
-        try {
-            tokenStream.nextToken();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        int vida = (int) tokenStream.nval;
-        
-        // Cargar primer estado
-        try {
-            tokenStream.nextToken();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        String nombreDelModo = tokenStream.sval;
-        ModoAlgoFormer modo = ModoAlgoFormer.get(nombreDelModo);
-
-        try {
-            tokenStream.nextToken();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        int ataque = (int) tokenStream.nval;
-
-        try {
-            tokenStream.nextToken();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        int velocidad = (int) tokenStream.nval;
-
-        try {
-            tokenStream.nextToken();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        int distancia = (int) tokenStream.nval;
-        
-        EstadoAF estadoInicial =
-            new EstadoAF(modo, ataque, distancia, velocidad);
-
-        // Cargar segundo estado
-        // Codigo duplicado. Como lo saco?
-        try {
-            tokenStream.nextToken();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        nombreDelModo = tokenStream.sval;
-        modo = ModoAlgoFormer.get(nombreDelModo);
-
-        try {
-            tokenStream.nextToken();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        ataque = (int) tokenStream.nval;
-
-        try {
-            tokenStream.nextToken();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        velocidad = (int) tokenStream.nval;
-
-        try {
-            tokenStream.nextToken();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        distancia = (int) tokenStream.nval;
-        
-        EstadoAF estadoAlterno =
-            new EstadoAF(modo, ataque, distancia, velocidad);
-        
-        // crear EstadoAF
-        this.init(nombre, vida, estadoInicial, estadoAlterno);
+    private void convertirANumeros(String[] especificaciones, int[] valoresAlgoformer){
+    	for (int i = 0 ; i < 3 ; i++){
+    		valoresAlgoformer[i] = Integer.parseInt(especificaciones[i]);
+    	}
     }
 
-    public void init(String nombre, int vida,
-        EstadoAF estadoInicial, EstadoAF estadoAlterno)
-    {
-        this.nombre = nombre;
-        vidaMaxima = vida;
-        vidaActual = vida;
-        estadoActivo = estadoInicial;
-        this.estadoAlterno = estadoAlterno;
+    
+    private Unidad crearUnidad(String tipo, int ataque, int velocidad, int dist_ataque){
+    	Unidad unidad = null;
+    	switch(tipo){
+    	case "Humanoide":
+    		unidad = new UnidadHumanoide(ataque, velocidad, dist_ataque);
+        case "Terrestre":
+         	unidad = new UnidadTerrestre(ataque, velocidad, dist_ataque);
+         	break;
+        case "Aerea":
+         	unidad = new UnidadAerea(ataque, velocidad, dist_ataque);
+         	break;
+         	}
+         return unidad;
+	}
+    
+    public void transformarse(){
+    	Unidad auxiliar = this.estado;
+    	this.estado = this.estadoInactivo;
+    	this.estadoInactivo = auxiliar;
     }
-
+    
     public void mover(Movimiento d)
     {
         tablero.mover(d, this);
     }
-
+    
     public void moverACelda(Celda c)
     {
-        int costo = c.getCostoDeEntrada(ModoAlgoFormer.HUMANOIDE);
+        int costo = c.getCostoDeEntrada(this.estado);
         if (costo > movimientoRestante)
             throw new RuntimeException();
         movimientoRestante -= costo;
@@ -148,4 +92,22 @@ public class AlgoFormer
     {
         return movimientoRestante;
     }
+    
+    //Metodos para pruebas, no deberian ser llamados en otros lugares que no sean pruebas
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public int getVida(){
+		return vida;
+	}
+
+	public Unidad getEstado() {
+		return estado;
+	}
+
+	public Unidad getEstado_inactivo() {
+		return estadoInactivo;
+	}
+    
 }

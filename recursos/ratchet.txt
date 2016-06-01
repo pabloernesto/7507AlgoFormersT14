@@ -1,3 +1,3 @@
-Ratchet,150
-Humanoide,5,1,5
-Aerea,35,8,2
+Ratchet,150,Aerea
+5,1,5
+35,8,2

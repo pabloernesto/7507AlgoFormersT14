@@ -1,3 +1,3 @@
-Bonecrusher,200
-Humanoide,30,1,3
-Terrestre,30,8,3
+Bonecrusher,200,Terrestre
+30,1,3
+30,8,3
