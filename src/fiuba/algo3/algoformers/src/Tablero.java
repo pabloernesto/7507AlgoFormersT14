@@ -53,8 +53,7 @@ public class Tablero {
 		public void ColocarAlgoformer (Posicion posicion,AlgoFormer algoformer){
 			validarMovimiento(algoformer, posicion);
 			this.MapaAlgoformers.put(algoformer,posicion);
-			algoformer.moverACelda(this.celdas.get(posicion));
-			//faltaria agregar el algoformer a la celda?
+			celdas.get(posicion).activarEfecto(algoformer);
 		}
 		
 		public void mover(Movimiento direccion, AlgoFormer algoformer)

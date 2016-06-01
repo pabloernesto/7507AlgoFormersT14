@@ -59,17 +59,25 @@ public class TableroTest
     	tablero.ColocarAlgoformer (posicion,algoformer);
     	tablero.ColocarAlgoformer (posicion,algoformer2);
     }
+    
     @Test()
-    public void test04TableroMoverAlgoformer(){
+    public void test04TableroMoverAlgoformer()
+    {
 		Tablero.borrarInstance();
-    	Tablero tablero=Tablero.getInstance();
+    	Tablero tablero = Tablero.getInstance();
+    	
     	AlgoFormer algoformer= new AlgoFormer();
     	Posicion posicion= new Posicion (1,0);
-    	tablero.ColocarAlgoformer (posicion,algoformer);
-    	Assert.assertTrue(tablero.devolverPosicionAlgoformer(algoformer)==posicion);
-    	tablero.mover(Movimiento.DERECHA,algoformer);
-    	Posicion posicionFinal =posicion.sumarMovimiento(Movimiento.DERECHA);
-    	Assert.assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(posicionFinal));
+    	tablero.ColocarAlgoformer(posicion, algoformer);
+    	Assert.assertTrue(
+    	    tablero.devolverPosicionAlgoformer(algoformer) == posicion);
+    	
+    	tablero.mover(Movimiento.DERECHA, algoformer);
+    	Posicion posicionFinal = posicion.sumarMovimiento(Movimiento.DERECHA);
+    	Assert.assertTrue(
+    	    tablero
+    	        .devolverPosicionAlgoformer(algoformer)
+    	        .equals(posicionFinal));
     }
     
     @Test(expected=PosicionInvalidaException.class)
