@@ -86,7 +86,7 @@ public class AlgoFormer
     {
         int costo = c.getCostoDeEntrada(this.estado);
         if (costo > movimientoRestante)
-            throw new RuntimeException();
+            throw new NoHayMasMovimientosException();
         movimientoRestante -= costo;
         c.setAlgoformer(this);
     }
