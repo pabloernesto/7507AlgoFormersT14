@@ -1,59 +1,94 @@
-/*package fiuba.algo3.algoformers.test;
+package fiuba.algo3.algoformers.test;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import fiuba.algo3.algoformers.modelo.AlgoFormer;
 import fiuba.algo3.algoformers.modelo.Movimiento;
+import fiuba.algo3.algoformers.modelo.NoHayMasMovimientosException;
 import fiuba.algo3.algoformers.modelo.Posicion;
 import fiuba.algo3.algoformers.modelo.Tablero;
 import fiuba.algo3.algoformers.modelo.UnidadHumanoide;
 import fiuba.algo3.algoformers.modelo.UnidadTerrestre;
 
 public class PrimeraEntregaTest {
-	//3.Se ubica un algoformer humanoide se lo transforma.
-		//se verifica que se pueda transformar en ambas direcciones.
 	
 	@Test
-	public void test01ColocarTransformerMoverYVerificarPosicion(){
-		AlgoFormer algoformer = new AlgoFormer("MODIFICAR ESTO POR EL NOMBRE DE ARCHIVO DE CUALQUIER TIPO DE ALGOFORMER");
+	public void test01AColocarTransformerHumanoideMoverYVerificarPosicion(){
+		Tablero.borrarInstancia();
 		Tablero tablero = Tablero.getInstance();
-		Posicion posicion= new Posicion(5,5);
-		tablero.ColocarAlgoformer (posicion,algoformer);
+		AlgoFormer algoformer = new AlgoFormer("C:/Users/Emilio/Downloads/optimus.txt");
+		Posicion posicion = new Posicion(5,5);
+		tablero.ColocarAlgoformer(posicion,algoformer);
 		algoformer.mover(Movimiento.ARRIBA);
-		Posicion nuevaPosicion= posicion.sumarMovimiento(Movimiento.ARRIBA);
+		Posicion nuevaPosicion = posicion.sumarMovimiento(Movimiento.ARRIBA);
 		assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(nuevaPosicion));
 	}
 	
-	@Test
-	public void test02TransformarseEnAlternoYVolverATransformarseAHumanoide(){
-		
-		UnidadTerrestre unidadTerrestre = new UnidadTerrestre(100, 5, 5, 5); //vida ataque velocidad distAtaque
-		UnidadHumanoide unidadHumanoide = new UnidadHumanoide(100, 5, 5, 5); //vida ataque velocidad distAtaque
-		AlgoFormer algoformer = new AlgoFormer("ALGOFORMER TIPO TERRESTRE");
-		
-		algoformer.transformarse();
-		assertEquals(algoformer.getEstado().getClass(),unidadTerrestre.getClass());
-		
-		algoformer.transformarse();
-		assertEquals(algoformer.getEstado().getClass(),unidadHumanoide.getClass());
-	}
-	
-	
-	
-	@Test
-	public void test03ColocarTransformerModoAlternoMoverYVerificarPosicion(){
-		AlgoFormer algoformer = new AlgoFormer("MODIFICAR ESTO");
-		algoformer.transformarse();
+	@Test(expected=NoHayMasMovimientosException.class)
+	public void test01BTransformerHumanoideNoPuedeMoverseMasVecesQueSuVelocidad(){
+		Tablero.borrarInstancia();
 		Tablero tablero = Tablero.getInstance();
-		Posicion posicion= new Posicion(5,5);
-		tablero.ColocarAlgoformer (posicion,algoformer);
+		AlgoFormer algoformer = new AlgoFormer("C:/Users/Emilio/Downloads/optimus.txt");
+		Posicion posicion = new Posicion(5,5);
+		tablero.ColocarAlgoformer(posicion,algoformer);
 		algoformer.mover(Movimiento.ARRIBA);
-		Posicion nuevaPosicion= posicion.sumarMovimiento(Movimiento.ARRIBA);
+		Posicion nuevaPosicion = posicion.sumarMovimiento(Movimiento.ARRIBA);
 		assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(nuevaPosicion));
+		algoformer.mover(Movimiento.ARRIBA);
+		nuevaPosicion = nuevaPosicion.sumarMovimiento(Movimiento.ARRIBA);
+		assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(nuevaPosicion));
+		algoformer.mover(Movimiento.ARRIBA);
 	}
 
 	@Test
+	public void test02TransformarseEnAlternoYVolverATransformarseAHumanoide(){
+		UnidadTerrestre unidadTerrestre = new UnidadTerrestre(5, 5, 5); // ataque velocidad distAtaque
+		UnidadHumanoide unidadHumanoide = new UnidadHumanoide(5, 5, 5); // ataque velocidad distAtaque
+		
+		Tablero.borrarInstancia();
+		Tablero tablero = Tablero.getInstance();
+		AlgoFormer algoformer = new AlgoFormer("C:/Users/Emilio/Downloads/optimus.txt");
+		Posicion posicion = new Posicion(5,5);
+		tablero.ColocarAlgoformer(posicion,algoformer);
+		assertEquals(algoformer.getEstado().getClass(), unidadHumanoide.getClass());
+		
+		algoformer.transformarse();
+		assertEquals(algoformer.getEstado().getClass(), unidadTerrestre.getClass());
+		
+		algoformer.transformarse();
+		assertEquals(algoformer.getEstado().getClass(), unidadHumanoide.getClass());
+	}
+	
+	@Test
+	public void test03AColocarTransformerModoAlternoMoverYVerificarPosicion(){
+		Tablero.borrarInstancia();
+		Tablero tablero = Tablero.getInstance();
+		AlgoFormer algoformer = new AlgoFormer("C:/Users/Emilio/Downloads/optimus.txt");
+		algoformer.transformarse();
+		Posicion posicion = new Posicion(5,5);
+		tablero.ColocarAlgoformer(posicion,algoformer);
+		algoformer.mover(Movimiento.ARRIBA);
+		Posicion nuevaPosicion = posicion.sumarMovimiento(Movimiento.ARRIBA);
+		assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(nuevaPosicion));
+	}
+	
+	@Test(expected=NoHayMasMovimientosException.class)
+	public void test03BTransformerModoAlternoNoPuedeMoverseMasVecesQueSuVelocidad(){
+		Tablero.borrarInstancia();
+		Tablero tablero = Tablero.getInstance();
+		AlgoFormer algoformer = new AlgoFormer("C:/Users/Emilio/Downloads/optimus.txt");
+		algoformer.transformarse();
+		Posicion posicion = new Posicion(5,5);
+		tablero.ColocarAlgoformer(posicion, algoformer);
+		for (int i = 0 ; i < algoformer.getEstado().getVelocidad() + 1; i++){
+			algoformer.mover(Movimiento.ARRIBA);
+			posicion = posicion.sumarMovimiento(Movimiento.ARRIBA);
+			assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(posicion));
+		}
+	}
+
+	/*@Test
 	public void test05TransformersSePuedenAtacarSoloSiEstanEnRango(){
 		AlgoFormer autobot = new AlgoFormer("ALGOFORMER DEL TIPO AUTOBOT");
 		AlgoFormer decepticon = new AlgoFormer("ALGOF DEL TIPO DECEPTICON");
@@ -68,8 +103,6 @@ public class PrimeraEntregaTest {
 		
 		//ATACAR Y VERIFICAR CAMBIO EN LA VIDA 
 		
-		/*******************************************
-		
 		//No se pueden atacar
 		posicion= new Posicion(5,5);
 		tablero.ColocarAlgoformer (posicion,autobot);
@@ -79,5 +112,5 @@ public class PrimeraEntregaTest {
 		
 		//ATACAR Y VERIFICAR Q NO CAMBIARON SU VIDA
 		
-	}
-}*/
+	}*/
+}

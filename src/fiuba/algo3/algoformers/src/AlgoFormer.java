@@ -30,7 +30,7 @@ public class AlgoFormer
 		try {
 			especificaciones = CSV_Parser.csvToArraysOfStrings(nombreDeArchivo);
 		} catch (IOException e) {
-			// hacer algo
+			//Atrapar prueba --> que hacer en caso de que falle?
 		}
     	
 		//especificaciones.get(i) es la linea i del archivo, separado por comas
@@ -60,6 +60,7 @@ public class AlgoFormer
     	switch(tipo){
     	case "Humanoide":
     		unidad = new UnidadHumanoide(ataque, velocidad, dist_ataque);
+    		break;
         case "Terrestre":
          	unidad = new UnidadTerrestre(ataque, velocidad, dist_ataque);
          	break;

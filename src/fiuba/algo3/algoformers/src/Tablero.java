@@ -14,7 +14,7 @@ public class Tablero {
 		{
 		    mapaAlgoformers = new HashMap<AlgoFormer,Posicion>();
 		    
-			this.celdas= new HashMap <Posicion,Celda>();
+			this.celdas = new HashMap <Posicion,Celda>();
 			for (int i=0;i<ANCHO;i++){
 				for (int j=0;j<ALTO;j++){
 					/* Asumo todas las celdas se crean iguales por ahora, luego podemos poner algo que
@@ -44,11 +44,11 @@ public class Tablero {
 		}
 		
 		public static void borrarInstancia(){
-			Tablero.instanciaTablero = null;
+			instanciaTablero = null;
 		}
 		
 		/* Cuando comienza el juego se llama a esta funcion */
-		public void ColocarAlgoformer (Posicion posicion,AlgoFormer algoformer){
+		public void ColocarAlgoformer (Posicion posicion, AlgoFormer algoformer){
 			validarMovimiento(algoformer, posicion);
 			celdas.get(posicion).setAlgoformer(algoformer);
 			this.mapaAlgoformers.put(algoformer,posicion);
