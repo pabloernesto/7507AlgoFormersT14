@@ -17,7 +17,7 @@ public class PrimeraEntregaTest {
 	public void test01AColocarTransformerHumanoideMoverYVerificarPosicion(){
 		Tablero.borrarInstancia();
 		Tablero tablero = Tablero.getInstance();
-		AlgoFormer algoformer = new AlgoFormer("C:/Users/Emilio/Downloads/optimus.txt");
+		AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
 		Posicion posicion = new Posicion(5,5);
 		tablero.ColocarAlgoformer(posicion,algoformer);
 		algoformer.mover(Movimiento.ARRIBA);
@@ -29,7 +29,7 @@ public class PrimeraEntregaTest {
 	public void test01BTransformerHumanoideNoPuedeMoverseMasVecesQueSuVelocidad(){
 		Tablero.borrarInstancia();
 		Tablero tablero = Tablero.getInstance();
-		AlgoFormer algoformer = new AlgoFormer("C:/Users/Emilio/Downloads/optimus.txt");
+		AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
 		Posicion posicion = new Posicion(5,5);
 		tablero.ColocarAlgoformer(posicion,algoformer);
 		algoformer.mover(Movimiento.ARRIBA);
@@ -48,7 +48,7 @@ public class PrimeraEntregaTest {
 		
 		Tablero.borrarInstancia();
 		Tablero tablero = Tablero.getInstance();
-		AlgoFormer algoformer = new AlgoFormer("C:/Users/Emilio/Downloads/optimus.txt");
+		AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
 		Posicion posicion = new Posicion(5,5);
 		tablero.ColocarAlgoformer(posicion,algoformer);
 		assertEquals(algoformer.getEstado().getClass(), unidadHumanoide.getClass());
@@ -64,7 +64,7 @@ public class PrimeraEntregaTest {
 	public void test03AColocarTransformerModoAlternoMoverYVerificarPosicion(){
 		Tablero.borrarInstancia();
 		Tablero tablero = Tablero.getInstance();
-		AlgoFormer algoformer = new AlgoFormer("C:/Users/Emilio/Downloads/optimus.txt");
+		AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
 		algoformer.transformarse();
 		Posicion posicion = new Posicion(5,5);
 		tablero.ColocarAlgoformer(posicion,algoformer);
@@ -77,7 +77,7 @@ public class PrimeraEntregaTest {
 	public void test03BTransformerModoAlternoNoPuedeMoverseMasVecesQueSuVelocidad(){
 		Tablero.borrarInstancia();
 		Tablero tablero = Tablero.getInstance();
-		AlgoFormer algoformer = new AlgoFormer("C:/Users/Emilio/Downloads/optimus.txt");
+		AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
 		algoformer.transformarse();
 		Posicion posicion = new Posicion(5,5);
 		tablero.ColocarAlgoformer(posicion, algoformer);
