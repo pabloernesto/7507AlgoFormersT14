@@ -52,4 +52,16 @@ public class CeldaTest {
 		celda.setAlgoformer(algoformer);
 		assertTrue(celda.estaOcupada());
 	}
+	
+	@Test
+	public void testCeldaRecienCreadaNoContieneChispaSuprema(){
+		assertFalse(new Celda().contieneChispaSuprema());
+	}
+	
+	@Test
+	public void testCeldaContieneChispaSuprema(){
+		Celda celda = new Celda();
+		celda.colocarChispaSuprema();
+		assertTrue(celda.contieneChispaSuprema());
+	}
 }

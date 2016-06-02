@@ -37,6 +37,7 @@ public class AlgoFormer
 		//especificaciones.get(i)[x] es el campo x de la linea i del archivo
     	this.nombre = especificaciones.get(0)[0];
     	this.vida = Integer.parseInt(especificaciones.get(0)[1]);
+    	this.movimientoRestante = Integer.parseInt(especificaciones.get(1)[1]);
     	String tipoAlterno = especificaciones.get(0)[2];
     	int[] valoresAlgoformer = new int[3];
     	
@@ -73,6 +74,7 @@ public class AlgoFormer
     	Unidad auxiliar = this.estado;
     	this.estado = this.estadoInactivo;
     	this.estadoInactivo = auxiliar;
+    	this.movimientoRestante = this.estado.getVelocidad();
     }
     
     public void mover(Movimiento d)
@@ -86,7 +88,11 @@ public class AlgoFormer
         if (costo > movimientoRestante)
             throw new RuntimeException();
         movimientoRestante -= costo;
-        c.activarEfecto(this);
+        c.setAlgoformer(this);
+    }
+    
+    public void terminarTurno(){
+    	this.movimientoRestante = this.estado.getVelocidad();
     }
     
     public int getMovimientoRestante()

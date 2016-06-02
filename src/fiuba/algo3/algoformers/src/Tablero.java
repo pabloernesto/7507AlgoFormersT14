@@ -50,8 +50,8 @@ public class Tablero {
 		/* Cuando comienza el juego se llama a esta funcion */
 		public void ColocarAlgoformer (Posicion posicion,AlgoFormer algoformer){
 			validarMovimiento(algoformer, posicion);
+			celdas.get(posicion).setAlgoformer(algoformer);
 			this.mapaAlgoformers.put(algoformer,posicion);
-			celdas.get(posicion).activarEfecto(algoformer);
 		}
 		
 		public void mover(Movimiento direccion, AlgoFormer algoformer)

@@ -9,6 +9,7 @@ public class Celda {
 	
 	public void setAlgoformer(AlgoFormer algoformer){
 		this.algoformer = algoformer;
+		activarEfecto(algoformer);
 	}
 	
 	public AlgoFormer getAlgoformer(){
@@ -29,7 +30,7 @@ public class Celda {
 	    return 1;
 	}
 	
-	public void activarEfecto(AlgoFormer af)
+	private void activarEfecto(AlgoFormer af)
 	{
 	    ;
     }
