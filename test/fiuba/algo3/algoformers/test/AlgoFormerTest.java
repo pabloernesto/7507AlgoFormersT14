@@ -19,13 +19,13 @@ public class AlgoFormerTest {
 
 	@Test
 	public void testCrearUnAlgoFormerNoEsNull(){
-		AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/AlgoformerPrueba.txt");
+		AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
 		assertNotNull(algoformer);
 	}
 	
 	@Test
 	public void testAlgoformerSeCreaCorrectamenteSegunArchivo(){
-		AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/AlgoformerPrueba.txt");
+		AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
 		assertEquals(algoformer.getNombre(), "Optimus Prime");
 		assertEquals(algoformer.getVida(), 500);
 		assertEquals(algoformer.getEstado().getAtaque(), 50);
@@ -58,7 +58,7 @@ public class AlgoFormerTest {
     @Test(expected=NoHayMasMovimientosException.class)
     public void testMoverACeldaReduceMovimientoYLanzaExcepcionSiNoHayMasMovimiento()
     {
-    	AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/AlgoformerPrueba.txt");
+    	AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
         int movimientoInicial = algoformer.getMovimientoRestante();
         Celda c = new Celda();
         algoformer.moverACelda(c);

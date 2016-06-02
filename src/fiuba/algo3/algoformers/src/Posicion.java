@@ -40,7 +40,7 @@ public class Posicion {
 			return false;
 		return true;
 	}
-	
+
 	public int calcularDistanciaCon(Posicion unaPosicion)
 	{
 	    int distanciaX = Math.abs(x - unaPosicion.x);

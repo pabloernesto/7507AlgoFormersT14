@@ -110,7 +110,18 @@ public class TableroTest
     public void test09devolverExtremosDevuelveExtremosCorrectos(){
     	Tablero.borrarInstancia();
     	Tablero tablero = Tablero.getInstance();
-    	assertEquals(tablero.devolverExtremoDeAncho(),60);
-    	assertEquals(tablero.devolverExtremoDeAlto(),20);
+    	assertEquals(tablero.devolverExtremoDeAncho(),59);
+    	assertEquals(tablero.devolverExtremoDeAlto(),19);
+    }
+    
+    @Test()
+    public void test10posicionEstaOcupada(){
+    	Tablero.borrarInstancia();
+    	Tablero tablero = Tablero.getInstance();
+    	Posicion posicion = new Posicion(1,1);
+    	assertFalse(tablero.posicionEstaOcupada(posicion));
+    	AlgoFormer algoformer = new AlgoFormer();
+    	tablero.ColocarAlgoformer(posicion, algoformer);
+    	assertTrue(tablero.posicionEstaOcupada(posicion));
     }
 }

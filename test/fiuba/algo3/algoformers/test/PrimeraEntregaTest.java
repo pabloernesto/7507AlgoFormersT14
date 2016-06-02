@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import fiuba.algo3.algoformers.modelo.AlgoFormer;
+import fiuba.algo3.algoformers.modelo.Juego;
 import fiuba.algo3.algoformers.modelo.Movimiento;
 import fiuba.algo3.algoformers.modelo.NoHayMasMovimientosException;
 import fiuba.algo3.algoformers.modelo.Posicion;
@@ -32,32 +33,33 @@ public class PrimeraEntregaTest {
 		AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
 		Posicion posicion = new Posicion(5,5);
 		tablero.ColocarAlgoformer(posicion,algoformer);
-		algoformer.mover(Movimiento.ARRIBA);
-		Posicion nuevaPosicion = posicion.sumarMovimiento(Movimiento.ARRIBA);
-		assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(nuevaPosicion));
-		algoformer.mover(Movimiento.ARRIBA);
-		nuevaPosicion = nuevaPosicion.sumarMovimiento(Movimiento.ARRIBA);
-		assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(nuevaPosicion));
-		algoformer.mover(Movimiento.ARRIBA);
+		for (int i = 0 ; i < algoformer.getEstado().getVelocidad() ; i++){
+			algoformer.mover(Movimiento.ARRIBA);
+			posicion = posicion.sumarMovimiento(Movimiento.ARRIBA);
+			assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(posicion));
+		}
+		try {
+			algoformer.mover(Movimiento.ARRIBA);
+		} catch (NoHayMasMovimientosException e){
+			assertTrue(tablero.posicionEstaOcupada(posicion));
+			throw e;
+		}
 	}
 
 	@Test
 	public void test02TransformarseEnAlternoYVolverATransformarseAHumanoide(){
-		UnidadTerrestre unidadTerrestre = new UnidadTerrestre(5, 5, 5); // ataque velocidad distAtaque
-		UnidadHumanoide unidadHumanoide = new UnidadHumanoide(5, 5, 5); // ataque velocidad distAtaque
-		
 		Tablero.borrarInstancia();
 		Tablero tablero = Tablero.getInstance();
 		AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
 		Posicion posicion = new Posicion(5,5);
 		tablero.ColocarAlgoformer(posicion,algoformer);
-		assertEquals(algoformer.getEstado().getClass(), unidadHumanoide.getClass());
+		assertEquals(algoformer.getEstado().getClass(), UnidadHumanoide.class);
 		
 		algoformer.transformarse();
-		assertEquals(algoformer.getEstado().getClass(), unidadTerrestre.getClass());
+		assertEquals(algoformer.getEstado().getClass(), UnidadTerrestre.class);
 		
 		algoformer.transformarse();
-		assertEquals(algoformer.getEstado().getClass(), unidadHumanoide.getClass());
+		assertEquals(algoformer.getEstado().getClass(), UnidadHumanoide.class);
 	}
 	
 	@Test
@@ -81,13 +83,45 @@ public class PrimeraEntregaTest {
 		algoformer.transformarse();
 		Posicion posicion = new Posicion(5,5);
 		tablero.ColocarAlgoformer(posicion, algoformer);
-		for (int i = 0 ; i < algoformer.getEstado().getVelocidad() + 1; i++){
+		for (int i = 0 ; i < algoformer.getEstado().getVelocidad() ; i++){
 			algoformer.mover(Movimiento.ARRIBA);
 			posicion = posicion.sumarMovimiento(Movimiento.ARRIBA);
 			assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(posicion));
 		}
+		try{
+			algoformer.mover(Movimiento.ARRIBA);
+		} catch (NoHayMasMovimientosException e){
+			assertTrue(tablero.posicionEstaOcupada(posicion));
+			throw e;
+		}
 	}
-
+	
+	@Test
+	public void test04CrearJuegoDistrubuirAlgoformersYUbicarChispa(){
+		Juego juego = new Juego();
+		juego.inicializarJuego();
+		Tablero tablero = Tablero.getInstance();
+		assertTrue(tablero.posicionEstaOcupada(new Posicion(0, tablero.devolverExtremoDeAlto()/2-1)));
+		assertTrue(tablero.posicionEstaOcupada(new Posicion(0, tablero.devolverExtremoDeAlto()/2)));
+		assertTrue(tablero.posicionEstaOcupada(new Posicion(0, tablero.devolverExtremoDeAlto()/2+1)));
+		
+		assertTrue(tablero.posicionEstaOcupada(new Posicion(tablero.devolverExtremoDeAncho(), tablero.devolverExtremoDeAlto()/2-1)));
+		assertTrue(tablero.posicionEstaOcupada(new Posicion(tablero.devolverExtremoDeAncho(), tablero.devolverExtremoDeAlto()/2)));
+		assertTrue(tablero.posicionEstaOcupada(new Posicion(tablero.devolverExtremoDeAncho(), tablero.devolverExtremoDeAlto()/2+1)));
+		
+		boolean estaChispaSuprema = false;
+		for (int x = tablero.devolverExtremoDeAncho() / 3 ; x < (tablero.devolverExtremoDeAncho() / 3) * 2 ; x++){
+			for (int y = tablero.devolverExtremoDeAlto() / 3 ; y < (tablero.devolverExtremoDeAlto() / 3) * 2 ; y++){
+				Posicion posicion = new Posicion(x,y);
+				if (tablero.posicionContieneChispaSuprema(posicion)){
+					estaChispaSuprema = true;
+					break;
+				}
+			}
+		}
+		assertTrue(estaChispaSuprema);
+	}
+	
 	/*@Test
 	public void test05TransformersSePuedenAtacarSoloSiEstanEnRango(){
 		AlgoFormer autobot = new AlgoFormer("ALGOFORMER DEL TIPO AUTOBOT");

@@ -5,12 +5,9 @@ import java.util.HashMap;
 import java.util.Collections;
 
 public class Tablero {
-		/*Estaba muy acoplado si el tablero tiene una referencia a algoformer, pero que conozca las celdas ocupadas
-		 * sirve igual, y como las celdas ocupadas son muchas menos que las celdas libres, sigue siendo conveniente
-		 * esta variable posicionCeldasOcupadas
-		 */	
-		public ArrayList<Posicion> posicionCeldasOcupadas;
-		public HashMap <Posicion,Celda> celdas;
+
+		private ArrayList<Posicion> posicionCeldasOcupadas;
+		private HashMap <Posicion,Celda> celdas;
 		public static final int ALTO = 20;
 		public static final int ANCHO = 60;
 		public static Tablero instanciaTablero = null;	
@@ -76,11 +73,19 @@ public class Tablero {
 		}
 		
 		public int devolverExtremoDeAncho(){
-			return ANCHO;
+			return ANCHO - 1;
 		}
 		
 		public int devolverExtremoDeAlto(){
-			return ALTO;
+			return ALTO - 1;
+		}
+		
+		public boolean posicionEstaOcupada(Posicion posicion){
+			return this.celdas.get(posicion).estaOcupada();
+		}
+
+		public boolean posicionContieneChispaSuprema(Posicion posicion){
+			return this.celdas.get(posicion).contieneChispaSuprema();
 		}
 		
 		private void validarMovimiento(AlgoFormer algoformer,

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Equipo {
 	
 	// El capitan es el primero de la lista.
-	private ArrayList<AlgoFormer> listaAlgoFormer;
+	private ArrayList<AlgoFormer> listaAlgoFormer = new ArrayList<AlgoFormer>();
 	
 	public Equipo(List<String> listaArchivos){
 		for(String archivo : listaArchivos)
