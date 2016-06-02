@@ -77,21 +77,96 @@ public class Juego {
 	}
 	
 	public boolean turnoEquipo(Equipo equipo){
+	}	
+	/*public boolean turnoEquipo(Equipo equipo){
 		
-		return true;
+		Scanner ingreso = new Scanner(System.in);
 		
-		/*1.equipo decide elegir algoformer
-			preguntaralgoformerquehacer(){
-				1.mover	
-					(mostrar lugares disponibles)
-				2.atacar
-					(mostrar si podes atacar y dsp atacar o perder turno)
-				3.combinarse
-					(chequea rangos.)
+		System.out.println("Eliga el algoformer a utilizar");
+		ArrayList<AlgoFormer> listaAlgoformer = equipo.getListaAlgoFormer();
+		for(int i =0; i< listaAlgoformer.size(); i++ )
+			System.out.println("\n" + i + ". " + listaAlgoformer.get(i).getNombre());
+			
+		System.out.println("\nEleccion: ");
+		int eleccion = ingreso.nextInt();
+		
+		AlgoFormer algoformerActual = equipo.get(listaAlgoformer.get(eleccion).getNombre());
+		System.out.println("\nElegiste" + eleccion + algoformerActual.getNombre());
+		
+		
+		System.out.println("\nQue decide hacer?");
+		System.out.println("\n1. Mover");
+		System.out.println("\n2. Atacar");
+		System.out.println("\n3. Transformarse");
+		System.out.println("\n4. Combinarse");
+		System.out.println("\nEleccion: ");
+		eleccion = ingreso.nextInt();
+
+		switch(eleccion){
+		case 1:
+			//aca se podria pedir la cantidad de movimientos posibles y hacer un bucle.
+			System.out.println("\nPara donde me muevo?");
+			System.out.println("\n1. Abajo Izquierda");
+			System.out.println("\n2. Abajo"); 
+			System.out.println("\n3. Abajo Derecha");
+			System.out.println("\n4. Izquierda");
+			System.out.println("\n6. Derecha");
+			System.out.println("\n7. Arriba Izquierda"); 
+			System.out.println("\n8. Arriba"); 
+			System.out.println("\n9. Arriba Derecha");
+			
+			System.out.println("\nEleccion: ");
+			eleccion = ingreso.nextInt();
+			switch(eleccion){// NO VERIFICO CUANTAS VECES PUEDO MOVERME
+				case 1: 
+					algoformerActual.mover(Movimiento.ABAJO_IZQUIERDA);
+					break;
+				case 2: 
+					algoformerActual.mover(Movimiento.ABAJO);
+					break;
+				case 3: 
+					algoformerActual.mover(Movimiento.ABAJO_DERECHA);
+					break;
+				case 4: 
+					algoformerActual.mover(Movimiento.IZQUIERDA);
+					break;
+				case 6: 
+					algoformerActual.mover(Movimiento.DERECHA);
+					break;
+				case 7: 
+					algoformerActual.mover(Movimiento.ARRIBA_IZQUIERDA);
+					break;
+				case 8: 
+					algoformerActual.mover(Movimiento.ARRIBA);
+					break;
+				case 9: 
+					algoformerActual.mover(Movimiento.ARRIBA_DERECHA);
+					break;
+				default:
+					System.out.println("QUE HACES??????? PERDES EL TURNO POR DESPISTADO!"); //esto se deberia manejar de otra manera, onda que vuelva a ingresar la eleccion de moverse.
 			}
-			finalizarTurno(); //capaz sirve para hacer efectos de bonus o superficies. sino borrar.
-		return true;*/
+			break;
+			
+		case 2:
+			//mostrar lista de algoformers disponibles para atacar y hacer la lista de PRINTS y otro switch.
+			algoformerActual.atacar();
+			break;
+		case 3:
+			algoformerActual.transformarse();
+			break;
+		case 4: 
+			algoformerActual.combinarse();
+			break;
+		default:
+			System.out.println("QUE HACES??????? PERDES EL TURNO POR DESPISTADO!"); //esto se deberia manejar repetiendo el turno del jugador.
+		}
+		return chequearGanador();
 	}
+	public boolean chequearGanador(){
+		//chequea que la chispa ya no exista o que algoformers no tengan vida
+		return false;
+	}*/
+	
 	
 	public void swap(){
 		Equipo equipoAux = equipoActual;
