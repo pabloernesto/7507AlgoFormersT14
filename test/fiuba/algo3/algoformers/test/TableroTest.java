@@ -124,4 +124,14 @@ public class TableroTest
     	tablero.ColocarAlgoformer(posicion, algoformer);
     	assertTrue(tablero.posicionEstaOcupada(posicion));
     }
+    
+    @Test()
+    public void test11posicionContieneChispaSuprema(){
+    	Tablero.borrarInstancia();
+    	Tablero tablero = Tablero.getInstance();
+    	Posicion posicion = new Posicion(Tablero.ANCHO/2, Tablero.ALTO/2);
+    	assertFalse(tablero.posicionContieneChispaSuprema(posicion));
+    	tablero.colocarChispaSuprema();
+    	assertTrue(tablero.posicionContieneChispaSuprema(posicion));
+    }
 }

@@ -96,6 +96,16 @@ public class AlgoFormer
     	this.movimientoRestante = this.estado.getVelocidad();
     }
     
+    public void atacar(AlgoFormer algoformer){
+    	if (tablero.distanciaEntreAlgoformers(this, algoformer) > estado.getDist_ataque())
+    		throw new AlgoformerFueraDeAlcanceException();
+    	algoformer.recibirDanio(estado.getAtaque());
+    }
+    
+    public void recibirDanio(int ataqueEnemigo){
+    	vida -= ataqueEnemigo;
+    }
+    
     public int getMovimientoRestante()
     {
         return movimientoRestante;
@@ -109,12 +119,24 @@ public class AlgoFormer
 	public int getVida(){
 		return vida;
 	}
-
-	public Unidad getEstado() {
-		return estado;
+	
+	public int getAtaque() {
+		return estado.getAtaque();
 	}
 
-	public Unidad getEstado_inactivo() {
+	public int getVelocidad() {
+		return estado.getVelocidad();
+	}
+
+	public int getDist_ataque() {
+		return estado.getDist_ataque();
+	}
+	
+	public Unidad getEstado(){
+		return estado;
+	}
+	
+	public Unidad getEstadoInactivo(){
 		return estadoInactivo;
 	}
     

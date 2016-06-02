@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import fiuba.algo3.algoformers.modelo.AlgoFormer;
+import fiuba.algo3.algoformers.modelo.AlgoformerFueraDeAlcanceException;
 import fiuba.algo3.algoformers.modelo.Juego;
 import fiuba.algo3.algoformers.modelo.Movimiento;
 import fiuba.algo3.algoformers.modelo.NoHayMasMovimientosException;
@@ -33,7 +34,7 @@ public class PrimeraEntregaTest {
 		AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
 		Posicion posicion = new Posicion(5,5);
 		tablero.ColocarAlgoformer(posicion,algoformer);
-		for (int i = 0 ; i < algoformer.getEstado().getVelocidad() ; i++){
+		for (int i = 0 ; i < algoformer.getVelocidad() ; i++){
 			algoformer.mover(Movimiento.ARRIBA);
 			posicion = posicion.sumarMovimiento(Movimiento.ARRIBA);
 			assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(posicion));
@@ -121,30 +122,42 @@ public class PrimeraEntregaTest {
 		}
 		assertTrue(estaChispaSuprema);
 	}
-	
-	/*@Test
-	public void test05TransformersSePuedenAtacarSoloSiEstanEnRango(){
-		AlgoFormer autobot = new AlgoFormer("ALGOFORMER DEL TIPO AUTOBOT");
-		AlgoFormer decepticon = new AlgoFormer("ALGOF DEL TIPO DECEPTICON");
+
+	@Test
+	public void test05ATransformersSePuedenAtacarEstandoEnRango(){
+		Tablero.borrarInstancia();
 		Tablero tablero = Tablero.getInstance();
+		AlgoFormer optimus = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
+		AlgoFormer megatron = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/megatron.txt");
 		
-		//Se pueden atacar
-		Posicion posicion= new Posicion(5,5);
-		tablero.ColocarAlgoformer (posicion,autobot);
+		Posicion posicion = new Posicion(5,5);
+		tablero.ColocarAlgoformer(posicion, optimus);
+		posicion = new Posicion(5,6);
+		tablero.ColocarAlgoformer(posicion, megatron);
 		
-		posicion= new Posicion(5,6);
-		tablero.ColocarAlgoformer (posicion,decepticon);
+		int vidaAnterior = megatron.getVida();
+		optimus.atacar(megatron);
+		assertTrue(megatron.getVida() == vidaAnterior - optimus.getAtaque());
+	}
+	
+	@Test(expected=AlgoformerFueraDeAlcanceException.class)
+	public void test05BTransformersNoSePuedenAtacarSiNoEstanEnRango(){
+		Tablero.borrarInstancia();
+		Tablero tablero = Tablero.getInstance();
+		AlgoFormer optimus = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
+		AlgoFormer megatron = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/megatron.txt");
 		
-		//ATACAR Y VERIFICAR CAMBIO EN LA VIDA 
+		Posicion posicion = new Posicion(0,0);
+		tablero.ColocarAlgoformer(posicion, optimus);
+		posicion = new Posicion(15,15);
+		tablero.ColocarAlgoformer(posicion, megatron);
 		
-		//No se pueden atacar
-		posicion= new Posicion(5,5);
-		tablero.ColocarAlgoformer (posicion,autobot);
-		
-		posicion= new Posicion(5,20);
-		tablero.ColocarAlgoformer (posicion,decepticon);
-		
-		//ATACAR Y VERIFICAR Q NO CAMBIARON SU VIDA
-		
-	}*/
+		int vidaAnterior = megatron.getVida();
+		try{
+			optimus.atacar(megatron);
+		} catch (AlgoformerFueraDeAlcanceException e){
+			assertTrue(megatron.getVida() == vidaAnterior);
+			throw e;
+		}		
+	}
 }

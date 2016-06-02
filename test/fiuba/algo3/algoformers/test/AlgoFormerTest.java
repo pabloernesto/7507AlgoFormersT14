@@ -28,12 +28,12 @@ public class AlgoFormerTest {
 		AlgoFormer algoformer = new AlgoFormer("/home/travis/build/pabloernesto/7507AlgoFormersT14/recursos/optimus.txt");
 		assertEquals(algoformer.getNombre(), "Optimus Prime");
 		assertEquals(algoformer.getVida(), 500);
-		assertEquals(algoformer.getEstado().getAtaque(), 50);
-		assertEquals(algoformer.getEstado().getVelocidad(), 2);
-		assertEquals(algoformer.getEstado().getDist_ataque(), 2);
-		assertEquals(algoformer.getEstado_inactivo().getAtaque(), 15);
-		assertEquals(algoformer.getEstado_inactivo().getVelocidad(), 4);
-		assertEquals(algoformer.getEstado_inactivo().getDist_ataque(), 5);
+		assertEquals(algoformer.getAtaque(), 50);
+		assertEquals(algoformer.getVelocidad(), 2);
+		assertEquals(algoformer.getDist_ataque(), 2);
+		assertEquals(algoformer.getEstadoInactivo().getAtaque(), 15);
+		assertEquals(algoformer.getEstadoInactivo().getVelocidad(), 4);
+		assertEquals(algoformer.getEstadoInactivo().getDist_ataque(), 5);
 	}
 
     @Test

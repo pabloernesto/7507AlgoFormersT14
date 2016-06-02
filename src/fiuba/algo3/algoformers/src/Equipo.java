@@ -12,6 +12,13 @@ public class Equipo {
 		for(String archivo : listaArchivos)
 			listaAlgoFormer.add(new AlgoFormer(archivo));
 	}
+	
+	//Constructor auxiliar para pruebas
+	public Equipo(ArrayList<AlgoFormer> listaAlgoformers){
+		for(AlgoFormer algoformer : listaAlgoformers){
+			listaAlgoFormer.add(algoformer);
+		}
+	}
 
 	public AlgoFormer getCapitan() {
 		return listaAlgoFormer.get(0);

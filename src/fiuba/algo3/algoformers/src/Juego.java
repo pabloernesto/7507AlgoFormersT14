@@ -52,9 +52,14 @@ public class Juego {
 		boolean hayGanador = false;
 		while(!hayGanador){
 			hayGanador = turnoEquipo(equipoActual);
+			chequearAlgoformersMuertos();
 			swap();
 		}
 		return equipoInactivo;
+	}
+	
+	private void chequearAlgoformersMuertos(){
+		//Recorre ambos equipos y en caso de que alguno este muerto lo borra del equipo y del mapa
 	}
 
 	public void ubicarEquipos(){
