@@ -1,10 +1,15 @@
 package fiuba.algo3.algoformers.modelo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Collections;
 
 public class Tablero {
-	
-		public HashMap <AlgoFormer,Posicion> mapaAlgoformers;
+		/*Estaba muy acoplado si el tablero tiene una referencia a algoformer, pero que conozca las celdas ocupadas
+		 * sirve igual, y como las celdas ocupadas son muchas menos que las celdas libres, sigue siendo conveniente
+		 * esta variable posicionCeldasOcupadas
+		 */	
+		public ArrayList<Posicion> posicionCeldasOcupadas;
 		public HashMap <Posicion,Celda> celdas;
 		public static final int ALTO = 20;
 		public static final int ANCHO = 60;
@@ -12,7 +17,7 @@ public class Tablero {
 		
 		private Tablero()
 		{
-		    mapaAlgoformers = new HashMap<AlgoFormer,Posicion>();
+		    posicionCeldasOcupadas = new ArrayList<Posicion>();
 		    
 			this.celdas = new HashMap <Posicion,Celda>();
 			for (int i=0;i<ANCHO;i++){
@@ -51,17 +56,17 @@ public class Tablero {
 		public void ColocarAlgoformer (Posicion posicion, AlgoFormer algoformer){
 			validarMovimiento(algoformer, posicion);
 			celdas.get(posicion).setAlgoformer(algoformer);
-			this.mapaAlgoformers.put(algoformer,posicion);
+			this.posicionCeldasOcupadas.add(posicion);
 		}
 		
 		public void mover(Movimiento direccion, AlgoFormer algoformer)
 		{
-			Posicion posicionInicial = this.mapaAlgoformers.get(algoformer);
+			Posicion posicionInicial = devolverPosicionAlgoformer(algoformer);
 			Posicion posicionFinal = posicionInicial.sumarMovimiento(direccion);
 			
 			validarMovimiento(algoformer, posicionFinal);
 			algoformer.moverACelda(this.celdas.get(posicionFinal));
-			this.mapaAlgoformers.put(algoformer, posicionFinal);
+			Collections.replaceAll(this.posicionCeldasOcupadas,posicionInicial,posicionFinal );;
 		}
 
 		public void colocarChispaSuprema()
@@ -83,20 +88,25 @@ public class Tablero {
 		{
 			if (this.celdas.get(posicion) == null)
 				throw new PosicionInvalidaException();
-			if (this.mapaAlgoformers.containsValue(posicion))
+			if (this.posicionCeldasOcupadas.contains(posicion))
 				throw new CeldaOcupadaException();
 		}
 		
 		public Posicion devolverPosicionAlgoformer (AlgoFormer algoformer){
-			return this.mapaAlgoformers.get(algoformer);
+			Posicion posicionAlgoformer = null;
+			for (Posicion posicion: this.posicionCeldasOcupadas){
+				if (celdas.get(posicion).getAlgoformer().equals(algoformer))
+					posicionAlgoformer=posicion;
+				}
+			return posicionAlgoformer;
 		}
 		
 		public int distanciaEntreAlgoformers(AlgoFormer algoformerAtacante, 
 		    AlgoFormer algoformerAtacado)
 		{
 			Posicion posicionAtacante =
-			    this.mapaAlgoformers.get(algoformerAtacante);
+					devolverPosicionAlgoformer(algoformerAtacante);
 			return posicionAtacante.calcularDistanciaCon(
-			    this.mapaAlgoformers.get(algoformerAtacado));
+					devolverPosicionAlgoformer(algoformerAtacado));
 		}
 }
