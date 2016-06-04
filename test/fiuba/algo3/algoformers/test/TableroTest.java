@@ -1,5 +1,8 @@
 package fiuba.algo3.algoformers.test;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.After;
@@ -10,9 +13,11 @@ import fiuba.algo3.algoformers.algoformers.Decepticon;
 import fiuba.algo3.algoformers.algoformers.UnidadAerea;
 import fiuba.algo3.algoformers.algoformers.UnidadAlterna;
 import fiuba.algo3.algoformers.algoformers.UnidadHumanoide;
+
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Posicion;
 import fiuba.algo3.algoformers.escenario.Tablero;
+
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
 
@@ -135,5 +140,27 @@ public class TableroTest {
     	assertEquals(2, tablero.distanciaEntreAlgoformers(algoformer2, algoformer3));
     	assertEquals(0, tablero.distanciaEntreAlgoformers(algoformer, algoformer));
     }
-	
+
+	@Test
+    public void testColocarEquipoDejaALosAlgoFormerJuntos()
+    {
+        tablero.reiniciarTablero();
+        tablero = Tablero.getInstance();
+
+        UnidadHumanoide humanoide = new UnidadHumanoide(1, 2, 3);
+        UnidadAlterna alterna = new UnidadAerea(3, 2, 1);
+        AlgoFormer dc1 = new Decepticon("D1", 10, humanoide, alterna);
+        AlgoFormer dc2 = new Decepticon("D2", 10, humanoide, alterna);
+        AlgoFormer dc3 = new Decepticon("D3", 10, humanoide, alterna);
+
+        List<AlgoFormer> equipo = new ArrayList<AlgoFormer>();
+        equipo.add(dc1);
+        equipo.add(dc2);
+        equipo.add(dc3);
+        
+        tablero.colocarEquipo1(equipo);
+        
+        assertEquals(1, tablero.distanciaEntreAlgoformers(dc1, dc2));
+        assertEquals(1, tablero.distanciaEntreAlgoformers(dc2, dc3));
+   }
 }
