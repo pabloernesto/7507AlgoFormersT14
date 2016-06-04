@@ -1,137 +1,139 @@
 package fiuba.algo3.algoformers.test;
 
-import static org.junit.Assert.*;
 import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
 
-import fiuba.algo3.algoformers.modelo.AlgoFormer;
-import fiuba.algo3.algoformers.modelo.Posicion;
-import fiuba.algo3.algoformers.modelo.Tablero;
-import fiuba.algo3.algoformers.modelo.PosicionInvalidaException;
-import fiuba.algo3.algoformers.modelo.CeldaOcupadaException;
-import fiuba.algo3.algoformers.modelo.Movimiento;
+import fiuba.algo3.algoformers.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.algoformers.Decepticon;
+import fiuba.algo3.algoformers.algoformers.UnidadAerea;
+import fiuba.algo3.algoformers.algoformers.UnidadAlterna;
+import fiuba.algo3.algoformers.algoformers.UnidadHumanoide;
+import fiuba.algo3.algoformers.escenario.Movimiento;
+import fiuba.algo3.algoformers.escenario.Posicion;
+import fiuba.algo3.algoformers.escenario.Tablero;
+import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
+import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
 
-public class TableroTest
-{
-    @Test()
-    public void test01TableroColocarAlgoformer(){
-    	Tablero.borrarInstancia();
-    	Tablero tablero = Tablero.getInstance();
-    	AlgoFormer algoformer = new AlgoFormer();
-    	Posicion posicion = new Posicion (0,0);
-    	tablero.ColocarAlgoformer(posicion, algoformer);
-    	assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(posicion));
+public class TableroTest {
+	
+	private Tablero tablero;
+	private UnidadHumanoide humanoide = new UnidadHumanoide(1, 2, 3);
+	private UnidadAlterna alterna = new UnidadAerea(3, 2, 1);
+	private AlgoFormer algoformer = new Decepticon("Ejemplo", 10, humanoide, alterna);
+	
+	@Before
+	public void setUp(){
+		tablero = Tablero.getInstance();
+	}
+	
+	@After
+	public void tearDown(){
+		Tablero.reiniciarTablero();
+	}
+
+	@Test
+	public void tableroEsRectangularDe60x20(){
+		assertEquals(60, tablero.getExtremoDeAncho());
+		assertEquals(20, tablero.getExtremoDeAlto());
+	}
+	
+	@Test
+    public void testColocarAlgoformerYObtenerPosicionDevuelveLaPosicionCorrecta(){
+    	Posicion posicion = new Posicion(1,1);
+    	tablero.colocarAlgoformer(algoformer, posicion);
+    	assertTrue(tablero.getPosicionAlgoformer(algoformer).equals(posicion));
     }
-    
-    @Test()
-    public void test02TableroCalculaCorrectamenteDistanciasEntreAlgoformers(){
-    	Tablero.borrarInstancia();
-    	Tablero tablero=Tablero.getInstance();
-    	AlgoFormer algoformer = new AlgoFormer();
-    	AlgoFormer algoformer2 = new AlgoFormer();
-    	AlgoFormer algoformer3 = new AlgoFormer();
-    	Posicion posicion = new Posicion(0,0);
-    	tablero.ColocarAlgoformer(posicion, algoformer);
-    	posicion= new Posicion(1,1);
-    	tablero.ColocarAlgoformer(posicion, algoformer2);
-    	posicion= new Posicion(1,0);
-    	tablero.ColocarAlgoformer (posicion,algoformer3);
-    	assertTrue(tablero.distanciaEntreAlgoformers(algoformer, algoformer2)==1);
-    	assertTrue(tablero.distanciaEntreAlgoformers(algoformer, algoformer3)==1);
-    	assertTrue(tablero.distanciaEntreAlgoformers(algoformer2, algoformer3)==1);
-    	assertTrue(tablero.distanciaEntreAlgoformers(algoformer, algoformer)==0);
+	
+	@Test
+    public void testObtenerPosicionDeAlgoformerNoColocadoDevuelveNull(){
+    	assertNull(tablero.getPosicionAlgoformer(algoformer));
     }
-    
-    @Test(expected=CeldaOcupadaException.class)
-    public void test03TableroColocarAlgoFormerEnUnaCeldaOcupadaLanzaExcepcion(){
-    	Tablero.borrarInstancia();
-    	Tablero tablero = Tablero.getInstance();
-    	AlgoFormer algoformer = new AlgoFormer();
-    	AlgoFormer algoformer2 = new AlgoFormer();
-    	Posicion posicion = new Posicion (0,0);
-    	tablero.ColocarAlgoformer(posicion, algoformer);
-    	tablero.ColocarAlgoformer(posicion, algoformer2);
-    }
-    
-    @Test()
-    public void test04TableroMoverAlgoformer(){
-    	Tablero.borrarInstancia();
-    	Tablero tablero = Tablero.getInstance();
-    	AlgoFormer algoformer = new AlgoFormer();
-    	Posicion posicion= new Posicion (1,0);
-    	tablero.ColocarAlgoformer(posicion, algoformer);
-    	tablero.mover(Movimiento.DERECHA, algoformer);
-    	Posicion posicionFinal = posicion.sumarMovimiento(Movimiento.DERECHA);
-    	assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(posicionFinal));
-    }
-    
-    @Test(expected=PosicionInvalidaException.class)
-    public void test05TableroMoverAlgoformerAPosicionInvalidaLanzaExcepcion(){
-		Tablero.borrarInstancia();
-    	Tablero tablero = Tablero.getInstance();
-    	AlgoFormer algoformer = new AlgoFormer();
-    	Posicion posicion= new Posicion(0,0);
-    	tablero.ColocarAlgoformer(posicion, algoformer);
-    	assertTrue(tablero.devolverPosicionAlgoformer(algoformer).equals(posicion));
-    	tablero.mover(Movimiento.ARRIBA,algoformer);
-    }
-    
-    @Test(expected=CeldaOcupadaException.class)
-    public void test06TableroMoverAlgoformerCeldaOcupadaLanzaExcepcion(){
-    	Tablero.borrarInstancia();
-    	Tablero tablero = Tablero.getInstance();
-    	AlgoFormer algoformer = new AlgoFormer();
-    	Posicion posicion = new Posicion (0,0);
-    	tablero.ColocarAlgoformer(posicion, algoformer);
-    	AlgoFormer nuevoAlgoformer = new AlgoFormer();
-    	Posicion nuevaPosicion = new Posicion(1,0);
-    	tablero.ColocarAlgoformer (nuevaPosicion, nuevoAlgoformer);
-    	tablero.mover(Movimiento.IZQUIERDA,nuevoAlgoformer);
-    }
-    
-    @Test()
-    public void test07tableroAgregarChispaSupremaSeAgregaEnElMedio(){
-    	Tablero.borrarInstancia();
-    	Tablero tablero = Tablero.getInstance();
-    	tablero.colocarChispaSuprema();
-    	Posicion medio = new Posicion (60/2, 20/2);
-    	assertTrue(tablero.devolverPosicionChispaSuprema().equals(medio));
-    }
- 
-    @Test(expected=PosicionInvalidaException.class)
-    public void test08TableroColocarAlgoFormerEnPosicionInvalidaLanzaExcepcion(){
-    	Tablero.borrarInstancia();
-    	Tablero tablero = Tablero.getInstance();
-    	AlgoFormer algoformer = new AlgoFormer();
+	
+	@Test(expected=PosicionInvalidaException.class)
+    public void testColocarAlgoFormerEnPosicionInvalidaLanzaExcepcion(){
     	Posicion posicion = new Posicion (-1,0);
-    	tablero.ColocarAlgoformer(posicion,algoformer);
+    	tablero.colocarAlgoformer(algoformer, posicion);
     }
-    	
-    @Test()
-    public void test09devolverExtremosDevuelveExtremosCorrectos(){
-    	Tablero.borrarInstancia();
-    	Tablero tablero = Tablero.getInstance();
-    	assertEquals(tablero.devolverExtremoDeAncho(),59);
-    	assertEquals(tablero.devolverExtremoDeAlto(),19);
+	
+	@Test(expected=CeldaOcupadaException.class)
+    public void testColocarAlgoFormerEnUnaCeldaOcupadaLanzaExcepcion(){
+		AlgoFormer algoformer2 = new Decepticon("Ejemplo", 10, humanoide, alterna);
+    	Posicion posicion = new Posicion(2,2);
+    	tablero.colocarAlgoformer(algoformer, posicion);
+    	tablero.colocarAlgoformer(algoformer2, posicion);
     }
-    
-    @Test()
-    public void test10posicionEstaOcupada(){
-    	Tablero.borrarInstancia();
-    	Tablero tablero = Tablero.getInstance();
+	
+	@Test
+    public void testMoverAlgoformer(){
+    	Posicion posicion = new Posicion(1,1);
+    	tablero.colocarAlgoformer(algoformer, posicion);
+    	tablero.moverAlgoformer(algoformer, Movimiento.DERECHA);
+    	Posicion posicionFinal = posicion.sumarMovimiento(Movimiento.DERECHA);
+    	assertTrue(tablero.getPosicionAlgoformer(algoformer).equals(posicionFinal));
+    }
+	
+	@Test(expected=PosicionInvalidaException.class)
+    public void testMoverAlgoformerAPosicionInvalidaLanzaExcepcion(){
+    	Posicion posicion= new Posicion(1,1);
+    	tablero.colocarAlgoformer(algoformer, posicion);
+    	assertTrue(tablero.getPosicionAlgoformer(algoformer).equals(posicion));
+    	tablero.moverAlgoformer(algoformer, Movimiento.ARRIBA);
+    }
+	
+	@Test(expected=CeldaOcupadaException.class)
+    public void testMoverAlgoformerACeldaOcupadaLanzaExcepcion(){
+    	Posicion posicion = new Posicion (1,1);
+    	tablero.colocarAlgoformer(algoformer, posicion);
+    	AlgoFormer nuevoAlgoformer = new Decepticon("Ejemplo", 10, humanoide, alterna);
+    	Posicion nuevaPosicion = new Posicion(2,1);
+    	tablero.colocarAlgoformer (nuevoAlgoformer, nuevaPosicion);
+    	tablero.moverAlgoformer(nuevoAlgoformer, Movimiento.IZQUIERDA);
+    }
+	
+	@Test
+    public void testColocarChispaSupremaLaAgregaEnElMedio(){
+    	tablero.colocarChispaSuprema();
+    	Posicion medio = tablero.getMedio();
+    	assertTrue(tablero.getPosicionChispaSuprema().equals(medio));
+    }
+	
+	@Test
+    public void testgetPosicionChispaSupremaSinEstarAgregadaDevuelveNull(){
+    	assertNull(tablero.getPosicionChispaSuprema());
+    }
+	
+	@Test
+    public void testPosicionEstaOcupada(){
     	Posicion posicion = new Posicion(1,1);
     	assertFalse(tablero.posicionEstaOcupada(posicion));
-    	AlgoFormer algoformer = new AlgoFormer();
-    	tablero.ColocarAlgoformer(posicion, algoformer);
+    	tablero.colocarAlgoformer(algoformer, posicion);
     	assertTrue(tablero.posicionEstaOcupada(posicion));
     }
-    
-    @Test()
-    public void test11posicionContieneChispaSuprema(){
-    	Tablero.borrarInstancia();
-    	Tablero tablero = Tablero.getInstance();
-    	Posicion posicion = new Posicion(Tablero.ANCHO/2, Tablero.ALTO/2);
+	
+	@Test()
+    public void testPosicionContieneChispaSuprema(){
+    	Posicion posicion = tablero.getMedio();
     	assertFalse(tablero.posicionContieneChispaSuprema(posicion));
     	tablero.colocarChispaSuprema();
     	assertTrue(tablero.posicionContieneChispaSuprema(posicion));
     }
+	
+	@Test
+    public void testTableroCalculaCorrectamenteDistanciasEntreAlgoformers(){
+		AlgoFormer algoformer2 = new Decepticon("Ejemplo", 10, humanoide, alterna);
+		AlgoFormer algoformer3 = new Decepticon("Ejemplo", 10, humanoide, alterna);
+    	Posicion posicion = new Posicion(1,1);
+    	tablero.colocarAlgoformer(algoformer, posicion);
+    	posicion = new Posicion(2,2);
+    	tablero.colocarAlgoformer(algoformer2, posicion);
+    	posicion = new Posicion(4,1);
+    	tablero.colocarAlgoformer(algoformer3, posicion);
+    	assertEquals(1, tablero.distanciaEntreAlgoformers(algoformer, algoformer2));
+    	assertEquals(3, tablero.distanciaEntreAlgoformers(algoformer, algoformer3));
+    	assertEquals(2, tablero.distanciaEntreAlgoformers(algoformer2, algoformer3));
+    	assertEquals(0, tablero.distanciaEntreAlgoformers(algoformer, algoformer));
+    }
+	
 }

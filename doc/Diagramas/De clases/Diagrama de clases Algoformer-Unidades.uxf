@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>30</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>AlgoFormer
+--
+- nombre
+- vida
+- movimientoRestante
+- estado: Unidad
+- estadoInactivo: Unidad
+--
+- crearUnidad(tipo,atributos)
++ atacar(AlgoFormer)
++ transformarse()
++ mover(Movimiento)
++ recibirDanio(danio)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>30</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Unidad
+(abstracta)
+--
+- ataque
+- velocidad
+- distanciaAtaque
+--
++ getAtaque()
++ getVelocidad()
++ getDistanciaAtaque()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>650</x>
+      <y>280</y>
+      <w>150</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>UnidadAerea
+--
+
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>70</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Movimiento</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>150</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Celda</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>470</x>
+      <y>280</y>
+      <w>150</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>UnidadTerrestre
+--
+
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>290</x>
+      <y>280</y>
+      <w>150</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>UnidadHumanoide
+--
+
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>100</x>
+      <y>70</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>100</x>
+      <y>160</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>370</x>
+      <y>100</y>
+      <w>80</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>    2
+lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;20.0;60.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>210</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>220</y>
+      <w>230</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;210.0;20.0;210.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>220</y>
+      <w>190</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>170.0;20.0;10.0;20.0;10.0;60.0</additional_attributes>
+  </element>
+</diagram>

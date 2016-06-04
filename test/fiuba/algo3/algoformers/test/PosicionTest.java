@@ -2,9 +2,8 @@ package fiuba.algo3.algoformers.test;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-
-import fiuba.algo3.algoformers.modelo.Movimiento;
-import fiuba.algo3.algoformers.modelo.Posicion;
+import fiuba.algo3.algoformers.escenario.Movimiento;
+import fiuba.algo3.algoformers.escenario.Posicion;
 
 public class PosicionTest {
 
@@ -25,17 +24,15 @@ public class PosicionTest {
 	@Test
 	public void testSumarPosicionesDaUnaNuevaPosicionQueEsCorrecta(){
 		Posicion posicion = new Posicion(1,1);
-		Posicion nuevaPosicion = posicion.sumarMovimiento(Movimiento.ARRIBA);
-		Posicion mismaPosicion = new Posicion(1,0);
+		Posicion nuevaPosicion = posicion.sumarMovimiento(Movimiento.ABAJO);
+		Posicion mismaPosicion = new Posicion(1,2);
 		assertTrue(nuevaPosicion.equals(mismaPosicion));
 	}
 	
 	@Test
-	public void testDistanciaOrigen_MenosDosUno_EsDos()
-	{
+	public void testCalcularDistanciaEntreOrigen_MenosDosUno_EsDos(){
 	    Posicion origen = new Posicion(0, 0);
 	    Posicion destino = new Posicion(-2, 1);
-	    
 	    assertEquals(2, origen.calcularDistanciaCon(destino));
 	}
 }

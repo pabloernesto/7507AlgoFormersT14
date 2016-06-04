@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>60</x>
+      <y>30</y>
+      <w>240</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>Tablero
+(singleton)
+--
+- celdas: HashMap&lt;Posicion, Celda&gt;
+- celdasOcupadas
++ alto
++ ancho
++ tablero: Tablero
+--
++ colocarAlgoFormer(AlgoFormer)
++ devolverPosicionChispa()
++ mover (Direccion, AlgoFormer)
++ colocarChispaSuprema()
++ posicionEstaOcupada(Posicion)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>310</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Posicion
+--
+- x
+- y
+--
++ sumarMovimiento(Movimiento)
++ calcularDistancia(Posicion)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>310</y>
+      <w>210</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Movimiento
+(enum)
+--
+- x
+- y
+--
++ getMovimientoEnX()
++ getMovimientoEnY()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>90</y>
+      <w>210</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Celda
+--
+- algoformer
+- chispaSuprema
+--
++ setAlgoformer(AlgoFormer)
++ estaOcupada()
++ contieneChispaSuprema()
++ getCostoDeEntrada()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>290</x>
+      <y>170</y>
+      <w>150</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>160</x>
+      <y>230</y>
+      <w>30</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>350</y>
+      <w>180</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>160.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>370</x>
+      <y>150</y>
+      <w>60</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>N*M
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>170</x>
+      <y>280</y>
+      <w>60</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>N*M
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
