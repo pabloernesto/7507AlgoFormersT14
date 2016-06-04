@@ -142,11 +142,8 @@ public class TableroTest {
     }
 
 	@Test
-    public void testColocarEquipoDejaALosAlgoFormerJuntos()
+    public void testColocarEquipo1DejaALosAlgoFormerJuntos()
     {
-        tablero.reiniciarTablero();
-        tablero = Tablero.getInstance();
-
         UnidadHumanoide humanoide = new UnidadHumanoide(1, 2, 3);
         UnidadAlterna alterna = new UnidadAerea(3, 2, 1);
         AlgoFormer dc1 = new Decepticon("D1", 10, humanoide, alterna);
