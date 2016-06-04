@@ -3,6 +3,7 @@ package fiuba.algo3.algoformers.algoformers;
 import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Tablero;
+
 import fiuba.algo3.algoformers.excepciones.FueraDeAlcanceException;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
 
@@ -43,7 +44,7 @@ public abstract class AlgoFormer {
 	}
 	
 	public void entrarACelda (Celda celda){
-		int costoEntrada = celda.getCostoDeEntrada(estadoActivo);
+		int costoEntrada = estadoActivo.getCostoDeEntrada(celda);
 		if (costoEntrada > movimientosRestantes)
 			throw new NoHayMasMovimientosException();
 		movimientosRestantes -= costoEntrada;

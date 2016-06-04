@@ -78,18 +78,4 @@ public class CeldaTest {
 		celda.colocarChispaSuprema();
 		assertTrue(celda.contieneChispaSuprema());
 	}
-	
-	@Test
-	public void testGetCostoDeEntradaSiempreDevuelve1(){
-		Celda celda = new Celda();
-		AlgoFormer tipoHumanoide = new AutoBot("Ejemplo", 1, humanoide, terrestre);
-		AlgoFormer tipoAerea = new AutoBot("Ejemplo", 1, humanoide, aerea);
-		AlgoFormer tipoTerrestre = new AutoBot("Ejemplo", 1, humanoide, terrestre);
-		tipoAerea.transformarse();
-		tipoTerrestre.transformarse();
-		assertEquals(1, celda.getCostoDeEntrada(tipoHumanoide.getEstadoActivo()));
-		assertEquals(1, celda.getCostoDeEntrada(tipoTerrestre.getEstadoActivo()));
-		assertEquals(1, celda.getCostoDeEntrada(tipoAerea.getEstadoActivo()));
-	}
-	
 }

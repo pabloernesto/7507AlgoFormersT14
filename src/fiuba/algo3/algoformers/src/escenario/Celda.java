@@ -2,6 +2,10 @@ package fiuba.algo3.algoformers.escenario;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.algoformers.Unidad;
+import fiuba.algo3.algoformers.algoformers.UnidadAerea;
+import fiuba.algo3.algoformers.algoformers.UnidadHumanoide;
+import fiuba.algo3.algoformers.algoformers.UnidadTerrestre;
+
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 
 public class Celda {
@@ -36,15 +40,26 @@ public class Celda {
 	public boolean contieneChispaSuprema (){
 		return contieneChispaSuprema;
 	}
-	
-	public int getCostoDeEntrada (Unidad algoformer){
+
+	public int getCostoDeEntrada (UnidadHumanoide algoformer)
+	{
 		return 1;
 	}
-	
+
+	public int getCostoDeEntrada (UnidadTerrestre algoformer)
+	{
+		return 1;
+	}
+
+	public int getCostoDeEntrada (UnidadAerea algoformer)
+	{
+		return 1;
+	}
+
 	private void activarEfectos (Unidad algoformer){
 		
 	}
-	
+
 	public void desocuparCelda (){
 		algoformer = null;
 	}

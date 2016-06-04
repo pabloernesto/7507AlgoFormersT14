@@ -1,5 +1,7 @@
 package fiuba.algo3.algoformers.algoformers;
 
+import fiuba.algo3.algoformers.escenario.Celda;
+
 public abstract class Unidad {
 
 	protected int ataque;
@@ -23,5 +25,7 @@ public abstract class Unidad {
 	public int getDistAtaque (){
 		return distAtaque;
 	}
+	
+	public abstract int getCostoDeEntrada(Celda destino);
 	
 }
