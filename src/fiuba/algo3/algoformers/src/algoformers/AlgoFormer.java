@@ -1,6 +1,6 @@
 package fiuba.algo3.algoformers.algoformers;
 
-import java.util.ArrayList<E>;
+import java.util.ArrayList;
 
 import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.escenario.Movimiento;
