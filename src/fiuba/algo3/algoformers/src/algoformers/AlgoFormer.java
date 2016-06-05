@@ -1,5 +1,7 @@
 package fiuba.algo3.algoformers.algoformers;
 
+import java.util.ArrayList<E>
+
 import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Tablero;
@@ -15,6 +17,7 @@ public abstract class AlgoFormer {
 	
 	protected Forma formaActiva;
 	protected Forma formaInactiva;
+	public ArrayList<Efecto> efectos;
 
 	public AlgoFormer (String nombre, int vida, UnidadHumanoide formaHumanoide,
 			UnidadAlterna formaAlterna)
@@ -89,8 +92,35 @@ public abstract class AlgoFormer {
 		movimientosRestantes = getVelocidad();
 	}
 	
-	public void recibirEfecto(Superficie SuperficieActual){
-		this.formaActivo.recibirEfecto(SuperficieActual);
+	public void recibirEfecto(Nube superficieActual){		
 	}
+	
+	public void recibirEfecto(TormentaPsionica superficieActual){
+		Efecto efectoTormentaPsionica = new Efecto (superficieActual)
+		if (!this.efectos.contains(efectoTormentaPsionica)){
+			this.efectos.add(efectoTormentaPsionica);
+			this.formaActiva.recibirEfecto(superficieActual);
+		}
+	}
+	
+	public void recibirEfecto(NebulosaDeAndromeda superficieActual){
+		Efecto efectoNebulosaDeAndromeda = new Efecto (superficieActual)
+				if (!this.efectos.contains(efectoNebulosaDeAndromeda)){
+					this.efectos.add(efectoNebulosaDeAndromeda);
+					this.formaActiva.recibirEfecto(superficieActual);
+				}
+	}
+	
+	public void recibirEfecto (Rocosa superficieActual){
+	}
+	
+	public void actualizarEfectos(){
+		for (int x=0; x<this.efectos.size();x++)
+			this.efectos.get(x).actualizarEfecto();
+			if (this.efectos.get(x).devolverDuracionEfecto()==0)
+				this.efectos.remove(x);
+	}
+	
+	public void recibirEfecto ()
 	
 }

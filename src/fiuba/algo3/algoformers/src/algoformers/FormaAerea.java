@@ -17,7 +17,7 @@ public class FormaAerea extends Forma {
 	}
 	
 	public void recibirEfecto(TormentaPsionica SuperficieActual){
-		this.ataque = this.ataque*0,4;
+		this.ataque = (this.ataque*4/100);
 	}
 	
 	public void recibirEfecto(NebulosaDeAndromeda SuperficieActual){
