@@ -1,6 +1,6 @@
 package fiuba.algo3.algoformers.algoformers;
 
-import java.util.ArrayList<E>
+import java.util.ArrayList<E>;
 
 import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.escenario.Movimiento;
@@ -96,7 +96,7 @@ public abstract class AlgoFormer {
 	}
 	
 	public void recibirEfecto(TormentaPsionica superficieActual){
-		Efecto efectoTormentaPsionica = new Efecto (superficieActual)
+		Efecto efectoTormentaPsionica = new Efecto (superficieActual);
 		if (!this.efectos.contains(efectoTormentaPsionica)){
 			this.efectos.add(efectoTormentaPsionica);
 			this.formaActiva.recibirEfecto(superficieActual);
@@ -104,7 +104,7 @@ public abstract class AlgoFormer {
 	}
 	
 	public void recibirEfecto(NebulosaDeAndromeda superficieActual){
-		Efecto efectoNebulosaDeAndromeda = new Efecto (superficieActual)
+		Efecto efectoNebulosaDeAndromeda = new Efecto (superficieActual);
 				if (!this.efectos.contains(efectoNebulosaDeAndromeda)){
 					this.efectos.add(efectoNebulosaDeAndromeda);
 					this.formaActiva.recibirEfecto(superficieActual);
@@ -121,6 +121,8 @@ public abstract class AlgoFormer {
 				this.efectos.remove(x);
 	}
 	
-	public void recibirEfecto ()
+	public void recibirEfecto (){
+		
+	}
 	
 }
