@@ -89,4 +89,8 @@ public abstract class AlgoFormer {
 		movimientosRestantes = getVelocidad();
 	}
 	
+	public void recibirEfecto(Superficie SuperficieActual){
+		this.estadoActivo.recibirEfecto(SuperficieActual);
+	}
+	
 }
