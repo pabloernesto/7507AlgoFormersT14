@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Tablero;
+import fiuba.algo3.algoformers.algoformers.Forma;
+import fiuba.algo3.algoformers.algoformers.FormaAerea;
+import fiuba.algo3.algoformers.algoformers.FormaTerrestre;
+import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
+import fiuba.algo3.algoformers.algoformers.Efecto;
 
 import fiuba.algo3.algoformers.excepciones.FueraDeAlcanceException;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
@@ -19,8 +24,8 @@ public abstract class AlgoFormer {
 	protected Forma formaInactiva;
 	public ArrayList<Efecto> efectos;
 
-	public AlgoFormer (String nombre, int vida, UnidadHumanoide formaHumanoide,
-			UnidadAlterna formaAlterna)
+	public AlgoFormer (String nombre, int vida, FormaHumanoide formaHumanoide,
+			FormaAlterna formaAlterna)
 	{
 		this.nombre = nombre;
 		this.vida = vida;
@@ -36,7 +41,7 @@ public abstract class AlgoFormer {
 	public abstract void atacarAlgoformer (AlgoFormer algoformerAtacado);
 	
 	public void transformarse (){
-		Unidad auxiliar = estadoActivo;
+		Forma auxiliar = estadoActivo;
 		estadoActivo = estadoInactivo;
 		estadoInactivo = auxiliar;
 		reiniciarMovimientosRestantes();
@@ -60,7 +65,7 @@ public abstract class AlgoFormer {
 		atacarAlgoformer(algoformerAtacado);
 	}
 	
-	public Unidad getEstadoActivo (){
+	public Forma getEstadoActivo (){
 		return formaActiva;
 	}
 	
