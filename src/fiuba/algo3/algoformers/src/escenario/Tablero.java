@@ -109,27 +109,7 @@ public class Tablero {
 			throw new CeldaOcupadaException();
 	}
 	
-	private void colocarEquipo(List<AlgoFormer> listaAlgoformers,
-	    Posicion posicionInicio)
-    { //Necesita una prueba
-		for(AlgoFormer algoformer : listaAlgoformers)
-		{
-			colocarAlgoformer(algoformer, posicionInicio);
-			posicionInicio = posicionInicio.sumarMovimiento(Movimiento.ABAJO);
-		}
-	}
-	
-	public void colocarEquipo1(List<AlgoFormer> listaAlgoformers)
-	{
-	    Posicion posicionEquipo = new Posicion(1, ALTO/2 - 1);
-		colocarEquipo(listaAlgoformers, posicionEquipo);
-	}
-	
-	public void colocarEquipo2(List<AlgoFormer> listaAlgoformers) {
-	    Posicion posicionEquipo = new Posicion(ANCHO, ALTO/2 - 1);
-		colocarEquipo(listaAlgoformers, posicionEquipo);
-	}
-	
+
 	//Metodos para pruebas//
 	
 	public Posicion getMedio(){
