@@ -13,16 +13,16 @@ public abstract class AlgoFormer {
 	protected int vida;
 	protected int movimientosRestantes;
 	
-	protected Unidad estadoActivo;
-	protected Unidad estadoInactivo;
+	protected Forma formaActiva;
+	protected Forma formaInactiva;
 
 	public AlgoFormer (String nombre, int vida, UnidadHumanoide formaHumanoide,
 			UnidadAlterna formaAlterna)
 	{
 		this.nombre = nombre;
 		this.vida = vida;
-		estadoActivo = formaHumanoide;
-		estadoInactivo = formaAlterna;
+		formaActiva = formaHumanoide;
+		formaInactiva = formaAlterna;
 		reiniciarMovimientosRestantes();
 	}
 
@@ -58,19 +58,19 @@ public abstract class AlgoFormer {
 	}
 	
 	public Unidad getEstadoActivo (){
-		return estadoActivo;
+		return formaActiva;
 	}
 	
 	public int getAtaque (){
-		return estadoActivo.getAtaque();
+		return formaActiva.getAtaque();
 	}
 	
 	public int getDistAtaque (){
-		return estadoActivo.getDistAtaque();
+		return formaActiva.getDistAtaque();
 	}
 	
 	public int getVelocidad (){
-		return estadoActivo.getVelocidad();
+		return formaActiva.getVelocidad();
 	}
 	
 	public int getVida (){
@@ -90,7 +90,7 @@ public abstract class AlgoFormer {
 	}
 	
 	public void recibirEfecto(Superficie SuperficieActual){
-		this.estadoActivo.recibirEfecto(SuperficieActual);
+		this.formaActivo.recibirEfecto(SuperficieActual);
 	}
 	
 }
