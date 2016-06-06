@@ -81,11 +81,11 @@ public class Tablero {
 			return posicionAlgoformer1.calcularDistanciaCon(posicionAlgoformer2);
 		}
 	
-	public int getExtremoDeAncho(){
+	public int ancho(){
 		return ANCHO;
 	}
 	
-	public int getExtremoDeAlto(){
+	public int altura(){
 		return ALTO;
 	}
 	
