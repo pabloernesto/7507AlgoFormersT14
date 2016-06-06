@@ -50,10 +50,18 @@ public abstract class AlgoFormer {
 		movimientosRestantes -= costoEntrada;
 		celda.recibirAlgoformer(this);
 	}
-	
-	public void atacar (AlgoFormer algoformerAtacado){
-		if (Tablero.getInstance().distanciaEntreAlgoformers(this, algoformerAtacado) > getDistAtaque())
+
+	public void atacar(AlgoFormer algoformerAtacado)
+	{
+	    int distancia =
+	        Tablero.getInstance()
+	               .distanciaEntreAlgoformers(this, algoformerAtacado);
+
+		int alcance = getDistAtaque();
+
+		if (distancia > alcance)
 			throw new FueraDeAlcanceException();
+
 		atacarAlgoformer(algoformerAtacado);
 	}
 	
