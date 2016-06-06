@@ -122,14 +122,6 @@ public class TableroTest {
     	assertTrue(tablero.posicionEstaOcupada(posicion));
     }
 	
-	@Test()
-    public void testPosicionContieneChispaSuprema(){
-    	Posicion posicion = tablero.getMedio();
-    	assertFalse(tablero.posicionContieneChispaSuprema(posicion));
-    	tablero.colocarChispaSuprema();
-    	assertTrue(tablero.posicionContieneChispaSuprema(posicion));
-    }
-	
 	@Test
     public void testTableroCalculaCorrectamenteDistanciasEntreAlgoformers()
     {
