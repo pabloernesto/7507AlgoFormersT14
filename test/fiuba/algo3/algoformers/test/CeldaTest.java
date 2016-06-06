@@ -14,56 +14,70 @@ import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 
 public class CeldaTest {
 	
-	private UnidadHumanoide humanoide = new UnidadHumanoide(1, 2, 3);
-	private UnidadAlterna aerea = new UnidadAerea(3, 2, 1);
-	private UnidadAlterna terrestre = new UnidadTerrestre(2, 2, 2);
+	private UnidadHumanoide formaHumanoide = new UnidadHumanoide(1, 2, 3);
+	private UnidadAlterna formaAerea = new UnidadAerea(3, 2, 1);
+	private UnidadAlterna formaTerrestre = new UnidadTerrestre(2, 2, 2);
+	
+	AlgoFormer autobotTerrestre =
+	    new AutoBot("Ejemplo", 1, formaHumanoide, formaTerrestre);
+	
+	AlgoFormer autobotAereo =
+	    new AutoBot("Ejemplo", 1, formaHumanoide, formaAerea);
 	
 	@Test
-	public void testCeldaEstaOcupadaEstandoDesocupadaDaFalso(){
+	public void testCeldaEstaOcupadaEstandoDesocupadaDaFalso()
+	{
 		Celda celda = new Celda();
 		assertFalse(celda.estaOcupada());
 	}
 	
 	@Test
-	public void testCeldaEstaOcupadaEstandoOcupadaDaVerdadero(){
+	public void testCeldaEstaOcupadaEstandoOcupadaDaVerdadero()
+	{
 		Celda celda = new Celda();
-		AlgoFormer algoformer = new AutoBot("Ejemplo", 1, humanoide, aerea);
-		celda.recibirAlgoformer(algoformer);
+		
+		celda.recibirAlgoformer(autobotAereo);
+		
 		assertTrue(celda.estaOcupada());
 	}
 	
 	@Test(expected=CeldaOcupadaException.class)
-	public void testRecibirAlgoformerLanzaExcepcionSiLaCeldaYaEstabaOcupada(){
+	public void testRecibirAlgoformerLanzaExcepcionSiLaCeldaYaEstabaOcupada()
+	{
 		Celda celda = new Celda();
-		AlgoFormer algoformer1 = new AutoBot("Ejemplo", 1, humanoide, aerea);
-		celda.recibirAlgoformer(algoformer1);
-		AlgoFormer algoformer2 = new AutoBot("Ejemplo", 1, humanoide, aerea);
-		celda.recibirAlgoformer(algoformer2);
+		
+		celda.recibirAlgoformer(autobotTerrestre);
+		celda.recibirAlgoformer(autobotAereo);
 	}
 	
 	@Test
-	public void testGetAlgoFormerDevuelveElAlgoFormerCorrecto(){
+	public void testGetAlgoFormerDevuelveElAlgoFormerCorrecto()
+	{
 		Celda celda = new Celda();
-		AlgoFormer algoformer = new AutoBot("Ejemplo", 1, humanoide, terrestre);
-		celda.recibirAlgoformer(algoformer);
-		assertEquals(algoformer, celda.getAlgoformer());
+
+		celda.recibirAlgoformer(autobotTerrestre);
+		
+		assertEquals(autobotTerrestre, celda.getAlgoformer());
 	}
 	
 	@Test
-	public void testDesocuparCeldaEstandoOcupadaLaDesocupa(){
+	public void testDesocuparCeldaEstandoOcupadaLaDesocupa()
+	{
 		Celda celda = new Celda();
-		AlgoFormer algoformer = new AutoBot("Ejemplo", 1, humanoide, aerea);
-		celda.recibirAlgoformer(algoformer);
-		assertNotNull(celda.getAlgoformer());
+		
+		celda.recibirAlgoformer(autobotAereo);
 		celda.desocuparCelda();
+		
 		assertFalse(celda.estaOcupada());
 	}
 	
 	@Test
-	public void testDesocuparCeldaEstandoDesocupadaLaDejaIgual(){
+	public void testDesocuparCeldaEstandoDesocupadaLaDejaIgual()
+	{
 		Celda celda = new Celda();
-		assertNull(celda.getAlgoformer());
+		
 		celda.desocuparCelda();
+		
 		assertNull(celda.getAlgoformer());
 	}
 	
