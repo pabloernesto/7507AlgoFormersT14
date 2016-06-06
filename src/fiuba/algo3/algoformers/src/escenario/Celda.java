@@ -12,17 +12,19 @@ public class Celda {
 	
 	private AlgoFormer algoformer;
 	private boolean contieneChispaSuprema;
+	public Superficie superficie;
 
-	public Celda (){
-		algoformer = null;
-		contieneChispaSuprema = false;
+	public Celda (Superficie superficie){
+		this.algoformer = null;
+		this.contieneChispaSuprema = false;
+		this.superficie = superficie; 
 	}
 	
 	public void recibirAlgoformer (AlgoFormer algoformer){
 		if (this.algoformer != null)
 			throw new CeldaOcupadaException();
 		this.algoformer = algoformer;
-		activarEfectos(this.algoformer.getEstadoActivo());
+		algoformer.recibirEfecto(this.superficie);
 	}
 	
 	public AlgoFormer getAlgoformer (){
@@ -55,10 +57,11 @@ public class Celda {
 	{
 		return 1;
 	}
-
-	private void activarEfectos (Unidad algoformer){
-		
+	
+	public Superficie devolverSuperficie(){
+		return this.superficie;
 	}
+
 
 	public void desocuparCelda (){
 		algoformer = null;

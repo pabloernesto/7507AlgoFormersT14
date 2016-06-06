@@ -1,8 +1,15 @@
 package fiuba.algo3.algoformers.algoformers;
 
+import java.util.ArrayList;
+
 import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Tablero;
+import fiuba.algo3.algoformers.algoformers.Forma;
+import fiuba.algo3.algoformers.algoformers.FormaAerea;
+import fiuba.algo3.algoformers.algoformers.FormaTerrestre;
+import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
+import fiuba.algo3.algoformers.algoformers.Efecto;
 
 import fiuba.algo3.algoformers.excepciones.FueraDeAlcanceException;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
@@ -13,16 +20,17 @@ public abstract class AlgoFormer {
 	protected int vida;
 	protected int movimientosRestantes;
 	
-	protected Unidad estadoActivo;
-	protected Unidad estadoInactivo;
+	protected Forma formaActiva;
+	protected Forma formaInactiva;
+	public ArrayList<Efecto> efectos;
 
-	public AlgoFormer (String nombre, int vida, UnidadHumanoide formaHumanoide,
-			UnidadAlterna formaAlterna)
+	public AlgoFormer (String nombre, int vida, FormaHumanoide formaHumanoide,
+			FormaAlterna formaAlterna)
 	{
 		this.nombre = nombre;
 		this.vida = vida;
-		estadoActivo = formaHumanoide;
-		estadoInactivo = formaAlterna;
+		formaActiva = formaHumanoide;
+		formaInactiva = formaAlterna;
 		reiniciarMovimientosRestantes();
 	}
 
@@ -33,7 +41,7 @@ public abstract class AlgoFormer {
 	public abstract void atacarAlgoformer (AlgoFormer algoformerAtacado);
 	
 	public void transformarse (){
-		Unidad auxiliar = estadoActivo;
+		Forma auxiliar = estadoActivo;
 		estadoActivo = estadoInactivo;
 		estadoInactivo = auxiliar;
 		reiniciarMovimientosRestantes();
@@ -57,20 +65,20 @@ public abstract class AlgoFormer {
 		atacarAlgoformer(algoformerAtacado);
 	}
 	
-	public Unidad getEstadoActivo (){
-		return estadoActivo;
+	public Forma getEstadoActivo (){
+		return formaActiva;
 	}
 	
 	public int getAtaque (){
-		return estadoActivo.getAtaque();
+		return formaActiva.getAtaque();
 	}
 	
 	public int getDistAtaque (){
-		return estadoActivo.getDistAtaque();
+		return formaActiva.getDistAtaque();
 	}
 	
 	public int getVelocidad (){
-		return estadoActivo.getVelocidad();
+		return formaActiva.getVelocidad();
 	}
 	
 	public int getVida (){
@@ -87,6 +95,39 @@ public abstract class AlgoFormer {
 	
 	public void reiniciarMovimientosRestantes (){
 		movimientosRestantes = getVelocidad();
+	}
+	
+	public void recibirEfecto(Nube superficieActual){		
+	}
+	
+	public void recibirEfecto(TormentaPsionica superficieActual){
+		Efecto efectoTormentaPsionica = new Efecto (superficieActual);
+		if (!this.efectos.contains(efectoTormentaPsionica)){
+			this.efectos.add(efectoTormentaPsionica);
+			this.formaActiva.recibirEfecto(superficieActual);
+		}
+	}
+	
+	public void recibirEfecto(NebulosaDeAndromeda superficieActual){
+		Efecto efectoNebulosaDeAndromeda = new Efecto (superficieActual);
+				if (!this.efectos.contains(efectoNebulosaDeAndromeda)){
+					this.efectos.add(efectoNebulosaDeAndromeda);
+					this.formaActiva.recibirEfecto(superficieActual);
+				}
+	}
+	
+	public void recibirEfecto (Rocosa superficieActual){
+	}
+	
+	public void actualizarEfectos(){
+		for (int x=0; x<this.efectos.size();x++)
+			this.efectos.get(x).actualizarEfecto();
+			if (this.efectos.get(x).devolverDuracionEfecto()==0)
+				this.efectos.remove(x);
+	}
+	
+	public void recibirEfecto (){
+		
 	}
 	
 }

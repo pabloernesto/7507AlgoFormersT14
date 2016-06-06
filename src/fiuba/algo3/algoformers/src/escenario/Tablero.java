@@ -67,6 +67,19 @@ public class Tablero {
 		celdas.get(medio).colocarChispaSuprema();
 	}
 	
+	public Posicion getPosicionChispaSuprema(){
+		Posicion posicion = null;
+		for (int i=1 ; i<=ANCHO ; i++) {
+			for (int j=1 ; j<=ALTO ; j++) {
+				posicion = new Posicion (i,j);
+				if (celdas.get(posicion).contieneChispaSuprema())
+					return posicion;
+				posicion = null;
+			}
+		}
+		return posicion;
+	}
+	
 	public boolean posicionEstaOcupada(Posicion posicion){
 		return celdas.get(posicion).estaOcupada();
 	}
@@ -96,25 +109,19 @@ public class Tablero {
 			throw new CeldaOcupadaException();
 	}
 	
-	private void colocarEquipo(List<AlgoFormer> listaAlgoformers,
-	    Posicion posicionInicio)
-    { //Necesita una prueba
-		for(AlgoFormer algoformer : listaAlgoformers)
-		{
+	private void colocarEquipo(List<AlgoFormer> listaAlgoformers, Posicion posicionInicio) { //Necesita una prueba
+		for(AlgoFormer algoformer : listaAlgoformers){
 			colocarAlgoformer(algoformer, posicionInicio);
 			posicionInicio = posicionInicio.sumarMovimiento(Movimiento.ABAJO);
 		}
 	}
 	
-	public void colocarEquipo1(List<AlgoFormer> listaAlgoformers)
-	{
-	    Posicion posicionEquipo = new Posicion(1, ALTO/2 - 1);
-		colocarEquipo(listaAlgoformers, posicionEquipo);
+	public void colocarEquipo1(List<AlgoFormer> listaAlgoformers) {
+		colocarEquipo(listaAlgoformers, new Posicion(60, ALTO/2 - 1));
 	}
 	
 	public void colocarEquipo2(List<AlgoFormer> listaAlgoformers) {
-	    Posicion posicionEquipo = new Posicion(ANCHO, ALTO/2 - 1);
-		colocarEquipo(listaAlgoformers, posicionEquipo);
+		colocarEquipo(listaAlgoformers, new Posicion(60, ALTO/2 - 1));
 	}
 	
 	//Metodos para pruebas//

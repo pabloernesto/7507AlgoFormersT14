@@ -98,20 +98,15 @@ public class TableroTest {
     }
 	
 	@Test
-    public void testColocarChispaSupremaLaAgregaEnElMedio()
-    {
+    public void testColocarChispaSupremaLaAgregaEnElMedio(){
     	tablero.colocarChispaSuprema();
     	Posicion medio = tablero.getMedio();
-    	
-    	assertTrue(tablero.posicionContieneChispaSuprema(medio));
+    	assertTrue(tablero.getPosicionChispaSuprema().equals(medio));
     }
 	
 	@Test
-    public void testAntesDeAgregarLaChispaElMedioEstaVacio()
-    {
-        Posicion medio = tablero.getMedio();
-    	
-    	assertFalse(tablero.posicionContieneChispaSuprema(medio));
+    public void testgetPosicionChispaSupremaSinEstarAgregadaDevuelveNull(){
+    	assertNull(tablero.getPosicionChispaSuprema());
     }
 	
 	@Test
@@ -146,23 +141,4 @@ public class TableroTest {
     	assertEquals(0, tablero.distanciaEntreAlgoformers(algoformer, algoformer));
     }
 
-	@Test
-    public void testColocarEquipo1DejaALosAlgoFormerJuntos()
-    {
-        UnidadHumanoide humanoide = new UnidadHumanoide(1, 2, 3);
-        UnidadAlterna alterna = new UnidadAerea(3, 2, 1);
-        AlgoFormer dc1 = new Decepticon("D1", 10, humanoide, alterna);
-        AlgoFormer dc2 = new Decepticon("D2", 10, humanoide, alterna);
-        AlgoFormer dc3 = new Decepticon("D3", 10, humanoide, alterna);
-
-        List<AlgoFormer> equipo = new ArrayList<AlgoFormer>();
-        equipo.add(dc1);
-        equipo.add(dc2);
-        equipo.add(dc3);
-        
-        tablero.colocarEquipo1(equipo);
-        
-        assertEquals(1, tablero.distanciaEntreAlgoformers(dc1, dc2));
-        assertEquals(1, tablero.distanciaEntreAlgoformers(dc2, dc3));
-   }
 }
