@@ -131,18 +131,28 @@ public class TableroTest {
     }
 	
 	@Test
-    public void testTableroCalculaCorrectamenteDistanciasEntreAlgoformers(){
-		AlgoFormer algoformer2 = new Decepticon("Ejemplo", 10, humanoide, alterna);
-		AlgoFormer algoformer3 = new Decepticon("Ejemplo", 10, humanoide, alterna);
+    public void testTableroCalculaCorrectamenteDistanciasEntreAlgoformers()
+    {
     	Posicion posicion = new Posicion(1,1);
     	tablero.colocarAlgoformer(algoformer, posicion);
+    	
+		AlgoFormer algoformer2 =
+		    new Decepticon("Ejemplo", 10, humanoide, alterna);
     	posicion = new Posicion(2,2);
     	tablero.colocarAlgoformer(algoformer2, posicion);
+    	
+		AlgoFormer algoformer3 =
+		    new Decepticon("Ejemplo", 10, humanoide, alterna);
     	posicion = new Posicion(4,1);
     	tablero.colocarAlgoformer(algoformer3, posicion);
-    	assertEquals(1, tablero.distanciaEntreAlgoformers(algoformer, algoformer2));
-    	assertEquals(3, tablero.distanciaEntreAlgoformers(algoformer, algoformer3));
-    	assertEquals(2, tablero.distanciaEntreAlgoformers(algoformer2, algoformer3));
-    	assertEquals(0, tablero.distanciaEntreAlgoformers(algoformer, algoformer));
+    	
+    	assertEquals(1,
+    	    tablero.distanciaEntreAlgoformers(algoformer, algoformer2));
+    	assertEquals(3,
+    	    tablero.distanciaEntreAlgoformers(algoformer, algoformer3));
+    	assertEquals(2,
+    	    tablero.distanciaEntreAlgoformers(algoformer2, algoformer3));
+    	assertEquals(0,
+    	    tablero.distanciaEntreAlgoformers(algoformer, algoformer));
     }
 }
