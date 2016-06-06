@@ -98,15 +98,20 @@ public class TableroTest {
     }
 	
 	@Test
-    public void testColocarChispaSupremaLaAgregaEnElMedio(){
+    public void testColocarChispaSupremaLaAgregaEnElMedio()
+    {
     	tablero.colocarChispaSuprema();
     	Posicion medio = tablero.getMedio();
-    	assertTrue(tablero.getPosicionChispaSuprema().equals(medio));
+    	
+    	assertTrue(tablero.posicionContieneChispaSuprema(medio));
     }
 	
 	@Test
-    public void testgetPosicionChispaSupremaSinEstarAgregadaDevuelveNull(){
-    	assertNull(tablero.getPosicionChispaSuprema());
+    public void testAntesDeAgregarLaChispaElMedioEstaVacio()
+    {
+        Posicion medio = tablero.getMedio();
+    	
+    	assertFalse(tablero.posicionContieneChispaSuprema(medio));
     }
 	
 	@Test

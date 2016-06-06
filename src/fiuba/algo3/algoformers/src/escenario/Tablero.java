@@ -67,19 +67,6 @@ public class Tablero {
 		celdas.get(medio).colocarChispaSuprema();
 	}
 	
-	public Posicion getPosicionChispaSuprema(){
-		Posicion posicion = null;
-		for (int i=1 ; i<=ANCHO ; i++) {
-			for (int j=1 ; j<=ALTO ; j++) {
-				posicion = new Posicion (i,j);
-				if (celdas.get(posicion).contieneChispaSuprema())
-					return posicion;
-				posicion = null;
-			}
-		}
-		return posicion;
-	}
-	
 	public boolean posicionEstaOcupada(Posicion posicion){
 		return celdas.get(posicion).estaOcupada();
 	}
