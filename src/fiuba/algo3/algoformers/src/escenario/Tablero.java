@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.HashMap;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
+
+import fiuba.algo3.algoformers.escenario.CeldaFactory;
+import fiuba.algo3.algoformers.escenario.RocasYNubesFactory;
+
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
 
@@ -16,16 +20,15 @@ public class Tablero {
 	private final int ALTO = 20;
 	private static Tablero instanciaTablero = null;
 	
-	private Tablero (){
+	private Tablero()
+	{
 	    posicionesCeldasOcupadas = new ArrayList<Posicion>();
+	    CeldaFactory generadorCeldas = new RocasYNubesFactory();
 	    
 		celdas = new HashMap <Posicion,Celda>();
-		for (int i=1 ; i<=ANCHO ; i++){
+		for (int i=1 ; i<=ANCHO ; i++)
 			for (int j=1 ; j<=ALTO ; j++)
-				/* Asumo todas las celdas se crean iguales por ahora, luego podemos poner algo que
-				 * haga cosas random para crear celdas con distintos efectos */
-				celdas.put(new Posicion(i,j), new Celda());
-		}
+				celdas.put(new Posicion(i,j), generadorCeldas.getCelda());
 	}
 	
 	public static Tablero getInstance (){

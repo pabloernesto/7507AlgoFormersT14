@@ -28,4 +28,7 @@ public abstract class Forma {
 	
 	public abstract int getCostoDeEntrada(Celda destino);
 	
+	public abstract void aplicarEfectos(Celda destino, AlgoFormer algoformer);
+
 }
+
