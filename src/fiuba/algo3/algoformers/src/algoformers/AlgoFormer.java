@@ -43,12 +43,15 @@ public abstract class AlgoFormer {
 		Tablero.getInstance().moverAlgoformer(this, direccion);
 	}
 	
-	public void entrarACelda (Celda celda){
+	public void entrarACelda (Celda celda)
+	{
 		int costoEntrada = estadoActivo.getCostoDeEntrada(celda);
 		if (costoEntrada > movimientosRestantes)
 			throw new NoHayMasMovimientosException();
 		movimientosRestantes -= costoEntrada;
 		celda.recibirAlgoformer(this);
+		
+		estadoActivo.aplicarEfectos(celda, this);
 	}
 
 	public void atacar(AlgoFormer algoformerAtacado)

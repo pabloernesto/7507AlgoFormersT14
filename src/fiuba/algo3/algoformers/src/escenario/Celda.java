@@ -6,6 +6,10 @@ import fiuba.algo3.algoformers.algoformers.FormaAerea;
 import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
 import fiuba.algo3.algoformers.algoformers.FormaTerrestre;
 
+import fiuba.algo3.algoformers.escenario.superficies.Superficie;
+import fiuba.algo3.algoformers.escenario.superficies.Rocosa;
+import fiuba.algo3.algoformers.escenario.superficies.Nubes;
+
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 
 public class Celda {
@@ -13,16 +17,21 @@ public class Celda {
 	private AlgoFormer algoformer;
 	private boolean contieneChispaSuprema;
 
-	public Celda (){
+    private Superficie suelo;
+    private Superficie cielo;
+
+	public Celda ()
+	{
 		algoformer = null;
 		contieneChispaSuprema = false;
+		suelo = new Rocosa();
+		cielo = new Nubes();
 	}
 	
 	public void recibirAlgoformer (AlgoFormer algoformer){
 		if (this.algoformer != null)
 			throw new CeldaOcupadaException();
 		this.algoformer = algoformer;
-		activarEfectos(this.algoformer.getEstadoActivo());
 	}
 	
 	public AlgoFormer getAlgoformer (){
@@ -41,27 +50,22 @@ public class Celda {
 		return contieneChispaSuprema;
 	}
 
-	public int getCostoDeEntrada (FormaHumanoide algoformer)
-	{
-		return 1;
-	}
-
-	public int getCostoDeEntrada (FormaTerrestre algoformer)
-	{
-		return 1;
-	}
-
-	public int getCostoDeEntrada (FormaAerea algoformer)
-	{
-		return 1;
-	}
-
-	private void activarEfectos (Forma algoformer){
-		
-	}
-
 	public void desocuparCelda (){
 		algoformer = null;
 	}
 
+    public Superficie superficie(FormaHumanoide formaActual)
+    {
+        return suelo;
+    }
+
+    public Superficie superficie(FormaTerrestre formaActual)
+    {
+        return suelo;
+    }
+
+    public Superficie superficie(FormaAerea formaActual)
+    {
+        return cielo;
+    }
 }
