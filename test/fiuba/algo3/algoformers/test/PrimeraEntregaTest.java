@@ -1,27 +1,31 @@
 package fiuba.algo3.algoformers.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.algoformers.AutoBot;
 import fiuba.algo3.algoformers.algoformers.Decepticon;
-import fiuba.algo3.algoformers.algoformers.UnidadAerea;
-import fiuba.algo3.algoformers.algoformers.UnidadAlterna;
-import fiuba.algo3.algoformers.algoformers.UnidadHumanoide;
+import fiuba.algo3.algoformers.algoformers.FormaAerea;
+import fiuba.algo3.algoformers.algoformers.FormaAlterna;
+import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Posicion;
 import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
+import fiuba.algo3.algoformers.juego.Juego;
+import fiuba.algo3.algoformers.juego.Jugador;
 import fiuba.algo3.algoformers.excepciones.FueraDeAlcanceException;
 
 public class PrimeraEntregaTest {
 	
-	private UnidadHumanoide humanoide = new UnidadHumanoide(1, 2, 3);
-	private UnidadAlterna alterna = new UnidadAerea(4, 5, 6);
+	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
+	private FormaAlterna alterna = new FormaAerea(4, 5, 6);
 	private AutoBot autobot;
 	private Decepticon decepticon;
 	private Tablero tablero;
@@ -129,7 +133,67 @@ public class PrimeraEntregaTest {
 		}
 	}
 	
-	
+	@Test
+	public void test04AAutoBotPuedeAtacarDecepticonEstandoEnRango(){
+		Juego juego = new Juego();
+		
+		assertNotNull(juego);
+		
+		juego.inicializar();
+		Jugador jugador1 = juego.jugadorActual();
+		Jugador jugador2 = juego.jugadorInactivo();
+		
+		assertNotNull(jugador1);
+		assertNotNull(jugador2);
+		
+		List<AlgoFormer> equipo1 = jugador1.getListaAlgoformers();
+		List<AlgoFormer> equipo2 = jugador2.getListaAlgoformers();
+		
+		
+		//Veo que los algoformers de cada equipo esten juntos
+		//Tambien veo que los equipos esten en extremos opuestos
+		int alturaMedia = tablero.altura() / 2;
+		int ancho = tablero.ancho();
+		
+		assertTrue(new Posicion(1, alturaMedia).equals
+				(tablero.getPosicionAlgoformer(equipo1.get(0))));  //El algoformer del equipo 1 esta en el extremo izquierdo
+		
+		assertTrue(new Posicion(ancho, alturaMedia).equals
+				(tablero.getPosicionAlgoformer(equipo2.get(0))));  //El algoformer del equipo 2 esta en el extremo derecho
+		
+		assertEquals(ancho - 1,
+				tablero.distanciaEntreAlgoformers(equipo1.get(0), equipo2.get(0)));
+		
+		//Los algoformers del mismo equipo estan juntos
+		assertEquals(1,
+				tablero.distanciaEntreAlgoformers(equipo1.get(0), equipo1.get(1)));
+	        
+	    assertEquals(1,
+	        	tablero.distanciaEntreAlgoformers(equipo1.get(1), equipo1.get(2)));
+	        
+	    assertEquals(1,
+		        tablero.distanciaEntreAlgoformers(equipo2.get(0), equipo2.get(1)));
+		        
+		assertEquals(1,
+		        tablero.distanciaEntreAlgoformers(equipo2.get(1), equipo2.get(2)));
+		
+		
+		//Veo si esta la chispa
+		int cuartoDeAncho = ancho / 4;
+		int tresCuartosDeAncho = cuartoDeAncho * 3;
+		int cuartoDeAlto = alturaMedia / 2;
+		int tresCuartosDeAlto = cuartoDeAlto * 3;
+		
+		boolean estaLaChispa = false;
+		for (int x = cuartoDeAncho ; x <= tresCuartosDeAncho ; x++){
+			for (int y = cuartoDeAlto ; y <= tresCuartosDeAlto ; y++){
+				Posicion posicion = new Posicion(x, y);
+				if (tablero.posicionContieneChispaSuprema(posicion))
+					estaLaChispa = true;
+			}
+		}
+		assertTrue(estaLaChispa);
+	}
 	
 	@Test
 	public void test05AAutoBotPuedeAtacarDecepticonEstandoEnRango(){

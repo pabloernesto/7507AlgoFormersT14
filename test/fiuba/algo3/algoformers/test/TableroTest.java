@@ -1,8 +1,5 @@
 package fiuba.algo3.algoformers.test;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.After;
@@ -10,9 +7,9 @@ import org.junit.Before;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.algoformers.Decepticon;
-import fiuba.algo3.algoformers.algoformers.UnidadAerea;
-import fiuba.algo3.algoformers.algoformers.UnidadAlterna;
-import fiuba.algo3.algoformers.algoformers.UnidadHumanoide;
+import fiuba.algo3.algoformers.algoformers.FormaAerea;
+import fiuba.algo3.algoformers.algoformers.FormaAlterna;
+import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
 
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Posicion;
@@ -24,8 +21,8 @@ import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
 public class TableroTest {
 	
 	private Tablero tablero;
-	private UnidadHumanoide humanoide = new UnidadHumanoide(1, 2, 3);
-	private UnidadAlterna alterna = new UnidadAerea(3, 2, 1);
+	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
+	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
 	private AlgoFormer algoformer = new Decepticon("Ejemplo", 10, humanoide, alterna);
 	
 	@Before
@@ -40,8 +37,8 @@ public class TableroTest {
 
 	@Test
 	public void tableroEsRectangularDe60x20(){
-		assertEquals(60, tablero.getExtremoDeAncho());
-		assertEquals(20, tablero.getExtremoDeAlto());
+		assertEquals(60, tablero.ancho());
+		assertEquals(20, tablero.altura());
 	}
 	
 	@Test
@@ -122,47 +119,29 @@ public class TableroTest {
     	assertTrue(tablero.posicionEstaOcupada(posicion));
     }
 	
-	@Test()
-    public void testPosicionContieneChispaSuprema(){
-    	Posicion posicion = tablero.getMedio();
-    	assertFalse(tablero.posicionContieneChispaSuprema(posicion));
-    	tablero.colocarChispaSuprema();
-    	assertTrue(tablero.posicionContieneChispaSuprema(posicion));
-    }
-	
 	@Test
-    public void testTableroCalculaCorrectamenteDistanciasEntreAlgoformers(){
-		AlgoFormer algoformer2 = new Decepticon("Ejemplo", 10, humanoide, alterna);
-		AlgoFormer algoformer3 = new Decepticon("Ejemplo", 10, humanoide, alterna);
+    public void testTableroCalculaCorrectamenteDistanciasEntreAlgoformers()
+    {
     	Posicion posicion = new Posicion(1,1);
     	tablero.colocarAlgoformer(algoformer, posicion);
+    	
+		AlgoFormer algoformer2 =
+		    new Decepticon("Ejemplo", 10, humanoide, alterna);
     	posicion = new Posicion(2,2);
     	tablero.colocarAlgoformer(algoformer2, posicion);
+    	
+		AlgoFormer algoformer3 =
+		    new Decepticon("Ejemplo", 10, humanoide, alterna);
     	posicion = new Posicion(4,1);
     	tablero.colocarAlgoformer(algoformer3, posicion);
-    	assertEquals(1, tablero.distanciaEntreAlgoformers(algoformer, algoformer2));
-    	assertEquals(3, tablero.distanciaEntreAlgoformers(algoformer, algoformer3));
-    	assertEquals(2, tablero.distanciaEntreAlgoformers(algoformer2, algoformer3));
-    	assertEquals(0, tablero.distanciaEntreAlgoformers(algoformer, algoformer));
+    	
+    	assertEquals(1,
+    	    tablero.distanciaEntreAlgoformers(algoformer, algoformer2));
+    	assertEquals(3,
+    	    tablero.distanciaEntreAlgoformers(algoformer, algoformer3));
+    	assertEquals(2,
+    	    tablero.distanciaEntreAlgoformers(algoformer2, algoformer3));
+    	assertEquals(0,
+    	    tablero.distanciaEntreAlgoformers(algoformer, algoformer));
     }
-
-	@Test
-    public void testColocarEquipo1DejaALosAlgoFormerJuntos()
-    {
-        UnidadHumanoide humanoide = new UnidadHumanoide(1, 2, 3);
-        UnidadAlterna alterna = new UnidadAerea(3, 2, 1);
-        AlgoFormer dc1 = new Decepticon("D1", 10, humanoide, alterna);
-        AlgoFormer dc2 = new Decepticon("D2", 10, humanoide, alterna);
-        AlgoFormer dc3 = new Decepticon("D3", 10, humanoide, alterna);
-
-        List<AlgoFormer> equipo = new ArrayList<AlgoFormer>();
-        equipo.add(dc1);
-        equipo.add(dc2);
-        equipo.add(dc3);
-        
-        tablero.colocarEquipo1(equipo);
-        
-        assertEquals(1, tablero.distanciaEntreAlgoformers(dc1, dc2));
-        assertEquals(1, tablero.distanciaEntreAlgoformers(dc2, dc3));
-   }
 }

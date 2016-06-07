@@ -6,17 +6,17 @@ import org.junit.Before;
 
 import fiuba.algo3.algoformers.algoformers.AutoBot;
 import fiuba.algo3.algoformers.algoformers.Decepticon;
-import fiuba.algo3.algoformers.algoformers.UnidadAerea;
-import fiuba.algo3.algoformers.algoformers.UnidadAlterna;
-import fiuba.algo3.algoformers.algoformers.UnidadHumanoide;
+import fiuba.algo3.algoformers.algoformers.FormaAerea;
+import fiuba.algo3.algoformers.algoformers.FormaAlterna;
+import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
 import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.excepciones.FriendlyFireException;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
 
 public class DecepticonTest {
 	
-	private UnidadHumanoide humanoide = new UnidadHumanoide(1, 2, 3);
-	private UnidadAlterna alterna = new UnidadAerea(3, 2, 1);
+	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
+	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
 	private Decepticon decepticon;
 	
 	@Before

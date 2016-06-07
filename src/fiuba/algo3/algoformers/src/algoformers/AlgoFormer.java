@@ -13,11 +13,11 @@ public abstract class AlgoFormer {
 	protected int vida;
 	protected int movimientosRestantes;
 	
-	protected Unidad estadoActivo;
-	protected Unidad estadoInactivo;
+	protected Forma estadoActivo;
+	protected Forma estadoInactivo;
 
-	public AlgoFormer (String nombre, int vida, UnidadHumanoide formaHumanoide,
-			UnidadAlterna formaAlterna)
+	public AlgoFormer (String nombre, int vida, FormaHumanoide formaHumanoide,
+			FormaAlterna formaAlterna)
 	{
 		this.nombre = nombre;
 		this.vida = vida;
@@ -33,7 +33,7 @@ public abstract class AlgoFormer {
 	public abstract void atacarAlgoformer (AlgoFormer algoformerAtacado);
 	
 	public void transformarse (){
-		Unidad auxiliar = estadoActivo;
+		Forma auxiliar = estadoActivo;
 		estadoActivo = estadoInactivo;
 		estadoInactivo = auxiliar;
 		reiniciarMovimientosRestantes();
@@ -50,14 +50,22 @@ public abstract class AlgoFormer {
 		movimientosRestantes -= costoEntrada;
 		celda.recibirAlgoformer(this);
 	}
-	
-	public void atacar (AlgoFormer algoformerAtacado){
-		if (Tablero.getInstance().distanciaEntreAlgoformers(this, algoformerAtacado) > getDistAtaque())
+
+	public void atacar(AlgoFormer algoformerAtacado)
+	{
+	    int distancia =
+	        Tablero.getInstance()
+	               .distanciaEntreAlgoformers(this, algoformerAtacado);
+
+		int alcance = getDistAtaque();
+
+		if (distancia > alcance)
 			throw new FueraDeAlcanceException();
+
 		atacarAlgoformer(algoformerAtacado);
 	}
 	
-	public Unidad getEstadoActivo (){
+	public Forma getEstadoActivo (){
 		return estadoActivo;
 	}
 	

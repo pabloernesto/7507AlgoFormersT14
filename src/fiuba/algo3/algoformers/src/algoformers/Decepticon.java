@@ -4,7 +4,7 @@ import fiuba.algo3.algoformers.excepciones.FriendlyFireException;
 
 public class Decepticon extends AlgoFormer{
 
-	public Decepticon (String nombre, int vida, UnidadHumanoide formaHumanoide, UnidadAlterna formaAlterna){
+	public Decepticon (String nombre, int vida, FormaHumanoide formaHumanoide, FormaAlterna formaAlterna){
 		super(nombre, vida, formaHumanoide, formaAlterna);
 	}
 	

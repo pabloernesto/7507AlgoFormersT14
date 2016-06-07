@@ -2,12 +2,13 @@ package fiuba.algo3.algoformers.algoformers;
 
 import fiuba.algo3.algoformers.escenario.Celda;
 
-public class UnidadHumanoide extends Unidad {
+public class FormaAerea extends FormaAlterna {
 
-	public UnidadHumanoide (int ataque, int velocidad, int distAtaque){
+	public FormaAerea (int ataque, int velocidad, int distAtaque)
+	{
 		super(ataque, velocidad, distAtaque);
 	}
-
+	
 	public int getCostoDeEntrada(Celda destino)
 	{
 	    return destino.getCostoDeEntrada(this);

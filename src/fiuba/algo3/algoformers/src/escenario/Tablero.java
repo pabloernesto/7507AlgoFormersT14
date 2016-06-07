@@ -3,7 +3,6 @@ package fiuba.algo3.algoformers.escenario;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
@@ -81,11 +80,11 @@ public class Tablero {
 			return posicionAlgoformer1.calcularDistanciaCon(posicionAlgoformer2);
 		}
 	
-	public int getExtremoDeAncho(){
+	public int ancho(){
 		return ANCHO;
 	}
 	
-	public int getExtremoDeAlto(){
+	public int altura(){
 		return ALTO;
 	}
 	
@@ -94,27 +93,6 @@ public class Tablero {
 			throw new PosicionInvalidaException();
 		if (posicionesCeldasOcupadas.contains(posicion))
 			throw new CeldaOcupadaException();
-	}
-	
-	private void colocarEquipo(List<AlgoFormer> listaAlgoformers,
-	    Posicion posicionInicio)
-    { //Necesita una prueba
-		for(AlgoFormer algoformer : listaAlgoformers)
-		{
-			colocarAlgoformer(algoformer, posicionInicio);
-			posicionInicio = posicionInicio.sumarMovimiento(Movimiento.ABAJO);
-		}
-	}
-	
-	public void colocarEquipo1(List<AlgoFormer> listaAlgoformers)
-	{
-	    Posicion posicionEquipo = new Posicion(1, ALTO/2 - 1);
-		colocarEquipo(listaAlgoformers, posicionEquipo);
-	}
-	
-	public void colocarEquipo2(List<AlgoFormer> listaAlgoformers) {
-	    Posicion posicionEquipo = new Posicion(ANCHO, ALTO/2 - 1);
-		colocarEquipo(listaAlgoformers, posicionEquipo);
 	}
 	
 	//Metodos para pruebas//
