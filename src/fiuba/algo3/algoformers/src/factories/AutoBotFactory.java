@@ -5,9 +5,9 @@ import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.algoformers.AutoBot;
-import fiuba.algo3.algoformers.algoformers.UnidadAerea;
-import fiuba.algo3.algoformers.algoformers.UnidadHumanoide;
-import fiuba.algo3.algoformers.algoformers.UnidadTerrestre;
+import fiuba.algo3.algoformers.algoformers.FormaAerea;
+import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
+import fiuba.algo3.algoformers.algoformers.FormaTerrestre;
 
 public class AutoBotFactory implements AlgoFormerFactory{
 
@@ -23,22 +23,22 @@ public class AutoBotFactory implements AlgoFormerFactory{
 	}
 	
 	public AutoBot crearOptimusPrime (){
-		UnidadHumanoide optimusHumanoide = new UnidadHumanoide(50, 2, 2); //Ataque, velocidad, distanciaAtaque
-		UnidadTerrestre optimusTerrestre = new UnidadTerrestre(15, 5, 4);
+		FormaHumanoide optimusHumanoide = new FormaHumanoide(50, 2, 2); //Ataque, velocidad, distanciaAtaque
+		FormaTerrestre optimusTerrestre = new FormaTerrestre(15, 5, 4);
 		AutoBot optimus = new AutoBot("Optimus Prime", 500, optimusHumanoide, optimusTerrestre);
 		return optimus;
 	}
 	
 	public AutoBot crearBumblebee (){
-		UnidadHumanoide bumblebeeHumanoide = new UnidadHumanoide(40, 2, 1);
-		UnidadTerrestre bumblebeeTerrestre = new UnidadTerrestre(20, 5, 3);
+		FormaHumanoide bumblebeeHumanoide = new FormaHumanoide(40, 2, 1);
+		FormaTerrestre bumblebeeTerrestre = new FormaTerrestre(20, 5, 3);
 		AutoBot bumblebee = new AutoBot("Bumblebee", 350, bumblebeeHumanoide, bumblebeeTerrestre);
 		return bumblebee;
 	}
 	
 	public AutoBot crearRatchet (){
-		UnidadHumanoide ratchetHumanoide = new UnidadHumanoide(5, 1, 5);
-		UnidadAerea ratchetAereo = new UnidadAerea(35, 8, 2);
+		FormaHumanoide ratchetHumanoide = new FormaHumanoide(5, 1, 5);
+		FormaAerea ratchetAereo = new FormaAerea(35, 8, 2);
 		AutoBot ratchet = new AutoBot("Ratchet", 150, ratchetHumanoide, ratchetAereo);
 		return ratchet;
 	}
