@@ -1,7 +1,6 @@
 package fiuba.algo3.algoformers.juego;
 
 import java.util.List;
-import java.util.ArrayList;
 
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;

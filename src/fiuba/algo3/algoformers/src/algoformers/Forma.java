@@ -2,13 +2,13 @@ package fiuba.algo3.algoformers.algoformers;
 
 import fiuba.algo3.algoformers.escenario.Celda;
 
-public abstract class Unidad {
+public abstract class Forma {
 
 	protected int ataque;
 	protected int velocidad;
 	protected int distAtaque;
 	
-	public Unidad (int ataque, int velocidad, int distAtaque){
+	public Forma (int ataque, int velocidad, int distAtaque){
 		this.ataque = ataque;
 		this.velocidad = velocidad;
 		this.distAtaque = distAtaque;

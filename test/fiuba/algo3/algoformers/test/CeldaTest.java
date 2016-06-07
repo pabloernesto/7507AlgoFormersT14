@@ -5,18 +5,18 @@ import org.junit.Test;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.algoformers.AutoBot;
-import fiuba.algo3.algoformers.algoformers.UnidadAerea;
-import fiuba.algo3.algoformers.algoformers.UnidadAlterna;
-import fiuba.algo3.algoformers.algoformers.UnidadHumanoide;
-import fiuba.algo3.algoformers.algoformers.UnidadTerrestre;
+import fiuba.algo3.algoformers.algoformers.FormaAerea;
+import fiuba.algo3.algoformers.algoformers.FormaAlterna;
+import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
+import fiuba.algo3.algoformers.algoformers.FormaTerrestre;
 import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 
 public class CeldaTest {
 	
-	private UnidadHumanoide formaHumanoide = new UnidadHumanoide(1, 2, 3);
-	private UnidadAlterna formaAerea = new UnidadAerea(3, 2, 1);
-	private UnidadAlterna formaTerrestre = new UnidadTerrestre(2, 2, 2);
+	private FormaHumanoide formaHumanoide = new FormaHumanoide(1, 2, 3);
+	private FormaAlterna formaAerea = new FormaAerea(3, 2, 1);
+	private FormaAlterna formaTerrestre = new FormaTerrestre(2, 2, 2);
 	
 	AlgoFormer autobotTerrestre =
 	    new AutoBot("Ejemplo", 1, formaHumanoide, formaTerrestre);

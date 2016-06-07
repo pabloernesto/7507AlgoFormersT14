@@ -4,7 +4,7 @@ import fiuba.algo3.algoformers.excepciones.FriendlyFireException;
 
 public class AutoBot extends AlgoFormer {
 
-	public AutoBot (String nombre, int vida, UnidadHumanoide formaHumanoide, UnidadAlterna formaAlterna){
+	public AutoBot (String nombre, int vida, FormaHumanoide formaHumanoide, FormaAlterna formaAlterna){
 		super(nombre, vida, formaHumanoide, formaAlterna);
 	}
 	

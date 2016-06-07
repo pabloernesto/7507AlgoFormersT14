@@ -5,9 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import fiuba.algo3.algoformers.algoformers.AutoBot;
-import fiuba.algo3.algoformers.algoformers.UnidadAerea;
-import fiuba.algo3.algoformers.algoformers.UnidadHumanoide;
-import fiuba.algo3.algoformers.algoformers.UnidadTerrestre;
+import fiuba.algo3.algoformers.algoformers.FormaAerea;
+import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
+import fiuba.algo3.algoformers.algoformers.FormaTerrestre;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
 
 public class AutoBotFactoryTest {
@@ -22,7 +22,7 @@ public class AutoBotFactoryTest {
 		assertEquals(50, optimus.getAtaque());
 		assertEquals(2, optimus.getVelocidad());
 		assertEquals(2, optimus.getDistAtaque());
-		assertEquals(optimus.getEstadoActivo().getClass(), UnidadHumanoide.class);
+		assertEquals(optimus.getEstadoActivo().getClass(), FormaHumanoide.class);
 		
 		optimus.transformarse();
 		assertEquals("Optimus Prime", optimus.getNombre());
@@ -30,7 +30,7 @@ public class AutoBotFactoryTest {
 		assertEquals(15, optimus.getAtaque());
 		assertEquals(5, optimus.getVelocidad());
 		assertEquals(4, optimus.getDistAtaque());
-		assertEquals(optimus.getEstadoActivo().getClass(), UnidadTerrestre.class);
+		assertEquals(optimus.getEstadoActivo().getClass(), FormaTerrestre.class);
 	}
 	
 	@Test
@@ -43,7 +43,7 @@ public class AutoBotFactoryTest {
 		assertEquals(40, bumblebee.getAtaque());
 		assertEquals(2, bumblebee.getVelocidad());
 		assertEquals(1, bumblebee.getDistAtaque());
-		assertEquals(bumblebee.getEstadoActivo().getClass(), UnidadHumanoide.class);
+		assertEquals(bumblebee.getEstadoActivo().getClass(), FormaHumanoide.class);
 		
 		bumblebee.transformarse();
 		assertEquals("Bumblebee", bumblebee.getNombre());
@@ -51,7 +51,7 @@ public class AutoBotFactoryTest {
 		assertEquals(20, bumblebee.getAtaque());
 		assertEquals(5, bumblebee.getVelocidad());
 		assertEquals(3, bumblebee.getDistAtaque());
-		assertEquals(bumblebee.getEstadoActivo().getClass(), UnidadTerrestre.class);
+		assertEquals(bumblebee.getEstadoActivo().getClass(), FormaTerrestre.class);
 	}
 	
 	@Test
@@ -64,7 +64,7 @@ public class AutoBotFactoryTest {
 		assertEquals(5, ratchet.getAtaque());
 		assertEquals(1, ratchet.getVelocidad());
 		assertEquals(5, ratchet.getDistAtaque());
-		assertEquals(ratchet.getEstadoActivo().getClass(), UnidadHumanoide.class);
+		assertEquals(ratchet.getEstadoActivo().getClass(), FormaHumanoide.class);
 		
 		ratchet.transformarse();
 		assertEquals("Ratchet", ratchet.getNombre());
@@ -72,7 +72,7 @@ public class AutoBotFactoryTest {
 		assertEquals(35, ratchet.getAtaque());
 		assertEquals(8, ratchet.getVelocidad());
 		assertEquals(2, ratchet.getDistAtaque());
-		assertEquals(ratchet.getEstadoActivo().getClass(), UnidadAerea.class);
+		assertEquals(ratchet.getEstadoActivo().getClass(), FormaAerea.class);
 	}
 	
 }

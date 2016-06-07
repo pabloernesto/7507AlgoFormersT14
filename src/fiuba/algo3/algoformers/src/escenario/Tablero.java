@@ -3,7 +3,6 @@ package fiuba.algo3.algoformers.escenario;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
