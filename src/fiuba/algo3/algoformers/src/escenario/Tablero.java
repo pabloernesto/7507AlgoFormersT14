@@ -20,11 +20,9 @@ public class Tablero {
 	private final int ALTO = 20;
 	private static Tablero instanciaTablero = null;
 	
-	private Tablero()
-	{
+	private Tablero(){
 	    posicionesCeldasOcupadas = new ArrayList<Posicion>();
 	    CeldaFactory generadorCeldas = new RocasYNubesFactory();
-	    
 		celdas = new HashMap <Posicion,Celda>();
 		for (int i=1 ; i<=ANCHO ; i++)
 			for (int j=1 ; j<=ALTO ; j++)
