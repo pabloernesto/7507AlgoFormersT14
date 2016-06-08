@@ -6,9 +6,6 @@ import java.util.HashMap;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 
-import fiuba.algo3.algoformers.escenario.CeldaFactory;
-import fiuba.algo3.algoformers.escenario.RocasYNubesFactory;
-
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
 
@@ -18,12 +15,18 @@ public class Tablero {
 	private HashMap <Posicion,Celda> celdas;
 	private final int ANCHO = 60;
 	private final int ALTO = 20;
+	
 	private static Tablero instanciaTablero = null;
+	private static CeldaFactory generadorCeldas = new FullRandomFactory();
+	
+	public static void setGeneradorDeCeldas(CeldaFactory g)
+	{
+	    generadorCeldas = g;
+	}
 	
 	private Tablero()
 	{
 	    posicionesCeldasOcupadas = new ArrayList<Posicion>();
-	    CeldaFactory generadorCeldas = new RocasYNubesFactory();
 	    
 		celdas = new HashMap <Posicion,Celda>();
 		for (int i=1 ; i<=ANCHO ; i++)
