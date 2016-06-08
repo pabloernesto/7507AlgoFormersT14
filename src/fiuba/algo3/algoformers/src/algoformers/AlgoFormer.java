@@ -1,8 +1,7 @@
 package fiuba.algo3.algoformers.algoformers;
 
-import fiuba.algo3.algoformers.escenario.Celda;
-import fiuba.algo3.algoformers.escenario.Movimiento;
-import fiuba.algo3.algoformers.escenario.Tablero;
+
+import fiuba.algo3.algoformers.escenario.*;
 
 import fiuba.algo3.algoformers.excepciones.FueraDeAlcanceException;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
@@ -43,15 +42,12 @@ public abstract class AlgoFormer {
 		Tablero.getInstance().moverAlgoformer(this, direccion);
 	}
 	
-	public void entrarACelda (Celda celda)
-	{
+	public void entrarACelda (Celda celda){
 		int costoEntrada = estadoActivo.getCostoDeEntrada(celda);
 		if (costoEntrada > movimientosRestantes)
 			throw new NoHayMasMovimientosException();
 		movimientosRestantes -= costoEntrada;
 		celda.recibirAlgoformer(this);
-		
-		estadoActivo.aplicarEfectos(celda, this);
 	}
 
 	public void atacar(AlgoFormer algoformerAtacado)
@@ -97,7 +93,34 @@ public abstract class AlgoFormer {
 	}
 	
 	public void reiniciarMovimientosRestantes (){
-		movimientosRestantes = getVelocidad();
+	//	movimientosRestantes = getVelocidad();
 	}
+
+
+	public void recibirEfecto(Pantano pantano) {
+	//	this.estadoActivo.recibirEfecto(pantano);	
+	}
+
+	public void recibirEfecto(Rocosa rocosa) {		
+	//
+	}
+	
+	
+	public void recibirEfecto(Espinas espinas) {
+	//	this.vida=(this.vida*95/100);
+	}
+	
+	public void recibirEfecto(Nube nube) {
+	}
+	
+	public void recibirEfecto(NebulosaDeAndromeda nebulosa) {
+	//	this.estadoActivo.recibirEfecto(nebulosa);
+	}
+	
+	public void recibirEfecto(TormentaPsionica tormenta){
+	//	this.estadoActivo.recibirEfecto(tormenta);			
+	}
+	
+	
 	
 }
