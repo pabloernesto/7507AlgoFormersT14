@@ -10,6 +10,8 @@ import fiuba.algo3.algoformers.algoformers.FormaAerea;
 import fiuba.algo3.algoformers.algoformers.FormaAlterna;
 import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
 import fiuba.algo3.algoformers.escenario.Celda;
+import fiuba.algo3.algoformers.escenario.superficies.Nube;
+import fiuba.algo3.algoformers.escenario.superficies.Rocosa;
 import fiuba.algo3.algoformers.excepciones.FriendlyFireException;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
 
@@ -18,10 +20,12 @@ public class AutoBotTest {
 	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
 	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
 	private AutoBot autobot;
+	private Celda celda;
 	
 	@Before
 	public void setUp(){
 		autobot = new AutoBot("autobot", 10, humanoide, alterna);
+		celda = new Celda(new Rocosa(), new Nube());
 	}
 	
 	@Test
@@ -36,7 +40,7 @@ public class AutoBotTest {
 	@Test
 	public void testEntrarACeldaReduceLaCantidadDeMovimientosRestantesEnModoHumanoide(){
 		int movimientosRestantesAntes = autobot.getMovimientosRestantes();
-		autobot.entrarACelda(new Celda());
+		autobot.entrarACelda(celda);
 		assertTrue(movimientosRestantesAntes > autobot.getMovimientosRestantes());
 	}
 	
@@ -44,40 +48,40 @@ public class AutoBotTest {
 	public void testEntrarACeldaReduceLaCantidadDeMovimientosRestantesEnModoAlterno(){
 		autobot.transformarse();
 		int movimientosRestantesAntes = autobot.getMovimientosRestantes();
-		autobot.entrarACelda(new Celda());
+		autobot.entrarACelda(celda);
 		assertTrue(movimientosRestantesAntes > autobot.getMovimientosRestantes());
 	}
 	
 	@Test(expected=NoHayMasMovimientosException.class)
 	public void testNoSePuedeMoverMasQueLaCantidadDeCeldasIndicadasPorLaVelocidadEnModoHumanoide(){
 		for (int i = 0 ; i < autobot.getVelocidad() + 1 ; i++)
-			autobot.entrarACelda(new Celda());
+			autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
 	}
 	
 	@Test(expected=NoHayMasMovimientosException.class)
 	public void testNoSePuedeMoverMasQueLaCantidadDeCeldasIndicadasPorLaVelocidadEnModoAlterno(){
 		autobot.transformarse();
 		for (int i = 0 ; i < autobot.getVelocidad() + 1 ; i++)
-			autobot.entrarACelda(new Celda());
+			autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
 	}
 	
 	@Test
 	public void testAutoBotSePuedeMoverLaCantidadDeCasillerosIndicadaPorSuVelocidadEnModoHumanoide(){
 		for (int i = 0 ; i < autobot.getVelocidad() ; i++)
-			autobot.entrarACelda(new Celda());
+			autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
 	}
 	
 	@Test
 	public void testAutoBotSePuedeMoverLaCantidadDeCasillerosIndicadaPorSuVelocidadEnModoAlterno(){
 		autobot.transformarse();
 		for (int i = 0 ; i < autobot.getVelocidad() ; i++)
-			autobot.entrarACelda(new Celda());
+			autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
 	}
 	
 	@Test
 	public void testReinicarMovimientosRestantesLosReiniciaEnModoHumanoide(){
 		int movimientos = autobot.getMovimientosRestantes();
-		autobot.entrarACelda(new Celda());
+		autobot.entrarACelda(celda);
 		assertTrue(movimientos > autobot.getMovimientosRestantes());
 		autobot.reiniciarMovimientosRestantes();
 		assertTrue(movimientos == autobot.getMovimientosRestantes());
@@ -87,7 +91,7 @@ public class AutoBotTest {
 	public void testReinicarMovimientosRestantesLosReiniciaEnModoAlterno(){
 		autobot.transformarse();
 		int movimientos = autobot.getMovimientosRestantes();
-		autobot.entrarACelda(new Celda());
+		autobot.entrarACelda(celda);
 		assertTrue(movimientos > autobot.getMovimientosRestantes());
 		autobot.reiniciarMovimientosRestantes();
 		assertTrue(movimientos == autobot.getMovimientosRestantes());

@@ -1,22 +1,14 @@
 package fiuba.algo3.algoformers.algoformers;
 
-import fiuba.algo3.algoformers.escenario.Celda;
-import fiuba.algo3.algoformers.escenario.superficies.Superficie;
+import fiuba.algo3.algoformers.escenario.superficies.Efecto;
 
 public class FormaAerea extends FormaAlterna {
 
-	public FormaAerea (int ataque, int velocidad, int distAtaque)
-	{
+	public FormaAerea (int ataque, int velocidad, int distAtaque){
 		super(ataque, velocidad, distAtaque);
 	}
-	
-	public int getCostoDeEntrada(Celda destino)
-	{
-	    return destino.superficie(this).costoDeEntrada(this);
-	}
 
-	public void aplicarEfectos(Celda destino, AlgoFormer algoformer)
-	{
-	    destino.superficie(this).aplicarEfectos(algoformer, this);
+	public void recibirEfectos(AlgoFormer algoformer, Efecto efecto){
+	    efecto.afectar(algoformer, this);
 	}
 }

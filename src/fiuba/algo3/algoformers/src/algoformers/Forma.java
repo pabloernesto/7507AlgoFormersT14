@@ -1,6 +1,6 @@
 package fiuba.algo3.algoformers.algoformers;
 
-import fiuba.algo3.algoformers.escenario.Celda;
+import fiuba.algo3.algoformers.escenario.superficies.Efecto;
 
 public abstract class Forma {
 
@@ -26,9 +26,11 @@ public abstract class Forma {
 		return distAtaque;
 	}
 	
-	public abstract int getCostoDeEntrada(Celda destino);
+	public void setAtaque(int nuevoAtaque){
+		ataque = nuevoAtaque;
+	}
 	
-	public abstract void aplicarEfectos(Celda destino, AlgoFormer algoformer);
+	public abstract void recibirEfectos(AlgoFormer algoformer, Efecto efecto);
 
 }
 

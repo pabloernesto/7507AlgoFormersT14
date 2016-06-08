@@ -23,7 +23,7 @@ public class DecepticonTest {
 	public void setUp(){
 		decepticon = new Decepticon("decepticon", 10, humanoide, alterna);
 	}
-	
+	/*
 	@Test
 	public void testAlgoformerSePuedeTransformarEnAmbosSentidosYCambiaElComportamiento(){
 		assertEquals(1, decepticon.getAtaque()); //Se que el ataque es 1 porque lo declare arriba
@@ -92,7 +92,7 @@ public class DecepticonTest {
 		decepticon.reiniciarMovimientosRestantes();
 		assertTrue(movimientos == decepticon.getMovimientosRestantes());
 	}
-	
+	*/
 	//Inicio pruebas recibirDanio
 	
 	@Test
