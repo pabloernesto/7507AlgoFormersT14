@@ -21,6 +21,8 @@ public class AutoBotTest {
 	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
 	private AutoBot autobot;
 	private Celda celda;
+	private Rocosa rocosa = new Rocosa();
+	private Nube nube = new Nube();
 	
 	@Before
 	public void setUp(){
@@ -55,27 +57,27 @@ public class AutoBotTest {
 	@Test(expected=NoHayMasMovimientosException.class)
 	public void testNoSePuedeMoverMasQueLaCantidadDeCeldasIndicadasPorLaVelocidadEnModoHumanoide(){
 		for (int i = 0 ; i < autobot.getVelocidad() + 1 ; i++)
-			autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
+			autobot.entrarACelda(new Celda(rocosa, nube));
 	}
 	
 	@Test(expected=NoHayMasMovimientosException.class)
 	public void testNoSePuedeMoverMasQueLaCantidadDeCeldasIndicadasPorLaVelocidadEnModoAlterno(){
 		autobot.transformarse();
 		for (int i = 0 ; i < autobot.getVelocidad() + 1 ; i++)
-			autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
+			autobot.entrarACelda(new Celda(rocosa, nube));
 	}
 	
 	@Test
 	public void testAutoBotSePuedeMoverLaCantidadDeCasillerosIndicadaPorSuVelocidadEnModoHumanoide(){
 		for (int i = 0 ; i < autobot.getVelocidad() ; i++)
-			autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
+			autobot.entrarACelda(new Celda(rocosa, nube));
 	}
 	
 	@Test
 	public void testAutoBotSePuedeMoverLaCantidadDeCasillerosIndicadaPorSuVelocidadEnModoAlterno(){
 		autobot.transformarse();
 		for (int i = 0 ; i < autobot.getVelocidad() ; i++)
-			autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
+			autobot.entrarACelda(new Celda(rocosa, nube));
 	}
 	
 	@Test

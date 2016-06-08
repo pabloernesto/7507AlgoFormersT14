@@ -20,18 +20,6 @@ public abstract class Jugador {
 	
 	public abstract void inicializarEquipo ();
 	
-	public void elegirAlgoFormer(String nombre){
-		AlgoFormer algoformerElegido = null;
-		for (AlgoFormer algoformer : equipo){
-			if (algoformer.getNombre().equals(nombre))
-				algoformerElegido = algoformer;
-		}
-		if (algoformerElegido == null){
-			System.out.println("El algoformer no existe"); //Cambiar por excepcion?
-		}
-		algoformerActual = algoformerElegido;
-	}
-	
 	public void atacar (AlgoFormer atacado){
 		algoformerActual.atacar(atacado);
 	}

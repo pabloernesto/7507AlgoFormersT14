@@ -15,7 +15,7 @@ public class EfectoEspinas extends Efecto{
 
 	public void afectar(AlgoFormer algoformer, FormaTerrestre forma) {
 		int vida = algoformer.getVida();
-		int nuevaVida = vida / 100 * 95;
+		int nuevaVida = vida * 95 / 100;
 		algoformer.setVida(nuevaVida);
 	}
 	

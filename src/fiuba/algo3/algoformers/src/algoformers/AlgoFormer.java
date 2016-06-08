@@ -1,8 +1,12 @@
 package fiuba.algo3.algoformers.algoformers;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fiuba.algo3.algoformers.escenario.*;
 import fiuba.algo3.algoformers.escenario.superficies.Efecto;
+import fiuba.algo3.algoformers.escenario.superficies.EfectoTemporal;
 import fiuba.algo3.algoformers.excepciones.FueraDeAlcanceException;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
 
@@ -11,6 +15,7 @@ public abstract class AlgoFormer {
 	protected String nombre;
 	protected int vida;
 	protected int movimientosRestantes;
+	protected List<EfectoTemporal> efectosActivos;
 	
 	protected Forma estadoActivo;
 	protected Forma estadoInactivo;
@@ -23,6 +28,7 @@ public abstract class AlgoFormer {
 		estadoActivo = formaHumanoide;
 		estadoInactivo = formaAlterna;
 		reiniciarMovimientosRestantes();
+		efectosActivos = new ArrayList<EfectoTemporal>();
 	}
 
 	public abstract void recibirDanio (AutoBot autobot, int ataque);
@@ -109,5 +115,34 @@ public abstract class AlgoFormer {
 
 	public void recibirEfectos(Efecto efecto) {
 		estadoActivo.recibirEfectos(this, efecto);
+	}
+	
+	public void recibirEfectos(EfectoTemporal efecto) {
+		agregarEfecto(efecto);
+		estadoActivo.recibirEfectos(this, efecto);
+	}
+	
+	public void agregarEfecto(EfectoTemporal efecto) {
+		if (!efectosActivos.contains(efecto))
+			efectosActivos.add(efecto);
+	}
+	
+	public void iniciarTurno(){
+		reiniciarMovimientosRestantes();
+		List<EfectoTemporal> aux = copiarEfectosActivos();
+		for (EfectoTemporal efecto: aux){
+			recibirEfectos(efecto);
+		}
+	}
+	
+	private List<EfectoTemporal> copiarEfectosActivos(){
+		List<EfectoTemporal> aux = new ArrayList<EfectoTemporal>();
+		for (EfectoTemporal efecto: efectosActivos)
+			aux.add(efecto);
+		return aux;
+	}
+	
+	public void borrarEfecto(EfectoTemporal efecto) {
+		efectosActivos.remove(efecto);
 	}
 }

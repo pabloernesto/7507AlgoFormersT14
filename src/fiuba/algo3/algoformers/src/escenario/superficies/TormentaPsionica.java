@@ -7,11 +7,10 @@ import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 
 public class TormentaPsionica extends SuperficieAerea{
 	
-	private List<AlgoFormer> listaAfectados;
+	private static List<AlgoFormer> listaAfectados = new ArrayList<AlgoFormer>();
 	
 	public TormentaPsionica(){
 		efecto = new EfectoTormenta();
-		listaAfectados = new ArrayList<AlgoFormer>();
 	}
 	
 	public void aplicarEfectos(AlgoFormer algoformer){
