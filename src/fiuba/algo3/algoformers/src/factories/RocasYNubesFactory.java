@@ -4,7 +4,7 @@ import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.escenario.superficies.Nube;
 import fiuba.algo3.algoformers.escenario.superficies.Rocosa;
 
-public class RocasYNubesFactory extends CeldaFactory {
+public class RocasYNubesFactory implements CeldaFactory {
 
 	public Celda getCelda()
 	{

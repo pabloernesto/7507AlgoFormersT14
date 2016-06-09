@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class CeldaRandomFactory extends CeldaFactory {
+public class CeldaRandomFactory implements CeldaFactory {
 
     private Random generator;
 
