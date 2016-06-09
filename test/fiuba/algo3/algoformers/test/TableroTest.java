@@ -10,9 +10,10 @@ import fiuba.algo3.algoformers.algoformers.Decepticon;
 import fiuba.algo3.algoformers.algoformers.FormaAerea;
 import fiuba.algo3.algoformers.algoformers.FormaAlterna;
 import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
-
+import fiuba.algo3.algoformers.escenario.CeldaFactory;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Posicion;
+import fiuba.algo3.algoformers.escenario.RocasYNubesFactory;
 import fiuba.algo3.algoformers.escenario.Tablero;
 
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
@@ -24,9 +25,11 @@ public class TableroTest {
 	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
 	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
 	private AlgoFormer algoformer = new Decepticon("Ejemplo", 10, humanoide, alterna);
+	private CeldaFactory generadorDeRocosaYNubes = new RocasYNubesFactory();
 	
 	@Before
 	public void setUp(){
+		Tablero.setGeneradorDeCeldas(generadorDeRocosaYNubes);
 		tablero = Tablero.getInstance();
 	}
 	
