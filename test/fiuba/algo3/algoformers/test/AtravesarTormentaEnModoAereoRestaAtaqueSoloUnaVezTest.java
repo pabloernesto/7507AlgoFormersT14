@@ -17,6 +17,7 @@ import fiuba.algo3.algoformers.factories.DecepticonFactory;
 public class AtravesarTormentaEnModoAereoRestaAtaqueSoloUnaVezTest {
 
 	private Celda celda;
+	private Celda otraCelda;
 	private AutoBotFactory autobotFactory = new AutoBotFactory();
 	private DecepticonFactory decepticonFactory = new DecepticonFactory();
 	
@@ -30,6 +31,7 @@ public class AtravesarTormentaEnModoAereoRestaAtaqueSoloUnaVezTest {
 	@Before
 	public void setUp(){
 		celda = new Celda(rocosa, tormenta);
+		otraCelda = new Celda(rocosa, tormenta);
 	}
 	
 	@Test
@@ -38,8 +40,7 @@ public class AtravesarTormentaEnModoAereoRestaAtaqueSoloUnaVezTest {
 		ratchet.transformarse();
 		int ataqueAnterior = ratchet.getAtaque();
 		ratchet.entrarACelda(celda);
-		celda = new Celda(rocosa, tormenta);
-		ratchet.entrarACelda(celda);
+		ratchet.entrarACelda(otraCelda);
 		assertEquals(ataqueAnterior * 60 / 100, ratchet.getAtaque());
 	}
 	
@@ -49,8 +50,7 @@ public class AtravesarTormentaEnModoAereoRestaAtaqueSoloUnaVezTest {
 		megatron.transformarse();
 		int ataqueAnterior = megatron.getAtaque();
 		megatron.entrarACelda(celda);
-		celda = new Celda(rocosa, tormenta);
-		megatron.entrarACelda(celda);
+		megatron.entrarACelda(otraCelda);
 		assertEquals(ataqueAnterior * 60 / 100, megatron.getAtaque());
 	}
 }
