@@ -69,6 +69,41 @@ public abstract class AlgoFormer {
 		atacarAlgoformer(algoformerAtacado);
 	}
 	
+	public void recibirEfectos(Efecto efecto) {
+		estadoActivo.recibirEfectos(this, efecto);
+	}
+	
+	public void recibirEfectos(EfectoTemporal efecto) {
+		agregarEfecto(efecto);
+		estadoActivo.recibirEfectos(this, efecto);
+	}
+	
+	public void agregarEfecto(EfectoTemporal efecto) {
+		if (!efectosActivos.contains(efecto))
+			efectosActivos.add(efecto);
+	}
+	
+	public void borrarEfecto(EfectoTemporal efecto) {
+		efectosActivos.remove(efecto);
+	}
+	
+	public void iniciarTurno(){
+		reiniciarMovimientosRestantes();
+		List<Efecto> aux = new ArrayList<Efecto>(efectosActivos);
+		for (Efecto efecto: aux){
+			recibirEfectos(efecto);
+		}
+	}
+	
+	public void reiniciarMovimientosRestantes (){
+		movimientosRestantes = getVelocidad();
+	}
+	
+	public void restarMovimientosRestantes(int movimientosRestantes) {
+		this.movimientosRestantes -= movimientosRestantes;
+	}
+	
+	
 	public Forma getEstadoActivo (){
 		return estadoActivo;
 	}
@@ -97,45 +132,11 @@ public abstract class AlgoFormer {
 		return movimientosRestantes;
 	}
 	
-	public void reiniciarMovimientosRestantes (){
-		movimientosRestantes = getVelocidad();
-	}
-	
 	public void setVida(int nuevaVida){
 		vida = nuevaVida;
 	}
 	
 	public void setAtaque(int nuevoAtaque){
 		estadoActivo.setAtaque(nuevoAtaque);
-	}
-	
-	public void restarMovimientosRestantes(int movimientosRestantes) {
-		this.movimientosRestantes -= movimientosRestantes;
-	}
-
-	public void recibirEfectos(Efecto efecto) {
-		estadoActivo.recibirEfectos(this, efecto);
-	}
-	
-	public void recibirEfectos(EfectoTemporal efecto) {
-		agregarEfecto(efecto);
-		estadoActivo.recibirEfectos(this, efecto);
-	}
-	
-	public void agregarEfecto(EfectoTemporal efecto) {
-		if (!efectosActivos.contains(efecto))
-			efectosActivos.add(efecto);
-	}
-	
-	public void iniciarTurno(){
-		reiniciarMovimientosRestantes();
-		List<Efecto> aux = new ArrayList<Efecto>(efectosActivos);
-		for (Efecto efecto: aux){
-			recibirEfectos(efecto);
-		}
-	}
-	
-	public void borrarEfecto(EfectoTemporal efecto) {
-		efectosActivos.remove(efecto);
 	}
 }

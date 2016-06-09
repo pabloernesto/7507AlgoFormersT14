@@ -5,9 +5,10 @@ import java.util.Collections;
 import java.util.HashMap;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
-
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
+import fiuba.algo3.algoformers.factories.CeldaFactory;
+import fiuba.algo3.algoformers.factories.CeldaRandomFactory;
 
 public class Tablero {
 
@@ -17,11 +18,11 @@ public class Tablero {
 	private final int ALTO = 20;
 	
 	private static Tablero instanciaTablero = null;
-	private static CeldaFactory generadorCeldas = new FullRandomFactory();
+	private static CeldaFactory generadorCeldas = new CeldaRandomFactory();
 	
-	public static void setGeneradorDeCeldas(CeldaFactory g)
+	public static void setGeneradorDeCeldas(CeldaFactory generadorDeCeldas)
 	{
-	    generadorCeldas = g;
+	    generadorCeldas = generadorDeCeldas;
 	}
 	
 	private Tablero()
@@ -81,10 +82,10 @@ public class Tablero {
 	}
 	
 	public int distanciaEntreAlgoformers(AlgoFormer algoformer1, AlgoFormer algoformer2){
-			Posicion posicionAlgoformer1 = getPosicionAlgoformer(algoformer1);
-			Posicion posicionAlgoformer2 = getPosicionAlgoformer(algoformer2);
-			return posicionAlgoformer1.calcularDistanciaCon(posicionAlgoformer2);
-		}
+		Posicion posicionAlgoformer1 = getPosicionAlgoformer(algoformer1);
+		Posicion posicionAlgoformer2 = getPosicionAlgoformer(algoformer2);
+		return posicionAlgoformer1.calcularDistanciaCon(posicionAlgoformer2);
+	}
 	
 	public int ancho(){
 		return ANCHO;
