@@ -1,4 +1,5 @@
-package fiuba.algo3.algoformers.escenario;
+
+package fiuba.algo3.algoformers.escenario.superficies;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 
