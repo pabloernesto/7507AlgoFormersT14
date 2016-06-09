@@ -196,6 +196,8 @@ public class TableroTest {
     	tablero.moverAlgoformer(algoformer, Movimiento.DERECHA);
     	Posicion posicionFinal = posicion.sumarMovimiento(Movimiento.DERECHA);
     	assertTrue(tablero.getPosicionAlgoformer(algoformer).equals(posicionFinal));
+    	assertTrue(tablero.posicionEstaOcupada(posicionFinal));
+    	assertFalse(tablero.posicionEstaOcupada(posicion));
     }
 	
 	@Test(expected=PosicionInvalidaException.class)
