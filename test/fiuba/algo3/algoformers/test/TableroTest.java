@@ -21,13 +21,17 @@ import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
 public class TableroTest {
 	
 	private Tablero tablero;
-	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
-	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
-	private AlgoFormer algoformer = new Decepticon("Ejemplo", 10, humanoide, alterna);
+	private FormaHumanoide humanoide;
+	private FormaAlterna alterna;
+	private AlgoFormer algoformer;
 	
 	@Before
 	public void setUp(){
 		tablero = Tablero.getInstance();
+		Tablero.reiniciarTablero();
+		humanoide = new FormaHumanoide(1, 2, 3);
+		alterna = new FormaAerea(3, 2, 1);
+		algoformer = new Decepticon("Ejemplo", 10, humanoide, alterna);
 	}
 	
 	@After
@@ -120,9 +124,8 @@ public class TableroTest {
     }
 	
 	@Test
-    public void testTableroCalculaCorrectamenteDistanciasEntreAlgoformers()
-    {
-    	Posicion posicion = new Posicion(1,1);
+    public void testTableroCalculaCorrectamenteDistanciasEntreAlgoformers(){
+		Posicion posicion = new Posicion(1,1);
     	tablero.colocarAlgoformer(algoformer, posicion);
     	
 		AlgoFormer algoformer2 =
@@ -135,8 +138,7 @@ public class TableroTest {
     	posicion = new Posicion(4,1);
     	tablero.colocarAlgoformer(algoformer3, posicion);
     	
-    	assertEquals(1,
-    	    tablero.distanciaEntreAlgoformers(algoformer, algoformer2));
+    	assertEquals(1, tablero.distanciaEntreAlgoformers(algoformer, algoformer2));
     	assertEquals(3,
     	    tablero.distanciaEntreAlgoformers(algoformer, algoformer3));
     	assertEquals(2,
@@ -144,4 +146,6 @@ public class TableroTest {
     	assertEquals(0,
     	    tablero.distanciaEntreAlgoformers(algoformer, algoformer));
     }
+		
+	
 }

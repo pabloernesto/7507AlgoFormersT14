@@ -1,6 +1,11 @@
 package fiuba.algo3.algoformers.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
@@ -10,6 +15,8 @@ import fiuba.algo3.algoformers.algoformers.FormaAlterna;
 import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
 import fiuba.algo3.algoformers.algoformers.FormaTerrestre;
 import fiuba.algo3.algoformers.escenario.Celda;
+import fiuba.algo3.algoformers.escenario.superficies.Nube;
+import fiuba.algo3.algoformers.escenario.superficies.Rocosa;
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 
 public class CeldaTest {
@@ -17,6 +24,7 @@ public class CeldaTest {
 	private FormaHumanoide formaHumanoide = new FormaHumanoide(1, 2, 3);
 	private FormaAlterna formaAerea = new FormaAerea(3, 2, 1);
 	private FormaAlterna formaTerrestre = new FormaTerrestre(2, 2, 2);
+	private Celda celda;
 	
 	AlgoFormer autobotTerrestre =
 	    new AutoBot("Ejemplo", 1, formaHumanoide, formaTerrestre);
@@ -24,17 +32,20 @@ public class CeldaTest {
 	AlgoFormer autobotAereo =
 	    new AutoBot("Ejemplo", 1, formaHumanoide, formaAerea);
 	
+	@Before
+	public void setUp(){
+		celda = new Celda(new Rocosa(), new Nube());
+	}
+	
 	@Test
 	public void testCeldaEstaOcupadaEstandoDesocupadaDaFalso()
 	{
-		Celda celda = new Celda();
 		assertFalse(celda.estaOcupada());
 	}
 	
 	@Test
 	public void testCeldaEstaOcupadaEstandoOcupadaDaVerdadero()
 	{
-		Celda celda = new Celda();
 		
 		celda.recibirAlgoformer(autobotAereo);
 		
@@ -44,7 +55,6 @@ public class CeldaTest {
 	@Test(expected=CeldaOcupadaException.class)
 	public void testRecibirAlgoformerLanzaExcepcionSiLaCeldaYaEstabaOcupada()
 	{
-		Celda celda = new Celda();
 		
 		celda.recibirAlgoformer(autobotTerrestre);
 		celda.recibirAlgoformer(autobotAereo);
@@ -53,7 +63,6 @@ public class CeldaTest {
 	@Test
 	public void testGetAlgoFormerDevuelveElAlgoFormerCorrecto()
 	{
-		Celda celda = new Celda();
 
 		celda.recibirAlgoformer(autobotTerrestre);
 		
@@ -63,7 +72,6 @@ public class CeldaTest {
 	@Test
 	public void testDesocuparCeldaEstandoOcupadaLaDesocupa()
 	{
-		Celda celda = new Celda();
 		
 		celda.recibirAlgoformer(autobotAereo);
 		celda.desocuparCelda();
@@ -74,7 +82,6 @@ public class CeldaTest {
 	@Test
 	public void testDesocuparCeldaEstandoDesocupadaLaDejaIgual()
 	{
-		Celda celda = new Celda();
 		
 		celda.desocuparCelda();
 		
@@ -83,12 +90,11 @@ public class CeldaTest {
 	
 	@Test
 	public void testCeldaContieneChispaSupremaSinContenerlaDaFalso(){
-		assertFalse(new Celda().contieneChispaSuprema());
+		assertFalse(celda.contieneChispaSuprema());
 	}
 	
 	@Test
 	public void testCeldaContieneChispaSupremaConteniendolaDaVerdadero(){
-		Celda celda = new Celda();
 		celda.colocarChispaSuprema();
 		assertTrue(celda.contieneChispaSuprema());
 	}

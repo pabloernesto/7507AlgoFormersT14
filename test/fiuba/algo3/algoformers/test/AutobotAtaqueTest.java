@@ -1,107 +1,29 @@
 package fiuba.algo3.algoformers.test;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
+import org.junit.Test;
 
-import fiuba.algo3.algoformers.algoformers.AutoBot;
-import fiuba.algo3.algoformers.algoformers.Decepticon;
-import fiuba.algo3.algoformers.algoformers.FormaAerea;
-import fiuba.algo3.algoformers.algoformers.FormaAlterna;
-import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
-import fiuba.algo3.algoformers.escenario.Celda;
-import fiuba.algo3.algoformers.escenario.superficies.*;
+import fiuba.algo3.algoformers.algoformers.*;
+import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.excepciones.FriendlyFireException;
-import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
 
-public class AutoBotTest {
+public class AutobotAtaqueTest {
 	
 	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
 	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
 	private AutoBot autobot;
-	private Celda celda;
-	private Rocosa rocosa = new Rocosa();
-	private Nube nube = new Nube();
-	
+
 	@Before
 	public void setUp(){
+		autobot=null;
 		autobot = new AutoBot("autobot", 10, humanoide, alterna);
-		celda = new Celda(new Rocosa(), new Nube());
-	}
-	
+		Tablero.reiniciarTablero();
+		}
+
 	@Test
-	public void testAlgoformerSePuedeTransformarEnAmbosSentidosYCambiaElComportamiento(){
-		assertEquals(1, autobot.getAtaque()); //Se que el ataque es 1 porque lo declare arriba
-		autobot.transformarse();
-		assertEquals(3, autobot.getAtaque());
-		autobot.transformarse();
-		assertEquals(1, autobot.getAtaque());
-	}
-	
-	@Test
-	public void testEntrarACeldaReduceLaCantidadDeMovimientosRestantesEnModoHumanoide(){
-		int movimientosRestantesAntes = autobot.getMovimientosRestantes();
-		autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
-		assertTrue(movimientosRestantesAntes > autobot.getMovimientosRestantes());
-	}
-	
-	@Test
-	public void testEntrarACeldaReduceLaCantidadDeMovimientosRestantesEnModoAlterno(){
-		autobot.transformarse();
-		int movimientosRestantesAntes = autobot.getMovimientosRestantes();
-		autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
-		assertTrue(movimientosRestantesAntes > autobot.getMovimientosRestantes());
-	}
-	
-	@Test(expected=NoHayMasMovimientosException.class)
-	public void testNoSePuedeMoverMasQueLaCantidadDeCeldasIndicadasPorLaVelocidadEnModoHumanoide(){
-		for (int i = 0 ; i < autobot.getVelocidad() + 1 ; i++)
-			autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
-	}
-	
-	@Test(expected=NoHayMasMovimientosException.class)
-	public void testNoSePuedeMoverMasQueLaCantidadDeCeldasIndicadasPorLaVelocidadEnModoAlterno(){
-		autobot.transformarse();
-		for (int i = 0 ; i < autobot.getVelocidad() + 1 ; i++)
-			autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
-	}
-	
-	@Test
-	public void testAutoBotSePuedeMoverLaCantidadDeCasillerosIndicadaPorSuVelocidadEnModoHumanoide(){
-		for (int i = 0 ; i < autobot.getVelocidad() ; i++)
-			autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
-	}
-	
-	@Test
-	public void testAutoBotSePuedeMoverLaCantidadDeCasillerosIndicadaPorSuVelocidadEnModoAlterno(){
-		autobot.transformarse();
-		for (int i = 0 ; i < autobot.getVelocidad() ; i++)
-			autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
-	}
-	
-	@Test
-	public void testReinicarMovimientosRestantesLosReiniciaEnModoHumanoide(){
-		int movimientos = autobot.getMovimientosRestantes();
-		autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
-		assertTrue(movimientos > autobot.getMovimientosRestantes());
-		autobot.reiniciarMovimientosRestantes();
-		assertTrue(movimientos == autobot.getMovimientosRestantes());
-	}
-	
-	@Test
-	public void testReinicarMovimientosRestantesLosReiniciaEnModoAlterno(){
-		autobot.transformarse();
-		int movimientos = autobot.getMovimientosRestantes();
-		autobot.entrarACelda(new Celda(new Rocosa(), new Nube()));
-		assertTrue(movimientos > autobot.getMovimientosRestantes());
-		autobot.reiniciarMovimientosRestantes();
-		assertTrue(movimientos == autobot.getMovimientosRestantes());
-	}
-	
-	//Inicio pruebas recibirDanio
-	
-	@Test
-	public void testRecibirDanioDeUnDecepticonRestaVidaAmbosEnModoHumanoide(){
+	public void test10RecibirDanioDeUnDecepticonRestaVidaAmbosEnModoHumanoide(){
 	Decepticon decepticon = new Decepticon("decepticon", 20, humanoide, alterna);
 	int vidaAnterior = autobot.getVida();
 	autobot.recibirDanio(decepticon, decepticon.getAtaque());
@@ -109,7 +31,7 @@ public class AutoBotTest {
 	}
 	
 	@Test(expected=FriendlyFireException.class)
-	public void testRecibirDanioDeOtroAutoBotNoRestaVidaAmbosEnModoHumanoide(){
+	public void test11RecibirDanioDeOtroAutoBotNoRestaVidaAmbosEnModoHumanoide(){
 	AutoBot otroAutobot = new AutoBot("autobot2", 20, humanoide, alterna);
 	int vidaAnterior = autobot.getVida();
 	try{
@@ -121,7 +43,7 @@ public class AutoBotTest {
 	}
 	
 	@Test
-	public void testRecibirDanioDeUnDecepticonRestaVidaAmbosEnModoAlterno(){
+	public void test12RecibirDanioDeUnDecepticonRestaVidaAmbosEnModoAlterno(){
 	Decepticon decepticon = new Decepticon("decepticon", 20, humanoide, alterna);
 	autobot.transformarse();
 	decepticon.transformarse();
@@ -131,7 +53,7 @@ public class AutoBotTest {
 	}
 	
 	@Test(expected=FriendlyFireException.class)
-	public void testRecibirDanioDeOtroAutoBotNoRestaVidaAmbosEnModoAlterno(){
+	public void test13RecibirDanioDeOtroAutoBotNoRestaVidaAmbosEnModoAlterno(){
 	AutoBot otroAutobot = new AutoBot("autobot2", 20, humanoide, alterna);
 	autobot.transformarse();
 	otroAutobot.transformarse();
@@ -145,7 +67,7 @@ public class AutoBotTest {
 	}
 	
 	@Test
-	public void testRecibirDanioDeUnDecepticonAlternoRestaVidaEstandoEnModoHumanoide(){
+	public void test14RecibirDanioDeUnDecepticonAlternoRestaVidaEstandoEnModoHumanoide(){
 	Decepticon decepticon = new Decepticon("decepticon", 20, humanoide, alterna);
 	decepticon.transformarse();
 	int vidaAnterior = autobot.getVida();
@@ -154,7 +76,7 @@ public class AutoBotTest {
 	}
 	
 	@Test(expected=FriendlyFireException.class)
-	public void testRecibirDanioDeOtroAutoBotAlternoNoRestaVidaEstandoEnModoHumanoide(){
+	public void test15RecibirDanioDeOtroAutoBotAlternoNoRestaVidaEstandoEnModoHumanoide(){
 	AutoBot otroAutobot = new AutoBot("autobot2", 20, humanoide, alterna);
 	otroAutobot.transformarse();
 	int vidaAnterior = autobot.getVida();
@@ -167,7 +89,7 @@ public class AutoBotTest {
 	}
 	
 	@Test
-	public void testRecibirDanioDeUnDecepticonHumanoideRestaVidaEstandoEnModoAlterno(){
+	public void test16RecibirDanioDeUnDecepticonHumanoideRestaVidaEstandoEnModoAlterno(){
 	Decepticon decepticon = new Decepticon("decepticon", 20, humanoide, alterna);
 	autobot.transformarse();
 	int vidaAnterior = autobot.getVida();
@@ -176,7 +98,7 @@ public class AutoBotTest {
 	}
 	
 	@Test(expected=FriendlyFireException.class)
-	public void testRecibirDanioDeOtroAutoBotHumanoideNoRestaVidaEstandoEnModoAlterno(){
+	public void test17RecibirDanioDeOtroAutoBotHumanoideNoRestaVidaEstandoEnModoAlterno(){
 	AutoBot otroAutobot = new AutoBot("autobot2", 20, humanoide, alterna);
 	autobot.transformarse();
 	int vidaAnterior = autobot.getVida();
@@ -193,7 +115,7 @@ public class AutoBotTest {
 	//Inicio pruebas atacarAlgoformer
 	
 	@Test
-	public void testAtacarnDecepticonLeRestaVidaAmbosEnModoHumanoide(){
+	public void test18AtacarnDecepticonLeRestaVidaAmbosEnModoHumanoide(){
 	Decepticon decepticon = new Decepticon("decepticon", 20, humanoide, alterna);
 	int vidaAnterior = decepticon.getVida();
 	autobot.atacarAlgoformer(decepticon);
@@ -201,7 +123,7 @@ public class AutoBotTest {
 	}
 	
 	@Test(expected=FriendlyFireException.class)
-	public void testAtacarAOtroAutoBotNoLeRestaVidaAmbosEnModoHumanoide(){
+	public void test19AtacarAOtroAutoBotNoLeRestaVidaAmbosEnModoHumanoide(){
 	AutoBot otroAutobot = new AutoBot("autobot2", 20, humanoide, alterna);
 	int vidaAnterior = otroAutobot.getVida();
 	try{
@@ -213,7 +135,7 @@ public class AutoBotTest {
 	}
 	
 	@Test
-	public void testAtacarAUnDecepticonLeRestaVidaAmbosEnModoAlterno(){
+	public void test20AtacarAUnDecepticonLeRestaVidaAmbosEnModoAlterno(){
 	Decepticon decepticon = new Decepticon("decepticon", 20, humanoide, alterna);
 	autobot.transformarse();
 	decepticon.transformarse();
@@ -223,7 +145,7 @@ public class AutoBotTest {
 	}
 	
 	@Test(expected=FriendlyFireException.class)
-	public void testAtacarOtroAutoBotNoLeRestaVidaAmbosEnModoAlterno(){
+	public void test21AtacarOtroAutoBotNoLeRestaVidaAmbosEnModoAlterno(){
 	AutoBot otroAutobot = new AutoBot("autobot2", 20, humanoide, alterna);
 	autobot.transformarse();
 	otroAutobot.transformarse();
@@ -237,7 +159,7 @@ public class AutoBotTest {
 	}
 	
 	@Test
-	public void testAtacarAUnDecepticonAlternoLeRestaVidaEstandoEnModoHumanoide(){
+	public void test22AtacarAUnDecepticonAlternoLeRestaVidaEstandoEnModoHumanoide(){
 	Decepticon decepticon = new Decepticon("decepticon", 20, humanoide, alterna);
 	decepticon.transformarse();
 	int vidaAnterior = decepticon.getVida();
@@ -246,7 +168,7 @@ public class AutoBotTest {
 	}
 	
 	@Test(expected=FriendlyFireException.class)
-	public void testAtacarAOtroAutoBotAlternoNoLeRestaVidaEstandoEnModoHumanoide(){
+	public void test23AtacarAOtroAutoBotAlternoNoLeRestaVidaEstandoEnModoHumanoide(){
 	AutoBot otroAutobot = new AutoBot("autobot2", 20, humanoide, alterna);
 	otroAutobot.transformarse();
 	int vidaAnterior = otroAutobot.getVida();
@@ -259,7 +181,7 @@ public class AutoBotTest {
 	}
 	
 	@Test
-	public void testAtacarAUnDecepticonHumanoideLeRestaVidaEstandoEnModoAlterno(){
+	public void test24AtacarAUnDecepticonHumanoideLeRestaVidaEstandoEnModoAlterno(){
 	Decepticon decepticon = new Decepticon("decepticon", 20, humanoide, alterna);
 	autobot.transformarse();
 	int vidaAnterior = decepticon.getVida();
@@ -268,7 +190,7 @@ public class AutoBotTest {
 	}
 	
 	@Test(expected=FriendlyFireException.class)
-	public void testAtacarAOtroAutoBotHumanoideNoLeRestaVidaEstandoEnModoAlterno(){
+	public void test25AtacarAOtroAutoBotHumanoideNoLeRestaVidaEstandoEnModoAlterno(){
 	AutoBot otroAutobot = new AutoBot("autobot2", 20, humanoide, alterna);
 	autobot.transformarse();
 	int vidaAnterior = otroAutobot.getVida();
