@@ -10,14 +10,14 @@ import fiuba.algo3.algoformers.algoformers.Decepticon;
 import fiuba.algo3.algoformers.algoformers.FormaAerea;
 import fiuba.algo3.algoformers.algoformers.FormaAlterna;
 import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
-import fiuba.algo3.algoformers.escenario.CeldaFactory;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Posicion;
-import fiuba.algo3.algoformers.escenario.RocasYNubesFactory;
 import fiuba.algo3.algoformers.escenario.Tablero;
 
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
+import fiuba.algo3.algoformers.factories.CeldaFactory;
+import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 
 public class TableroTest {
 	
