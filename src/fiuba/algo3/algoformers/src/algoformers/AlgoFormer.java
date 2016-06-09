@@ -129,9 +129,8 @@ public abstract class AlgoFormer {
 	
 	public void iniciarTurno(){
 		reiniciarMovimientosRestantes();
-		List<EfectoTemporal> aux =
-		    new ArrayList<EfectoTemporal>(efectosActivos);
-		for (EfectoTemporal efecto: aux){
+		List<Efecto> aux = new ArrayList<Efecto>(efectosActivos);
+		for (Efecto efecto: aux){
 			recibirEfectos(efecto);
 		}
 	}
