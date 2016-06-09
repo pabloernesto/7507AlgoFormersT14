@@ -28,7 +28,6 @@ public class Tablero {
 	private Tablero()
 	{
 	    posicionesCeldasOcupadas = new ArrayList<Posicion>();
-	    
 		celdas = new HashMap <Posicion,Celda>();
 		for (int i=1 ; i<=ANCHO ; i++)
 			for (int j=1 ; j<=ALTO ; j++)
@@ -106,6 +105,10 @@ public class Tablero {
 	
 	public Posicion getMedio(){
 		return new Posicion(ANCHO/2, ALTO/2);
+	}
+
+	public Celda devolverPrimerCelda() {
+		return celdas.get(new Posicion(1, 1));
 	}
 
 }

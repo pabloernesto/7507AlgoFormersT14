@@ -47,4 +47,14 @@ public class Celda {
 	public void desocuparCelda (){
 		algoformer = null;
 	}
+	
+	//Metodos para pruebas
+
+	public SuperficieTerrestre getSuperficieTerrestre() {
+		return suelo;
+	}
+	
+	public SuperficieAerea getSuperficieAerea() {
+		return cielo;
+	}
 }
