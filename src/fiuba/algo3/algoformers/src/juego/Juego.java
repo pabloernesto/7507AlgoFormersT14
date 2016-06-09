@@ -35,16 +35,6 @@ public class Juego {
 		ubicarChispaSuprema();
 	}
 	
-	public Jugador jugadorActual()
-	{
-	    return jugadorActual;
-	}
-
-	public Jugador jugadorInactivo()
-	{
-	    return jugadorInactivo;
-	}
-	
 	private void cicloPrincipal (){
 	}
 	
@@ -76,5 +66,15 @@ public class Juego {
 			tablero.colocarAlgoformer(algoformer, posicion);
 			posicion = posicion.sumarMovimiento(Movimiento.ABAJO);
 		}
+	}
+	
+	public Jugador jugadorActual()
+	{
+	    return jugadorActual;
+	}
+
+	public Jugador jugadorInactivo()
+	{
+	    return jugadorInactivo;
 	}
 }
