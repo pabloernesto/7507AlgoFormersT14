@@ -1,4 +1,4 @@
-package fiuba.algo3.algoformers.escenario.superficies;
+package fiuba.algo3.algoformers.escenario;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 
@@ -7,7 +7,7 @@ public class Pantano extends SuperficieTerrestre{
 	
 	@Override
     public void afectar(AlgoFormer algoformer) {
-		algoformer.ubicarseEnSuperficie(this);
+        algoformer.recibirEfecto(this);
     }
 
 }
