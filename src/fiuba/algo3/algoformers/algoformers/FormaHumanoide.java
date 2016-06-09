@@ -9,7 +9,24 @@ public class FormaHumanoide extends Forma {
 		super(ataque, velocidad, distAtaque);
 	}
 
-	public void recibirEfectos(AlgoFormer algoformer, Efecto efecto){
-	    efecto.afectar(algoformer, this);
+	
+	@Override
+	public void afectarConEfectoNebulosa(AlgoFormer algoFormer){
+		
 	}
+	
+	@Override
+	public void afectarConEfectoPantano(AlgoFormer algoformer){
+		algoformer.afectarConEfectoPantanoFormaHumanoide();
+	}
+	
+	@Override
+	public void afectarConEfectoTormenta(AlgoFormer algoFormer){
+	}
+	
+	@Override
+	public void afectarConEfectoEspinas(AlgoFormer algoformer){
+		algoformer.afectarConEfectoEspinas();
+	}
+	
 }

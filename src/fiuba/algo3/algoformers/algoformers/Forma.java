@@ -9,8 +9,6 @@ public abstract class Forma {
 	protected int movimientosRestantes;
 	
 
-	public abstract void recibirEfectos(AlgoFormer algoformer, Efecto efecto);
-	
 	public Forma (int ataque, int velocidad, int distAtaque){
 		this.ataque = ataque;
 		this.velocidad = velocidad;
@@ -35,6 +33,14 @@ public abstract class Forma {
 	public void setAtaque(int nuevoAtaque){
 		ataque = nuevoAtaque;
 	}
+
+	public abstract void afectarConEfectoNebulosa(AlgoFormer algoFormer);
+
+	public abstract void afectarConEfectoPantano(AlgoFormer algoFormer);
+
+	public abstract void afectarConEfectoTormenta(AlgoFormer algoFormer);
+
+	public abstract void afectarConEfectoEspinas(AlgoFormer algoFormer);
 	
 }
 

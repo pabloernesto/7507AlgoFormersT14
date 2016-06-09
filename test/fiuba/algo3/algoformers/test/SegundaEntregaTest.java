@@ -18,13 +18,6 @@ public class SegundaEntregaTest {
 	private AlgoFormer optimus;
 	private AlgoFormer ratchet;
 	
-	private SuperficieTerrestre rocosa = new Rocosa();
-	private SuperficieTerrestre pantano = new Pantano();
-	private SuperficieTerrestre espinas = new Espinas();
-	private SuperficieAerea nubes = new Nube();
-	private SuperficieAerea tormenta = new TormentaPsionica();
-	private SuperficieAerea nebulosa = new NebulosaDeAndromeda();
-	
 	@Before
 	public void setUp(){
 		optimus = factory.crearOptimusPrime();
@@ -33,7 +26,7 @@ public class SegundaEntregaTest {
 	
 	@Test
 	public void test01AtravesarRocosaEnModosTerrestresNoCausaProblemas(){
-		celda = new Celda(rocosa, nubes);
+		celda = new Celda(new Rocosa(), new Nube());
 		int movimientos = optimus.getMovimientosRestantes();
 		optimus.entrarACelda(celda);
 		assertEquals(movimientos - 1, optimus.getMovimientosRestantes());
@@ -41,8 +34,8 @@ public class SegundaEntregaTest {
 	
 	@Test(expected=NoHayMasMovimientosException.class)
 	public void test02NoSePuedeAtravesarPantanoEnModoHumanoide(){
-		celda = new Celda(pantano, nubes);
-		Celda otraCelda = new Celda(rocosa, nubes);
+		celda = new Celda(new Pantano(), new Nube());
+		Celda otraCelda = new Celda(new Rocosa(), new Nube());
 		assertTrue(optimus.getMovimientosRestantes() > 1);
 		optimus.entrarACelda(celda);
 		optimus.entrarACelda(otraCelda);
@@ -50,7 +43,7 @@ public class SegundaEntregaTest {
 	
 	@Test
 	public void test03AtravesarPantanoEnModoTerrestreCuestaElDobleQueEnRocosa(){
-		celda = new Celda(pantano, nubes);
+		celda = new Celda(new Pantano(), new Nube());
 		optimus.transformarse();
 		int movimientos = optimus.getMovimientosRestantes();
 		optimus.entrarACelda(celda);
@@ -59,7 +52,7 @@ public class SegundaEntregaTest {
 	
 	@Test
 	public void test04AtravesarPantanoEnModoAereoNoCausaProblemas(){
-		celda = new Celda(pantano, nubes);
+		celda = new Celda(new Pantano(), new Nube());
 		ratchet.transformarse();
 		int movimientos = ratchet.getMovimientosRestantes();
 		ratchet.entrarACelda(celda);
@@ -68,12 +61,12 @@ public class SegundaEntregaTest {
 	
 	@Test
 	public void test05AtravesarEspinasEnModosTerrestresRestaVida(){
-		celda = new Celda(espinas, nubes);
+		celda = new Celda(new Espinas(), new Nube());
 		int vida = optimus.getVida();
 		optimus.entrarACelda(celda);
 		int nuevaVida = optimus.getVida();
 		assertEquals(nuevaVida, vida / 100 * 95);
-		celda = new Celda(espinas, nubes);
+		celda = new Celda(new Espinas(), new Nube());
 		optimus.transformarse();
 		optimus.entrarACelda(celda);
 		assertEquals(optimus.getVida(), nuevaVida * 95 / 100);
@@ -81,7 +74,7 @@ public class SegundaEntregaTest {
 	
 	@Test
 	public void test06AtravesarEspinasEnModoAereoNoRestaVida(){
-		celda = new Celda(espinas, nubes);
+		celda = new Celda(new Espinas(), new Nube());
 		int vida = ratchet.getVida();
 		ratchet.transformarse();
 		ratchet.entrarACelda(celda);
@@ -91,7 +84,7 @@ public class SegundaEntregaTest {
 	
 	@Test
 	public void test07AtravesarNubeEnModoAereoNoCausaProblemas(){
-		celda = new Celda(rocosa, nubes);
+		celda = new Celda(new Rocosa(), new Nube());
 		ratchet.transformarse();
 		int movimientos = ratchet.getMovimientosRestantes();
 		ratchet.entrarACelda(celda);
@@ -100,49 +93,49 @@ public class SegundaEntregaTest {
 	
 	@Test(expected=NoHayMasMovimientosException.class)
 	public void test08AAtravesarNebulosaEnModoAereoLoAtrapa3Turnos(){
-		celda = new Celda(rocosa, nebulosa);
+		celda = new Celda(new Rocosa(), new NebulosaDeAndromeda());
 		ratchet.transformarse();
 		ratchet.entrarACelda(celda);
-		celda = new Celda(rocosa, nubes);
+		celda = new Celda(new Rocosa(), new Nube());
 		ratchet.entrarACelda(celda);
 	}
 	
 	@Test(expected=NoHayMasMovimientosException.class)
 	public void test08BAtravesarNebulosaEnModoAereoLoAtrapa3Turnos(){
-		celda = new Celda(rocosa, nebulosa);
+		celda = new Celda(new Rocosa(), new NebulosaDeAndromeda());
 		ratchet.transformarse();
 		ratchet.entrarACelda(celda);
 		ratchet.iniciarTurno();
-		celda = new Celda(rocosa, nubes);
+		celda = new Celda(new Rocosa(), new Nube());
 		ratchet.entrarACelda(celda);
 	}
 	
 	@Test(expected=NoHayMasMovimientosException.class)
 	public void test08CAtravesarNebulosaEnModoAereoLoAtrapa3Turnos(){
-		celda = new Celda(rocosa, nebulosa);
+		celda = new Celda(new Rocosa(), new NebulosaDeAndromeda());
 		ratchet.transformarse();
 		ratchet.entrarACelda(celda);
 		ratchet.iniciarTurno();
 		ratchet.iniciarTurno();
-		celda = new Celda(rocosa, nubes);
+		celda = new Celda(new Rocosa(), new Nube());
 		ratchet.entrarACelda(celda);
 	}
 	
 	@Test
 	public void test08DAtravesarNebulosaEnModoAereoLoAtrapa3Turnos(){
-		celda = new Celda(rocosa, nebulosa);
+		celda = new Celda(new Rocosa(), new NebulosaDeAndromeda());
 		ratchet.transformarse();
 		ratchet.entrarACelda(celda);
 		ratchet.iniciarTurno();
 		ratchet.iniciarTurno();
 		ratchet.iniciarTurno();
-		celda = new Celda(rocosa, nubes);
+		celda = new Celda(new Rocosa(), new Nube());
 		ratchet.entrarACelda(celda);
 	}
 	
 	@Test
 	public void test09AtravesarTormentaEnModoAereoRestaAtaque(){
-		celda = new Celda(rocosa, tormenta);
+		celda = new Celda(new Rocosa(), new TormentaPsionica());
 		ratchet.transformarse();
 		int ataqueAnterior = ratchet.getAtaque();
 		ratchet.entrarACelda(celda);
@@ -151,11 +144,11 @@ public class SegundaEntregaTest {
 	
 	@Test
 	public void test10AtravesarTormentaEnModoAereoRestaAtaqueSoloUnaVez(){
-		celda = new Celda(rocosa, tormenta);
+		celda = new Celda(new Rocosa(), new TormentaPsionica());
 		ratchet.transformarse();
 		int ataqueAnterior = ratchet.getAtaque();
 		ratchet.entrarACelda(celda);
-		celda = new Celda(rocosa, tormenta);
+		celda = new Celda(new Rocosa(), new TormentaPsionica());
 		ratchet.entrarACelda(celda);
 		assertEquals(ataqueAnterior * 60 / 100, ratchet.getAtaque());
 	}

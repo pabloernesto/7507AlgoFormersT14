@@ -3,12 +3,7 @@ package fiuba.algo3.algoformers.algoformers;
 public abstract class Efecto{
 
 	
-	
-	public abstract void afectar(AlgoFormer algoformer, FormaHumanoide estadoActivo);
-	
-	public abstract void afectar(AlgoFormer algoformer, FormaTerrestre estadoActivo);
-	
-	public abstract void afectar(AlgoFormer algoformer, FormaAerea estadoActivo);
+	public abstract void afectar(AlgoFormer algoformer);
 	
 	@Override
 	public int hashCode() {

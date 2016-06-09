@@ -1,22 +1,29 @@
 package fiuba.algo3.algoformers.test;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.algoformers.Decepticon;
 import fiuba.algo3.algoformers.algoformers.FormaAerea;
 import fiuba.algo3.algoformers.algoformers.FormaAlterna;
 import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
-
+import fiuba.algo3.algoformers.escenario.Celda;
+import fiuba.algo3.algoformers.escenario.CeldaFactory;
+import fiuba.algo3.algoformers.escenario.CeldaRandomFactory;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Posicion;
+import fiuba.algo3.algoformers.escenario.RocasYNubesFactory;
 import fiuba.algo3.algoformers.escenario.Tablero;
-
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
+import fiuba.algo3.algoformers.factories.AutoBotFactory;
 
 public class TableroTest {
 	
@@ -24,9 +31,11 @@ public class TableroTest {
 	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
 	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
 	private AlgoFormer algoformer = new Decepticon("Ejemplo", 10, humanoide, alterna);
+	private CeldaFactory generadorDeRocosaYNubes = new RocasYNubesFactory();
 	
 	@Before
 	public void setUp(){
+		Tablero.setGeneradorDeCeldas(generadorDeRocosaYNubes);
 		tablero = Tablero.getInstance();
 	}
 	
@@ -39,6 +48,123 @@ public class TableroTest {
 	public void tableroEsRectangularDe60x20(){
 		assertEquals(60, tablero.ancho());
 		assertEquals(20, tablero.altura());
+	}
+	
+	@Test
+	public void tableroLlenaLasCeldasConSuperficiesAleatorias(){
+		Tablero.setGeneradorDeCeldas(new CeldaRandomFactory());
+		Tablero.reiniciarTablero();
+		tablero = Tablero.getInstance();
+		Celda celda1 = tablero.devolverPrimerCelda();
+		Tablero.reiniciarTablero();
+		tablero = Tablero.getInstance();
+		Celda celda2 = tablero.devolverPrimerCelda();
+		Tablero.reiniciarTablero();
+		tablero = Tablero.getInstance();
+		Celda celda3 = tablero.devolverPrimerCelda();
+		
+		boolean sonIguales = true;
+		
+		if (celda1.getSuperficieTerrestre().getClass() != celda2.getSuperficieTerrestre().getClass())
+			sonIguales = false;
+		
+		if (celda1.getSuperficieAerea().getClass() != celda2.getSuperficieAerea().getClass())
+			sonIguales = false;
+		
+		if (celda1.getSuperficieTerrestre().getClass() != celda3.getSuperficieTerrestre().getClass())
+			sonIguales = false;
+		
+		if (celda1.getSuperficieAerea().getClass() != celda3.getSuperficieAerea().getClass())
+			sonIguales = false;
+		
+		if (celda2.getSuperficieTerrestre().getClass() != celda3.getSuperficieTerrestre().getClass())
+			sonIguales = false;
+		
+		if (celda2.getSuperficieAerea().getClass() != celda3.getSuperficieAerea().getClass())
+			sonIguales = false;
+		
+		assertFalse(sonIguales);
+	}
+	
+	@Test
+	public void tableroLlenaLasCeldasConSuperficiesAleatorias2(){
+		Tablero.setGeneradorDeCeldas(new CeldaRandomFactory());
+		
+		Tablero.reiniciarTablero();
+		tablero = Tablero.getInstance();
+		Celda celda1 = tablero.devolverPrimerCelda();
+		
+		Tablero.reiniciarTablero();
+		tablero = Tablero.getInstance();
+		Celda celda2 = tablero.devolverPrimerCelda();
+		
+		Tablero.reiniciarTablero();
+		tablero = Tablero.getInstance();
+		Celda celda3 = tablero.devolverPrimerCelda();
+		
+		AutoBotFactory factory = new AutoBotFactory();
+		AlgoFormer optimus1 = factory.crearOptimusPrime();
+		AlgoFormer optimus2 = factory.crearOptimusPrime();
+		AlgoFormer optimus3 = factory.crearOptimusPrime();
+		
+		boolean sonIguales = true;
+		
+		optimus1.entrarACelda(celda1);
+		optimus2.entrarACelda(celda2);
+		optimus3.entrarACelda(celda3);
+		
+		if (optimus1.getVida() != optimus2.getVida())
+			sonIguales = false;
+		
+		if (optimus1.getMovimientosRestantes() != optimus2.getMovimientosRestantes())
+			sonIguales = false;
+	
+		if (optimus1.getVida() != optimus3.getVida())
+			sonIguales = false;
+		
+		if (optimus1.getMovimientosRestantes() != optimus3.getMovimientosRestantes())
+			sonIguales = false;
+		
+		if (optimus2.getVida() != optimus3.getVida())
+			sonIguales = false;
+		
+		if (optimus2.getMovimientosRestantes() != optimus3.getMovimientosRestantes())
+			sonIguales = false;
+		
+		
+		AlgoFormer ratchet1 = factory.crearRatchet();
+		AlgoFormer ratchet2 = factory.crearRatchet();
+		AlgoFormer ratchet3 = factory.crearRatchet();
+		ratchet1.transformarse();
+		ratchet2.transformarse();
+		ratchet3.transformarse();
+		
+		celda1.desocuparCelda();
+		celda2.desocuparCelda();
+		celda3.desocuparCelda();
+		ratchet1.entrarACelda(celda1);
+		ratchet2.entrarACelda(celda2);
+		ratchet3.entrarACelda(celda3);
+		
+		if (ratchet1.getAtaque() != ratchet2.getAtaque())
+			sonIguales = false;
+		
+		if (ratchet1.getMovimientosRestantes() != ratchet2.getMovimientosRestantes())
+			sonIguales = false;
+	
+		if (ratchet1.getAtaque() != ratchet3.getAtaque())
+			sonIguales = false;
+		
+		if (ratchet1.getMovimientosRestantes() != ratchet3.getMovimientosRestantes())
+			sonIguales = false;
+		
+		if (ratchet2.getAtaque() != ratchet3.getAtaque())
+			sonIguales = false;
+		
+		if (ratchet2.getMovimientosRestantes() != ratchet3.getMovimientosRestantes())
+			sonIguales = false;
+		
+		assertFalse(sonIguales);
 	}
 	
 	@Test

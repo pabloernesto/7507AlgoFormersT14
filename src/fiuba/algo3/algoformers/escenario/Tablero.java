@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
-
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
 
@@ -15,23 +14,22 @@ public class Tablero {
 	private HashMap <Posicion,Celda> celdas;
 	private final int ANCHO = 60;
 	private final int ALTO = 20;
-	
 	private static Tablero instanciaTablero = null;
-	private static CeldaFactory generadorCeldas = new FullRandomFactory();
 	
-	public static void setGeneradorDeCeldas(CeldaFactory g)
-	{
-	    generadorCeldas = g;
+	private static CeldaFactory generadorCeldas = new RocasYNubesFactory();
+	
+	public static void setGeneradorDeCeldas(CeldaFactory generador){
+	    generadorCeldas = generador;
 	}
 	
-	private Tablero()
-	{
+	
+	private Tablero (){
 	    posicionesCeldasOcupadas = new ArrayList<Posicion>();
-	    
 		celdas = new HashMap <Posicion,Celda>();
-		for (int i=1 ; i<=ANCHO ; i++)
+		for (int i=1 ; i<=ANCHO ; i++){
 			for (int j=1 ; j<=ALTO ; j++)
 				celdas.put(new Posicion(i,j), generadorCeldas.getCelda());
+		}
 	}
 	
 	public static Tablero getInstance (){
@@ -39,6 +37,8 @@ public class Tablero {
 			instanciaTablero = new Tablero();
 		return instanciaTablero;
 	}
+	
+		
 	
 	public static void reiniciarTablero (){
 		instanciaTablero = null;
@@ -56,6 +56,7 @@ public class Tablero {
 		validarMovimiento(algoformer, posicionFinal);
 		algoformer.entrarACelda(celdas.get(posicionFinal));
 		Collections.replaceAll(posicionesCeldasOcupadas, posicionInicial, posicionFinal);
+		this.celdas.get(posicionInicial).desocuparCelda();
 	}
 	
 	public Posicion getPosicionAlgoformer (AlgoFormer algoformer){
@@ -106,5 +107,11 @@ public class Tablero {
 	public Posicion getMedio(){
 		return new Posicion(ANCHO/2, ALTO/2);
 	}
+	
+
+  
+  		public Celda devolverPrimerCelda() {
+  				return celdas.get(new Posicion(1, 1));
+  		}
 
 }

@@ -4,16 +4,16 @@ import fiuba.algo3.algoformers.escenario.superficies.*;
 
 import java.util.Random;
 
-public class FullRandomFactory extends CeldaFactory {
+public class CeldaRandomFactory extends CeldaFactory {
 
     private Random generator;
 
-    public FullRandomFactory()
+    public CeldaRandomFactory()
     {
         generator = new Random();
     }
     
-    public FullRandomFactory(long randomGeneratorSeed)
+    public CeldaRandomFactory(long randomGeneratorSeed)
     {
         generator = new Random(randomGeneratorSeed);
     }

@@ -1,9 +1,10 @@
 package fiuba.algo3.algoformers.algoformers;
 
-public abstract class EfectoTemporal extends Efecto {
+public abstract class EfectoConTurno extends Efecto {
 
 	protected int turnosRestantes;
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -23,4 +24,11 @@ public abstract class EfectoTemporal extends Efecto {
 		return true;
 	}
 
+	public void restarTurnos() {
+		this.turnosRestantes--;
+	}
+
+	public int getTurnos() {
+		return turnosRestantes;
+	}
 }

@@ -1,10 +1,8 @@
 package fiuba.algo3.algoformers.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.Before;
 
 import fiuba.algo3.algoformers.algoformers.AutoBot;
 import fiuba.algo3.algoformers.algoformers.Decepticon;

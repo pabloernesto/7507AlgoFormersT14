@@ -18,6 +18,7 @@ public abstract class AlgoFormer {
 	
 	protected Forma estadoActivo;
 	protected Forma estadoInactivo;
+	protected List<Efecto> efectosAEliminar;
 
 	public AlgoFormer (String nombre, int vida, FormaHumanoide formaHumanoide,FormaAlterna formaAlterna){
 		this.nombre = nombre;
@@ -26,6 +27,7 @@ public abstract class AlgoFormer {
 		estadoInactivo = formaAlterna;
 		reiniciarMovimientosRestantes();
 		efectosActivos = new ArrayList<Efecto>();
+		efectosAEliminar=new ArrayList<Efecto>();
 	}
 
 	public abstract void recibirDanio (AutoBot autobot, int ataque);
@@ -97,45 +99,25 @@ public abstract class AlgoFormer {
 		movimientosRestantes = getVelocidad();
 	}
 	
-	public void setVida(int nuevaVida){
-		vida = nuevaVida;
-	}
 	
-	public void setAtaque(int nuevoAtaque){
-		estadoActivo.setAtaque(nuevoAtaque);
-	}
-	
-	public void restarMovimientosRestantes(int movimientosRestantes) {
-		this.movimientosRestantes -= movimientosRestantes;
-	}
 
-	public void recibirEfectos(Efecto efecto) {
-			estadoActivo.recibirEfectos(this, efecto);
-	}
-	
-	public void recibirEfectos(EfectoTemporal efecto) {
-		if (!efectosActivos.contains(efecto)){
-			efectosActivos.add(efecto);
-			estadoActivo.recibirEfectos(this, efecto);
-		}
-	}
 	
 	public void iniciarTurno(){
 		reiniciarMovimientosRestantes();
 		List<Efecto> aux = new ArrayList<Efecto>(efectosActivos);
 		for (Efecto efecto: aux){
-			recibirEfectos(efecto);
+			efecto.afectar(this);
 		}
 	}
 	
-	public void borrarEfecto(EfectoTemporal efecto) {
-		efectosActivos.remove(efecto);
+	public void borrarEfectos() {
+		efectosActivos.removeAll(efectosAEliminar);
 	}
 
 
 	public void ubicarseEnSuperficie(Pantano pantano) {
 		EfectoPantano efectoPantano = new EfectoPantano();
-		this.recibirEfectos(efectoPantano);
+		efectoPantano.afectar(this);
 	}
 
 	public void ubicarseEnSuperficie(Rocosa rocosa) {		
@@ -144,7 +126,7 @@ public abstract class AlgoFormer {
 	
 	public void ubicarseEnSuperficie(Espinas espinas) {
 		EfectoEspinas efectoEspinas = new EfectoEspinas();
-		this.recibirEfectos(efectoEspinas);
+		efectoEspinas.afectar(this);
 	}
 	
 
@@ -153,19 +135,54 @@ public abstract class AlgoFormer {
 	
 	public void ubicarseEnSuperficie(NebulosaDeAndromeda nebulosa) {
 		EfectoNebulosa efectoNebulosa = new EfectoNebulosa();
-		this.recibirEfectos(efectoNebulosa);
+		if (!afectadoPor(efectoNebulosa))
+			this.efectosActivos.add(efectoNebulosa);
+		efectoNebulosa.afectar(this);
 	}
 	
 	public void ubicarseEnSuperficie(TormentaPsionica tormenta){
 		EfectoTormenta efectoTormenta = new EfectoTormenta();
 		if (!afectadoPor(efectoTormenta)){
 			this.efectosActivos.add(efectoTormenta);
-			this.recibirEfectos(efectoTormenta);
+			efectoTormenta.afectar(this);
 		}
 	}
 
-	public boolean afectadoPor(EfectoTormenta efectoTormenta) {
-		return this.efectosActivos.contains(efectoTormenta);
+	public boolean afectadoPor(Efecto efecto) {
+		return this.efectosActivos.contains(efecto);
 	}
 	
+	public void afectarseCon(EfectoEspinas efecto){
+		this.estadoActivo.afectarConEfectoEspinas(this);
+	}
+
+	public void afectarseCon(EfectoNebulosa efecto){
+		if (efecto.getTurnos()==0)
+			efectosActivos.remove(efecto);
+		(this.estadoActivo).afectarConEfectoNebulosa(this);
+	}
+	
+	public void afectarConEfectoNebulosa(){
+		this.movimientosRestantes=0;
+	}
+
+	public void afectarseCon(EfectoPantano efectoPantano) {
+		(this.estadoActivo).afectarConEfectoPantano(this);
+	}
+
+	public void afectarConEfectoPantanoFormaHumanoide() {
+		this.movimientosRestantes=0;
+	}
+
+	public void afectarConEfectoPantanoFormaTerrestre() {
+		this.movimientosRestantes--;
+	}
+	
+	public void afectarseCon(EfectoTormenta efectoTormenta){
+		this.estadoActivo.afectarConEfectoTormenta(this);
+	}
+
+	public void afectarConEfectoEspinas() {
+		this.vida = this.vida*95/100;
+	}
 }

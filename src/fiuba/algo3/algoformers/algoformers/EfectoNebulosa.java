@@ -1,22 +1,18 @@
 package fiuba.algo3.algoformers.algoformers;
 
-public class EfectoNebulosa extends EfectoTemporal {
+public class EfectoNebulosa extends EfectoConTurno {
 
 	public EfectoNebulosa(){
-		turnosRestantes = 3;
+		this.turnosRestantes = 2;
 	}
 	
-	public void afectar(AlgoFormer algoformer, FormaHumanoide estadoActivo) {
+	@Override
+	public void afectar(AlgoFormer algoformer) {
+		algoformer.afectarseCon(this);
+		restarTurnos();
 	}
 
-	public void afectar(AlgoFormer algoformer, FormaTerrestre estadoActivo) {
-	}
 
-	public void afectar(AlgoFormer algoformer, FormaAerea estadoActivo) {
-		algoformer.restarMovimientosRestantes(algoformer.getMovimientosRestantes());
-		turnosRestantes -= 1;
-		if (turnosRestantes < 1)
-			algoformer.borrarEfecto(this);
-	}
+
 
 }
