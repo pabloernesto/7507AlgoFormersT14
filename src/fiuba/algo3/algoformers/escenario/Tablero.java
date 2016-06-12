@@ -7,8 +7,6 @@ import java.util.HashMap;
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
-import fiuba.algo3.algoformers.factories.CeldaFactory;
-import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 
 public class Tablero {
 

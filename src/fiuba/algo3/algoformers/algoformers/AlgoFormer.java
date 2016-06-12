@@ -185,18 +185,4 @@ public abstract class AlgoFormer {
 	public void afectarConEfectoEspinas() {
 		this.vida = this.vida*95/100;
 	}
-	
-	public boolean atributosSonIguales(AlgoFormer otroAlgoformer){
-		if (this.getAtaque() != otroAlgoformer.getAtaque())
-			return false;
-		if (this.getDistAtaque() != otroAlgoformer.getDistAtaque())
-			return false;
-		if (this.getNombre() != otroAlgoformer.getNombre())
-			return false;
-		if (this.getVelocidad() != otroAlgoformer.getVelocidad())
-			return false;
-		if (this.getVida() != otroAlgoformer.getVida())
-			return false;
-		return true;
-	}
 }
