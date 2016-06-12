@@ -157,9 +157,9 @@ public abstract class AlgoFormer {
 	}
 
 	public void afectarseCon(EfectoNebulosa efecto){
+		(this.estadoActivo).afectarConEfectoNebulosa(this);
 		if (efecto.getTurnos()==0)
 			efectosActivos.remove(efecto);
-		(this.estadoActivo).afectarConEfectoNebulosa(this);
 	}
 	
 	public void afectarConEfectoNebulosa(){

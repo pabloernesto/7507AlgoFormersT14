@@ -18,6 +18,7 @@ public class AtravesarTormentaEnModoHumanoideYTerrestresNoCausaProblemasTest {
 
 
 	private Celda celda;
+	private Celda otraCelda;
 	private AutoBotFactory autobotFactory = new AutoBotFactory();
 	private DecepticonFactory decepticonFactory = new DecepticonFactory();
 	
@@ -32,6 +33,7 @@ public class AtravesarTormentaEnModoHumanoideYTerrestresNoCausaProblemasTest {
 	@Before
 	public void setUp(){
 		celda = new Celda(rocosa, tormenta);
+		otraCelda = new Celda(rocosa, tormenta);
 	}
 	
 	@Test
@@ -43,8 +45,7 @@ public class AtravesarTormentaEnModoHumanoideYTerrestresNoCausaProblemasTest {
 		
 		optimus.transformarse();
 		ataqueAnterior = optimus.getAtaque();
-		celda = new Celda(rocosa, tormenta);
-		optimus.entrarACelda(celda);
+		optimus.entrarACelda(otraCelda);
 		assertEquals(ataqueAnterior , optimus.getAtaque());
 	}
 	
@@ -57,8 +58,7 @@ public class AtravesarTormentaEnModoHumanoideYTerrestresNoCausaProblemasTest {
 		
 		bumblebee.transformarse();
 		ataqueAnterior = bumblebee.getAtaque();
-		celda = new Celda(rocosa, tormenta);
-		bumblebee.entrarACelda(celda);
+		bumblebee.entrarACelda(otraCelda);
 		assertEquals(ataqueAnterior , bumblebee.getAtaque());
 	}
 	
@@ -71,8 +71,7 @@ public class AtravesarTormentaEnModoHumanoideYTerrestresNoCausaProblemasTest {
 		
 		bonecrusher.transformarse();
 		ataqueAnterior = bonecrusher.getAtaque();
-		celda = new Celda(rocosa, tormenta);
-		bonecrusher.entrarACelda(celda);
+		bonecrusher.entrarACelda(otraCelda);
 		assertEquals(ataqueAnterior , bonecrusher.getAtaque());
 	}
 	
@@ -85,8 +84,7 @@ public class AtravesarTormentaEnModoHumanoideYTerrestresNoCausaProblemasTest {
 		
 		frenzy.transformarse();
 		ataqueAnterior = frenzy.getAtaque();
-		celda = new Celda(rocosa, tormenta);
-		frenzy.entrarACelda(celda);
+		frenzy.entrarACelda(otraCelda);
 		assertEquals(ataqueAnterior , frenzy.getAtaque());
 	}
 }

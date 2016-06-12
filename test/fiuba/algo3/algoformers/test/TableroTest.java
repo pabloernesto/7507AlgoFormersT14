@@ -9,20 +9,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import fiuba.algo3.algoformers.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.algoformers.Decepticon;
-import fiuba.algo3.algoformers.algoformers.FormaAerea;
-import fiuba.algo3.algoformers.algoformers.FormaAlterna;
-import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
-import fiuba.algo3.algoformers.escenario.Celda;
-import fiuba.algo3.algoformers.escenario.CeldaFactory;
-import fiuba.algo3.algoformers.escenario.CeldaRandomFactory;
-import fiuba.algo3.algoformers.escenario.Movimiento;
-import fiuba.algo3.algoformers.escenario.Posicion;
-import fiuba.algo3.algoformers.escenario.RocasYNubesFactory;
-import fiuba.algo3.algoformers.escenario.Tablero;
-import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
-import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
+import fiuba.algo3.algoformers.algoformers.*;
+import fiuba.algo3.algoformers.escenario.*;
+import fiuba.algo3.algoformers.excepciones.*;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
 
 public class TableroTest {
@@ -52,42 +41,6 @@ public class TableroTest {
 	
 	@Test
 	public void tableroLlenaLasCeldasConSuperficiesAleatorias(){
-		Tablero.setGeneradorDeCeldas(new CeldaRandomFactory());
-		Tablero.reiniciarTablero();
-		tablero = Tablero.getInstance();
-		Celda celda1 = tablero.devolverPrimerCelda();
-		Tablero.reiniciarTablero();
-		tablero = Tablero.getInstance();
-		Celda celda2 = tablero.devolverPrimerCelda();
-		Tablero.reiniciarTablero();
-		tablero = Tablero.getInstance();
-		Celda celda3 = tablero.devolverPrimerCelda();
-		
-		boolean sonIguales = true;
-		
-		if (celda1.getSuperficieTerrestre().getClass() != celda2.getSuperficieTerrestre().getClass())
-			sonIguales = false;
-		
-		if (celda1.getSuperficieAerea().getClass() != celda2.getSuperficieAerea().getClass())
-			sonIguales = false;
-		
-		if (celda1.getSuperficieTerrestre().getClass() != celda3.getSuperficieTerrestre().getClass())
-			sonIguales = false;
-		
-		if (celda1.getSuperficieAerea().getClass() != celda3.getSuperficieAerea().getClass())
-			sonIguales = false;
-		
-		if (celda2.getSuperficieTerrestre().getClass() != celda3.getSuperficieTerrestre().getClass())
-			sonIguales = false;
-		
-		if (celda2.getSuperficieAerea().getClass() != celda3.getSuperficieAerea().getClass())
-			sonIguales = false;
-		
-		assertFalse(sonIguales);
-	}
-	
-	@Test
-	public void tableroLlenaLasCeldasConSuperficiesAleatorias2(){
 		Tablero.setGeneradorDeCeldas(new CeldaRandomFactory());
 		
 		Tablero.reiniciarTablero();
@@ -200,6 +153,8 @@ public class TableroTest {
     	tablero.moverAlgoformer(algoformer, Movimiento.DERECHA);
     	Posicion posicionFinal = posicion.sumarMovimiento(Movimiento.DERECHA);
     	assertTrue(tablero.getPosicionAlgoformer(algoformer).equals(posicionFinal));
+    	assertTrue(tablero.posicionEstaOcupada(posicionFinal));
+    	assertFalse(tablero.posicionEstaOcupada(posicion));
     }
 	
 	@Test(expected=PosicionInvalidaException.class)
