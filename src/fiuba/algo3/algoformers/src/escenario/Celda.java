@@ -48,13 +48,4 @@ public class Celda {
 		algoformer = null;
 	}
 	
-	//Metodos para pruebas
-
-	public SuperficieTerrestre getSuperficieTerrestre() {
-		return suelo;
-	}
-	
-	public SuperficieAerea getSuperficieAerea() {
-		return cielo;
-	}
 }

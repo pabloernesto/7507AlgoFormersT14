@@ -49,42 +49,6 @@ public class TableroTest {
 	@Test
 	public void tableroLlenaLasCeldasConSuperficiesAleatorias(){
 		Tablero.setGeneradorDeCeldas(new CeldaRandomFactory());
-		Tablero.reiniciarTablero();
-		tablero = Tablero.getInstance();
-		Celda celda1 = tablero.devolverPrimerCelda();
-		Tablero.reiniciarTablero();
-		tablero = Tablero.getInstance();
-		Celda celda2 = tablero.devolverPrimerCelda();
-		Tablero.reiniciarTablero();
-		tablero = Tablero.getInstance();
-		Celda celda3 = tablero.devolverPrimerCelda();
-		
-		boolean sonIguales = true;
-		
-		if (celda1.getSuperficieTerrestre().getClass() != celda2.getSuperficieTerrestre().getClass())
-			sonIguales = false;
-		
-		if (celda1.getSuperficieAerea().getClass() != celda2.getSuperficieAerea().getClass())
-			sonIguales = false;
-		
-		if (celda1.getSuperficieTerrestre().getClass() != celda3.getSuperficieTerrestre().getClass())
-			sonIguales = false;
-		
-		if (celda1.getSuperficieAerea().getClass() != celda3.getSuperficieAerea().getClass())
-			sonIguales = false;
-		
-		if (celda2.getSuperficieTerrestre().getClass() != celda3.getSuperficieTerrestre().getClass())
-			sonIguales = false;
-		
-		if (celda2.getSuperficieAerea().getClass() != celda3.getSuperficieAerea().getClass())
-			sonIguales = false;
-		
-		assertFalse(sonIguales);
-	}
-	
-	@Test
-	public void tableroLlenaLasCeldasConSuperficiesAleatorias2(){
-		Tablero.setGeneradorDeCeldas(new CeldaRandomFactory());
 		
 		Tablero.reiniciarTablero();
 		tablero = Tablero.getInstance();

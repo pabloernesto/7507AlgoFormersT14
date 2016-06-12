@@ -139,4 +139,18 @@ public abstract class AlgoFormer {
 	public void setAtaque(int nuevoAtaque){
 		estadoActivo.setAtaque(nuevoAtaque);
 	}
+	
+	public boolean atributosSonIguales(AlgoFormer otroAlgoformer){
+		if (this.getAtaque() != otroAlgoformer.getAtaque())
+			return false;
+		if (this.getDistAtaque() != otroAlgoformer.getDistAtaque())
+			return false;
+		if (this.getNombre() != otroAlgoformer.getNombre())
+			return false;
+		if (this.getVelocidad() != otroAlgoformer.getVelocidad())
+			return false;
+		if (this.getVida() != otroAlgoformer.getVida())
+			return false;
+		return true;
+	}
 }

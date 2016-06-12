@@ -1,4 +1,4 @@
-package fiuba.algo3.algoformers.test;
+package fiuba.algo3.algoformers.test.segundaEntrega;
 
 import static org.junit.Assert.assertEquals;
 

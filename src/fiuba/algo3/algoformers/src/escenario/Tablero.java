@@ -56,6 +56,7 @@ public class Tablero {
 		validarMovimiento(algoformer, posicionFinal);
 		algoformer.entrarACelda(celdas.get(posicionFinal));
 		Collections.replaceAll(posicionesCeldasOcupadas, posicionInicial, posicionFinal);
+		celdas.get(posicionInicial).desocuparCelda();
 	}
 	
 	public Posicion getPosicionAlgoformer (AlgoFormer algoformer){
