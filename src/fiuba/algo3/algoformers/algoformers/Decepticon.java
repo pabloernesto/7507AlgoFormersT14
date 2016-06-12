@@ -1,6 +1,6 @@
 package fiuba.algo3.algoformers.algoformers;
 
-import fiuba.algo3.algoformers.excepciones.FriendlyFireException;
+import fiuba.algo3.algoformers.excepciones.FuegoAmigoException;
 
 public class Decepticon extends AlgoFormer{
 
@@ -13,7 +13,7 @@ public class Decepticon extends AlgoFormer{
 	}
 
 	public void recibirDanio (Decepticon decepticon, int ataque){
-		throw new FriendlyFireException();
+		throw new FuegoAmigoException();
 	}
 
 	public void atacarAlgoformer (AlgoFormer algoformerAtacado){
