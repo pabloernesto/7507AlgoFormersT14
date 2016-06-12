@@ -8,10 +8,10 @@ import org.junit.Test;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.escenario.Posicion;
-import fiuba.algo3.algoformers.escenario.RocasYNubesFactory;
 import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
 import fiuba.algo3.algoformers.factories.DecepticonFactory;
+import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 
 public class Test02TransformacionHumanoideAlternoHumanoide {
 
