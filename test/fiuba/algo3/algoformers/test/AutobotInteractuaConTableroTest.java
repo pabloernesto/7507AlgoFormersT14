@@ -1,56 +1,57 @@
 package fiuba.algo3.algoformers.test;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
-
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 
 import fiuba.algo3.algoformers.algoformers.*;
 import fiuba.algo3.algoformers.escenario.*;
-import fiuba.algo3.algoformers.escenario.superficies.*;
-import fiuba.algo3.algoformers.excepciones.FriendlyFireException;
-import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
 import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
+import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 
 public class AutobotInteractuaConTableroTest {
 
 	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
 	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
 	private AutoBot autobot;
+	private Tablero tablero;
 	
 	
 	@Before
 	public void setUp(){
-		autobot=null;
 		autobot = new AutoBot("autobot", 10, humanoide, alterna);
+		Tablero.setGeneradorDeCeldas(new RocasYNubesFactory());
+		tablero = Tablero.getInstance();
+	}
+	
+	@After
+	public void tearDown(){
 		Tablero.reiniciarTablero();
-		}
+	}
 	
 	@Test
 	public void test01ColocarAutobotEnTableroCorrectamente(){
-		Tablero tablero= Tablero.getInstance();
 		Posicion posicion = new Posicion (2,5);
 		tablero.colocarAlgoformer(autobot,posicion);
 		Assert.assertTrue(tablero.getPosicionAlgoformer(autobot).equals(posicion));
 		Assert.assertTrue(tablero.posicionEstaOcupada(posicion));
-		}
+	}
 	
-	@Test()
+	@Test(expected=PosicionInvalidaException.class)
 	public void test02ColocarAutobotEnTableroPosicionInvalida(){
-		Tablero tablero= Tablero.getInstance();
 		Posicion posicion = new Posicion (80,80);
 		try{
-		tablero.colocarAlgoformer(autobot, posicion);
+			tablero.colocarAlgoformer(autobot, posicion);
 		}
 		catch (PosicionInvalidaException e){
 			Assert.assertEquals(tablero.getPosicionAlgoformer(autobot),null);
+			throw e;
 		}
 	}
 	
 	@Test
 	public void test03MoverAutobotEnTableroAPosicionValida(){
-		Tablero tablero= Tablero.getInstance();
 		Posicion posicion = new Posicion (2,5);
 		tablero.colocarAlgoformer(autobot,posicion);
 		Assert.assertTrue(tablero.getPosicionAlgoformer(autobot).equals(posicion));
@@ -63,16 +64,14 @@ public class AutobotInteractuaConTableroTest {
 	
 	@Test(expected=PosicionInvalidaException.class)
 	public void test04MoverAutobotAPosicionInvalida(){
-		Tablero tablero= Tablero.getInstance();
 		Posicion posicion = new Posicion (1,1);
 		tablero.colocarAlgoformer(autobot,posicion);
 		tablero.moverAlgoformer(autobot, Movimiento.ARRIBA);
 		tablero.moverAlgoformer(autobot, Movimiento.ARRIBA);
 	}
 	
-	@Test()
+	@Test
 	public void test05MoverAutobotTransformarAutobotYMoverAutobot(){
-		Tablero tablero= Tablero.getInstance();
 		Posicion posicion = new Posicion (2,5);
 		tablero.colocarAlgoformer(autobot,posicion);
 		Assert.assertTrue(tablero.getPosicionAlgoformer(autobot).equals(posicion));
@@ -88,7 +87,6 @@ public class AutobotInteractuaConTableroTest {
 		Assert.assertTrue(tablero.getPosicionAlgoformer(autobot).equals(otraNuevaPosicion));
 		Assert.assertTrue(tablero.posicionEstaOcupada(otraNuevaPosicion));
 		Assert.assertFalse(tablero.posicionEstaOcupada(nuevaPosicion));
-		
 	}
 	
 }
