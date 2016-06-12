@@ -185,7 +185,6 @@ public abstract class AlgoFormer {
 	public void afectarConEfectoEspinas() {
 		this.vida = this.vida*95/100;
 	}
-
 	
 	public boolean atributosSonIguales(AlgoFormer otroAlgoformer){
 		if (this.getAtaque() != otroAlgoformer.getAtaque())
