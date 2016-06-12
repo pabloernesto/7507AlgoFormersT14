@@ -1,4 +1,4 @@
-package fiuba.algo3.algoformers.test.segundaEntrega;
+package fiuba.algo3.algoformers.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,10 +14,9 @@ import fiuba.algo3.algoformers.escenario.superficies.SuperficieTerrestre;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
 import fiuba.algo3.algoformers.factories.DecepticonFactory;
 
-public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
+public class AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
 
 	private Celda celda;
-	private Celda otraCelda;
 	private AutoBotFactory autobotFactory = new AutoBotFactory();
 	private DecepticonFactory decepticonFactory = new DecepticonFactory();
 	
@@ -36,7 +35,6 @@ public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
 	@Before
 	public void setUp(){
 		celda = new Celda(rocosa, nubes);
-		otraCelda = new Celda(rocosa, nubes);
 	}
 	
 	@Test
@@ -45,7 +43,6 @@ public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
 		int movimientos = optimus.getMovimientosRestantes();
 		optimus.entrarACelda(celda);
 		assertEquals(movimientos - 1, optimus.getMovimientosRestantes());
-		optimus.entrarACelda(otraCelda);
 	}
 	
 	@Test
@@ -55,7 +52,6 @@ public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
 		int movimientos = optimus.getMovimientosRestantes();
 		optimus.entrarACelda(celda);
 		assertEquals(movimientos - 1, optimus.getMovimientosRestantes());
-		optimus.entrarACelda(otraCelda);
 	}
 	
 	@Test
@@ -64,7 +60,6 @@ public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
 		int movimientos = bumblebee.getMovimientosRestantes();
 		bumblebee.entrarACelda(celda);
 		assertEquals(movimientos - 1, bumblebee.getMovimientosRestantes());
-		bumblebee.entrarACelda(otraCelda);
 	}
 	
 	@Test
@@ -74,14 +69,12 @@ public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
 		int movimientos = bumblebee.getMovimientosRestantes();
 		bumblebee.entrarACelda(celda);
 		assertEquals(movimientos - 1, bumblebee.getMovimientosRestantes());
-		bumblebee.entrarACelda(otraCelda);
 	}
 	
 	@Test
 	public void test05RatchetAtravesarRocosaEnModoHumanoideNoCausaProblemas(){
 		ratchet = autobotFactory.crearRatchet();
 		int movimientos = ratchet.getMovimientosRestantes();
-		assertEquals(1, movimientos);
 		ratchet.entrarACelda(celda);
 		assertEquals(movimientos - 1, ratchet.getMovimientosRestantes());
 	}
@@ -93,14 +86,12 @@ public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
 		int movimientos = ratchet.getMovimientosRestantes();
 		ratchet.entrarACelda(celda);
 		assertEquals(movimientos - 1, ratchet.getMovimientosRestantes());
-		ratchet.entrarACelda(otraCelda);
 	}
 	
 	@Test
 	public void test07MegatronAtravesarRocosaEnModoHumanoideNoCausaProblemas(){
 		megatron = decepticonFactory.crearMegatron();
 		int movimientos = megatron.getMovimientosRestantes();
-		assertEquals(1, movimientos);
 		megatron.entrarACelda(celda);
 		assertEquals(movimientos - 1, megatron.getMovimientosRestantes());
 	}
@@ -112,14 +103,12 @@ public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
 		int movimientos = megatron.getMovimientosRestantes();
 		megatron.entrarACelda(celda);
 		assertEquals(movimientos - 1, megatron.getMovimientosRestantes());
-		megatron.entrarACelda(otraCelda);
 	}
 	
 	@Test
 	public void test09BonecrusherAtravesarRocosaEnModoHumanoideNoCausaProblemas(){
 		bonecrusher = decepticonFactory.crearBonecrusher();
 		int movimientos = bonecrusher.getMovimientosRestantes();
-		assertEquals(1, movimientos);
 		bonecrusher.entrarACelda(celda);
 		assertEquals(movimientos - 1, bonecrusher.getMovimientosRestantes());
 	}
@@ -131,7 +120,6 @@ public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
 		int movimientos = bonecrusher.getMovimientosRestantes();
 		bonecrusher.entrarACelda(celda);
 		assertEquals(movimientos - 1, bonecrusher.getMovimientosRestantes());
-		bonecrusher.entrarACelda(otraCelda);
 	}
 	
 	@Test
@@ -140,7 +128,6 @@ public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
 		int movimientos = frenzy.getMovimientosRestantes();
 		frenzy.entrarACelda(celda);
 		assertEquals(movimientos - 1, frenzy.getMovimientosRestantes());
-		frenzy.entrarACelda(otraCelda);
 	}
 	
 	@Test
@@ -150,6 +137,5 @@ public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
 		int movimientos = frenzy.getMovimientosRestantes();
 		frenzy.entrarACelda(celda);
 		assertEquals(movimientos - 1, frenzy.getMovimientosRestantes());
-		frenzy.entrarACelda(otraCelda);
 	}
 }

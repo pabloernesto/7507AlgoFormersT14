@@ -13,9 +13,6 @@ import fiuba.algo3.algoformers.algoformers.*;
 import fiuba.algo3.algoformers.escenario.*;
 import fiuba.algo3.algoformers.excepciones.*;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
-import fiuba.algo3.algoformers.factories.CeldaFactory;
-import fiuba.algo3.algoformers.factories.CeldaRandomFactory;
-import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 
 public class TableroTest {
 	

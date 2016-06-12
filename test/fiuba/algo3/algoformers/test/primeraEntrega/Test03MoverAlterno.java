@@ -11,7 +11,6 @@ import fiuba.algo3.algoformers.escenario.*;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
 import fiuba.algo3.algoformers.factories.DecepticonFactory;
-import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 
 public class Test03MoverAlterno {
 	

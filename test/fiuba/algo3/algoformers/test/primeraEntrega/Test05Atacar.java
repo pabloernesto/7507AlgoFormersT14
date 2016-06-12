@@ -8,8 +8,9 @@ import org.junit.Test;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.escenario.Posicion;
+import fiuba.algo3.algoformers.escenario.RocasYNubesFactory;
 import fiuba.algo3.algoformers.escenario.Tablero;
-import fiuba.algo3.algoformers.excepciones.FuegoAmigoException;
+import fiuba.algo3.algoformers.excepciones.FriendlyFireException;
 import fiuba.algo3.algoformers.excepciones.FueraDeAlcanceException;
 import fiuba.algo3.algoformers.factories.*;
 
@@ -68,7 +69,7 @@ private Tablero tablero;
 		}
 	}
 	
-	@Test(expected=FuegoAmigoException.class)
+	@Test(expected=FriendlyFireException.class)
 	public void test03AutoBotNoPuedeAtacarOtroAutobotEstandoEnRango(){
 		Posicion posicion = new Posicion(5,5);
 		optimus = autobotFactory.crearOptimusPrime();
@@ -80,7 +81,7 @@ private Tablero tablero;
 		int vidaAnterior = ratchet.getVida();
 		try{
 			optimus.atacar(ratchet);
-		} catch (FuegoAmigoException e){
+		} catch (FriendlyFireException e){
 			assertEquals(ratchet.getVida(), vidaAnterior);
 			throw e;
 		}
@@ -138,7 +139,7 @@ private Tablero tablero;
 		}
 	}
 	
-	@Test(expected=FuegoAmigoException.class)
+	@Test(expected=FriendlyFireException.class)
 	public void test07DecepticonNoPuedeAtacarOtroDecepticonEstandoEnRango(){
 		Posicion posicion = new Posicion(5,5);
 		megatron = decepticonFactory.crearMegatron();
@@ -150,7 +151,7 @@ private Tablero tablero;
 		int vidaAnterior = frenzy.getVida();
 		try{
 			megatron.atacar(frenzy);
-		} catch (FuegoAmigoException e){
+		} catch (FriendlyFireException e){
 			assertEquals(frenzy.getVida(), vidaAnterior);
 			throw e;
 		}
