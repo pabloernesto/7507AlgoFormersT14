@@ -1,24 +1,20 @@
 package fiuba.algo3.algoformers.juego;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.factories.AlgoFormerFactory;
 
-public abstract class Jugador {
+public class Jugador {
 
-	protected AlgoFormerFactory factory;
 	protected List<AlgoFormer> equipo;
 	protected AlgoFormer algoformerActual;
 	
-	public Jugador (){
-		equipo = new ArrayList<AlgoFormer>();
-		inicializarEquipo();
+	public Jugador(AlgoFormerFactory factory)
+	{
+	    equipo = factory.crearEquipo();
 	}
-	
-	public abstract void inicializarEquipo ();
 	
 	public void elegirAlgoFormer(String nombre){
 		AlgoFormer algoformerElegido = null;

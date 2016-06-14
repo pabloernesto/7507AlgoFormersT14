@@ -2,8 +2,9 @@ package fiuba.algo3.algoformers.juego;
 
 import java.util.List;
 
-
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.factories.AutoBotFactory;
+import fiuba.algo3.algoformers.factories.DecepticonFactory;
 
 import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.escenario.Posicion;
@@ -21,8 +22,8 @@ public class Juego {
 	{
 		tablero = Tablero.getInstance();
 		
-		JugadorAutoBots jugadorAutobots = new JugadorAutoBots();
-		JugadorDecepticons jugadorDecepticons = new JugadorDecepticons();
+		Jugador jugadorAutobots = new Jugador(new AutoBotFactory());
+		Jugador jugadorDecepticons = new Jugador(new DecepticonFactory());
 		if (Math.random() > 0.5){
 			jugadorActual = jugadorAutobots;
 			jugadorInactivo = jugadorDecepticons;
