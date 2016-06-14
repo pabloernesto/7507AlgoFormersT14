@@ -8,13 +8,14 @@ import fiuba.algo3.algoformers.factories.AlgoFormerFactory;
 
 public class Jugador {
 
+	EstadoJugador estado = new EstadoJugador_Activo();
 	protected List<AlgoFormer> equipo;
 	protected AlgoFormer algoformerActual;
 	
 	public Jugador(AlgoFormerFactory factory)
 	{
 	    equipo = factory.crearEquipo();
-	}
+ 	}
 	
 	public void elegirAlgoFormer(String nombre){
 		AlgoFormer algoformerElegido = null;
@@ -28,22 +29,32 @@ public class Jugador {
 		algoformerActual = algoformerElegido;
 	}
 	
-	public void atacar (AlgoFormer atacado){
-		algoformerActual.atacar(atacado);
-	}
-	
-	public void mover (Movimiento direccion){
-		algoformerActual.moverse(direccion);
-	}
-	
-	public void combinar (){
-	}
-	
-	public void transformar (){
-		algoformerActual.transformarse();
-	}
-	
 	public List<AlgoFormer> getListaAlgoformers (){
 		return equipo;
+	}
+	
+	void setEstado(EstadoJugador e)
+	{
+	    estado = e;
+	}
+	
+	public void atacar(AlgoFormer atacado)
+	{
+	    estado.atacar(this, atacado);
+	}
+	
+	public void mover(Movimiento direccion)
+	{
+	    estado.mover(this, direccion);
+	}
+	
+	public void combinar()
+	{
+	    estado.combinar(this);
+	}
+	
+	public void transformar()
+	{
+	    estado.transformar(this);
 	}
 }
