@@ -11,6 +11,7 @@ import static org.mockito.Mockito.*;
 import fiuba.algo3.algoformers.juego.Jugador;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.escenario.Movimiento;
 
 import java.util.List;
 import java.lang.NullPointerException;
@@ -45,6 +46,17 @@ public class JugadorTest
         jugador.atacar(objetivo);
         
         verify(algoformerActual).atacar(objetivo);
+	}
+
+	@Test
+    public void testMoverHaceQueElAlgoFormerActualSeMueva()
+    {
+        jugador.elegirAlgoFormer("Optimus Prime");
+        MockitoAnnotations.initMocks(this);
+        
+        jugador.mover(Movimiento.DERECHA);
+        
+        verify(algoformerActual).moverse(Movimiento.DERECHA);
 	}
 }
 
