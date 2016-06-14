@@ -1,8 +1,8 @@
 package fiuba.algo3.algoformers.escenario.bonus;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.escenario.superficies.Efecto;
-import fiuba.algo3.algoformers.escenario.superficies.EfectoFlash;
+import fiuba.algo3.algoformers.escenario.efectos.Efecto;
+import fiuba.algo3.algoformers.escenario.efectos.EfectoFlash;
 
 public class Flash implements Bonus{
 

@@ -1,8 +1,8 @@
 package fiuba.algo3.algoformers.escenario.bonus;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.escenario.superficies.Efecto;
-import fiuba.algo3.algoformers.escenario.superficies.EfectoBurbuja;
+import fiuba.algo3.algoformers.escenario.efectos.Efecto;
+import fiuba.algo3.algoformers.escenario.efectos.EfectoBurbuja;
 
 public class BurbujaInmaculada implements Bonus{
 

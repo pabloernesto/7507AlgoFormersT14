@@ -1,9 +1,9 @@
-package fiuba.algo3.algoformers.escenario.superficies;
+package fiuba.algo3.algoformers.escenario.efectos;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 
-public class EfectoPantano extends Efecto {
- 
+public class EfectoTormenta extends Efecto{
+
 	@Override
 	public void afectar(AlgoFormer algoformer) {
 		algoformer.afectarseCon(this);		
@@ -12,5 +12,5 @@ public class EfectoPantano extends Efecto {
 	@Override
 	public void desafectar(AlgoFormer algoformer) {
 	}
-	
+
 }

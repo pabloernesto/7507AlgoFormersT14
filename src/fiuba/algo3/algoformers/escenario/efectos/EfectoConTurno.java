@@ -1,4 +1,4 @@
-package fiuba.algo3.algoformers.escenario.superficies;
+package fiuba.algo3.algoformers.escenario.efectos;
 
 public abstract class EfectoConTurno extends Efecto {
 

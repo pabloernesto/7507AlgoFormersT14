@@ -8,6 +8,14 @@ import fiuba.algo3.algoformers.escenario.*;
 import fiuba.algo3.algoformers.escenario.bonus.BurbujaInmaculada;
 import fiuba.algo3.algoformers.escenario.bonus.DobleCanion;
 import fiuba.algo3.algoformers.escenario.bonus.Flash;
+import fiuba.algo3.algoformers.escenario.efectos.Efecto;
+import fiuba.algo3.algoformers.escenario.efectos.EfectoBurbuja;
+import fiuba.algo3.algoformers.escenario.efectos.EfectoDobleCanion;
+import fiuba.algo3.algoformers.escenario.efectos.EfectoEspinas;
+import fiuba.algo3.algoformers.escenario.efectos.EfectoFlash;
+import fiuba.algo3.algoformers.escenario.efectos.EfectoNebulosa;
+import fiuba.algo3.algoformers.escenario.efectos.EfectoPantano;
+import fiuba.algo3.algoformers.escenario.efectos.EfectoTormenta;
 import fiuba.algo3.algoformers.escenario.superficies.*;
 import fiuba.algo3.algoformers.excepciones.*;
 

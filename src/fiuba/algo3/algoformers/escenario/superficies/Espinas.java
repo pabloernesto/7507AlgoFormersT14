@@ -1,6 +1,8 @@
 package fiuba.algo3.algoformers.escenario.superficies;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.escenario.efectos.Efecto;
+import fiuba.algo3.algoformers.escenario.efectos.EfectoEspinas;
 
 public class Espinas extends SuperficieTerrestre{
 	

@@ -1,11 +1,11 @@
-package fiuba.algo3.algoformers.escenario.superficies;
+package fiuba.algo3.algoformers.escenario.efectos;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 
-public class EfectoDobleCanion extends EfectoConTurno{
+public class EfectoNebulosa extends EfectoConTurno {
 
-	public EfectoDobleCanion(){
-		this.turnosRestantes = 4;
+	public EfectoNebulosa(){
+		this.turnosRestantes = 3;
 	}
 	
 	@Override
@@ -13,10 +13,9 @@ public class EfectoDobleCanion extends EfectoConTurno{
 		restarTurnos();
 		algoformer.afectarseCon(this);
 	}
-	
+
 	@Override
 	public void desafectar(AlgoFormer algoformer) {
-		algoformer.desafectarseDe(this);
 	}
 
 }

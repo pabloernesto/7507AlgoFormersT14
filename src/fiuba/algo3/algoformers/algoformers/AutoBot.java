@@ -1,6 +1,6 @@
 package fiuba.algo3.algoformers.algoformers;
 
-import fiuba.algo3.algoformers.escenario.superficies.EfectoBurbuja;
+import fiuba.algo3.algoformers.escenario.efectos.EfectoBurbuja;
 import fiuba.algo3.algoformers.excepciones.FuegoAmigoException;
 
 public class AutoBot extends AlgoFormer {
