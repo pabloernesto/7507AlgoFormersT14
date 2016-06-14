@@ -35,12 +35,12 @@ public abstract class Forma {
 		velocidad = nuevaVelocidad;
 	}
 	
-	public void afectarConEfectoDobleCanion(AlgoFormer algoFormer){
+	public void afectarConEfectoDobleCanion(AlgoFormer algoformer){
 		setAtaque(getAtaque() * 2);
 	}
 	
-	public void afectarConEfectoFlash(AlgoFormer algoFormer){
-		setVelocidad(getAtaque() * 3);
+	public void afectarConEfectoFlash(AlgoFormer algoformer){
+		algoformer.afectarseConEfectoFlash();
 	}
 
 	public void afectarConEfectoBurbuja(AlgoFormer algoFormer){
@@ -48,10 +48,6 @@ public abstract class Forma {
 	
 	public void desafectarseDeEfectoDobleCanion(AlgoFormer algoFormer) {
 		setAtaque(getAtaque() / 2);
-	}
-	
-	public void desafectarseDeEfectoFlash(AlgoFormer algoFormer) {
-		setVelocidad(getVelocidad() / 3);
 	}
 	
 

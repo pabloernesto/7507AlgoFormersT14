@@ -197,15 +197,15 @@ public abstract class AlgoFormer {
 		estadoActivo.afectarConEfectoBurbuja(this);
 		if (efecto.getTurnos() == 0)
 			efectosABorrar.add(efecto);
-			
 	}
+	
 	
 	public void desafectarseDe(EfectoDobleCanion efecto){
 		estadoActivo.desafectarseDeEfectoDobleCanion(this);
 	}
 	
 	public void desafectarseDe(EfectoFlash efecto){
-		estadoActivo.desafectarseDeEfectoFlash(this);
+		movimientosRestantes = movimientosRestantes / 3;
 	}
 	
 	
@@ -224,6 +224,10 @@ public abstract class AlgoFormer {
 
 	public void afectarConEfectoEspinas() {
 		vida = vida * 95 / 100;
+	}
+	
+	public void afectarseConEfectoFlash() {
+		movimientosRestantes = movimientosRestantes * 3;
 	}
 	
 	
