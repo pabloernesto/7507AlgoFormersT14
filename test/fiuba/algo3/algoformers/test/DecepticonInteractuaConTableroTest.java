@@ -14,19 +14,19 @@ import org.junit.Before;
 import fiuba.algo3.algoformers.algoformers.*;
 import fiuba.algo3.algoformers.escenario.*;
 import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
+import fiuba.algo3.algoformers.factories.DecepticonFactory;
 import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 
 public class DecepticonInteractuaConTableroTest {
 
-	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
-	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
+	private DecepticonFactory decepticonFactory = new DecepticonFactory();
 	private Decepticon decepticon;
 	private Tablero tablero;
 	
 	
 	@Before
 	public void setUp(){
-		decepticon = new Decepticon("decepticon", 10, humanoide, alterna);
+		decepticon = decepticonFactory.crearMegatron();
 		Tablero.setGeneradorDeCeldas(new RocasYNubesFactory());
 		tablero = Tablero.getInstance();
 	}

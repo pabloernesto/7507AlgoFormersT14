@@ -5,18 +5,15 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 import fiuba.algo3.algoformers.algoformers.AutoBot;
-import fiuba.algo3.algoformers.algoformers.FormaAerea;
-import fiuba.algo3.algoformers.algoformers.FormaAlterna;
-import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
 import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.escenario.superficies.Nube;
 import fiuba.algo3.algoformers.escenario.superficies.Rocosa;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
+import fiuba.algo3.algoformers.factories.AutoBotFactory;
 
 public class AutoBotTest {
 	
-	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
-	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
+	private AutoBotFactory autobotFactory = new AutoBotFactory();
 	private AutoBot autobot;
 	private Celda celda;
 	private Rocosa rocosa = new Rocosa();
@@ -24,17 +21,17 @@ public class AutoBotTest {
 	
 	@Before
 	public void setUp(){
-		autobot = new AutoBot("autobot", 10, humanoide, alterna);
+		autobot = autobotFactory.crearOptimusPrime();
 		celda = new Celda(new Rocosa(), new Nube());
 	}
 	
 	@Test
 	public void testAlgoformerSePuedeTransformarEnAmbosSentidosYCambiaElComportamiento(){
-		assertEquals(1, autobot.getAtaque()); //Se que el ataque es 1 porque lo declare arriba
+		assertEquals(50, autobot.getAtaque()); //50 es el ataque de optimus
 		autobot.transformarse();
-		assertEquals(3, autobot.getAtaque());
+		assertEquals(15, autobot.getAtaque());
 		autobot.transformarse();
-		assertEquals(1, autobot.getAtaque());
+		assertEquals(50, autobot.getAtaque());
 	}
 	
 	@Test

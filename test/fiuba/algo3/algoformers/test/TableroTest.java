@@ -20,9 +20,8 @@ import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 public class TableroTest {
 	
 	private Tablero tablero;
-	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
-	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
-	private AlgoFormer algoformer = new Decepticon("Ejemplo", 10, humanoide, alterna);
+	private AutoBotFactory factory = new AutoBotFactory();
+	private AlgoFormer algoformer = factory.crearOptimusPrime();
 	private CeldaFactory generadorDeRocosaYNubes = new RocasYNubesFactory();
 	
 	@Before
@@ -143,7 +142,7 @@ public class TableroTest {
 	
 	@Test(expected=CeldaOcupadaException.class)
     public void testColocarAlgoFormerEnUnaCeldaOcupadaLanzaExcepcion(){
-		AlgoFormer algoformer2 = new Decepticon("Ejemplo", 10, humanoide, alterna);
+		AlgoFormer algoformer2 = factory.crearBumblebee();
     	Posicion posicion = new Posicion(2,2);
     	tablero.colocarAlgoformer(algoformer, posicion);
     	tablero.colocarAlgoformer(algoformer2, posicion);
@@ -172,7 +171,7 @@ public class TableroTest {
     public void testMoverAlgoformerACeldaOcupadaLanzaExcepcion(){
     	Posicion posicion = new Posicion (1,1);
     	tablero.colocarAlgoformer(algoformer, posicion);
-    	AlgoFormer nuevoAlgoformer = new Decepticon("Ejemplo", 10, humanoide, alterna);
+    	AlgoFormer nuevoAlgoformer = factory.crearBumblebee();
     	Posicion nuevaPosicion = new Posicion(2,1);
     	tablero.colocarAlgoformer (nuevoAlgoformer, nuevaPosicion);
     	tablero.moverAlgoformer(nuevoAlgoformer, Movimiento.IZQUIERDA);
@@ -209,13 +208,11 @@ public class TableroTest {
     	Posicion posicion = new Posicion(1,1);
     	tablero.colocarAlgoformer(algoformer, posicion);
     	
-		AlgoFormer algoformer2 =
-		    new Decepticon("Ejemplo", 10, humanoide, alterna);
+		AlgoFormer algoformer2 = factory.crearBumblebee();
     	posicion = new Posicion(2,2);
     	tablero.colocarAlgoformer(algoformer2, posicion);
     	
-		AlgoFormer algoformer3 =
-		    new Decepticon("Ejemplo", 10, humanoide, alterna);
+		AlgoFormer algoformer3 = factory.crearRatchet();
     	posicion = new Posicion(4,1);
     	tablero.colocarAlgoformer(algoformer3, posicion);
     	

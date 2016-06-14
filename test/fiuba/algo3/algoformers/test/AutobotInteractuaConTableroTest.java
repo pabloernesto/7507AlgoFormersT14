@@ -8,19 +8,19 @@ import org.junit.Before;
 import fiuba.algo3.algoformers.algoformers.*;
 import fiuba.algo3.algoformers.escenario.*;
 import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
+import fiuba.algo3.algoformers.factories.AutoBotFactory;
 import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 
 public class AutobotInteractuaConTableroTest {
 
-	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
-	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
+	private AutoBotFactory autobotFactory = new AutoBotFactory();
 	private AutoBot autobot;
 	private Tablero tablero;
 	
 	
 	@Before
 	public void setUp(){
-		autobot = new AutoBot("autobot", 10, humanoide, alterna);
+		autobot = autobotFactory.crearOptimusPrime();
 		Tablero.setGeneradorDeCeldas(new RocasYNubesFactory());
 		tablero = Tablero.getInstance();
 	}

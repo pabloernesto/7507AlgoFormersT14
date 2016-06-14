@@ -6,28 +6,20 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.algoformers.AutoBot;
-import fiuba.algo3.algoformers.algoformers.FormaAerea;
-import fiuba.algo3.algoformers.algoformers.FormaAlterna;
-import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
-import fiuba.algo3.algoformers.algoformers.FormaTerrestre;
 import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.escenario.superficies.Nube;
 import fiuba.algo3.algoformers.escenario.superficies.Rocosa;
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
+import fiuba.algo3.algoformers.factories.AutoBotFactory;
 
 public class CeldaTest {
 	
-	private FormaHumanoide formaHumanoide = new FormaHumanoide(1, 2, 3);
-	private FormaAlterna formaAerea = new FormaAerea(3, 2, 1);
-	private FormaAlterna formaTerrestre = new FormaTerrestre(2, 2, 2);
+	private AutoBotFactory autobotFactory = new AutoBotFactory();
 	private Celda celda;
 	
-	AlgoFormer autobotTerrestre =
-	    new AutoBot("Ejemplo", 1, formaHumanoide, formaTerrestre);
+	AlgoFormer autobotTerrestre = autobotFactory.crearOptimusPrime();
 	
-	AlgoFormer autobotAereo =
-	    new AutoBot("Ejemplo", 1, formaHumanoide, formaAerea);
+	AlgoFormer autobotAereo = autobotFactory.crearRatchet();
 	
 	@Before
 	public void setUp(){

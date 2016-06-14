@@ -5,18 +5,15 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 import fiuba.algo3.algoformers.algoformers.Decepticon;
-import fiuba.algo3.algoformers.algoformers.FormaAerea;
-import fiuba.algo3.algoformers.algoformers.FormaAlterna;
-import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
 import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.escenario.superficies.Nube;
 import fiuba.algo3.algoformers.escenario.superficies.Rocosa;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
+import fiuba.algo3.algoformers.factories.DecepticonFactory;
 
 public class DecepticonTest {
 	
-	private FormaHumanoide humanoide = new FormaHumanoide(1, 2, 3);
-	private FormaAlterna alterna = new FormaAerea(3, 2, 1);
+	private DecepticonFactory decepticonFactory = new DecepticonFactory();
 	private Decepticon decepticon;
 	private Celda celda;
 	private Rocosa rocosa = new Rocosa();
@@ -24,17 +21,17 @@ public class DecepticonTest {
 	
 	@Before
 	public void setUp(){
-		decepticon = new Decepticon("decepticon", 10, humanoide, alterna);
+		decepticon = decepticonFactory.crearMegatron();
 		celda = new Celda(new Rocosa(), new Nube());
 	}
 	
 	@Test
 	public void testAlgoformerSePuedeTransformarEnAmbosSentidosYCambiaElComportamiento(){
-		assertEquals(1, decepticon.getAtaque()); //Se que el ataque es 1 porque lo declare arriba
+		assertEquals(10, decepticon.getAtaque()); //10 es el ataque de megatron
 		decepticon.transformarse();
-		assertEquals(3, decepticon.getAtaque());
+		assertEquals(55, decepticon.getAtaque());
 		decepticon.transformarse();
-		assertEquals(1, decepticon.getAtaque());
+		assertEquals(10, decepticon.getAtaque());
 	}
 	
 	@Test
