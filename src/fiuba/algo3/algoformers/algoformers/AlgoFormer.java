@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.algoformers.escenario.*;
+import fiuba.algo3.algoformers.escenario.bonus.BurbujaInmaculada;
+import fiuba.algo3.algoformers.escenario.bonus.DobleCanion;
+import fiuba.algo3.algoformers.escenario.bonus.Flash;
 import fiuba.algo3.algoformers.escenario.superficies.*;
 import fiuba.algo3.algoformers.excepciones.*;
 
@@ -15,6 +18,7 @@ public abstract class AlgoFormer {
 	public int vida;
 	protected int movimientosRestantes;
 	protected List<Efecto> efectosActivos;
+	protected List<Efecto> efectosABorrar;
 	protected Forma estadoActivo;
 	protected Forma estadoInactivo;
 
@@ -25,6 +29,7 @@ public abstract class AlgoFormer {
 		estadoInactivo = formaAlterna;
 		reiniciarMovimientosRestantes();
 		efectosActivos = new ArrayList<Efecto>();
+		efectosABorrar = new ArrayList<Efecto>();
 	}
 
 	public abstract void recibirDanio (AutoBot autobot, int ataque);
@@ -82,13 +87,29 @@ public abstract class AlgoFormer {
 			efecto.afectar(this);
 		}
 	}
+	
+	public void finalizarTurno(){
+		List<Efecto> aux = new ArrayList<Efecto>(efectosActivos);
+		for (Efecto efecto: aux){
+			efecto.desafectar(this);
+		}
+		borrarEfectos();
+	}
+	
+	public boolean afectadoPor(Efecto efecto) {
+		return efectosActivos.contains(efecto);
+	}
+	
+	public void borrarEfectos() {
+		efectosActivos.removeAll(efectosABorrar);
+	}
+	
+	public void ubicarseEnSuperficie(Rocosa rocosa) {		
+	}
 
 	public void ubicarseEnSuperficie(Pantano pantano) {
 		Efecto efecto = pantano.getEfecto();
 		efecto.afectar(this);
-	}
-
-	public void ubicarseEnSuperficie(Rocosa rocosa) {		
 	}
 	
 	public void ubicarseEnSuperficie(Espinas espinas) {
@@ -108,6 +129,25 @@ public abstract class AlgoFormer {
 	
 	public void ubicarseEnSuperficie(TormentaPsionica tormenta){
 		Efecto efecto = tormenta.getEfecto();
+		recibirEfectoPorTurnos(efecto);
+	}
+	
+	public void recibirBonus(DobleCanion dobleCanion) {
+		Efecto efecto = dobleCanion.getEfecto();
+		recibirEfectoPorTurnos(efecto);
+	}
+	
+	public void recibirBonus(Flash flash) {
+		Efecto efecto = flash.getEfecto();
+		recibirEfectoPorTurnos(efecto);
+	}
+	
+	public void recibirBonus(BurbujaInmaculada burbuja) {
+		Efecto efecto = burbuja.getEfecto();
+		recibirEfectoPorTurnos(efecto);
+	}
+	
+	private void recibirEfectoPorTurnos(Efecto efecto){
 		if (!afectadoPor(efecto)){
 			efectosActivos.add(efecto);
 			efecto.afectar(this);
@@ -115,19 +155,8 @@ public abstract class AlgoFormer {
 	}
 	
 	
-	public boolean afectadoPor(Efecto efecto) {
-		return efectosActivos.contains(efecto);
-	}
-	
-	
 	public void afectarseCon(EfectoEspinas efecto){
 		estadoActivo.afectarConEfectoEspinas(this);
-	}
-
-	public void afectarseCon(EfectoNebulosa efecto){
-		estadoActivo.afectarConEfectoNebulosa(this);
-		if (efecto.getTurnos() == 0)
-			efectosActivos.remove(efecto);
 	}
 	
 	public void afectarseCon(EfectoPantano efecto) {
@@ -136,6 +165,39 @@ public abstract class AlgoFormer {
 	
 	public void afectarseCon(EfectoTormenta efecto){
 		estadoActivo.afectarConEfectoTormenta(this);
+	}
+	
+	public void afectarseCon(EfectoNebulosa efecto){
+		estadoActivo.afectarConEfectoNebulosa(this);
+		if (efecto.getTurnos() == 0)
+			efectosABorrar.add(efecto);
+	}
+	
+	public void afectarseCon(EfectoDobleCanion efecto) {
+		estadoActivo.afectarConEfectoDobleCanion(this);
+		if (efecto.getTurnos() == 0)
+			efectosABorrar.add(efecto);
+	}
+	
+	public void afectarseCon(EfectoFlash efecto) {
+		estadoActivo.afectarConEfectoFlash(this);
+		if (efecto.getTurnos() == 0)
+			efectosABorrar.add(efecto);
+	}
+
+	public void afectarseCon(EfectoBurbuja efecto) {
+		estadoActivo.afectarConEfectoBurbuja(this);
+		if (efecto.getTurnos() == 0)
+			efectosABorrar.add(efecto);
+			
+	}
+	
+	public void desafectarseDe(EfectoDobleCanion efecto){
+		estadoActivo.desafectarseDeEfectoDobleCanion(this);
+	}
+	
+	public void desafectarseDe(EfectoFlash efecto){
+		estadoActivo.desafectarseDeEfectoFlash(this);
 	}
 	
 	
@@ -200,4 +262,5 @@ public abstract class AlgoFormer {
 			return false;
 		return true;
 	}
+	
 }

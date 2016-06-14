@@ -7,5 +7,9 @@ public class EfectoEspinas extends Efecto{
 	public void afectar(AlgoFormer algoformer){
 		algoformer.afectarseCon(this);
 	}
+
+	@Override
+	public void desafectar(AlgoFormer algoformer) {
+	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.escenario.bonus.Bonus;
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
 import fiuba.algo3.algoformers.factories.CeldaFactory;
@@ -97,6 +98,10 @@ public class Tablero {
 		return ALTO;
 	}
 	
+	public void setBonusEnCelda(Posicion posicion, Bonus bonus){
+		celdas.get(posicion).setBonus(bonus);
+	}
+	
 	private void validarMovimiento (AlgoFormer algoformer, Posicion posicion){
 		if (celdas.get(posicion) == null)
 			throw new PosicionInvalidaException();
@@ -110,10 +115,8 @@ public class Tablero {
 		return new Posicion(ANCHO/2, ALTO/2);
 	}
 	
-
-  
-  		public Celda devolverPrimerCelda() {
-  				return celdas.get(new Posicion(1, 1));
-  		}
+  	public Celda devolverPrimerCelda() {
+  		return celdas.get(new Posicion(1, 1));
+  	}
 
 }

@@ -19,8 +19,6 @@ public abstract class Forma {
 		return ataque;
 	}
 	
-			
-	
 	public int getVelocidad (){
 		return velocidad;
 	}
@@ -29,10 +27,33 @@ public abstract class Forma {
 		return distAtaque;
 	}
 
-
 	public void setAtaque(int nuevoAtaque){
 		ataque = nuevoAtaque;
 	}
+	
+	public void setVelocidad(int nuevaVelocidad) {
+		velocidad = nuevaVelocidad;
+	}
+	
+	public void afectarConEfectoDobleCanion(AlgoFormer algoFormer){
+		setAtaque(getAtaque() * 2);
+	}
+	
+	public void afectarConEfectoFlash(AlgoFormer algoFormer){
+		setVelocidad(getAtaque() * 3);
+	}
+
+	public void afectarConEfectoBurbuja(AlgoFormer algoFormer){
+	}
+	
+	public void desafectarseDeEfectoDobleCanion(AlgoFormer algoFormer) {
+		setAtaque(getAtaque() / 2);
+	}
+	
+	public void desafectarseDeEfectoFlash(AlgoFormer algoFormer) {
+		setVelocidad(getVelocidad() / 3);
+	}
+	
 
 	public abstract void afectarConEfectoNebulosa(AlgoFormer algoFormer);
 

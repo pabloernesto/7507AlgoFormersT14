@@ -2,9 +2,9 @@ package fiuba.algo3.algoformers.escenario.superficies;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 
-public class EfectoNebulosa extends EfectoConTurno {
+public class EfectoBurbuja extends EfectoConTurno{
 
-	public EfectoNebulosa(){
+	public EfectoBurbuja(){
 		this.turnosRestantes = 3;
 	}
 	
@@ -13,9 +13,9 @@ public class EfectoNebulosa extends EfectoConTurno {
 		restarTurnos();
 		algoformer.afectarseCon(this);
 	}
-
+	
 	@Override
-	public void desafectar(AlgoFormer algoformer) {
+	public void desafectar(AlgoFormer algoformer){
 	}
 
 }

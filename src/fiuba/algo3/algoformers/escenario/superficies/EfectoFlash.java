@@ -2,15 +2,21 @@ package fiuba.algo3.algoformers.escenario.superficies;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 
-public class EfectoPantano extends Efecto {
- 
+public class EfectoFlash extends EfectoConTurno{
+
+	public EfectoFlash(){
+		this.turnosRestantes = 4;
+	}
+	
 	@Override
 	public void afectar(AlgoFormer algoformer) {
-		algoformer.afectarseCon(this);		
+		restarTurnos();
+		algoformer.afectarseCon(this);
 	}
 
 	@Override
 	public void desafectar(AlgoFormer algoformer) {
+		algoformer.desafectarseDe(this);
 	}
-	
+
 }

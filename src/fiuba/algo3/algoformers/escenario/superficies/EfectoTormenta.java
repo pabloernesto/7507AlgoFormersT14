@@ -9,6 +9,8 @@ public class EfectoTormenta extends Efecto{
 		algoformer.afectarseCon(this);		
 	}
 
-	
+	@Override
+	public void desafectar(AlgoFormer algoformer) {
+	}
 
 }

@@ -50,6 +50,7 @@ public class Test08AtravesarNebulosaEnModoAereoLoAtrapa3TurnosTest {
 	@Test(expected=NoHayMasMovimientosException.class)
 	public void test01BRatchetAtravesarNebulosaEnModoAereoLoAtrapa3Turnos(){
 		ratchet.entrarACelda(celda);
+		ratchet.finalizarTurno();
 		ratchet.iniciarTurno();
 		ratchet.entrarACelda(otraCelda);
 	}
@@ -57,7 +58,9 @@ public class Test08AtravesarNebulosaEnModoAereoLoAtrapa3TurnosTest {
 	@Test(expected=NoHayMasMovimientosException.class)
 	public void test01CRatchetAtravesarNebulosaEnModoAereoLoAtrapa3Turnos(){
 		ratchet.entrarACelda(celda);
+		ratchet.finalizarTurno();
 		ratchet.iniciarTurno();
+		ratchet.finalizarTurno();
 		ratchet.iniciarTurno();
 		ratchet.entrarACelda(otraCelda);
 	}
@@ -65,8 +68,11 @@ public class Test08AtravesarNebulosaEnModoAereoLoAtrapa3TurnosTest {
 	@Test
 	public void test01DRatchetAtravesarNebulosaEnModoAereoLoAtrapa3Turnos(){
 		ratchet.entrarACelda(celda);
+		ratchet.finalizarTurno();
 		ratchet.iniciarTurno();
+		ratchet.finalizarTurno();
 		ratchet.iniciarTurno();
+		ratchet.finalizarTurno();
 		ratchet.iniciarTurno();
 		ratchet.entrarACelda(otraCelda);
 	}
@@ -81,14 +87,17 @@ public class Test08AtravesarNebulosaEnModoAereoLoAtrapa3TurnosTest {
 	@Test(expected=NoHayMasMovimientosException.class)
 	public void test02BMegatronAtravesarNebulosaEnModoAereoLoAtrapa3Turnos(){
 		megatron.entrarACelda(celda);
+		megatron.finalizarTurno();
 		megatron.iniciarTurno();
 		megatron.entrarACelda(otraCelda);
 	}
 	
 	@Test(expected=NoHayMasMovimientosException.class)
-	public void test02MegatronAtravesarNebulosaEnModoAereoLoAtrapa3Turnos(){
+	public void test02CMegatronAtravesarNebulosaEnModoAereoLoAtrapa3Turnos(){
 		megatron.entrarACelda(celda);
+		megatron.finalizarTurno();
 		megatron.iniciarTurno();
+		megatron.finalizarTurno();
 		megatron.iniciarTurno();
 		megatron.entrarACelda(otraCelda);
 	}
@@ -96,8 +105,11 @@ public class Test08AtravesarNebulosaEnModoAereoLoAtrapa3TurnosTest {
 	@Test
 	public void test02DMegatronAtravesarNebulosaEnModoAereoLoAtrapa3Turnos(){
 		megatron.entrarACelda(celda);
+		megatron.finalizarTurno();
 		megatron.iniciarTurno();
+		megatron.finalizarTurno();
 		megatron.iniciarTurno();
+		megatron.finalizarTurno();
 		megatron.iniciarTurno();
 		megatron.entrarACelda(otraCelda);
 	}

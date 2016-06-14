@@ -1,5 +1,6 @@
 package fiuba.algo3.algoformers.algoformers;
 
+import fiuba.algo3.algoformers.escenario.superficies.EfectoBurbuja;
 import fiuba.algo3.algoformers.excepciones.FuegoAmigoException;
 
 public class Decepticon extends AlgoFormer{
@@ -9,7 +10,8 @@ public class Decepticon extends AlgoFormer{
 	}
 	
 	public void recibirDanio (AutoBot autobot, int ataque){
-		vida -= ataque;
+		if (!afectadoPor(new EfectoBurbuja()))
+			vida -= ataque;
 	}
 
 	public void recibirDanio (Decepticon decepticon, int ataque){

@@ -7,6 +7,8 @@ public abstract class Efecto{
 	
 	public abstract void afectar(AlgoFormer algoformer);
 	
+	public abstract void desafectar(AlgoFormer algoformer);
+	
 	@Override
 	public int hashCode() {
 		int result = 1;

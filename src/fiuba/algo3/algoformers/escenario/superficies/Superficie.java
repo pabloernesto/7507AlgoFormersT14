@@ -2,9 +2,10 @@ package fiuba.algo3.algoformers.escenario.superficies;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 
-public interface Superficie {
+public interface Superficie{
 	
-	public abstract void afectar(AlgoFormer algoformer);
+	public void afectar(AlgoFormer algoformer);
+	
+	public Efecto getEfecto();
 
-	public abstract Efecto getEfecto();
 }

@@ -1,6 +1,7 @@
 package fiuba.algo3.algoformers.escenario;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.escenario.bonus.*;
 import fiuba.algo3.algoformers.escenario.superficies.*;
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 
@@ -11,6 +12,7 @@ public class Celda {
 
     private SuperficieTerrestre suelo;
     private SuperficieAerea cielo;
+    private Bonus bonus;
 	
 
 	public Celda (SuperficieTerrestre suelo, SuperficieAerea cielo){
@@ -18,14 +20,17 @@ public class Celda {
 		contieneChispaSuprema = false;
 		this.suelo = suelo;
 		this.cielo = cielo;
+		this.bonus = new BonusNulo();
 	}
 	
 	public void recibirAlgoformer (AlgoFormer algoformer){
 		if (this.algoformer != null)
 			throw new CeldaOcupadaException();
 		this.algoformer = algoformer;
-		this.suelo.afectar(algoformer);
-		this.cielo.afectar(algoformer);
+		suelo.afectar(algoformer);
+		cielo.afectar(algoformer);
+		bonus.afectar(algoformer);
+		bonus = new BonusNulo();
 	}
 	
 	public AlgoFormer getAlgoformer (){
@@ -48,6 +53,9 @@ public class Celda {
 		algoformer = null;
 	}
 	
+	public void setBonus(Bonus bonus){
+		this.bonus = bonus;
+	}
 	
 	//Metodos para pruebas+
 	public SuperficieTerrestre getSuperficieTerrestre() {
@@ -57,4 +65,5 @@ public class Celda {
 	public SuperficieAerea getSuperficieAerea() {
 		return cielo;
 	}
+	
 }
