@@ -34,7 +34,14 @@ public abstract class AlgoFormer {
 	
 	public abstract void recibirDanio (Decepticon decepticon, int ataque);
 	
-	public abstract void atacarAlgoformer (AlgoFormer algoformerAtacado);
+	/* Este metodo se define como abstracto y se implementa por duplicado
+	   en Autobot y Decepticon. Esto permite que el AlgoFormer llame al
+	   recibirDanio correcto del AlgoFormer atacado.
+	   
+	   Si esto no se hiciese así, el AlgoFormer intentaría llamar a
+	   recibirDanio con un argumento de tipo AlgoFormer, en lugar de Autobot
+	   o Decepticon. */
+	public abstract void enviarRecibirDanio(AlgoFormer algoformerAtacado);
 	
 	public void transformarse (){
 		Forma auxiliar = estadoActivo;
@@ -64,7 +71,7 @@ public abstract class AlgoFormer {
 		if (distancia > alcance)
 			throw new FueraDeAlcanceException();
 
-		atacarAlgoformer(algoformerAtacado);
+		enviarRecibirDanio(algoformerAtacado);
 	}
 	
 	public Forma getEstadoActivo (){

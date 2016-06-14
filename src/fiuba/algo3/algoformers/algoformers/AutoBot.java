@@ -16,7 +16,7 @@ public class AutoBot extends AlgoFormer {
 		vida -= ataque;
 	}
 	
-	public void atacarAlgoformer (AlgoFormer algoformerAtacado){
+	public void enviarRecibirDanio(AlgoFormer algoformerAtacado){
 		algoformerAtacado.recibirDanio(this, getAtaque());
 	}
 	

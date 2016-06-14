@@ -113,13 +113,13 @@ public class DecepticonAtaqueTest {
 	
 	//Fin pruebas recibirDanio
 	
-	//Inicio pruebas atacarAlgoformer
+	//Inicio pruebas enviarRecibirDanio
 	
 	@Test
 	public void testAtacarnAutoBotLeRestaVidaAmbosEnModoHumanoide(){
 	AutoBot autobot = new AutoBot("autobot", 20, humanoide, alterna);
 	int vidaAnterior = autobot.getVida();
-	decepticon.atacarAlgoformer(autobot);
+	decepticon.enviarRecibirDanio(autobot);
 	assertEquals(autobot.getVida(), vidaAnterior - decepticon.getAtaque());
 	}
 	
@@ -128,7 +128,7 @@ public class DecepticonAtaqueTest {
 	Decepticon otroDecepticon = new Decepticon("decepticon2", 20, humanoide, alterna);
 	int vidaAnterior = otroDecepticon.getVida();
 	try{
-		decepticon.atacarAlgoformer(otroDecepticon);
+		decepticon.enviarRecibirDanio(otroDecepticon);
 	} catch (FuegoAmigoException e){
 		assertEquals(otroDecepticon.getVida(), vidaAnterior);
 		throw e;
@@ -141,7 +141,7 @@ public class DecepticonAtaqueTest {
 	decepticon.transformarse();
 	autobot.transformarse();
 	int vidaAnterior = autobot.getVida();
-	decepticon.atacarAlgoformer(autobot);
+	decepticon.enviarRecibirDanio(autobot);
 	assertEquals(autobot.getVida(), vidaAnterior - decepticon.getAtaque());
 	}
 	
@@ -152,7 +152,7 @@ public class DecepticonAtaqueTest {
 	otroDecepticon.transformarse();
 	int vidaAnterior = otroDecepticon.getVida();
 	try{
-		decepticon.atacarAlgoformer(otroDecepticon);
+		decepticon.enviarRecibirDanio(otroDecepticon);
 	} catch (FuegoAmigoException e){
 		assertEquals(otroDecepticon.getVida(), vidaAnterior);
 		throw e;
@@ -164,7 +164,7 @@ public class DecepticonAtaqueTest {
 	AutoBot autobot = new AutoBot("autobot", 20, humanoide, alterna);
 	autobot.transformarse();
 	int vidaAnterior = autobot.getVida();
-	decepticon.atacarAlgoformer(autobot);
+	decepticon.enviarRecibirDanio(autobot);
 	assertEquals(autobot.getVida(), vidaAnterior - decepticon.getAtaque());
 	}
 	
@@ -174,7 +174,7 @@ public class DecepticonAtaqueTest {
 	otroDecepticon.transformarse();
 	int vidaAnterior = otroDecepticon.getVida();
 	try{
-		decepticon.atacarAlgoformer(otroDecepticon);
+		decepticon.enviarRecibirDanio(otroDecepticon);
 	} catch (FuegoAmigoException e){
 		assertEquals(otroDecepticon.getVida(), vidaAnterior);
 		throw e;
@@ -186,7 +186,7 @@ public class DecepticonAtaqueTest {
 	AutoBot autobot = new AutoBot("autobot", 20, humanoide, alterna);
 	decepticon.transformarse();
 	int vidaAnterior = autobot.getVida();
-	decepticon.atacarAlgoformer(autobot);
+	decepticon.enviarRecibirDanio(autobot);
 	assertEquals(autobot.getVida(), vidaAnterior - decepticon.getAtaque());
 	}
 	
@@ -196,7 +196,7 @@ public class DecepticonAtaqueTest {
 	decepticon.transformarse();
 	int vidaAnterior = otroDecepticon.getVida();
 	try{
-		decepticon.atacarAlgoformer(otroDecepticon);
+		decepticon.enviarRecibirDanio(otroDecepticon);
 	} catch (FuegoAmigoException e){
 		assertEquals(otroDecepticon.getVida(), vidaAnterior);
 		throw e;

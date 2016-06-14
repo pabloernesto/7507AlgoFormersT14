@@ -16,7 +16,7 @@ public class Decepticon extends AlgoFormer{
 		throw new FuegoAmigoException();
 	}
 
-	public void atacarAlgoformer (AlgoFormer algoformerAtacado){
+	public void enviarRecibirDanio(AlgoFormer algoformerAtacado){
 		algoformerAtacado.recibirDanio(this, getAtaque());
 	}
 
