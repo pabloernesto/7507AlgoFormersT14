@@ -58,5 +58,16 @@ public class JugadorTest
         
         verify(algoformerActual).moverse(Movimiento.DERECHA);
 	}
+
+	@Test
+    public void testTransformarHaceQueElAlgoFormerActualSeTransforme()
+    {
+        jugador.elegirAlgoFormer("Optimus Prime");
+        MockitoAnnotations.initMocks(this);
+        
+        jugador.transformar();
+        
+        verify(algoformerActual).transformarse();
+	}
 }
 
