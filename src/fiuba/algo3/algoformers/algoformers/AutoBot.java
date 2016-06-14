@@ -4,9 +4,9 @@ import fiuba.algo3.algoformers.escenario.efectos.EfectoBurbuja;
 import fiuba.algo3.algoformers.excepciones.FuegoAmigoException;
 
 public class AutoBot extends AlgoFormer {
-
-	public AutoBot (String nombre, int vida, FormaHumanoide formaHumanoide, FormaAlterna formaAlterna){
-		super(nombre, vida, formaHumanoide, formaAlterna);
+	
+	public AutoBot (String nombre, int vida, Forma estado){
+		super(nombre, vida, estado);
 	}
 	
 	public void recibirDanio (AutoBot autobot, int ataque){

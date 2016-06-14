@@ -1,5 +1,6 @@
 package fiuba.algo3.algoformers.algoformers;
 
+import fiuba.algo3.algoformers.factories.FormaFactory;
 
 public abstract class Forma {
 
@@ -7,13 +8,17 @@ public abstract class Forma {
 	protected int velocidad;
 	protected int distAtaque;
 	protected int movimientosRestantes;
+	protected FormaFactory formaFactory;
 	
 
-	public Forma (int ataque, int velocidad, int distAtaque){
+	public Forma (int ataque, int velocidad, int distAtaque, FormaFactory formaFactory){
 		this.ataque = ataque;
 		this.velocidad = velocidad;
 		this.distAtaque = distAtaque;
+		this.formaFactory = formaFactory;
 	}
+	
+	public abstract Forma transformarse();
 	
 	public int getAtaque (){
 		return ataque;

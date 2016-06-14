@@ -1,10 +1,11 @@
 package fiuba.algo3.algoformers.algoformers;
 
+import fiuba.algo3.algoformers.factories.FormaFactory;
 
 public class FormaTerrestre extends FormaAlterna {
 
-	public FormaTerrestre (int ataque, int velocidad, int distAtaque){
-		super(ataque, velocidad, distAtaque);
+	public FormaTerrestre (int ataque, int velocidad, int distAtaque, FormaFactory formaFactory){
+		super(ataque, velocidad, distAtaque, formaFactory);
 	}
 
 	@Override

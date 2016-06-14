@@ -5,9 +5,7 @@ import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.algoformers.AutoBot;
-import fiuba.algo3.algoformers.algoformers.FormaAerea;
 import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
-import fiuba.algo3.algoformers.algoformers.FormaTerrestre;
 
 public class AutoBotFactory implements AlgoFormerFactory{
 
@@ -23,23 +21,23 @@ public class AutoBotFactory implements AlgoFormerFactory{
 	}
 	
 	public AutoBot crearOptimusPrime (){
-		FormaHumanoide optimusHumanoide = new FormaHumanoide(50, 2, 2); //Ataque, velocidad, distanciaAtaque
-		FormaTerrestre optimusTerrestre = new FormaTerrestre(15, 5, 4);
-		AutoBot optimus = new AutoBot("Optimus Prime", 500, optimusHumanoide, optimusTerrestre);
+		FormaFactory formaFactory = new FormaOptimusFactory();
+		FormaHumanoide forma = formaFactory.crearFormaHumanoide();
+		AutoBot optimus = new AutoBot("Optimus Prime", 500, forma);
 		return optimus;
 	}
 	
 	public AutoBot crearBumblebee (){
-		FormaHumanoide bumblebeeHumanoide = new FormaHumanoide(40, 2, 1);
-		FormaTerrestre bumblebeeTerrestre = new FormaTerrestre(20, 5, 3);
-		AutoBot bumblebee = new AutoBot("Bumblebee", 350, bumblebeeHumanoide, bumblebeeTerrestre);
+		FormaFactory formaFactory = new FormaBumblebeeFactory();
+		FormaHumanoide forma = formaFactory.crearFormaHumanoide();
+		AutoBot bumblebee = new AutoBot("Bumblebee", 350, forma);
 		return bumblebee;
 	}
 	
 	public AutoBot crearRatchet (){
-		FormaHumanoide ratchetHumanoide = new FormaHumanoide(5, 1, 5);
-		FormaAerea ratchetAereo = new FormaAerea(35, 8, 2);
-		AutoBot ratchet = new AutoBot("Ratchet", 150, ratchetHumanoide, ratchetAereo);
+		FormaFactory formaFactory = new FormaRatchetFactory();
+		FormaHumanoide forma = formaFactory.crearFormaHumanoide();
+		AutoBot ratchet = new AutoBot("Ratchet", 150, forma);
 		return ratchet;
 	}
 	

@@ -1,17 +1,21 @@
 
 package fiuba.algo3.algoformers.algoformers;
 
-
+import fiuba.algo3.algoformers.factories.FormaFactory;
 
 public class FormaHumanoide extends Forma {
 
-	public FormaHumanoide (int ataque, int velocidad, int distAtaque){
-		super(ataque, velocidad, distAtaque);
+	public FormaHumanoide (int ataque, int velocidad, int distAtaque, FormaFactory formaFactory){
+		super(ataque, velocidad, distAtaque, formaFactory);
+	}
+	
+	public Forma transformarse() {
+		return formaFactory.crearFormaAlterna();
 	}
 
 	
 	@Override
-	public void afectarConEfectoNebulosa(AlgoFormer algoFormer){
+	public void afectarConEfectoNebulosa(AlgoFormer algoformer){
 		
 	}
 	
@@ -21,7 +25,7 @@ public class FormaHumanoide extends Forma {
 	}
 	
 	@Override
-	public void afectarConEfectoTormenta(AlgoFormer algoFormer){
+	public void afectarConEfectoTormenta(AlgoFormer algoformer){
 	}
 	
 	@Override

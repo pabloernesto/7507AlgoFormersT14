@@ -24,17 +24,15 @@ public abstract class AlgoFormer {
 
 	protected String nombre;
 	public int vida;
+	protected Forma estado;
 	protected int movimientosRestantes;
 	protected List<Efecto> efectosActivos;
 	protected List<Efecto> efectosABorrar;
-	protected Forma estadoActivo;
-	protected Forma estadoInactivo;
-
-	public AlgoFormer (String nombre, int vida, FormaHumanoide formaHumanoide,FormaAlterna formaAlterna){
+	
+	public AlgoFormer (String nombre, int vida, Forma estado){
 		this.nombre = nombre;
 		this.vida = vida;
-		estadoActivo = formaHumanoide;
-		estadoInactivo = formaAlterna;
+		this.estado = estado;
 		reiniciarMovimientosRestantes();
 		efectosActivos = new ArrayList<Efecto>();
 		efectosABorrar = new ArrayList<Efecto>();
@@ -54,9 +52,7 @@ public abstract class AlgoFormer {
 	public abstract void enviarRecibirDanio(AlgoFormer algoformerAtacado);
 	
 	public void transformarse (){
-		Forma auxiliar = estadoActivo;
-		estadoActivo = estadoInactivo;
-		estadoInactivo = auxiliar;
+		estado = estado.transformarse();
 		reiniciarMovimientosRestantes();
 	}
 	
@@ -164,44 +160,44 @@ public abstract class AlgoFormer {
 	
 	
 	public void afectarseCon(EfectoEspinas efecto){
-		estadoActivo.afectarConEfectoEspinas(this);
+		estado.afectarConEfectoEspinas(this);
 	}
 	
 	public void afectarseCon(EfectoPantano efecto) {
-		estadoActivo.afectarConEfectoPantano(this);
+		estado.afectarConEfectoPantano(this);
 	}
 	
 	public void afectarseCon(EfectoTormenta efecto){
-		estadoActivo.afectarConEfectoTormenta(this);
+		estado.afectarConEfectoTormenta(this);
 	}
 	
 	public void afectarseCon(EfectoNebulosa efecto){
-		estadoActivo.afectarConEfectoNebulosa(this);
+		estado.afectarConEfectoNebulosa(this);
 		if (efecto.getTurnos() == 0)
 			efectosABorrar.add(efecto);
 	}
 	
 	public void afectarseCon(EfectoDobleCanion efecto) {
-		estadoActivo.afectarConEfectoDobleCanion(this);
+		estado.afectarConEfectoDobleCanion(this);
 		if (efecto.getTurnos() == 0)
 			efectosABorrar.add(efecto);
 	}
 	
 	public void afectarseCon(EfectoFlash efecto) {
-		estadoActivo.afectarConEfectoFlash(this);
+		estado.afectarConEfectoFlash(this);
 		if (efecto.getTurnos() == 0)
 			efectosABorrar.add(efecto);
 	}
 
 	public void afectarseCon(EfectoBurbuja efecto) {
-		estadoActivo.afectarConEfectoBurbuja(this);
+		estado.afectarConEfectoBurbuja(this);
 		if (efecto.getTurnos() == 0)
 			efectosABorrar.add(efecto);
 	}
 	
 	
 	public void desafectarseDe(EfectoDobleCanion efecto){
-		estadoActivo.desafectarseDeEfectoDobleCanion(this);
+		estado.desafectarseDeEfectoDobleCanion(this);
 	}
 	
 	public void desafectarseDe(EfectoFlash efecto){
@@ -234,19 +230,19 @@ public abstract class AlgoFormer {
 	//Metodos para pruebas
 	
 	public Forma getEstadoActivo (){
-		return estadoActivo;
+		return estado;
 	}
 	
 	public int getAtaque (){
-		return estadoActivo.getAtaque();
+		return estado.getAtaque();
 	}
 	
 	public int getDistAtaque (){
-		return estadoActivo.getDistAtaque();
+		return estado.getDistAtaque();
 	}
 	
 	public int getVelocidad (){
-		return estadoActivo.getVelocidad();
+		return estado.getVelocidad();
 	}
 	
 	public int getVida (){
