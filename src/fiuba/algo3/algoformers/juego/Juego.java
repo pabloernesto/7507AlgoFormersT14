@@ -45,9 +45,6 @@ public class Juego {
 	    return jugadorInactivo;
 	}
 	
-	private void cicloPrincipal (){
-	}
-	
 	private void ubicarAlgoformers()
 	{
 	    List<AlgoFormer> equipo;
