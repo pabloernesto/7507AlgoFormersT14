@@ -15,10 +15,8 @@ public abstract class AlgoFormer {
 	public int vida;
 	protected int movimientosRestantes;
 	protected List<Efecto> efectosActivos;
-	
 	protected Forma estadoActivo;
 	protected Forma estadoInactivo;
-	protected List<Efecto> efectosAEliminar;
 
 	public AlgoFormer (String nombre, int vida, FormaHumanoide formaHumanoide,FormaAlterna formaAlterna){
 		this.nombre = nombre;
@@ -27,7 +25,6 @@ public abstract class AlgoFormer {
 		estadoInactivo = formaAlterna;
 		reiniciarMovimientosRestantes();
 		efectosActivos = new ArrayList<Efecto>();
-		efectosAEliminar=new ArrayList<Efecto>();
 	}
 
 	public abstract void recibirDanio (AutoBot autobot, int ataque);
@@ -74,6 +71,94 @@ public abstract class AlgoFormer {
 		enviarRecibirDanio(algoformerAtacado);
 	}
 	
+	public void reiniciarMovimientosRestantes (){
+		movimientosRestantes = getVelocidad();
+	}
+	
+	public void iniciarTurno(){
+		reiniciarMovimientosRestantes();
+		List<Efecto> aux = new ArrayList<Efecto>(efectosActivos);
+		for (Efecto efecto: aux){
+			efecto.afectar(this);
+		}
+	}
+
+	public void ubicarseEnSuperficie(Pantano pantano) {
+		Efecto efecto = pantano.getEfecto();
+		efecto.afectar(this);
+	}
+
+	public void ubicarseEnSuperficie(Rocosa rocosa) {		
+	}
+	
+	public void ubicarseEnSuperficie(Espinas espinas) {
+		Efecto efecto = espinas.getEfecto();
+		efecto.afectar(this);
+	}
+	
+	public void ubicarseEnSuperficie(Nube nube) {
+	}
+	
+	public void ubicarseEnSuperficie(NebulosaDeAndromeda nebulosa) {
+		Efecto efecto = nebulosa.getEfecto();
+		if (!afectadoPor(efecto))
+			efectosActivos.add(efecto);
+		efecto.afectar(this);
+	}
+	
+	public void ubicarseEnSuperficie(TormentaPsionica tormenta){
+		Efecto efecto = tormenta.getEfecto();
+		if (!afectadoPor(efecto)){
+			efectosActivos.add(efecto);
+			efecto.afectar(this);
+		}
+	}
+	
+	
+	public boolean afectadoPor(Efecto efecto) {
+		return efectosActivos.contains(efecto);
+	}
+	
+	
+	public void afectarseCon(EfectoEspinas efecto){
+		estadoActivo.afectarConEfectoEspinas(this);
+	}
+
+	public void afectarseCon(EfectoNebulosa efecto){
+		estadoActivo.afectarConEfectoNebulosa(this);
+		if (efecto.getTurnos() == 0)
+			efectosActivos.remove(efecto);
+	}
+	
+	public void afectarseCon(EfectoPantano efecto) {
+		estadoActivo.afectarConEfectoPantano(this);
+	}
+	
+	public void afectarseCon(EfectoTormenta efecto){
+		estadoActivo.afectarConEfectoTormenta(this);
+	}
+	
+	
+	
+	public void afectarConEfectoNebulosa(){
+		movimientosRestantes = 0;
+	}
+	
+	public void afectarConEfectoPantanoFormaHumanoide() {
+		movimientosRestantes = 0;
+	}
+
+	public void afectarConEfectoPantanoFormaTerrestre() {
+		movimientosRestantes--;
+	}
+
+	public void afectarConEfectoEspinas() {
+		vida = vida * 95 / 100;
+	}
+	
+	
+	//Metodos para pruebas
+	
 	public Forma getEstadoActivo (){
 		return estadoActivo;
 	}
@@ -100,97 +185,6 @@ public abstract class AlgoFormer {
 	
 	public int getMovimientosRestantes (){
 		return movimientosRestantes;
-	}
-	
-	public void reiniciarMovimientosRestantes (){
-		movimientosRestantes = getVelocidad();
-	}
-	
-	
-
-	
-	public void iniciarTurno(){
-		reiniciarMovimientosRestantes();
-		List<Efecto> aux = new ArrayList<Efecto>(efectosActivos);
-		for (Efecto efecto: aux){
-			efecto.afectar(this);
-		}
-	}
-	
-	public void borrarEfectos() {
-		efectosActivos.removeAll(efectosAEliminar);
-	}
-
-
-	public void ubicarseEnSuperficie(Pantano pantano) {
-		EfectoPantano efectoPantano = new EfectoPantano();
-		efectoPantano.afectar(this);
-	}
-
-	public void ubicarseEnSuperficie(Rocosa rocosa) {		
-	}
-	
-	
-	public void ubicarseEnSuperficie(Espinas espinas) {
-		EfectoEspinas efectoEspinas = new EfectoEspinas();
-		efectoEspinas.afectar(this);
-	}
-	
-
-	public void ubicarseEnSuperficie(Nube nube) {
-	}
-	
-	public void ubicarseEnSuperficie(NebulosaDeAndromeda nebulosa) {
-		EfectoNebulosa efectoNebulosa = new EfectoNebulosa();
-		if (!afectadoPor(efectoNebulosa))
-			this.efectosActivos.add(efectoNebulosa);
-		efectoNebulosa.afectar(this);
-	}
-	
-	public void ubicarseEnSuperficie(TormentaPsionica tormenta){
-		EfectoTormenta efectoTormenta = new EfectoTormenta();
-		if (!afectadoPor(efectoTormenta)){
-			this.efectosActivos.add(efectoTormenta);
-			efectoTormenta.afectar(this);
-		}
-	}
-
-	public boolean afectadoPor(Efecto efecto) {
-		return this.efectosActivos.contains(efecto);
-	}
-	
-	public void afectarseCon(EfectoEspinas efecto){
-		this.estadoActivo.afectarConEfectoEspinas(this);
-	}
-
-	public void afectarseCon(EfectoNebulosa efecto){
-		(this.estadoActivo).afectarConEfectoNebulosa(this);
-		if (efecto.getTurnos()==0)
-			efectosActivos.remove(efecto);
-	}
-	
-	public void afectarConEfectoNebulosa(){
-		this.movimientosRestantes=0;
-	}
-
-	public void afectarseCon(EfectoPantano efectoPantano) {
-		(this.estadoActivo).afectarConEfectoPantano(this);
-	}
-
-	public void afectarConEfectoPantanoFormaHumanoide() {
-		this.movimientosRestantes=0;
-	}
-
-	public void afectarConEfectoPantanoFormaTerrestre() {
-		this.movimientosRestantes--;
-	}
-	
-	public void afectarseCon(EfectoTormenta efectoTormenta){
-		this.estadoActivo.afectarConEfectoTormenta(this);
-	}
-
-	public void afectarConEfectoEspinas() {
-		this.vida = this.vida*95/100;
 	}
 	
 	public boolean atributosSonIguales(AlgoFormer otroAlgoformer){

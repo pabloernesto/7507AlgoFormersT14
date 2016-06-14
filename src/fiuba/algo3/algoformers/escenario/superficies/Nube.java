@@ -8,5 +8,10 @@ public class Nube extends SuperficieAerea{
     public void afectar(AlgoFormer algoformer) {
 		algoformer.ubicarseEnSuperficie(this);
     }
+	
+	@Override
+	public Efecto getEfecto() {
+		return null;
+	}
 
 }

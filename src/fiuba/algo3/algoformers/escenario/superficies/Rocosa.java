@@ -8,5 +8,10 @@ public class Rocosa extends SuperficieTerrestre{
     public void afectar(AlgoFormer algoformer) {
 		algoformer.ubicarseEnSuperficie(this);
     }
+	
+	@Override
+	public Efecto getEfecto() {
+		return null;
+	}
 
 }
