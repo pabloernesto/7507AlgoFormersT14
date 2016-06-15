@@ -10,7 +10,8 @@ import fiuba.algo3.algoformers.factories.AlgoFormerFactory;
 
 public class Jugador implements Observer
 {
-	EstadoJugador estado = new EstadoJugador_Activo();
+	private EstadoJugador estado = new EstadoJugador_ModoPrueba();
+	
 	protected List<AlgoFormer> equipo;
 	protected AlgoFormer algoformerActual;
 	
