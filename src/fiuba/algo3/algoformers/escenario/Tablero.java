@@ -3,11 +3,14 @@ package fiuba.algo3.algoformers.escenario;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.escenario.bonus.Bonus;
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
+import fiuba.algo3.algoformers.factories.BonusFactory;
+import fiuba.algo3.algoformers.factories.BonusRandomFactory;
 import fiuba.algo3.algoformers.factories.CeldaFactory;
 import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 
@@ -20,9 +23,14 @@ public class Tablero {
 	private static Tablero instanciaTablero = null;
 	
 	private static CeldaFactory generadorCeldas = new RocasYNubesFactory();
+	private static BonusFactory generadorBonus = new BonusRandomFactory();
 	
 	public static void setGeneradorDeCeldas(CeldaFactory generador){
 	    generadorCeldas = generador;
+	}
+	
+	public static void setGeneradorDeBonus(BonusFactory generador){
+	    generadorBonus = generador;
 	}
 	
 	
@@ -32,6 +40,19 @@ public class Tablero {
 		for (int i=1 ; i<=ANCHO ; i++){
 			for (int j=1 ; j<=ALTO ; j++)
 				celdas.put(new Posicion(i,j), generadorCeldas.getCelda());
+		}
+		colocarBonus();
+	}
+
+	private void colocarBonus(){
+		Random generador = new Random();
+		int cantidadBonus = ANCHO * ALTO / 100 * 20; //El 20% de las celdas tienen bonus
+		for (int i = 0 ; i < cantidadBonus ; i++){
+			Bonus bonus = generadorBonus.getBonus();
+			int x = generador.nextInt(ANCHO);
+			int y = generador.nextInt(ALTO);
+			setBonusEnCelda(new Posicion(x + 1, y + 1), bonus); //Se le suma 1 porque el numero puede ser 0
+																// y las posiciones empiezan en el (1,1)
 		}
 	}
 	

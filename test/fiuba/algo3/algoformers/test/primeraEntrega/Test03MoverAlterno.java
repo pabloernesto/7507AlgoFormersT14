@@ -10,6 +10,7 @@ import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.escenario.*;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
+import fiuba.algo3.algoformers.factories.BonusNuloFactory;
 import fiuba.algo3.algoformers.factories.DecepticonFactory;
 import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 
@@ -31,6 +32,7 @@ public class Test03MoverAlterno {
 	@Before
 	public void setUp(){
 		Tablero.setGeneradorDeCeldas(new RocasYNubesFactory());
+		Tablero.setGeneradorDeBonus(new BonusNuloFactory());
 		tablero = Tablero.getInstance();
 	}
 	
