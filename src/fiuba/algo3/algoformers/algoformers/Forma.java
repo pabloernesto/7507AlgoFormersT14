@@ -63,6 +63,8 @@ public abstract class Forma {
 	public abstract void afectarConEfectoTormenta(AlgoFormer algoFormer);
 
 	public abstract void afectarConEfectoEspinas(AlgoFormer algoFormer);
+
+	public abstract void afectarConEfectoChispa(AlgoFormer algoFormer);
 	
 }
 

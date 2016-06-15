@@ -12,4 +12,7 @@ public abstract class FormaAlterna extends Forma {
 		return formaFactory.crearFormaHumanoide();
 	}
 	
+	public void afectarConEfectoChispa(AlgoFormer algoFormer){
+	}
+	
 }

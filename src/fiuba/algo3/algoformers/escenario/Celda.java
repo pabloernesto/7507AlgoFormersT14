@@ -8,19 +8,18 @@ import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
 public class Celda {
 	
 	private AlgoFormer algoformer;
-	private boolean contieneChispaSuprema;
-
     private SuperficieTerrestre suelo;
     private SuperficieAerea cielo;
     private Bonus bonus;
+    private Bonus chispa;
 	
 
 	public Celda (SuperficieTerrestre suelo, SuperficieAerea cielo){
 		algoformer = null;
-		contieneChispaSuprema = false;
 		this.suelo = suelo;
 		this.cielo = cielo;
 		this.bonus = new BonusNulo();
+		this.chispa = new BonusNulo();
 	}
 	
 	public void recibirAlgoformer (AlgoFormer algoformer){
@@ -31,6 +30,7 @@ public class Celda {
 		cielo.afectar(algoformer);
 		bonus.afectar(algoformer);
 		bonus = new BonusNulo();
+		chispa.afectar(algoformer);
 	}
 	
 	public AlgoFormer getAlgoformer (){
@@ -42,11 +42,11 @@ public class Celda {
 	}
 	
 	public void colocarChispaSuprema (){
-		contieneChispaSuprema = true;
+		chispa = new ChispaSuprema();
 	}
 	
 	public boolean contieneChispaSuprema (){
-		return contieneChispaSuprema;
+		return chispa.getClass() != BonusNulo.class;
 	}
 
 	public void desocuparCelda (){

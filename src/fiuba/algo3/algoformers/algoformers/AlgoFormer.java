@@ -6,10 +6,12 @@ import java.util.List;
 
 import fiuba.algo3.algoformers.escenario.*;
 import fiuba.algo3.algoformers.escenario.bonus.BurbujaInmaculada;
+import fiuba.algo3.algoformers.escenario.bonus.ChispaSuprema;
 import fiuba.algo3.algoformers.escenario.bonus.DobleCanion;
 import fiuba.algo3.algoformers.escenario.bonus.Flash;
 import fiuba.algo3.algoformers.escenario.efectos.Efecto;
 import fiuba.algo3.algoformers.escenario.efectos.EfectoBurbuja;
+import fiuba.algo3.algoformers.escenario.efectos.EfectoChispa;
 import fiuba.algo3.algoformers.escenario.efectos.EfectoDobleCanion;
 import fiuba.algo3.algoformers.escenario.efectos.EfectoEspinas;
 import fiuba.algo3.algoformers.escenario.efectos.EfectoFlash;
@@ -153,6 +155,11 @@ public abstract class AlgoFormer {
 		recibirEfectoPorTurnos(efecto);
 	}
 	
+	public void recibirBonus(ChispaSuprema chispa){
+		Efecto efecto = chispa.getEfecto();
+		efecto.afectar(this);
+	}
+	
 	private void recibirEfectoPorTurnos(Efecto efecto){
 		if (!afectadoPor(efecto)){
 			efectosActivos.add(efecto);
@@ -195,6 +202,10 @@ public abstract class AlgoFormer {
 		estado.afectarConEfectoBurbuja(this);
 		if (efecto.getTurnos() == 0)
 			efectosABorrar.add(efecto);
+	}
+	
+	public void afectarseCon(EfectoChispa efecto){
+		estado.afectarConEfectoChispa(this);
 	}
 	
 	

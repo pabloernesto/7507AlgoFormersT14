@@ -92,9 +92,8 @@ public class Tablero {
 		return posicionAlgoformer;
 	}
 	
-	public void colocarChispaSuprema(){
-		Posicion medio = new Posicion (ANCHO/2, ALTO/2);
-		celdas.get(medio).colocarChispaSuprema();
+	public void colocarChispaSuprema(Posicion posicion){
+		celdas.get(posicion).colocarChispaSuprema();
 	}
 	
 	public boolean posicionEstaOcupada(Posicion posicion){

@@ -2,6 +2,7 @@
 package fiuba.algo3.algoformers.algoformers;
 
 import fiuba.algo3.algoformers.factories.FormaFactory;
+import fiuba.algo3.algoformers.juego.Juego;
 
 public class FormaHumanoide extends Forma {
 
@@ -31,6 +32,10 @@ public class FormaHumanoide extends Forma {
 	@Override
 	public void afectarConEfectoEspinas(AlgoFormer algoformer){
 		algoformer.afectarConEfectoEspinas();
+	}
+	
+	public void afectarConEfectoChispa(AlgoFormer algoformer){
+		Juego.hayGanador(algoformer);
 	}
 	
 }

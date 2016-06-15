@@ -182,18 +182,29 @@ public class TableroTest {
 	@Test
     public void testColocarChispaSupremaLaAgregaEnElMedio()
     {
-    	tablero.colocarChispaSuprema();
-    	Posicion medio = tablero.getMedio();
+		Posicion posicion = new Posicion(10, 10);
+    	tablero.colocarChispaSuprema(posicion);
     	
-    	assertTrue(tablero.posicionContieneChispaSuprema(medio));
+    	assertTrue(tablero.posicionContieneChispaSuprema(posicion));
     }
 	
 	@Test
     public void testAntesDeAgregarLaChispaElMedioEstaVacio()
     {
-        Posicion medio = tablero.getMedio();
-    	
-    	assertFalse(tablero.posicionContieneChispaSuprema(medio));
+		int cuartoDeAncho = tablero.ancho() / 4;
+		int tresCuartosDeAncho = cuartoDeAncho * 3;
+		int cuartoDeAlto = tablero.altura() / 4;
+		int tresCuartosDeAlto = cuartoDeAlto * 3;
+		
+		boolean estaLaChispa = false;
+		for (int x = cuartoDeAncho ; x <= tresCuartosDeAncho ; x++){
+			for (int y = cuartoDeAlto ; y <= tresCuartosDeAlto ; y++){
+				Posicion posicion = new Posicion(x, y);
+				if (tablero.posicionContieneChispaSuprema(posicion))
+					estaLaChispa = true;
+			}
+		}
+    	assertFalse(estaLaChispa);
     }
 	
 	@Test

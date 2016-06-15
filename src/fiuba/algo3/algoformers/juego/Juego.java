@@ -1,6 +1,7 @@
 package fiuba.algo3.algoformers.juego;
 
 import java.util.List;
+import java.util.Random;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
@@ -15,6 +16,7 @@ public class Juego {
 	Tablero tablero;
 	private Jugador jugadorActual;
 	private Jugador jugadorInactivo;
+	private static boolean hayGanador = false;
 	
 	public Juego() {}
 	
@@ -62,7 +64,18 @@ public class Juego {
 	}
 	
 	private void ubicarChispaSuprema(){
-		tablero.colocarChispaSuprema();
+		int anchoTablero = tablero.ancho();
+		int altoTablero = tablero.altura();
+		int tercioDeAncho = anchoTablero / 3;
+		int tercioDeAlto = altoTablero / 3;
+		Random generador = new Random();
+		int sumaDeAncho = generador.nextInt(tercioDeAncho);
+		int sumaDeAlto = generador.nextInt(tercioDeAlto);
+		
+		int coordenadaX = tercioDeAncho + sumaDeAncho;
+		int coordenadaY = tercioDeAlto + sumaDeAlto;
+		Posicion posicionChispa = new Posicion(coordenadaX, coordenadaY);
+		tablero.colocarChispaSuprema(posicionChispa);
 	}
 
 	private void colocarEquipo(List<AlgoFormer> equipo,
@@ -74,5 +87,11 @@ public class Juego {
 			tablero.colocarAlgoformer(algoformer, posicion);
 			posicion = posicion.sumarMovimiento(Movimiento.ABAJO);
 		}
+	}
+
+	//la idea seria que juego chequee al final de cada turno si hay un ganador
+	//consultando el booleanos hayGanador
+	public static void hayGanador(AlgoFormer algoformer) {
+		hayGanador = true;
 	}
 }
