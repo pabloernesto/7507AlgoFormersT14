@@ -186,4 +186,29 @@ public class Test03MoverseconFlashSeMueveElTriple {
 		}
 		assertEquals(velocidadAnterior, velocidadActual); //Al cuarto turno ya no hace efecto
 	}
+	
+	@Test
+	public void test05AgarrarFlashEnHumanoideYTransformarseHacePerderElBonus(){
+		optimus = autobotFactory.crearOptimusPrime();
+		optimus.transformarse();
+		int velocidadAlternaOriginal = optimus.getVelocidad();
+		optimus.transformarse();
+		tablero.colocarAlgoformer(optimus, new Posicion(1, 1));
+		tablero.setBonusEnCelda(new Posicion(1, 2), new Flash());
+		optimus.moverse(Movimiento.ABAJO);
+		
+		optimus.finalizarTurno();
+		optimus.iniciarTurno();
+		optimus.transformarse();
+		
+		optimus.finalizarTurno();
+		optimus.iniciarTurno();
+		int velocidadActual;
+		for (velocidadActual = 0 ; optimus.getMovimientosRestantes() != 0 ; velocidadActual++){
+			optimus.moverse(Movimiento.DERECHA);
+		}
+		assertEquals(velocidadAlternaOriginal, velocidadActual);
+	}
+	
+	
 }

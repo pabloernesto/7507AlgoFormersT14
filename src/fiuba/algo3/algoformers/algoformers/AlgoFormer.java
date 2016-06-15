@@ -54,6 +54,8 @@ public abstract class AlgoFormer {
 	public void transformarse (){
 		estado = estado.transformarse();
 		reiniciarMovimientosRestantes();
+		efectosActivos.clear();
+		efectosABorrar.clear();
 	}
 	
 	public void moverse (Movimiento direccion){

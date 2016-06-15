@@ -174,4 +174,27 @@ public class Test01AtacarConDobleCanionCausaElDobleDeDanioTest {
 		optimus.atacar(megatron);
 		assertEquals(vidaAnterior - ataqueAnterior, megatron.getVida()); //Al cuarto turno ya no hace efecto
 	}
+	
+	@Test
+	public void test05AgarrarDobleCanionEnHumanoideYTransformarseHacePerderElBonus(){
+		optimus = autobotFactory.crearOptimusPrime();
+		megatron = decepticonFactory.crearMegatron();
+		optimus.transformarse();
+		int ataqueAlternoOriginal = optimus.getAtaque();
+		optimus.transformarse();
+		tablero.colocarAlgoformer(optimus, new Posicion(1, 1));
+		tablero.colocarAlgoformer(megatron, new Posicion(2, 2));
+		tablero.setBonusEnCelda(new Posicion(1, 2), new DobleCanion());
+		optimus.moverse(Movimiento.ABAJO);
+		
+		optimus.finalizarTurno();
+		optimus.iniciarTurno();
+		optimus.transformarse();
+		
+		optimus.finalizarTurno();
+		optimus.iniciarTurno();
+		int vidaAnterior = megatron.getVida();
+		optimus.atacar(megatron);
+		assertEquals(vidaAnterior - ataqueAlternoOriginal, megatron.getVida());
+	}
 }

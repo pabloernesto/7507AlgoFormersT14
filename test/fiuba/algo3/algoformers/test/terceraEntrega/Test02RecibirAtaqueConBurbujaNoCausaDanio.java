@@ -144,4 +144,24 @@ public class Test02RecibirAtaqueConBurbujaNoCausaDanio {
 		megatron.atacar(optimus);
 		assertEquals(vidaAnterior - megatron.getAtaque(), optimus.getVida()); //Al tercer turno ya no hace efecto
 	}
+	
+	@Test
+	public void test05AgarrarFlashEnHumanoideYTransformarseHacePerderElBonus(){
+		optimus = autobotFactory.crearOptimusPrime();
+		megatron = decepticonFactory.crearMegatron();
+		int vidaAnterior = optimus.getVida();
+		tablero.colocarAlgoformer(optimus, new Posicion(1, 1));
+		tablero.colocarAlgoformer(megatron, new Posicion(2, 2));
+		tablero.setBonusEnCelda(new Posicion(1, 2), new BurbujaInmaculada());
+		optimus.moverse(Movimiento.ABAJO);
+		
+		optimus.finalizarTurno();
+		optimus.iniciarTurno();
+		optimus.transformarse();
+		
+		optimus.finalizarTurno();
+		optimus.iniciarTurno();
+		megatron.atacar(optimus);
+		assertEquals(vidaAnterior - megatron.getAtaque(), optimus.getVida());
+	}
 }
