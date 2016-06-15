@@ -1,6 +1,7 @@
 package fiuba.algo3.algoformers.test.segundaEntrega;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +15,7 @@ import fiuba.algo3.algoformers.escenario.superficies.SuperficieTerrestre;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
 import fiuba.algo3.algoformers.factories.DecepticonFactory;
 
-public class Test04AtravesarPantanoEnModoAereoNoCausaProblemasTest {
+public class Test04AtravesarPantanoEnModoAereoSoloRestaUnMovimientoTest {
 	
 	private Celda celda;
 	private AutoBotFactory autobotFactory = new AutoBotFactory();
@@ -22,6 +23,8 @@ public class Test04AtravesarPantanoEnModoAereoNoCausaProblemasTest {
 	
 	private AlgoFormer ratchet;
 	private AlgoFormer megatron;
+	private AlgoFormer ratchet2;
+	private AlgoFormer megatron2;
 	
 	private SuperficieAerea nubes = new Nube();
 	private SuperficieTerrestre pantano = new Pantano();
@@ -32,20 +35,28 @@ public class Test04AtravesarPantanoEnModoAereoNoCausaProblemasTest {
 	}
 	
 	@Test
-	public void test01RatchetAtravesarPantanoEnModoAereoNoCausaProblemas(){
+	public void test01RatchetAtravesarPantanoEnModoAereoSoloRestaUnMovimiento(){
 		ratchet = autobotFactory.crearRatchet();
 		ratchet.transformarse();
-		int movimientos = ratchet.getMovimientosRestantes();
+		ratchet2 = autobotFactory.crearRatchet();
+		ratchet2.transformarse();
+		
 		ratchet.entrarACelda(celda);
-		assertEquals(movimientos - 1, ratchet.getMovimientosRestantes());
+		
+		assertTrue(ratchet.atributosSonIguales(ratchet2));
+		assertEquals(ratchet2.getMovimientosRestantes() - 1, ratchet.getMovimientosRestantes());
 	}
 	
 	@Test
-	public void test02MegatronAtravesarPantanoEnModoAereoNoCausaProblemas(){
+	public void test02MegatronAtravesarPantanoEnModoAereoSoloRestaUnMovimiento(){
 		megatron = decepticonFactory.crearMegatron();
 		megatron.transformarse();
-		int movimientos = megatron.getMovimientosRestantes();
+		megatron2 = decepticonFactory.crearMegatron();
+		megatron2.transformarse();
+		
 		megatron.entrarACelda(celda);
-		assertEquals(movimientos - 1, megatron.getMovimientosRestantes());
+		
+		assertTrue(megatron.atributosSonIguales(megatron2));
+		assertEquals(megatron2.getMovimientosRestantes() - 1, megatron.getMovimientosRestantes());
 	}
 }
