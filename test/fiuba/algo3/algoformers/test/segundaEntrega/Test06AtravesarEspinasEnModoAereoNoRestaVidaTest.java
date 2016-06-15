@@ -22,6 +22,8 @@ public class Test06AtravesarEspinasEnModoAereoNoRestaVidaTest {
 	
 	private AlgoFormer ratchet;
 	private AlgoFormer megatron;
+	private AlgoFormer ratchet2;
+	private AlgoFormer megatron2;
 	
 	private SuperficieAerea nubes = new Nube();
 	private SuperficieTerrestre espinas = new Espinas();
@@ -34,20 +36,20 @@ public class Test06AtravesarEspinasEnModoAereoNoRestaVidaTest {
 	@Test
 	public void test01RatchetAtravesarEspinasEnModoAereoNoRestaVida(){
 		ratchet = autobotFactory.crearRatchet();
-		int vida = ratchet.getVida();
+		ratchet2 = autobotFactory.crearRatchet();
+		
 		ratchet.transformarse();
 		ratchet.entrarACelda(celda);
-		int nuevaVida = ratchet.getVida();
-		assertEquals(vida, nuevaVida);
+		assertEquals(ratchet2.getVida(), ratchet.getVida());
 	}
 	
 	@Test
 	public void test02MegatronAtravesarEspinasEnModoAereoNoRestaVida(){
 		megatron = decepticonFactory.crearMegatron();
-		int vida = megatron.getVida();
+		megatron2 = decepticonFactory.crearMegatron();
+
 		megatron.transformarse();
 		megatron.entrarACelda(celda);
-		int nuevaVida = megatron.getVida();
-		assertEquals(vida, nuevaVida);
+		assertEquals(megatron2.getVida(), megatron.getVida());
 	}
 }
