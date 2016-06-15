@@ -28,6 +28,7 @@ private Tablero tablero;
 	@Before
 	public void setUp(){
 		Tablero.setGeneradorDeCeldas(new RocasYNubesFactory());
+		Tablero.setGeneradorDeBonus(new BonusNuloFactory());
 		tablero = Tablero.getInstance();
 	}
 	

@@ -9,16 +9,16 @@ import java.util.Random;
 
 public class CeldaRandomFactory implements CeldaFactory {
 
-    private Random generator;
+    private Random generador;
 
     public CeldaRandomFactory()
     {
-        generator = new Random();
+        generador = new Random();
     }
     
     public CeldaRandomFactory(long randomGeneratorSeed)
     {
-        generator = new Random(randomGeneratorSeed);
+        generador = new Random(randomGeneratorSeed);
     }
 
 	public Celda getCelda()
@@ -32,7 +32,7 @@ public class CeldaRandomFactory implements CeldaFactory {
 		opciones.add(new Rocosa());
 		opciones.add(new Pantano());
 		opciones.add(new Espinas());
-		int eleccion = generator.nextInt(3);
+		int eleccion = generador.nextInt(3);
 		return opciones.get(eleccion);
 	}
 	
@@ -42,7 +42,7 @@ public class CeldaRandomFactory implements CeldaFactory {
 		opciones.add(new Nube());
 		opciones.add(new NebulosaDeAndromeda());
 		opciones.add(new TormentaPsionica());
-		int eleccion = generator.nextInt(3);
+		int eleccion = generador.nextInt(3);
 		return opciones.get(eleccion);
 	}
 
