@@ -21,18 +21,24 @@ public class Jugador implements Observer
 	    equipo = factory.crearEquipo();
  	}
 	
-	public void elegirAlgoFormer(String nombre){
-		AlgoFormer algoformerElegido = null;
-		for (AlgoFormer algoformer : equipo){
-			if (algoformer.getNombre().equals(nombre))
-				algoformerElegido = algoformer;
-		}
-		if (algoformerElegido == null){
-			System.out.println("El algoformer no existe"); //Cambiar por excepcion?
-		}
-		algoformerActual = algoformerElegido;
-	}
-	
+    public void elegirAlgoFormer(String nombre)
+    {
+        estado.elegirAlgoFormer(this, nombre);
+    }
+    
+    void _elegirAlgoFormer(String nombre)
+    {
+        AlgoFormer algoformerElegido = null;
+        for (AlgoFormer algoformer : equipo){
+            if (algoformer.getNombre().equals(nombre))
+                algoformerElegido = algoformer;
+        }
+        if (algoformerElegido == null){
+            System.out.println("El algoformer no existe"); //Cambiar por excepcion?
+        }
+        algoformerActual = algoformerElegido;
+    }
+    
 	public List<AlgoFormer> getListaAlgoformers (){
 		return equipo;
 	}

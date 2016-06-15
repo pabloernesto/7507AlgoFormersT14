@@ -9,5 +9,10 @@ public abstract class EstadoJugador
 	public abstract void mover(Jugador j, Movimiento direccion);
 	public abstract void combinar(Jugador j);
 	public abstract void transformar(Jugador j);
+    
+    public void elegirAlgoFormer(Jugador j, String nombre)
+    {
+        j._elegirAlgoFormer(nombre);
+    }
 }
 

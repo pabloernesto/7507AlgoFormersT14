@@ -25,5 +25,10 @@ public class EstadoJugador_Moviendo extends EstadoJugador
 	{
 		throw new RuntimeException("Estas moviendo");
 	}
+	
+    public void elegirAlgoFormer(Jugador j, String nombre)
+    {
+		throw new RuntimeException("Estas moviendo");
+    }
 }
 
