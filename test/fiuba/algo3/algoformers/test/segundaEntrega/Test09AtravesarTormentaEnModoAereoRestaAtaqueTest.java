@@ -22,6 +22,8 @@ public class Test09AtravesarTormentaEnModoAereoRestaAtaqueTest {
 	
 	private AlgoFormer ratchet;
 	private AlgoFormer megatron;
+	private AlgoFormer ratchet2;
+	private AlgoFormer megatron2;
 	
 	private SuperficieTerrestre rocosa = new Rocosa();
 	private SuperficieAerea tormenta = new TormentaPsionica();
@@ -34,18 +36,22 @@ public class Test09AtravesarTormentaEnModoAereoRestaAtaqueTest {
 	@Test
 	public void test01RatchetAtravesarTormentaEnModoAereoRestaAtaque(){
 		ratchet = autobotFactory.crearRatchet();
+		ratchet2 = autobotFactory.crearRatchet();
 		ratchet.transformarse();
-		int ataqueAnterior = ratchet.getAtaque();
+		ratchet2.transformarse();
+
 		ratchet.entrarACelda(celda);
-		assertEquals(ataqueAnterior * 60 / 100, ratchet.getAtaque());
+		assertEquals(ratchet2.getAtaque() * 60 / 100, ratchet.getAtaque());
 	}
 	
 	@Test
 	public void test02MegatronAtravesarTormentaEnModoAereoRestaAtaque(){
 		megatron = decepticonFactory.crearMegatron();
+		megatron2 = decepticonFactory.crearMegatron();
 		megatron.transformarse();
-		int ataqueAnterior = megatron.getAtaque();
+		megatron2.transformarse();
+		
 		megatron.entrarACelda(celda);
-		assertEquals(ataqueAnterior * 60 / 100, megatron.getAtaque());
+		assertEquals(megatron2.getAtaque() * 60 / 100, megatron.getAtaque());
 	}
 }
