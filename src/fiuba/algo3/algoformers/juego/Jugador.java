@@ -11,6 +11,7 @@ import fiuba.algo3.algoformers.factories.AlgoFormerFactory;
 public class Jugador implements Observer
 {
 	private EstadoJugador estado = new EstadoJugador_ModoPrueba();
+    private ControlDeTurnos turnos;
 	
 	protected List<AlgoFormer> equipo;
 	protected AlgoFormer algoformerActual;
@@ -65,10 +66,25 @@ public class Jugador implements Observer
 	public void update(Observable o, Object arg)
 	{
 	    if (arg == this)
-	        setEstado(new EstadoJugador_Activo());
-	    
+	        iniciarTurno();
+	        
 	    else
 	        setEstado(new EstadoJugador_Inactivo());
+	}
+	
+	private void iniciarTurno()
+	{
+        setEstado(new EstadoJugador_Activo());
+        for (AlgoFormer af : equipo)
+            af.iniciarTurno();
+	}
+
+	void terminarTurno()
+	{
+        for (AlgoFormer af : equipo)
+            af.finalizarTurno();
+        
+        turnos.terminarTurno();
 	}
 }
 
