@@ -1,13 +1,15 @@
 package fiuba.algo3.algoformers.juego;
 
+import java.util.Observable;
+import java.util.Observer;
 import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.factories.AlgoFormerFactory;
 
-public class Jugador {
-
+public class Jugador implements Observer
+{
 	EstadoJugador estado = new EstadoJugador_Activo();
 	protected List<AlgoFormer> equipo;
 	protected AlgoFormer algoformerActual;
@@ -57,4 +59,15 @@ public class Jugador {
 	{
 	    estado.transformar(this);
 	}
+	
+	/* Jugador es observador de ControlDeTurnos */
+	public void update(Observable o, Object arg)
+	{
+	    if (arg == this)
+	        setEstado(new EstadoJugador_Activo());
+	    
+	    else
+	        setEstado(new EstadoJugador_Inactivo());
+	}
 }
+
