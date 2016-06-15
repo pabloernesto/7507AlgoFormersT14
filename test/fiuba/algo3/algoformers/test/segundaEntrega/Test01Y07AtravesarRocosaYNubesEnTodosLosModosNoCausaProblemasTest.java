@@ -15,7 +15,7 @@ import fiuba.algo3.algoformers.escenario.superficies.SuperficieTerrestre;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
 import fiuba.algo3.algoformers.factories.DecepticonFactory;
 
-public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
+public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosSoloRestaUnMovimientoTest {
 
 	private Celda celda;
 	private Celda otraCelda;
@@ -23,12 +23,18 @@ public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
 	private DecepticonFactory decepticonFactory = new DecepticonFactory();
 	
 	private AlgoFormer optimus;
+	private AlgoFormer optimus2;
 	private AlgoFormer ratchet;
+	private AlgoFormer ratchet2;
 	private AlgoFormer bumblebee;
+	private AlgoFormer bumblebee2;
 
 	private AlgoFormer megatron;
+	private AlgoFormer megatron2;
 	private AlgoFormer bonecrusher;
+	private AlgoFormer bonecrusher2;
 	private AlgoFormer frenzy;
+	private AlgoFormer frenzy2;
 	
 	private SuperficieTerrestre rocosa = new Rocosa();
 	private SuperficieAerea nubes = new Nube();
@@ -41,138 +47,135 @@ public class Test01Y07AtravesarRocosaYNubesEnTodosLosModosNoCausaProblemasTest {
 	}
 	
 	@Test
-	public void test01OptimusAtravesarRocosaEnModoHumanoideNoCausaProblemas(){
+	public void test01OptimusAtravesarRocosaEnModoHumanoideSoloRestaUnMovimiento(){
 		optimus = autobotFactory.crearOptimusPrime();
-		AlgoFormer optimus2 = autobotFactory.crearOptimusPrime();
-		int movimientos = optimus.getMovimientosRestantes();
+		optimus2 = autobotFactory.crearOptimusPrime();
+		
 		optimus.entrarACelda(celda);
 		assertTrue(optimus.atributosSonIguales(optimus2));
-		assertEquals(movimientos - 1, optimus.getMovimientosRestantes());
+		assertEquals(optimus2.getMovimientosRestantes() - 1, optimus.getMovimientosRestantes());
 	}
 	
 	@Test
-	public void test02OptimusAtravesarRocosaEnModoTerrestreNoCausaProblemas(){
+	public void test02OptimusAtravesarRocosaEnModoTerrestreSoloRestaUnMovimiento(){
 		optimus = autobotFactory.crearOptimusPrime();
 		optimus.transformarse();
-		AlgoFormer optimus2 = autobotFactory.crearOptimusPrime();
+		optimus2 = autobotFactory.crearOptimusPrime();
 		optimus2.transformarse();
-		int movimientos = optimus.getMovimientosRestantes();
+		
 		optimus.entrarACelda(celda);
 		assertTrue(optimus.atributosSonIguales(optimus2));
-		assertEquals(movimientos - 1, optimus.getMovimientosRestantes());
+		assertEquals(optimus2.getMovimientosRestantes() - 1, optimus.getMovimientosRestantes());
 	}
 	
 	@Test
-	public void test03BumblebeeAtravesarRocosaEnModoHumanoideNoCausaProblemas(){
+	public void test03BumblebeeAtravesarRocosaEnModoHumanoideSoloRestaUnMovimiento(){
 		bumblebee = autobotFactory.crearBumblebee();
-		AlgoFormer bumblebee2 = autobotFactory.crearBumblebee();
-		int movimientos = bumblebee.getMovimientosRestantes();
+		bumblebee2 = autobotFactory.crearBumblebee();
+		
 		bumblebee.entrarACelda(celda);
 		assertTrue(bumblebee.atributosSonIguales(bumblebee2));
-		assertEquals(movimientos - 1, bumblebee.getMovimientosRestantes());
+		assertEquals(bumblebee2.getMovimientosRestantes() - 1, bumblebee.getMovimientosRestantes());
 	}
 	
 	@Test
-	public void test04BumblebeeAtravesarRocosaEnModoTerrestreNoCausaProblemas(){
+	public void test04BumblebeeAtravesarRocosaEnModoTerrestreSoloRestaUnMovimiento(){
 		bumblebee = autobotFactory.crearBumblebee();
 		bumblebee.transformarse();
-		AlgoFormer bumblebee2 = autobotFactory.crearBumblebee();
+		bumblebee2 = autobotFactory.crearBumblebee();
 		bumblebee2.transformarse();
-		int movimientos = bumblebee.getMovimientosRestantes();
+		
 		bumblebee.entrarACelda(celda);
 		assertTrue(bumblebee.atributosSonIguales(bumblebee2));
-		assertEquals(movimientos - 1, bumblebee.getMovimientosRestantes());
+		assertEquals(bumblebee2.getMovimientosRestantes() - 1, bumblebee.getMovimientosRestantes());
 	}
 	
 	@Test
-	public void test05RatchetAtravesarRocosaEnModoHumanoideNoCausaProblemas(){
+	public void test05RatchetAtravesarRocosaEnModoHumanoideSoloRestaUnMovimiento(){
 		ratchet = autobotFactory.crearRatchet();
-		AlgoFormer ratchet2 = autobotFactory.crearRatchet();
-		int movimientos = ratchet.getMovimientosRestantes();
-		assertEquals(1, movimientos);
+		ratchet2 = autobotFactory.crearRatchet();
+		
 		ratchet.entrarACelda(celda);
 		assertTrue(ratchet.atributosSonIguales(ratchet2));
-		assertEquals(movimientos - 1, ratchet.getMovimientosRestantes());
+		assertEquals(ratchet2.getMovimientosRestantes() -1, ratchet.getMovimientosRestantes());
 	}
 	
 	@Test
-	public void test06RatchetAtravesarRocosaEnModoAereoNoCausaProblemas(){
+	public void test06RatchetAtravesarRocosaEnModoAereoSoloRestaUnMovimiento(){
 		ratchet = autobotFactory.crearRatchet();
 		ratchet.transformarse();
-		AlgoFormer ratchet2 = autobotFactory.crearRatchet();
+		ratchet2 = autobotFactory.crearRatchet();
 		ratchet2.transformarse();
-		int movimientos = ratchet.getMovimientosRestantes();
+		
 		ratchet.entrarACelda(celda);
 		assertTrue(ratchet.atributosSonIguales(ratchet2));
-		assertEquals(movimientos - 1, ratchet.getMovimientosRestantes());
+		assertEquals(ratchet2.getMovimientosRestantes() -1, ratchet.getMovimientosRestantes());
 		ratchet.entrarACelda(otraCelda);
 	}
 	
 	@Test
-	public void test07MegatronAtravesarRocosaEnModoHumanoideNoCausaProblemas(){
+	public void test07MegatronAtravesarRocosaEnModoHumanoideSoloRestaUnMovimiento(){
 		megatron = decepticonFactory.crearMegatron();
-		AlgoFormer megatron2 = decepticonFactory.crearMegatron();
-		int movimientos = megatron.getMovimientosRestantes();
-		assertEquals(1, movimientos);
+		megatron2 = decepticonFactory.crearMegatron();
+		
 		megatron.entrarACelda(celda);
 		assertTrue(megatron.atributosSonIguales(megatron2));
-		assertEquals(movimientos - 1, megatron.getMovimientosRestantes());
+		assertEquals(megatron2.getMovimientosRestantes() - 1, megatron.getMovimientosRestantes());
 	}
 	
 	@Test
-	public void test08MegatronAtravesarRocosaEnModoAereoNoCausaProblemas(){
+	public void test08MegatronAtravesarRocosaEnModoAereoSoloRestaUnMovimiento(){
 		megatron = decepticonFactory.crearMegatron();
 		megatron.transformarse();
-		AlgoFormer megatron2 = decepticonFactory.crearMegatron();
+		megatron2 = decepticonFactory.crearMegatron();
 		megatron2.transformarse();
-		int movimientos = megatron.getMovimientosRestantes();
+		
 		megatron.entrarACelda(celda);
 		assertTrue(megatron.atributosSonIguales(megatron2));
-		assertEquals(movimientos - 1, megatron.getMovimientosRestantes());
+		assertEquals(megatron2.getMovimientosRestantes() - 1, megatron.getMovimientosRestantes());
 	}
 	
 	@Test
-	public void test09BonecrusherAtravesarRocosaEnModoHumanoideNoCausaProblemas(){
+	public void test09BonecrusherAtravesarRocosaEnModoHumanoideSoloRestaUnMovimiento(){
 		bonecrusher = decepticonFactory.crearBonecrusher();
-		AlgoFormer bonecrusher2 = decepticonFactory.crearBonecrusher();
-		int movimientos = bonecrusher.getMovimientosRestantes();
-		assertEquals(1, movimientos);
+		bonecrusher2 = decepticonFactory.crearBonecrusher();
+		
 		bonecrusher.entrarACelda(celda);
 		assertTrue(bonecrusher.atributosSonIguales(bonecrusher2));
-		assertEquals(movimientos - 1, bonecrusher.getMovimientosRestantes());
+		assertEquals(bonecrusher2.getMovimientosRestantes() - 1, bonecrusher.getMovimientosRestantes());
 	}
 	
 	@Test
-	public void test10BonecrusherAtravesarRocosaEnModoTerrestreNoCausaProblemas(){
+	public void test10BonecrusherAtravesarRocosaEnModoTerrestreSoloRestaUnMovimiento(){
 		bonecrusher = decepticonFactory.crearBonecrusher();
 		bonecrusher.transformarse();
-		AlgoFormer bonecrusher2 = decepticonFactory.crearBonecrusher();
+		bonecrusher2 = decepticonFactory.crearBonecrusher();
 		bonecrusher2.transformarse();
-		int movimientos = bonecrusher.getMovimientosRestantes();
+		
 		bonecrusher.entrarACelda(celda);
 		assertTrue(bonecrusher.atributosSonIguales(bonecrusher2));
-		assertEquals(movimientos - 1, bonecrusher.getMovimientosRestantes());
+		assertEquals(bonecrusher2.getMovimientosRestantes() - 1, bonecrusher.getMovimientosRestantes());
 	}
 	
 	@Test
-	public void test11FrenzyAtravesarRocosaEnModoHumanoideNoCausaProblemas(){
+	public void test11FrenzyAtravesarRocosaEnModoHumanoideSoloRestaUnMovimiento(){
 		frenzy = decepticonFactory.crearFrenzy();
-		AlgoFormer frenzy2 = decepticonFactory.crearFrenzy();
-		int movimientos = frenzy.getMovimientosRestantes();
+		frenzy2 = decepticonFactory.crearFrenzy();
+		
 		frenzy.entrarACelda(celda);
 		assertTrue(frenzy.atributosSonIguales(frenzy2));
-		assertEquals(movimientos - 1, frenzy.getMovimientosRestantes());
+		assertEquals(frenzy2.getMovimientosRestantes() - 1, frenzy.getMovimientosRestantes());
 	}
 	
 	@Test
-	public void test12FrenzyAtravesarRocosaEnModoTerrestreNoCausaProblemas(){
+	public void test12FrenzyAtravesarRocosaEnModoTerrestreSoloRestaUnMovimiento(){
 		frenzy = decepticonFactory.crearFrenzy();
 		frenzy.transformarse();
-		AlgoFormer frenzy2 = decepticonFactory.crearFrenzy();
+		frenzy2 = decepticonFactory.crearFrenzy();
 		frenzy2.transformarse();
-		int movimientos = frenzy.getMovimientosRestantes();
+		
 		frenzy.entrarACelda(celda);
 		assertTrue(frenzy.atributosSonIguales(frenzy2));
-		assertEquals(movimientos - 1, frenzy.getMovimientosRestantes());
+		assertEquals(frenzy2.getMovimientosRestantes() - 1, frenzy.getMovimientosRestantes());
 	}
 }
