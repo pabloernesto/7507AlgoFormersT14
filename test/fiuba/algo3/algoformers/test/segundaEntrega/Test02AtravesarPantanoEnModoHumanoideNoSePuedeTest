@@ -44,50 +44,56 @@ public class Test02AtravesarPantanoEnModoHumanoideNoSePuedeTest {
 	}
 	
 	@Test(expected=NoHayMasMovimientosException.class)
-	public void test01OptimusNoPuedeAtravesarPantanoEnModoHumanoide(){
+	public void test01OptimusNoPuedeAtravesarPantanoEnModoHumanoideLanzaExcepcion(){
 		optimus = autobotFactory.crearOptimusPrime();
-		assertTrue(optimus.getMovimientosRestantes() > 1);
+		assertTrue(optimus.getMovimientosRestantes() > 0);
 		optimus.entrarACelda(celda);
+		assertTrue(optimus.getMovimientosRestantes() == 0);
 		optimus.entrarACelda(otraCelda);
 	}
 	
 	@Test(expected=NoHayMasMovimientosException.class)
-	public void test02BumblebeeNoPuedeAtravesarPantanoEnModoHumanoide(){
+	public void test02BumblebeeNoPuedeAtravesarPantanoEnModoHumanoideLanzaExcepcion(){
 		bumblebee = autobotFactory.crearBumblebee();
-		assertTrue(bumblebee.getMovimientosRestantes() > 1);
+		assertTrue(bumblebee.getMovimientosRestantes() > 0);
 		bumblebee.entrarACelda(celda);
+		assertTrue(bumblebee.getMovimientosRestantes() == 0);
 		bumblebee.entrarACelda(otraCelda);
 	}
 	
 	@Test(expected=NoHayMasMovimientosException.class)
-	public void test03RatchetNoPuedeAtravesarPantanoEnModoHumanoide(){
+	public void test03RatchetNoPuedeAtravesarPantanoEnModoHumanoideLanzaExcepcion(){
 		ratchet = autobotFactory.crearRatchet();
 		assertTrue(ratchet.getMovimientosRestantes() > 0);
 		ratchet.entrarACelda(celda);
+		assertTrue(ratchet.getMovimientosRestantes() == 0);
 		ratchet.entrarACelda(otraCelda);
 	}
 	
 	@Test(expected=NoHayMasMovimientosException.class)
-	public void test04MegatronNoPuedeAtravesarPantanoEnModoHumanoide(){
+	public void test04MegatronNoPuedeAtravesarPantanoEnModoHumanoideLanzaExcepcion(){
 		megatron = decepticonFactory.crearMegatron();
 		assertTrue(megatron.getMovimientosRestantes() > 0);
 		megatron.entrarACelda(celda);
+		assertTrue(megatron.getMovimientosRestantes() == 0);
 		megatron.entrarACelda(otraCelda);
 	}
 	
 	@Test(expected=NoHayMasMovimientosException.class)
-	public void test05BonecrusherNoPuedeAtravesarPantanoEnModoHumanoide(){
+	public void test05BonecrusherNoPuedeAtravesarPantanoEnModoHumanoideLanzaExcepcion(){
 		bonecrusher = decepticonFactory.crearBonecrusher();
 		assertTrue(bonecrusher.getMovimientosRestantes() > 0);
 		bonecrusher.entrarACelda(celda);
+		assertTrue(bonecrusher.getMovimientosRestantes() == 0);
 		bonecrusher.entrarACelda(otraCelda);
 	}
 	
 	@Test(expected=NoHayMasMovimientosException.class)
-	public void test06FrenzyNoPuedeAtravesarPantanoEnModoHumanoide(){
+	public void test06FrenzyNoPuedeAtravesarPantanoEnModoHumanoideLanzaExcepcion(){
 		frenzy = decepticonFactory.crearFrenzy();
-		assertTrue(frenzy.getMovimientosRestantes() > 1);
+		assertTrue(frenzy.getMovimientosRestantes() > 0);
 		frenzy.entrarACelda(celda);
+		assertTrue(frenzy.getMovimientosRestantes() == 0);
 		frenzy.entrarACelda(otraCelda);
 	}
 }
