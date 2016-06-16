@@ -10,6 +10,11 @@ public class ControlDeTurnos extends Observable
     private List jugadores = new ArrayList();
     private int jugadorActual = 0;
     
+    public Jugador jugadorActual()
+    {
+        return (Jugador) jugadores.get(jugadorActual);
+    }
+    
     public void addObserver(Observer o)
     {
         super.addObserver(o);
