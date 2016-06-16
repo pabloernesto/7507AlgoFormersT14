@@ -5,27 +5,27 @@ import fiuba.algo3.algoformers.escenario.Movimiento;
 
 public class EstadoJugador_Activo extends EstadoJugador
 {
-	public void atacar(Jugador j, AlgoFormer atacado)
+	public void atacar(Jugador jugador, AlgoFormer atacado)
 	{
-		j.algoformerActual.atacar(atacado);
-		j._terminarTurno();
+		jugador.algoformerActual.atacar(atacado);
+		jugador._terminarTurno();
 	}
 	
-	public void mover(Jugador j, Movimiento direccion)
+	public void mover(Jugador jugador, Movimiento direccion)
 	{
-		j.setEstado(new EstadoJugador_Moviendo());
-		j.mover(direccion);
+		jugador.setEstado(new EstadoJugador_Moviendo());
+		jugador.mover(direccion);
 	}
 	
-	public void combinar(Jugador j)
+	public void combinar(Jugador jugador)
 	{
 	    throw new RuntimeException("No implementado.");
 	}
 	
-	public void transformar(Jugador j)
+	public void transformar(Jugador jugador)
 	{
-		j.algoformerActual.transformarse();
-		j._terminarTurno();
+		jugador.algoformerActual.transformarse();
+		jugador._terminarTurno();
 	}
 }
 

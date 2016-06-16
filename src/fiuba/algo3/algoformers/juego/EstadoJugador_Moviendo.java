@@ -5,28 +5,28 @@ import fiuba.algo3.algoformers.escenario.Movimiento;
 
 public class EstadoJugador_Moviendo extends EstadoJugador
 {
-	public void atacar(Jugador j, AlgoFormer atacado)
+	public void atacar(Jugador jugador, AlgoFormer atacado)
 	{
 		throw new RuntimeException("Estas moviendo");
 	}
 	
 	/* Como dejo de moverme!? */
-	public void mover(Jugador j, Movimiento direccion)
+	public void mover(Jugador jugador, Movimiento direccion)
 	{
-		j.algoformerActual.moverse(direccion);
+		jugador.algoformerActual.moverse(direccion);
 	}
 	
-	public void combinar(Jugador j)
-	{
-		throw new RuntimeException("Estas moviendo");
-	}
-	
-	public void transformar(Jugador j)
+	public void combinar(Jugador jugador)
 	{
 		throw new RuntimeException("Estas moviendo");
 	}
 	
-    public void elegirAlgoFormer(Jugador j, String nombre)
+	public void transformar(Jugador jugador)
+	{
+		throw new RuntimeException("Estas moviendo");
+	}
+	
+    public void elegirAlgoFormer(Jugador jugador, String nombre)
     {
 		throw new RuntimeException("Estas moviendo");
     }

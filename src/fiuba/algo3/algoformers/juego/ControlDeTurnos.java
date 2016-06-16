@@ -20,10 +20,10 @@ public class ControlDeTurnos extends Observable
         return (Jugador) jugadores.get((jugadorActual + 1) % jugadores.size());
     }
     
-    public void addObserver(Observer o)
+    public void addObserver(Observer observador)
     {
-        super.addObserver(o);
-        jugadores.add(o);
+        super.addObserver(observador);
+        jugadores.add(observador);
     }
 
     public void terminarTurno()

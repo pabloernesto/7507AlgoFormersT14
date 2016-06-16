@@ -1,4 +1,4 @@
-package fiuba.algo3.algoformers.test.terceraEntrega;
+package fiuba.algo3.algoformers.test;
 
 import static org.junit.Assert.*;
 
@@ -14,7 +14,7 @@ import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 import fiuba.algo3.algoformers.factories.BonusNuloFactory;
 
-public class ControlDeTurnos_IntegracionTest
+public class ControlDeTurnosTest
 {
 	Juego juego = new Juego();
 	
@@ -34,8 +34,8 @@ public class ControlDeTurnos_IntegracionTest
 	@Test
 	public void testMoverJugadorActualNoCausaExcepcion()
 	{
-	    AlgoFormer af = juego.jugadorActual().getListaAlgoformers().get(0);
-	    juego.jugadorActual().elegirAlgoFormer(af.getNombre());
+	    AlgoFormer algoformer = juego.jugadorActual().getListaAlgoformers().get(0);
+	    juego.jugadorActual().elegirAlgoFormer(algoformer.getNombre());
 	    
 	    juego.jugadorActual().mover(Movimiento.DERECHA);
 	}
@@ -43,8 +43,8 @@ public class ControlDeTurnos_IntegracionTest
 	@Test(expected = RuntimeException.class)
 	public void testMoverJugadorInactivoCausaExcepcion()
 	{
-	    AlgoFormer af = juego.jugadorInactivo().getListaAlgoformers().get(0);
-	    juego.jugadorInactivo().elegirAlgoFormer(af.getNombre());
+	    AlgoFormer algoformer = juego.jugadorInactivo().getListaAlgoformers().get(0);
+	    juego.jugadorInactivo().elegirAlgoFormer(algoformer.getNombre());
 	    
 	    juego.jugadorInactivo().mover(Movimiento.IZQUIERDA);
 	}

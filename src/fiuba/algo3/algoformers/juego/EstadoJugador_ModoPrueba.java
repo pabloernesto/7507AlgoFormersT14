@@ -5,27 +5,27 @@ import fiuba.algo3.algoformers.escenario.Movimiento;
 
 public class EstadoJugador_ModoPrueba extends EstadoJugador
 {
-	public void atacar(Jugador j, AlgoFormer atacado)
+	public void atacar(Jugador jugador, AlgoFormer atacado)
 	{
-		j.algoformerActual.atacar(atacado);
+		jugador.algoformerActual.atacar(atacado);
 	}
 	
-	public void mover(Jugador j, Movimiento direccion)
+	public void mover(Jugador jugador, Movimiento direccion)
 	{
-		j.algoformerActual.moverse(direccion);
+		jugador.algoformerActual.moverse(direccion);
 	}
 	
-	public void combinar(Jugador j)
+	public void combinar(Jugador jugador)
 	{
 	    throw new RuntimeException("No implementado.");
 	}
 	
-	public void transformar(Jugador j)
+	public void transformar(Jugador jugador)
 	{
-		j.algoformerActual.transformarse();
+		jugador.algoformerActual.transformarse();
 	}
 
-    public void terminarTurno(Jugador j)
+    public void terminarTurno(Jugador jugador)
     {
         throw new RuntimeException("No disponible en modo prueba.");
     }

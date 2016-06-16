@@ -5,19 +5,19 @@ import fiuba.algo3.algoformers.escenario.Movimiento;
 
 public abstract class EstadoJugador
 {
-	public abstract void atacar(Jugador j, AlgoFormer atacado);
-	public abstract void mover(Jugador j, Movimiento direccion);
-	public abstract void combinar(Jugador j);
+	public abstract void atacar(Jugador jugador, AlgoFormer atacado);
+	public abstract void mover(Jugador jugador, Movimiento direccion);
+	public abstract void combinar(Jugador jugador);
 	public abstract void transformar(Jugador j);
     
-    public void elegirAlgoFormer(Jugador j, String nombre)
+    public void elegirAlgoFormer(Jugador jugador, String nombre)
     {
-        j._elegirAlgoFormer(nombre);
+        jugador._elegirAlgoFormer(nombre);
     }
     
-    public void terminarTurno(Jugador j)
+    public void terminarTurno(Jugador jugador)
     {
-        j._terminarTurno();
+        jugador._terminarTurno();
     }
 }
 
