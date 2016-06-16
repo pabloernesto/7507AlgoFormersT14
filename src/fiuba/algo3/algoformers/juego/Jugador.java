@@ -68,6 +68,11 @@ public class Jugador implements Observer
 	    estado.transformar(this);
 	}
 	
+    public void terminarTurno()
+    {
+        estado.terminarTurno(this);
+    }
+	
 	/* Jugador es observador de ControlDeTurnos */
 	public void update(Observable o, Object arg)
 	{
@@ -85,12 +90,12 @@ public class Jugador implements Observer
             af.iniciarTurno();
 	}
 
-	void terminarTurno()
-	{
+    void _terminarTurno()
+    {
         for (AlgoFormer af : equipo)
             af.finalizarTurno();
         
         turnos.terminarTurno();
-	}
+    }
 }
-
+    

@@ -8,7 +8,7 @@ public class EstadoJugador_Activo extends EstadoJugador
 	public void atacar(Jugador j, AlgoFormer atacado)
 	{
 		j.algoformerActual.atacar(atacado);
-		j.terminarTurno();
+		j._terminarTurno();
 	}
 	
 	public void mover(Jugador j, Movimiento direccion)
@@ -25,7 +25,7 @@ public class EstadoJugador_Activo extends EstadoJugador
 	public void transformar(Jugador j)
 	{
 		j.algoformerActual.transformarse();
-		j.terminarTurno();
+		j._terminarTurno();
 	}
 }
 

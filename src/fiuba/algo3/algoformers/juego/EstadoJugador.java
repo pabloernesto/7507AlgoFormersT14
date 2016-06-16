@@ -14,5 +14,10 @@ public abstract class EstadoJugador
     {
         j._elegirAlgoFormer(nombre);
     }
+    
+    public void terminarTurno(Jugador j)
+    {
+        j._terminarTurno();
+    }
 }
 

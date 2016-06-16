@@ -24,5 +24,10 @@ public class EstadoJugador_Inactivo extends EstadoJugador
 	{
 		throw new RuntimeException("No es tu turno.");
 	}
+
+    public void terminarTurno(Jugador j)
+    {
+        throw new RuntimeException("No es tu turno.");
+    }
 }
 

@@ -24,5 +24,10 @@ public class EstadoJugador_ModoPrueba extends EstadoJugador
 	{
 		j.algoformerActual.transformarse();
 	}
+
+    public void terminarTurno(Jugador j)
+    {
+        throw new RuntimeException("No disponible en modo prueba.");
+    }
 }
 
