@@ -54,21 +54,21 @@ public class Test04Integracion {
 				(tablero.getPosicionAlgoformer(equipo2.get(0))));  //El algoformer del equipo 2 esta en el extremo derecho
 		
 		assertEquals(ancho - 1,
-				tablero.distanciaEntreAlgoformers(equipo1.get(0), equipo2.get(0))); //La distancia entre equipos es coherente
+				tablero.distancia(equipo1.get(0), equipo2.get(0))); //La distancia entre equipos es coherente
 																					// con el tablero
 		
 		//Los algoformers del mismo equipo estan juntos
 		assertEquals(1,
-				tablero.distanciaEntreAlgoformers(equipo1.get(0), equipo1.get(1)));
+				tablero.distancia(equipo1.get(0), equipo1.get(1)));
 	        
 	    assertEquals(1,
-	        	tablero.distanciaEntreAlgoformers(equipo1.get(1), equipo1.get(2)));
+	        	tablero.distancia(equipo1.get(1), equipo1.get(2)));
 	        
 	    assertEquals(1,
-		        tablero.distanciaEntreAlgoformers(equipo2.get(0), equipo2.get(1)));
+		        tablero.distancia(equipo2.get(0), equipo2.get(1)));
 		        
 		assertEquals(1,
-		        tablero.distanciaEntreAlgoformers(equipo2.get(1), equipo2.get(2)));
+		        tablero.distancia(equipo2.get(1), equipo2.get(2)));
 		
 		
 		//Veo si esta la chispa

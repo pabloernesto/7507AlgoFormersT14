@@ -74,7 +74,7 @@ public abstract class AlgoFormer {
 	public void atacar(AlgoFormer algoformerAtacado){
 	    int distancia =
 	        Tablero.getInstance()
-	               .distanciaEntreAlgoformers(this, algoformerAtacado);
+	               .distancia(this, algoformerAtacado);
 
 		int alcance = getDistAtaque();
 

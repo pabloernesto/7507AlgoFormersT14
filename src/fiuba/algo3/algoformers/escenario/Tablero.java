@@ -111,11 +111,13 @@ public class Tablero {
 		return celdas.get(posicion).contieneChispaSuprema();
 	}
 	
-	public int distanciaEntreAlgoformers(AlgoFormer algoformer1, AlgoFormer algoformer2){
-			Posicion posicionAlgoformer1 = getPosicionAlgoformer(algoformer1);
-			Posicion posicionAlgoformer2 = getPosicionAlgoformer(algoformer2);
-			return posicionAlgoformer1.calcularDistanciaCon(posicionAlgoformer2);
-		}
+    public int distancia(AlgoFormer a, AlgoFormer b)
+    {
+        Posicion posA = getPosicionAlgoformer(a);
+        Posicion posB = getPosicionAlgoformer(b);
+        
+        return posA.calcularDistanciaCon(posB);
+    }
 	
 	public int ancho(){
 		return ANCHO;

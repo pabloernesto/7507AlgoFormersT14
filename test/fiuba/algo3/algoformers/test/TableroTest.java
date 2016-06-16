@@ -230,12 +230,12 @@ public class TableroTest {
     	tablero.colocarAlgoformer(algoformer3, posicion);
     	
     	assertEquals(1,
-    	    tablero.distanciaEntreAlgoformers(algoformer, algoformer2));
+    	    tablero.distancia(algoformer, algoformer2));
     	assertEquals(3,
-    	    tablero.distanciaEntreAlgoformers(algoformer, algoformer3));
+    	    tablero.distancia(algoformer, algoformer3));
     	assertEquals(2,
-    	    tablero.distanciaEntreAlgoformers(algoformer2, algoformer3));
+    	    tablero.distancia(algoformer2, algoformer3));
     	assertEquals(0,
-    	    tablero.distanciaEntreAlgoformers(algoformer, algoformer));
+    	    tablero.distancia(algoformer, algoformer));
     }
 }

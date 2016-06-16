@@ -51,7 +51,7 @@ public class JuegoTest
 		
 		assertTrue(new Posicion(ancho, alturaMedia).equals(tablero.getPosicionAlgoformer(algoformer2)));
 		
-		assertEquals(59, tablero.distanciaEntreAlgoformers(algoformer1, algoformer2));
+		assertEquals(59, tablero.distancia(algoformer1, algoformer2));
 	}
     
 	@Test
@@ -63,12 +63,12 @@ public class JuegoTest
         List<AlgoFormer> equipo = jugador.getListaAlgoformers();
         
         assertEquals(1,
-            tablero.distanciaEntreAlgoformers(equipo.get(0), equipo.get(1)));
+            tablero.distancia(equipo.get(0), equipo.get(1)));
         
         assertEquals(1,
-        	tablero.distanciaEntreAlgoformers(equipo.get(1), equipo.get(2)));
+        	tablero.distancia(equipo.get(1), equipo.get(2)));
         
         assertEquals(2,
-            tablero.distanciaEntreAlgoformers(equipo.get(0), equipo.get(2)));
+            tablero.distancia(equipo.get(0), equipo.get(2)));
     }	
 }
