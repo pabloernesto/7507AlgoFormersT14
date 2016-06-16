@@ -30,6 +30,8 @@ public class Juego {
 		Jugador jDecepticon = new Jugador(new DecepticonFactory());
 		turnos.addObserver(jDecepticon);
 		
+		turnos.terminarTurno();
+		
 		ubicarAlgoformers();
 		ubicarChispaSuprema();
 	}

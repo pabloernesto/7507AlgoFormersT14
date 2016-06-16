@@ -39,4 +39,13 @@ public class ControlDeTurnos_IntegracionTest
 	    
 	    juego.jugadorActual().mover(Movimiento.DERECHA);
 	}
+
+	@Test(expected = RuntimeException.class)
+	public void testMoverJugadorInactivoCausaExcepcion()
+	{
+	    AlgoFormer af = juego.jugadorInactivo().getListaAlgoformers().get(0);
+	    juego.jugadorInactivo().elegirAlgoFormer(af.getNombre());
+	    
+	    juego.jugadorInactivo().mover(Movimiento.IZQUIERDA);
+	}
 }
