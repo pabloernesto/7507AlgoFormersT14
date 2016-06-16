@@ -48,4 +48,16 @@ public class ControlDeTurnos_IntegracionTest
 	    
 	    juego.jugadorInactivo().mover(Movimiento.IZQUIERDA);
 	}
+
+	@Test
+	public void testTerminarTurnoCambiaJugadorActual()
+	{
+	    Jugador jugadorInicial = juego.jugadorActual();
+	    
+	    jugadorInicial.terminarTurno();
+	    Jugador jugadorFinal = juego.jugadorActual();
+	    
+	    assertNotSame(jugadorInicial, jugadorFinal);
+	}
 }
+

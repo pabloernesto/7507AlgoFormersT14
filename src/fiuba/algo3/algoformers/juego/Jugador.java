@@ -97,5 +97,11 @@ public class Jugador implements Observer
         
         turnos.terminarTurno();
     }
-}
     
+    void setControlDeTurnos(ControlDeTurnos c)
+    {
+        turnos = c;
+        c.addObserver(this);
+    }
+}
+

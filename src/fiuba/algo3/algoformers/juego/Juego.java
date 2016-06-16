@@ -25,10 +25,10 @@ public class Juego {
 		turnos = new ControlDeTurnos();
 		
 		Jugador jAutobot = new Jugador(new AutoBotFactory());
-		turnos.addObserver(jAutobot);
+		jAutobot.setControlDeTurnos(turnos);
 		
 		Jugador jDecepticon = new Jugador(new DecepticonFactory());
-		turnos.addObserver(jDecepticon);
+		jDecepticon.setControlDeTurnos(turnos);
 		
 		turnos.terminarTurno();
 		
