@@ -14,8 +14,7 @@ import fiuba.algo3.algoformers.escenario.Movimiento;
 public class Juego {
 
 	Tablero tablero;
-	private Jugador jugadorActual;
-	private Jugador jugadorInactivo;
+	private ControlDeTurnos turnos;
 	private static boolean hayGanador = false;
 	
 	public Juego() {}
@@ -23,16 +22,13 @@ public class Juego {
 	public void inicializar()
 	{
 		tablero = Tablero.getInstance();
+		turnos = new ControlDeTurnos();
 		
-		Jugador jugadorAutobots = new Jugador(new AutoBotFactory());
-		Jugador jugadorDecepticons = new Jugador(new DecepticonFactory());
-		if (Math.random() > 0.5){
-			jugadorActual = jugadorAutobots;
-			jugadorInactivo = jugadorDecepticons;
-		} else {
-			jugadorActual = jugadorDecepticons;
-			jugadorInactivo = jugadorAutobots;
-		}
+		Jugador jAutobot = new Jugador(new AutoBotFactory());
+		turnos.addObserver(jAutobot);
+		
+		Jugador jDecepticon = new Jugador(new DecepticonFactory());
+		turnos.addObserver(jDecepticon);
 		
 		ubicarAlgoformers();
 		ubicarChispaSuprema();
@@ -40,12 +36,12 @@ public class Juego {
 	
 	public Jugador jugadorActual()
 	{
-	    return jugadorActual;
+	    return turnos.jugadorActual();
 	}
 
 	public Jugador jugadorInactivo()
 	{
-	    return jugadorInactivo;
+	    return turnos.jugadorSiguiente();
 	}
 	
 	private void ubicarAlgoformers()
@@ -55,11 +51,11 @@ public class Juego {
 	    int medioDelTablero = tablero.altura() / 2;
 	    
 		inicio = new Posicion(1, medioDelTablero);
-	    equipo = jugadorActual.getListaAlgoformers();
+	    equipo = jugadorActual().getListaAlgoformers();
 		colocarEquipo(equipo, inicio);
 	    
 		inicio = new Posicion(tablero.ancho(), medioDelTablero);
-	    equipo = jugadorInactivo.getListaAlgoformers();
+	    equipo = jugadorInactivo().getListaAlgoformers();
 		colocarEquipo(equipo, inicio);
 	}
 	
