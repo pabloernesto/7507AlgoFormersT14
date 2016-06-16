@@ -74,13 +74,20 @@ public class Tablero {
 		posicionesCeldasOcupadas.add(posicion);
 	}
 	
-	public void moverAlgoformer (AlgoFormer algoformer, Movimiento direccion){
-		Posicion posicionInicial = getPosicionAlgoformer(algoformer);
-		Posicion posicionFinal = posicionInicial.sumarMovimiento(direccion);
-		validarMovimiento(algoformer, posicionFinal);
-		algoformer.entrarACelda(celdas.get(posicionFinal));
-		Collections.replaceAll(posicionesCeldasOcupadas, posicionInicial, posicionFinal);
-		this.celdas.get(posicionInicial).desocuparCelda();
+	public void moverAlgoformer (AlgoFormer algoformer, Movimiento direccion)
+	{
+        // Validar posicion final
+        Posicion posicionInicial = getPosicionAlgoformer(algoformer);
+        Posicion posicionFinal = posicionInicial.sumarMovimiento(direccion);
+        validarMovimiento(algoformer, posicionFinal);
+
+        // Entrar a celda
+        algoformer.entrarACelda(celdas.get(posicionFinal));
+
+        // Desocupar celda anterior
+        Collections.replaceAll(posicionesCeldasOcupadas, posicionInicial,
+            posicionFinal);
+        this.celdas.get(posicionInicial).desocuparCelda();
 	}
 	
 	public Posicion getPosicionAlgoformer (AlgoFormer algoformer){
