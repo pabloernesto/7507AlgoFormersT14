@@ -90,6 +90,10 @@ public abstract class AlgoFormer {
 		movimientosRestantes = getVelocidad();
 	}
 	
+	public boolean estaVivo() {
+		return vida > 0;
+	}
+	
 	public void iniciarTurno(){
 		reiniciarMovimientosRestantes();
 		List<Efecto> aux = new ArrayList<Efecto>(efectosActivos);

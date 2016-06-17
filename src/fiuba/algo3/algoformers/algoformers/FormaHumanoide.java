@@ -35,7 +35,7 @@ public class FormaHumanoide extends Forma {
 	}
 	
 	public void afectarConEfectoChispa(AlgoFormer algoformer){
-		Juego.hayGanador(algoformer);
+		Juego.chispaCapturada(algoformer);
 	}
 	
 }

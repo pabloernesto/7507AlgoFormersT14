@@ -1,5 +1,6 @@
 package fiuba.algo3.algoformers.juego;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -15,10 +16,10 @@ import fiuba.algo3.algoformers.escenario.Movimiento;
 public class Juego {
 
 	Tablero tablero;
-	private static boolean hayGanador = false;
+	private static Jugador ganador = null;
     
-    private Jugador [] jugadores;
-    private int jugadorActual;
+    private static Jugador [] jugadores;
+    private static int jugadorActual;
     
 	public Juego() {}
 	
@@ -102,16 +103,45 @@ public class Juego {
 		}
 	}
 
-	//la idea seria que juego chequee al final de cada turno si hay un ganador
-	//consultando el booleanos hayGanador
-	public static void hayGanador(AlgoFormer algoformer) {
-		hayGanador = true;
+	public static void chispaCapturada(AlgoFormer algoformer) {
+		ganador = jugadores[jugadorActual];
 	}
 	
 	void terminarTurno()
 	{
+		limpiarMuertos();
+		chequearGanadorPorMuertes();
 	    jugadorActual = siguienteJugador();
 	    jugadorActual().iniciarTurno();
+	}
+	
+	private void limpiarMuertos(){
+		for (Jugador jugador : jugadores){
+			List<AlgoFormer> muertos = new ArrayList<AlgoFormer>();
+			for (AlgoFormer algoformer : jugador.getListaAlgoformers()){
+				if (!algoformer.estaVivo()){
+					muertos.add(algoformer);
+				}
+			}
+			for (AlgoFormer algoformer : muertos){
+				jugador.getListaAlgoformers().remove(algoformer);
+				tablero.borrarAlgoformer(algoformer);
+			}
+		}
+	}
+	
+	private void chequearGanadorPorMuertes(){
+		for (int i = 0 ; i < 2 ; i++){
+			if (jugadores[i].getListaAlgoformers().size() == 0){
+				ganador = jugadores[(i + 1) % jugadores.length];
+			}
+		}
+	}
+	
+	//La idea es que la interfaz haga un ciclo mientras no haya un ganador
+	//cuando ya haya un ganador, la interfaz termina el juego
+	public boolean hayGanador(){
+		return ganador != null;
 	}
 	
 	//Metodos para pruebas
