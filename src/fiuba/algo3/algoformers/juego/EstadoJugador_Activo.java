@@ -37,16 +37,20 @@ public class EstadoJugador_Activo extends EstadoJugador
 	{
 		if (jugador.combinado)
 			throw new YaEstaCombinadoException();
-		Tablero tablero = Tablero.getInstance();
+		
 		if (jugador.equipo.size() < 3)
 			throw new EquipoIncompletoException();
+		
+		Tablero tablero = Tablero.getInstance();
 		AlgoFormer capitan = jugador.equipo.get(0);
 		for (AlgoFormer algoformer: jugador.equipo){
 			int distancia = tablero.distancia(capitan, algoformer);
 			if (distancia > 2)
 				throw new AlgoformerMuyLejosException();
 		}
-		AlgoFormer combinado = jugador.algoformerFactory.crearCombinado(jugador.equipo);
+		
+		AlgoFormer combinado =
+		    jugador.algoformerFactory.crearCombinado(jugador.equipo);
 		List<AlgoFormer> nuevoEquipo = new ArrayList<AlgoFormer>();
 		nuevoEquipo.add(combinado);
 		Posicion posicionCombinado = tablero.getPosicionAlgoformer(capitan);
@@ -63,21 +67,27 @@ public class EstadoJugador_Activo extends EstadoJugador
 	public void descombinar (Jugador jugador){
 		if (!jugador.combinado)
 			throw new NoEstaCombinadoException();
+		
 		Tablero tablero = Tablero.getInstance();
 		AlgoFormer combinado = jugador.equipo.get(0);
 		Posicion posicionCombinado = tablero.getPosicionAlgoformer(combinado);
-		List<Posicion> posicionesDisponibles = tablero.posicionesAdyacentesLibres(posicionCombinado);
+		List<Posicion> posicionesDisponibles =
+		    tablero.posicionesAdyacentesLibres(posicionCombinado);
 		if (posicionesDisponibles.size() < 3)
 			throw new SinLugarParaDescombinarseException();
-		List<AlgoFormer> nuevoEquipo = combinado.devolverIntegrantes();
-		jugador.equipo = nuevoEquipo;
+		
+		jugador.equipo = combinado.devolverIntegrantes();;
 		tablero.borrarAlgoformer(combinado);
 		int posicion = 0;
 		for (AlgoFormer algoformer : jugador.equipo){
-			tablero.colocarAlgoformer(algoformer, posicionesDisponibles.get(posicion));
+			tablero.colocarAlgoformer(
+			    algoformer,
+			    posicionesDisponibles.get(posicion));
 			posicion++;
 		}
+		
 		jugador.combinado = false;
 		terminarTurno(jugador);
 	}
 }
+
