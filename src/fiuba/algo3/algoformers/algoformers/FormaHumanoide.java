@@ -1,6 +1,7 @@
 
 package fiuba.algo3.algoformers.algoformers;
 
+import fiuba.algo3.algoformers.escenario.efectos.*;
 import fiuba.algo3.algoformers.factories.FormaFactory;
 import fiuba.algo3.algoformers.juego.Juego;
 
@@ -16,25 +17,25 @@ public class FormaHumanoide extends Forma {
 
 	
 	@Override
-	public void afectarConEfectoNebulosa(AlgoFormer algoformer){
+	public void afectarCon(AlgoFormer algoformer, EfectoNebulosa efecto){
 		
 	}
 	
 	@Override
-	public void afectarConEfectoPantano(AlgoFormer algoformer){
+	public void afectarCon(AlgoFormer algoformer, EfectoPantano efecto){
 		algoformer.afectarConEfectoPantanoFormaHumanoide();
 	}
 	
 	@Override
-	public void afectarConEfectoTormenta(AlgoFormer algoformer){
+	public void afectarCon(AlgoFormer algoformer, EfectoTormenta efecto){
 	}
 	
 	@Override
-	public void afectarConEfectoEspinas(AlgoFormer algoformer){
+	public void afectarCon(AlgoFormer algoformer, EfectoEspinas efecto){
 		algoformer.afectarConEfectoEspinas();
 	}
 	
-	public void afectarConEfectoChispa(AlgoFormer algoformer){
+	public void afectarCon(AlgoFormer algoformer, EfectoChispa efecto){
 		Juego.chispaCapturada(algoformer);
 	}
 	

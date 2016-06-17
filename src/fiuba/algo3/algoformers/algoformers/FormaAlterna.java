@@ -1,5 +1,6 @@
 package fiuba.algo3.algoformers.algoformers;
 
+import fiuba.algo3.algoformers.escenario.efectos.EfectoChispa;
 import fiuba.algo3.algoformers.factories.FormaFactory;
 
 public abstract class FormaAlterna extends Forma {
@@ -12,7 +13,7 @@ public abstract class FormaAlterna extends Forma {
 		return formaFactory.crearFormaHumanoide();
 	}
 	
-	public void afectarConEfectoChispa(AlgoFormer algoFormer){
+	public void afectarCon(AlgoFormer algoFormer, EfectoChispa efecto){
 	}
 	
 }

@@ -1,5 +1,6 @@
 package fiuba.algo3.algoformers.algoformers;
 
+import fiuba.algo3.algoformers.escenario.efectos.*;
 import fiuba.algo3.algoformers.factories.FormaFactory;
 
 public abstract class Forma {
@@ -40,31 +41,31 @@ public abstract class Forma {
 		velocidad = nuevaVelocidad;
 	}
 	
-	public void afectarConEfectoDobleCanion(AlgoFormer algoformer){
+	public void afectarCon(AlgoFormer algoformer, EfectoDobleCanion efecto){
 		setAtaque(getAtaque() * 2);
 	}
 	
-	public void afectarConEfectoFlash(AlgoFormer algoformer){
+	public void afectarCon(AlgoFormer algoformer, EfectoFlash efecto){
 		algoformer.afectarseConEfectoFlash();
 	}
 
-	public void afectarConEfectoBurbuja(AlgoFormer algoFormer){
+	public void afectarCon(AlgoFormer algoFormer, EfectoBurbuja efecto){
 	}
 	
-	public void desafectarseDeEfectoDobleCanion(AlgoFormer algoFormer) {
+	public void desafectarseDe(AlgoFormer algoFormer, EfectoDobleCanion efecto) {
 		setAtaque(getAtaque() / 2);
 	}
 	
 
-	public abstract void afectarConEfectoNebulosa(AlgoFormer algoFormer);
+	public abstract void afectarCon(AlgoFormer algoFormer, EfectoNebulosa efecto);
 
-	public abstract void afectarConEfectoPantano(AlgoFormer algoFormer);
+	public abstract void afectarCon(AlgoFormer algoFormer, EfectoPantano efecto);
 
-	public abstract void afectarConEfectoTormenta(AlgoFormer algoFormer);
+	public abstract void afectarCon(AlgoFormer algoFormer, EfectoTormenta efecto);
 
-	public abstract void afectarConEfectoEspinas(AlgoFormer algoFormer);
+	public abstract void afectarCon(AlgoFormer algoFormer, EfectoEspinas efecto);
 
-	public abstract void afectarConEfectoChispa(AlgoFormer algoFormer);
+	public abstract void afectarCon(AlgoFormer algoFormer, EfectoChispa efecto);
 	
 }
 

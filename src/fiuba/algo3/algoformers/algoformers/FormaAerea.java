@@ -1,6 +1,7 @@
 
 package fiuba.algo3.algoformers.algoformers;
 
+import fiuba.algo3.algoformers.escenario.efectos.*;
 import fiuba.algo3.algoformers.factories.FormaFactory;
 
 public class FormaAerea extends FormaAlterna {
@@ -10,21 +11,21 @@ public class FormaAerea extends FormaAlterna {
 	}
 
 	@Override
-	public void afectarConEfectoNebulosa(AlgoFormer algoformer){
+	public void afectarCon(AlgoFormer algoformer, EfectoNebulosa efecto){
 		algoformer.afectarConEfectoNebulosa();
 	}
 
 	@Override
-	public void afectarConEfectoPantano(AlgoFormer algoformer){
+	public void afectarCon(AlgoFormer algoformer, EfectoPantano efecto){
 	}
 	
 	@Override
-	public void afectarConEfectoTormenta(AlgoFormer algoFormer){
+	public void afectarCon(AlgoFormer algoFormer, EfectoTormenta efecto){
 		this.ataque = this.ataque*60/100;
 	}
 	
 	@Override
-	public void afectarConEfectoEspinas(AlgoFormer algoFormer){
+	public void afectarCon(AlgoFormer algoFormer, EfectoEspinas efecto){
 	}
 	
 }

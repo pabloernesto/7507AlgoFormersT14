@@ -9,9 +9,11 @@ import fiuba.algo3.algoformers.escenario.bonus.BurbujaInmaculada;
 import fiuba.algo3.algoformers.escenario.bonus.ChispaSuprema;
 import fiuba.algo3.algoformers.escenario.bonus.DobleCanion;
 import fiuba.algo3.algoformers.escenario.bonus.Flash;
+import fiuba.algo3.algoformers.escenario.efectos.ContenedorDeEfecto;
 import fiuba.algo3.algoformers.escenario.efectos.Efecto;
 import fiuba.algo3.algoformers.escenario.efectos.EfectoBurbuja;
 import fiuba.algo3.algoformers.escenario.efectos.EfectoChispa;
+import fiuba.algo3.algoformers.escenario.efectos.EfectoConTurno;
 import fiuba.algo3.algoformers.escenario.efectos.EfectoDobleCanion;
 import fiuba.algo3.algoformers.escenario.efectos.EfectoEspinas;
 import fiuba.algo3.algoformers.escenario.efectos.EfectoFlash;
@@ -118,105 +120,106 @@ public abstract class AlgoFormer {
 		efectosActivos.removeAll(efectosABorrar);
 	}
 	
-	public void ubicarseEnSuperficie(Rocosa rocosa) {		
+	
+	public void ubicarseEnSuperficie(Rocosa superficie) {		
+	}
+	
+	public void ubicarseEnSuperficie(Nube superficie) {
 	}
 
-	public void ubicarseEnSuperficie(Pantano pantano) {
-		Efecto efecto = pantano.getEfecto();
-		efecto.afectar(this);
+	public void ubicarseEnSuperficie(Pantano superficie) {
+		recibirEfectoInstantaneo(superficie);
 	}
 	
-	public void ubicarseEnSuperficie(Espinas espinas) {
-		Efecto efecto = espinas.getEfecto();
-		efecto.afectar(this);
+	public void ubicarseEnSuperficie(Espinas superficie) {
+		recibirEfectoInstantaneo(superficie);
 	}
 	
-	public void ubicarseEnSuperficie(Nube nube) {
-	}
-	
-	public void ubicarseEnSuperficie(NebulosaDeAndromeda nebulosa) {
-		Efecto efecto = nebulosa.getEfecto();
+	public void ubicarseEnSuperficie(NebulosaDeAndromeda superficie) {
+		Efecto efecto = superficie.getEfecto();
 		if (!afectadoPor(efecto))
 			efectosActivos.add(efecto);
 		efecto.afectar(this);
 	}
 	
-	public void ubicarseEnSuperficie(TormentaPsionica tormenta){
-		Efecto efecto = tormenta.getEfecto();
-		recibirEfectoPorTurnos(efecto);
+	public void ubicarseEnSuperficie(TormentaPsionica superficie){
+		recibirEfectoPorTurnos(superficie);
 	}
 	
-	public void recibirBonus(DobleCanion dobleCanion) {
-		Efecto efecto = dobleCanion.getEfecto();
-		recibirEfectoPorTurnos(efecto);
+	public void recibirBonus(DobleCanion bonus) {
+		recibirEfectoPorTurnos(bonus);
 	}
 	
-	public void recibirBonus(Flash flash) {
-		Efecto efecto = flash.getEfecto();
-		recibirEfectoPorTurnos(efecto);
+	public void recibirBonus(Flash bonus) {
+		recibirEfectoPorTurnos(bonus);
 	}
 	
-	public void recibirBonus(BurbujaInmaculada burbuja) {
-		Efecto efecto = burbuja.getEfecto();
-		recibirEfectoPorTurnos(efecto);
+	public void recibirBonus(BurbujaInmaculada bonus) {
+		recibirEfectoPorTurnos(bonus);
 	}
 	
-	public void recibirBonus(ChispaSuprema chispa){
-		Efecto efecto = chispa.getEfecto();
-		efecto.afectar(this);
+	public void recibirBonus(ChispaSuprema bonus){
+		recibirEfectoPorTurnos(bonus);
 	}
 	
-	private void recibirEfectoPorTurnos(Efecto efecto){
+	private void recibirEfectoPorTurnos(ContenedorDeEfecto contenedor){
+		Efecto efecto = contenedor.getEfecto();
 		if (!afectadoPor(efecto)){
 			efectosActivos.add(efecto);
 			efecto.afectar(this);
 		}
 	}
 	
+	private void recibirEfectoInstantaneo(ContenedorDeEfecto contenedor){
+		Efecto efecto = contenedor.getEfecto();
+		efecto.afectar(this);
+	}
+	
 	
 	public void afectarseCon(EfectoEspinas efecto){
-		estado.afectarConEfectoEspinas(this);
+		estado.afectarCon(this, efecto);
 	}
 	
 	public void afectarseCon(EfectoPantano efecto) {
-		estado.afectarConEfectoPantano(this);
+		estado.afectarCon(this, efecto);
 	}
 	
 	public void afectarseCon(EfectoTormenta efecto){
-		estado.afectarConEfectoTormenta(this);
+		estado.afectarCon(this, efecto);
 	}
 	
 	public void afectarseCon(EfectoNebulosa efecto){
-		estado.afectarConEfectoNebulosa(this);
-		if (efecto.getTurnos() == 0)
-			efectosABorrar.add(efecto);
+		estado.afectarCon(this, efecto);
+		chequearEfectoAgotado(efecto);
 	}
 	
 	public void afectarseCon(EfectoDobleCanion efecto) {
-		estado.afectarConEfectoDobleCanion(this);
-		if (efecto.getTurnos() == 0)
-			efectosABorrar.add(efecto);
+		estado.afectarCon(this, efecto);
+		chequearEfectoAgotado(efecto);
 	}
 	
 	public void afectarseCon(EfectoFlash efecto) {
-		estado.afectarConEfectoFlash(this);
-		if (efecto.getTurnos() == 0)
-			efectosABorrar.add(efecto);
+		estado.afectarCon(this, efecto);
+		chequearEfectoAgotado(efecto);
 	}
 
 	public void afectarseCon(EfectoBurbuja efecto) {
-		estado.afectarConEfectoBurbuja(this);
-		if (efecto.getTurnos() == 0)
-			efectosABorrar.add(efecto);
+		estado.afectarCon(this, efecto);
+		chequearEfectoAgotado(efecto);
 	}
 	
 	public void afectarseCon(EfectoChispa efecto){
-		estado.afectarConEfectoChispa(this);
+		estado.afectarCon(this, efecto);
+	}
+	
+	private void chequearEfectoAgotado(EfectoConTurno efecto){
+		if (efecto.getTurnos() == 0)
+			efectosABorrar.add(efecto);
 	}
 	
 	
 	public void desafectarseDe(EfectoDobleCanion efecto){
-		estado.desafectarseDeEfectoDobleCanion(this);
+		estado.desafectarseDe(this, efecto);
 	}
 	
 	public void desafectarseDe(EfectoFlash efecto){
