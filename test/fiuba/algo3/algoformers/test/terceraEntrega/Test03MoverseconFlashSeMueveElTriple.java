@@ -38,12 +38,15 @@ public class Test03MoverseconFlashSeMueveElTriple {
 		optimus = autobotFactory.crearOptimusPrime();
 		int velocidadAnterior = optimus.getVelocidad();
 		tablero.colocarAlgoformer(optimus, new Posicion(1, 1));
-		tablero.setBonusEnCelda(new Posicion(1, 2), new Flash());
-		optimus.moverse(Movimiento.ABAJO);
+		tablero.setBonusEnCelda(new Posicion(2, 1), new Flash());
+		int velocidadActual;
+		for (velocidadActual = 0 ; optimus.getMovimientosRestantes() != 0 ; velocidadActual++){
+			optimus.moverse(Movimiento.DERECHA); //Agarra el bonus
+		}
+		assertEquals(velocidadAnterior, velocidadActual); //Hace efecto a partir del proximo turno
 		
 		optimus.finalizarTurno(); //Primer turno
 		optimus.iniciarTurno();
-		int velocidadActual;
 		for (velocidadActual = 0 ; optimus.getMovimientosRestantes() != 0 ; velocidadActual++){
 			optimus.moverse(Movimiento.DERECHA);
 		}
@@ -76,12 +79,15 @@ public class Test03MoverseconFlashSeMueveElTriple {
 		optimus = autobotFactory.crearOptimusPrime();
 		int velocidadAnterior = optimus.getVelocidad();
 		tablero.colocarAlgoformer(optimus, new Posicion(1, 1));
-		tablero.setBonusEnCelda(new Posicion(1, 2), new Flash());
-		optimus.moverse(Movimiento.ABAJO);
+		tablero.setBonusEnCelda(new Posicion(2, 1), new Flash());
+		int velocidadActual;
+		for (velocidadActual = 0 ; optimus.getMovimientosRestantes() != 0 ; velocidadActual++){
+			optimus.moverse(Movimiento.DERECHA); //Agarra el bonus
+		}
+		assertEquals(velocidadAnterior, velocidadActual); //Hace efecto a partir del proximo turno
 		
 		optimus.finalizarTurno(); //Primer turno
 		optimus.iniciarTurno();
-		int velocidadActual;
 		for (velocidadActual = 0 ; optimus.getMovimientosRestantes() != 0 ; velocidadActual++){
 			optimus.moverse(Movimiento.DERECHA);
 		}
@@ -116,12 +122,15 @@ public class Test03MoverseconFlashSeMueveElTriple {
 		optimus.transformarse();
 		int velocidadAnterior = optimus.getVelocidad();
 		tablero.colocarAlgoformer(optimus, new Posicion(1, 1));
-		tablero.setBonusEnCelda(new Posicion(1, 2), new Flash());
-		optimus.moverse(Movimiento.ABAJO);
+		tablero.setBonusEnCelda(new Posicion(2, 1), new Flash());
+		int velocidadActual;
+		for (velocidadActual = 0 ; optimus.getMovimientosRestantes() != 0 ; velocidadActual++){
+			optimus.moverse(Movimiento.DERECHA); //Agarra el bonus
+		}
+		assertEquals(velocidadAnterior, velocidadActual); //Hace efecto a partir del proximo turno
 		
 		optimus.finalizarTurno(); //Primer turno
 		optimus.iniciarTurno();
-		int velocidadActual;
 		for (velocidadActual = 0 ; optimus.getMovimientosRestantes() != 0 ; velocidadActual++){
 			optimus.moverse(Movimiento.DERECHA);
 		}
@@ -155,12 +164,15 @@ public class Test03MoverseconFlashSeMueveElTriple {
 		optimus.transformarse();
 		int velocidadAnterior = optimus.getVelocidad();
 		tablero.colocarAlgoformer(optimus, new Posicion(1, 1));
-		tablero.setBonusEnCelda(new Posicion(1, 2), new Flash());
-		optimus.moverse(Movimiento.ABAJO);
+		tablero.setBonusEnCelda(new Posicion(2, 1), new Flash());
+		int velocidadActual;
+		for (velocidadActual = 0 ; optimus.getMovimientosRestantes() != 0 ; velocidadActual++){
+			optimus.moverse(Movimiento.DERECHA); //Agarra el bonus
+		}
+		assertEquals(velocidadAnterior, velocidadActual); //Hace efecto a partir del proximo turno
 		
 		optimus.finalizarTurno(); //Primer turno
 		optimus.iniciarTurno();
-		int velocidadActual;
 		for (velocidadActual = 0 ; optimus.getMovimientosRestantes() != 0 ; velocidadActual++){
 			optimus.moverse(Movimiento.DERECHA);
 		}

@@ -151,7 +151,10 @@ public abstract class AlgoFormer {
 	}
 	
 	public void recibirBonus(Flash bonus) {
-		recibirEfectoPorTurnos(bonus);
+		Efecto efecto = bonus.getEfecto();
+		if (!afectadoPor(efecto)){
+			efectosActivos.add(efecto);
+		}
 	}
 	
 	public void recibirBonus(BurbujaInmaculada bonus) {

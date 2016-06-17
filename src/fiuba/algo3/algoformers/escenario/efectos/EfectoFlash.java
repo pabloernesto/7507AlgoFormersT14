@@ -5,7 +5,7 @@ import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 public class EfectoFlash extends EfectoConTurno{
 
 	public EfectoFlash(){
-		this.turnosRestantes = 4;
+		this.turnosRestantes = 3;
 	}
 	
 	@Override
