@@ -120,5 +120,27 @@ public class Jugador
 
         combinado = true;
     }
+
+    void _descombinar()
+    {
+        AlgoFormer superion = equipo.get(0);
+        Tablero tablero = Tablero.getInstance();
+        
+        tablero.borrarAlgoformer(superion);
+        equipo = superion.devolverIntegrantes();
+        
+        List<Posicion> posicionesDisponibles =
+            tablero.movimientosValidos(superion);
+        
+        int posicion = 0;
+        for (AlgoFormer algoformer : equipo){
+            tablero.colocarAlgoformer(
+                algoformer,
+                posicionesDisponibles.get(posicion));
+            posicion++;
+        }
+        
+        combinado = false;
+    }
 }
 

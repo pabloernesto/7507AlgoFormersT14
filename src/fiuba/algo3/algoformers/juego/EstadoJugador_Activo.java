@@ -60,25 +60,11 @@ public class EstadoJugador_Activo extends EstadoJugador
 		if (!jugador.combinado)
 			throw new NoEstaCombinadoException();
 		
-		Tablero tablero = Tablero.getInstance();
-		AlgoFormer combinado = jugador.equipo.get(0);
-		Posicion posicionCombinado = tablero.getPosicionAlgoformer(combinado);
-		List<Posicion> posicionesDisponibles =
-		    tablero.posicionesAdyacentesLibres(posicionCombinado);
-		if (posicionesDisponibles.size() < 3)
-			throw new SinLugarParaDescombinarseException();
+        AlgoFormer superion = jugador.getListaAlgoformers().get(0);
+        if (Tablero.getInstance().movimientosValidos(superion).size() < 3)
+            throw new SinLugarParaDescombinarseException();
 		
-		jugador.equipo = combinado.devolverIntegrantes();;
-		tablero.borrarAlgoformer(combinado);
-		int posicion = 0;
-		for (AlgoFormer algoformer : jugador.equipo){
-			tablero.colocarAlgoformer(
-			    algoformer,
-			    posicionesDisponibles.get(posicion));
-			posicion++;
-		}
-		
-		jugador.combinado = false;
+        jugador._descombinar();
         jugador.setEstado(new EstadoJugador_Inactivo());
 		terminarTurno(jugador);
 	}

@@ -159,9 +159,9 @@ public class JugadorTest
 		Tablero tablero = Tablero.getInstance();
 		AlgoFormer combinado = jugador.getListaAlgoformers().get(0);
 		Posicion posicionCombinado = tablero.getPosicionAlgoformer(combinado);
-		List<Posicion> posicionesLibresAntes = tablero.posicionesAdyacentesLibres(posicionCombinado);
+		List<Posicion> posicionesLibresAntes = tablero.movimientosValidos(posicionCombinado);
 		jugador.descombinar();
-		List<Posicion> posicionesLibresDespues = tablero.posicionesAdyacentesLibres(posicionCombinado);
+		List<Posicion> posicionesLibresDespues = tablero.movimientosValidos(posicionCombinado);
 		assertEquals(posicionesLibresDespues.size(), posicionesLibresAntes.size() - 3);
 	}
 }

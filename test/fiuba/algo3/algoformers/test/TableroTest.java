@@ -250,9 +250,10 @@ public class TableroTest {
 	}
 	
 	@Test
-    public void testTableroConseguirPosicionesAdyacentesLibres(){
+    public void testTableroConseguirMovimientosValidos(){
 		tablero.colocarAlgoformer(algoformer, new Posicion(1, 2));
-		List<Posicion> posicionesLibres = tablero.posicionesAdyacentesLibres(new Posicion(1,1));
+        List<Posicion> posicionesLibres =
+            tablero.movimientosValidos(new Posicion(1,1));
 		assertEquals(2, posicionesLibres.size());
 		assertTrue(posicionesLibres.contains(new Posicion(2, 2)));
 		assertTrue(posicionesLibres.contains(new Posicion(2, 1)));

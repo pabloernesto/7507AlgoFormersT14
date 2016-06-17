@@ -55,8 +55,8 @@ public class EstadoJugador_ModoPrueba extends EstadoJugador
 			throw new NoEstaCombinadoException();
 		Tablero tablero = Tablero.getInstance();
 		AlgoFormer combinado = jugador.equipo.get(0);
-		Posicion posicionCombinado = tablero.getPosicionAlgoformer(combinado);
-		List<Posicion> posicionesDisponibles = tablero.posicionesAdyacentesLibres(posicionCombinado);
+        List<Posicion> posicionesDisponibles =
+            tablero.movimientosValidos(combinado);
 		if (posicionesDisponibles.size() < 3)
 			throw new SinLugarParaDescombinarseException();
 		List<AlgoFormer> nuevoEquipo = combinado.devolverIntegrantes();

@@ -147,20 +147,27 @@ public class Tablero {
 			throw new CeldaOcupadaException();
 	}
 	
-	public List<Posicion> posicionesAdyacentesLibres(Posicion posicion){
-		List<Posicion> posicionesLibres = new ArrayList<Posicion>();
-		for (Movimiento movimiento : Movimiento.values()){
-			Posicion nuevaPosicion = posicion.sumarMovimiento(movimiento);
-			try{
-				validarMovimiento(nuevaPosicion);
-				posicionesLibres.add(nuevaPosicion);
-			} catch (PosicionInvalidaException | CeldaOcupadaException e){
-				continue;
-			}
-		}
-		return posicionesLibres;
-	}
-	
+    public List<Posicion> movimientosValidos(AlgoFormer algoformer)
+    {
+        return movimientosValidos(getPosicionAlgoformer(algoformer));
+    }
+
+    public List<Posicion> movimientosValidos(Posicion posicion)
+    {
+        List<Posicion> posicionesLibres = new ArrayList<Posicion>();
+
+        for (Movimiento movimiento : Movimiento.values()){
+            Posicion nuevaPosicion = posicion.sumarMovimiento(movimiento);
+            try{
+                validarMovimiento(nuevaPosicion);
+                posicionesLibres.add(nuevaPosicion);
+            } catch (PosicionInvalidaException | CeldaOcupadaException e){
+                continue;
+            }
+        }
+        return posicionesLibres;
+    }
+
 	//Metodos para pruebas//
 	
 	public Posicion getMedio(){
