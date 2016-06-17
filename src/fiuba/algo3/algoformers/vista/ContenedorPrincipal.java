@@ -1,6 +1,7 @@
 package fiuba.algo3.algoformers.vista;
 
 
+import java.nio.file.attribute.PosixFilePermission;
 import java.util.ArrayList;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
@@ -22,7 +23,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -62,22 +63,23 @@ public class ContenedorPrincipal extends BorderPane {
         botonCombinarse.setText("Combinarse");
         //BotonElegirCombinarse moveButtonHandler = new BotonMoverHandler(vistaAlgoformer, algoformer);
         //botonMover.setOnAction(moveButtonHandler);
+
+
+        botonAtacar.setMinSize(100, 60);
+        botonMover.setMinSize(100, 60);
+        botonCombinarse.setMinSize(100, 60);
+        botonTransformarse.setMinSize(100, 60);
         
-        botonAtacar.setMaxWidth(200);
-        botonMover.setMaxWidth(200);
-        botonCombinarse.setMaxWidth(200);
-        botonTransformarse.setMaxWidth(200);
-        
-        VBox contenedorVertical = new VBox(botonMover, botonAtacar,botonTransformarse,botonCombinarse);
-        contenedorVertical.setSpacing(15);
-        contenedorVertical.setPadding(new Insets(150,50,50,50));
-        contenedorVertical.setPrefWidth(300);
+        HBox contenedorHorizontal = new HBox(botonMover, botonAtacar,botonTransformarse,botonCombinarse);
+        contenedorHorizontal.setSpacing(30);
+        contenedorHorizontal.setPadding(new Insets(50,0,50,450)); //el primero es para el alto.. el ultimo para el lugar horizontal
+        //contenedorVertical.setMinHeight(100);
         
         Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/intro/FondoGris.jpg", 300, 0, false, true);
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        contenedorVertical.setBackground(new Background(imagenDeFondo));
+        contenedorHorizontal.setBackground(new Background(imagenDeFondo));
         
-        this.setLeft(contenedorVertical);
+        this.setBottom(contenedorHorizontal);
 
     }
     
@@ -88,10 +90,10 @@ public class ContenedorPrincipal extends BorderPane {
         //Como hago para dibujar cada Algoformer??
         //Capaz tengo que preguntarle a cada celda si contiene un algoformer y
         //Segun la respuesta actuar...
-        VBox contenedorCentral = new VBox();
+        HBox contenedorCentral = new HBox();
     	//Button[][] matriz;
 
-    	contenedorCentral.setAlignment(Pos.CENTER);
+    	contenedorCentral.setAlignment(Pos.BOTTOM_CENTER);
         contenedorCentral.setSpacing(0);
         contenedorCentral.setPadding(new Insets(10));
     	/*matriz = new Button[tablero.ancho()][tablero.altura()];

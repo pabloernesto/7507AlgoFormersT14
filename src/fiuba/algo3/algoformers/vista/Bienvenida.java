@@ -32,16 +32,21 @@ public class Bienvenida extends VBox{
 
             this.setAlignment(Pos.CENTER_LEFT);
             this.setSpacing(20);
-            this.setPadding(new Insets(25));
+            this.setPadding(new Insets(480, 50, 50, 50));
             Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/intro/IntroPrincipal.jpg");
             BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
             this.setBackground(new Background(imagenDeFondo));
 
             Button botonEntrar = new Button();
             botonEntrar.setText("Jugar!");
+            botonEntrar.setMinSize(200, 120);
+            botonEntrar.setFont(Font.font("Courier New",FontWeight.BOLD, 56));
             
             Button botonSalir = new Button();
-            botonSalir.setText("Salir");
+            botonSalir.setText("Salir :(");
+            botonSalir.setFont(Font.font("", 20));
+
+            
 
             Button botonMaximizar= new Button();
             botonMaximizar.setText("Maximizar Pantalla");
@@ -50,7 +55,7 @@ public class Bienvenida extends VBox{
             botonMinimizar.setText("Minimizar Pantalla");
 
             Label etiqueta = new Label();
-            etiqueta.setFont(Font.font("Tahoma", FontWeight.BOLD, 22));
+            etiqueta.setFont(Font.font("Tahoma", FontWeight.BOLD, 80));
 
             etiqueta.setText("AlgoFormers");
             etiqueta.setTextFill(Color.web("#66A7C5"));
