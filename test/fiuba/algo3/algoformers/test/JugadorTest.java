@@ -5,8 +5,8 @@ import org.junit.Before;
 import org.junit.After;
 import static org.junit.Assert.*;
 
-//import org.mockito.*;
-//import static org.mockito.Mockito.*;
+import org.mockito.*;
+import static org.mockito.Mockito.*;
 
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
