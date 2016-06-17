@@ -19,5 +19,10 @@ public abstract class EstadoJugador
     {
         jugador._terminarTurno();
     }
+    
+    public void iniciarTurno(Jugador jugador)
+    {
+        jugador.setEstado(new EstadoJugador_Activo());
+    }
 }
 

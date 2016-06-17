@@ -73,9 +73,10 @@ public class Jugador
 	
     void iniciarTurno()
     {
-        setEstado(new EstadoJugador_Activo());
         for (AlgoFormer af : equipo)
             af.iniciarTurno();
+        
+        estado.iniciarTurno(this);
     }
 
     void _terminarTurno()

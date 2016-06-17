@@ -10,7 +10,6 @@ public class EstadoJugador_Moviendo extends EstadoJugador
 		throw new RuntimeException("Estas moviendo");
 	}
 	
-	/* Como dejo de moverme!? */
 	public void mover(Jugador jugador, Movimiento direccion)
 	{
 		jugador.algoformerActual.moverse(direccion);

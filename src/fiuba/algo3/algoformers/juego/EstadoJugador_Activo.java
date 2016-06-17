@@ -19,7 +19,10 @@ public class EstadoJugador_Activo extends EstadoJugador
 	
 	public void combinar(Jugador jugador)
 	{
-	    throw new RuntimeException("No implementado.");
+	    // TO-DO: LOGICA DE COMBINACION
+	    
+        jugador.setEstado(new EstadoJugador_Combinando());
+        terminarTurno(jugador);
 	}
 	
 	public void transformar(Jugador jugador)
