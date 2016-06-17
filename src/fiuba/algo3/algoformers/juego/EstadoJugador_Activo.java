@@ -18,6 +18,7 @@ public class EstadoJugador_Activo extends EstadoJugador
 	public void atacar(Jugador jugador, AlgoFormer atacado)
 	{
 		jugador.algoformerActual.atacar(atacado);
+        jugador.setEstado(new EstadoJugador_Inactivo());
 		jugador._terminarTurno();
 	}
 	
@@ -30,6 +31,7 @@ public class EstadoJugador_Activo extends EstadoJugador
 	public void transformar(Jugador jugador)
 	{
 		jugador.algoformerActual.transformarse();
+        jugador.setEstado(new EstadoJugador_Inactivo());
 		jugador._terminarTurno();
 	}
 	
@@ -77,6 +79,7 @@ public class EstadoJugador_Activo extends EstadoJugador
 		}
 		
 		jugador.combinado = false;
+        jugador.setEstado(new EstadoJugador_Inactivo());
 		terminarTurno(jugador);
 	}
 }
