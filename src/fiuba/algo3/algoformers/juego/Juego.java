@@ -14,38 +14,52 @@ import fiuba.algo3.algoformers.escenario.Movimiento;
 public class Juego {
 
 	Tablero tablero;
-	private ControlDeTurnos turnos;
 	private static boolean hayGanador = false;
-	
+    
+    private Jugador [] jugadores;
+    private int jugadorActual;
+    
 	public Juego() {}
 	
 	public void inicializar()
 	{
 		tablero = Tablero.getInstance();
-		turnos = new ControlDeTurnos();
-		
-		Jugador jAutobot = new Jugador(new AutoBotFactory());
-		jAutobot.setControlDeTurnos(turnos);
-		
-		Jugador jDecepticon = new Jugador(new DecepticonFactory());
-		jDecepticon.setControlDeTurnos(turnos);
-		
-		turnos.terminarTurno();
+		inicializarJugadores();
 		
 		ubicarAlgoformers();
 		ubicarChispaSuprema();
 	}
-	
+
+    private void inicializarJugadores()
+    {
+        jugadores = new Jugador [2];
+        jugadorActual = new Random().nextInt(2);
+
+        jugadores[0] = new Jugador(new AutoBotFactory());
+        jugadores[1] = new Jugador(new DecepticonFactory());
+
+        jugadores[0].setJuego(this);
+        jugadores[1].setJuego(this);
+        
+        jugadores[jugadorActual].setEstado(new EstadoJugador_Activo());
+        jugadores[siguienteJugador()].setEstado(new EstadoJugador_Inactivo());
+    }
+
 	public Jugador jugadorActual()
 	{
-	    return turnos.jugadorActual();
+	    return jugadores[jugadorActual];
 	}
 
 	public Jugador jugadorInactivo()
 	{
-	    return turnos.jugadorSiguiente();
+	    return jugadores[siguienteJugador()];
 	}
-	
+
+    private int siguienteJugador()
+    {
+        return (jugadorActual + 1) % jugadores.length;
+    }
+
 	private void ubicarAlgoformers()
 	{
 	    List<AlgoFormer> equipo;
@@ -92,4 +106,11 @@ public class Juego {
 	public static void hayGanador(AlgoFormer algoformer) {
 		hayGanador = true;
 	}
+	
+	void terminarTurno()
+	{
+	    jugadorActual = siguienteJugador();
+	    jugadorActual().iniciarTurno();
+	}
 }
+

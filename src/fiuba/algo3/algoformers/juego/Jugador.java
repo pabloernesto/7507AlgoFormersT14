@@ -1,17 +1,15 @@
 package fiuba.algo3.algoformers.juego;
 
-import java.util.Observable;
-import java.util.Observer;
 import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.factories.AlgoFormerFactory;
 
-public class Jugador implements Observer
+public class Jugador
 {
 	private EstadoJugador estado = new EstadoJugador_ModoPrueba();
-    private ControlDeTurnos turnos;
+    private Juego juego;
 	
 	protected List<AlgoFormer> equipo;
 	protected AlgoFormer algoformerActual;
@@ -73,35 +71,24 @@ public class Jugador implements Observer
         estado.terminarTurno(this);
     }
 	
-	/* Jugador es observador de ControlDeTurnos */
-	public void update(Observable o, Object arg)
-	{
-	    if (arg == this)
-	        iniciarTurno();
-	        
-	    else
-	        setEstado(new EstadoJugador_Inactivo());
-	}
-	
-	private void iniciarTurno()
-	{
+    void iniciarTurno()
+    {
         setEstado(new EstadoJugador_Activo());
         for (AlgoFormer af : equipo)
             af.iniciarTurno();
-	}
+    }
 
     void _terminarTurno()
     {
         for (AlgoFormer af : equipo)
             af.finalizarTurno();
         
-        turnos.terminarTurno();
+        juego.terminarTurno();
     }
     
-    void setControlDeTurnos(ControlDeTurnos c)
+    void setJuego(Juego j)
     {
-        turnos = c;
-        c.addObserver(this);
+        juego = j;
     }
 }
 
