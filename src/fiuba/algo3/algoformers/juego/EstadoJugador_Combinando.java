@@ -12,6 +12,7 @@ public class EstadoJugador_Combinando extends EstadoJugador
     public void combinar(Jugador jugador) {}
     public void transformar(Jugador j) {}
     public void elegirAlgoFormer(Jugador jugador, String nombre){}
+    public void descombinar(Jugador jugador){}
     
     public void iniciarTurno (Jugador j)
     {

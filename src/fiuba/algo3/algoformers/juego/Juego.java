@@ -5,8 +5,9 @@ import java.util.Random;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
+import fiuba.algo3.algoformers.factories.BonusNuloFactory;
 import fiuba.algo3.algoformers.factories.DecepticonFactory;
-
+import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.escenario.Posicion;
 import fiuba.algo3.algoformers.escenario.Movimiento;
@@ -111,6 +112,30 @@ public class Juego {
 	{
 	    jugadorActual = siguienteJugador();
 	    jugadorActual().iniciarTurno();
+	}
+	
+	//Metodos para pruebas
+	
+	public void inicializarSinAleatoridad()
+	{
+		Tablero.setGeneradorDeCeldas(new RocasYNubesFactory());
+		Tablero.setGeneradorDeBonus(new BonusNuloFactory());
+		tablero = Tablero.getInstance();
+		
+		jugadores = new Jugador [2];
+        jugadorActual = 0;
+
+        jugadores[0] = new Jugador(new AutoBotFactory());
+        jugadores[1] = new Jugador(new DecepticonFactory());
+
+        jugadores[0].setJuego(this);
+        jugadores[1].setJuego(this);
+
+        jugadores[jugadorActual].setEstado(new EstadoJugador_ModoPrueba());
+        jugadores[siguienteJugador()].setEstado(new EstadoJugador_Inactivo());
+		
+		ubicarAlgoformers();
+		ubicarChispaSuprema();
 	}
 }
 

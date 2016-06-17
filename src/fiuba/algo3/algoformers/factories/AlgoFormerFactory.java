@@ -6,4 +6,6 @@ import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 public interface AlgoFormerFactory {
 
 	public List<AlgoFormer> crearEquipo();
+	
+	public AlgoFormer crearCombinado(List<AlgoFormer> integrantes);
 }

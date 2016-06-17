@@ -8,6 +8,7 @@ public abstract class EstadoJugador
 	public abstract void atacar(Jugador jugador, AlgoFormer atacado);
 	public abstract void mover(Jugador jugador, Movimiento direccion);
 	public abstract void combinar(Jugador jugador);
+	public abstract void descombinar(Jugador jugador);
 	public abstract void transformar(Jugador j);
     
     public void elegirAlgoFormer(Jugador jugador, String nombre)

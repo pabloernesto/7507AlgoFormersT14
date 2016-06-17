@@ -20,6 +20,11 @@ public class EstadoJugador_Moviendo extends EstadoJugador
 		throw new RuntimeException("Estas moviendo");
 	}
 	
+	public void descombinar(Jugador jugador)
+	{
+		throw new RuntimeException("Estas moviendo");
+	}
+	
 	public void transformar(Jugador jugador)
 	{
 		throw new RuntimeException("Estas moviendo");

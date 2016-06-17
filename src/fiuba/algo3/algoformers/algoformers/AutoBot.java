@@ -1,6 +1,9 @@
 package fiuba.algo3.algoformers.algoformers;
 
+import java.util.List;
+
 import fiuba.algo3.algoformers.escenario.efectos.EfectoBurbuja;
+import fiuba.algo3.algoformers.excepciones.AlgoformerNoTieneIntegrantesException;
 import fiuba.algo3.algoformers.excepciones.FuegoAmigoException;
 
 public class AutoBot extends AlgoFormer {
@@ -20,6 +23,10 @@ public class AutoBot extends AlgoFormer {
 	
 	public void enviarRecibirDanio(AlgoFormer algoformerAtacado){
 		algoformerAtacado.recibirDanio(this, getAtaque());
+	}
+	
+	public List<AlgoFormer> devolverIntegrantes(){
+		throw new AlgoformerNoTieneIntegrantesException();
 	}
 	
 }

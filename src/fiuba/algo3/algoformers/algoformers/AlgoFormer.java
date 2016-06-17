@@ -53,6 +53,8 @@ public abstract class AlgoFormer {
 	   o Decepticon. */
 	public abstract void enviarRecibirDanio(AlgoFormer algoformerAtacado);
 	
+	public abstract List<AlgoFormer> devolverIntegrantes();
+	
 	public void transformarse (){
 		estado = estado.transformarse();
 		reiniciarMovimientosRestantes();

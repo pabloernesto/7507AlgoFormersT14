@@ -14,9 +14,13 @@ public class Jugador
 	protected List<AlgoFormer> equipo;
 	protected AlgoFormer algoformerActual;
 	
+	protected AlgoFormerFactory algoformerFactory;
+	public boolean combinado = false;
+	
 	public Jugador(AlgoFormerFactory factory)
 	{
 	    equipo = factory.crearEquipo();
+	    algoformerFactory = factory;
  	}
 	
     public void elegirAlgoFormer(String nombre)
@@ -59,6 +63,11 @@ public class Jugador
 	public void combinar()
 	{
 	    estado.combinar(this);
+	}
+	
+	public void descombinar()
+	{
+		estado.descombinar(this);
 	}
 	
 	public void transformar()

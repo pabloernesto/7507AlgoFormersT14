@@ -3,6 +3,7 @@ package fiuba.algo3.algoformers.escenario;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
@@ -69,9 +70,17 @@ public class Tablero {
 	}
 	
 	public void colocarAlgoformer (AlgoFormer algoformer, Posicion posicion){
-		validarMovimiento(algoformer, posicion);
+		validarMovimiento(posicion);
 		celdas.get(posicion).recibirAlgoformer(algoformer);
 		posicionesCeldasOcupadas.add(posicion);
+	}
+	
+	public void borrarAlgoformer(AlgoFormer algoformer){
+		Posicion posicion = getPosicionAlgoformer(algoformer);
+		if (posicion == null)
+			return;
+		celdas.get(posicion).desocuparCelda();
+		posicionesCeldasOcupadas.remove(posicion);
 	}
 	
 	public void moverAlgoformer (AlgoFormer algoformer, Movimiento direccion)
@@ -79,7 +88,7 @@ public class Tablero {
         // Validar posicion final
         Posicion posicionInicial = getPosicionAlgoformer(algoformer);
         Posicion posicionFinal = posicionInicial.sumarMovimiento(direccion);
-        validarMovimiento(algoformer, posicionFinal);
+        validarMovimiento(posicionFinal);
 
         // Entrar a celda
         algoformer.entrarACelda(celdas.get(posicionFinal));
@@ -131,11 +140,25 @@ public class Tablero {
 		celdas.get(posicion).setBonus(bonus);
 	}
 	
-	private void validarMovimiento (AlgoFormer algoformer, Posicion posicion){
+	private void validarMovimiento (Posicion posicion){
 		if (celdas.get(posicion) == null)
 			throw new PosicionInvalidaException();
 		if (posicionesCeldasOcupadas.contains(posicion))
 			throw new CeldaOcupadaException();
+	}
+	
+	public List<Posicion> posicionesAdyacentesLibres(Posicion posicion){
+		List<Posicion> posicionesLibres = new ArrayList<Posicion>();
+		for (Movimiento movimiento : Movimiento.values()){
+			Posicion nuevaPosicion = posicion.sumarMovimiento(movimiento);
+			try{
+				validarMovimiento(nuevaPosicion);
+				posicionesLibres.add(nuevaPosicion);
+			} catch (PosicionInvalidaException | CeldaOcupadaException e){
+				continue;
+			}
+		}
+		return posicionesLibres;
 	}
 	
 	//Metodos para pruebas//
