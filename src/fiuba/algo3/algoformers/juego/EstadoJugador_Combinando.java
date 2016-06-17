@@ -14,15 +14,15 @@ public class EstadoJugador_Combinando extends EstadoJugador
     public void elegirAlgoFormer(Jugador jugador, String nombre){}
     public void descombinar(Jugador jugador){}
     
-    public void iniciarTurno (Jugador j)
+    public void iniciarTurno (Jugador jugador)
     {
         if (turnosTranscurridos == 2)
-            j.setEstado(new EstadoJugador_Activo());
+            jugador.setEstado(new EstadoJugador_Activo());
         
         else
         {
             turnosTranscurridos += 1;
-            terminarTurno(j);
+            terminarTurno(jugador);
         }
     }
 }

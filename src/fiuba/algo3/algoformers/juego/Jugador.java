@@ -45,9 +45,9 @@ public class Jugador
 		return equipo;
 	}
 	
-	void setEstado(EstadoJugador e)
+	void setEstado(EstadoJugador nuevoEstado)
 	{
-	    estado = e;
+	    estado = nuevoEstado;
 	}
 	
 	public void atacar(AlgoFormer atacado)
@@ -82,23 +82,23 @@ public class Jugador
 	
     void iniciarTurno()
     {
-        for (AlgoFormer af : equipo)
-            af.iniciarTurno();
+        for (AlgoFormer algoformer : equipo)
+            algoformer.iniciarTurno();
         
         estado.iniciarTurno(this);
     }
 
     void _terminarTurno()
     {
-        for (AlgoFormer af : equipo)
-            af.finalizarTurno();
+        for (AlgoFormer algoformer : equipo)
+            algoformer.finalizarTurno();
         
         juego.terminarTurno();
     }
     
-    void setJuego(Juego j)
+    void setJuego(Juego juego)
     {
-        juego = j;
+        this.juego = juego;
     }
 }
 
