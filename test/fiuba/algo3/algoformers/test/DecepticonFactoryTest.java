@@ -2,8 +2,13 @@ package fiuba.algo3.algoformers.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
 import org.junit.Test;
 
+import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.algoformers.Decepticon;
 import fiuba.algo3.algoformers.algoformers.FormaAerea;
 import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
@@ -12,10 +17,19 @@ import fiuba.algo3.algoformers.factories.DecepticonFactory;
 
 public class DecepticonFactoryTest {
 
+	private DecepticonFactory factory = new DecepticonFactory();
+	private Decepticon megatron;
+	private Decepticon bonecrusher;
+	private Decepticon frenzy;
+	
+	@Before
+	public void setUp(){
+		megatron = factory.crearMegatron();
+		bonecrusher = factory.crearBonecrusher();
+		frenzy = factory.crearFrenzy();
+	}
 	@Test
 	public void testMegatronSeCreaCorrectamente(){
-		DecepticonFactory factory = new DecepticonFactory();
-		Decepticon megatron = factory.crearMegatron();
 		
 		assertEquals("Megatron", megatron.getNombre());
 		assertEquals(550, megatron.getVida());
@@ -32,8 +46,6 @@ public class DecepticonFactoryTest {
 	
 	@Test
 	public void testBonecrusherSeCreaCorrectamente(){
-		DecepticonFactory factory = new DecepticonFactory();
-		Decepticon bonecrusher = factory.crearBonecrusher();
 		assertEquals("Bonecrusher", bonecrusher.getNombre());
 		assertEquals(200, bonecrusher.getVida());
 		assertEquals(30, bonecrusher.getAtaque());
@@ -49,8 +61,6 @@ public class DecepticonFactoryTest {
 	
 	@Test
 	public void testFrenzySeCreaCorrectamente(){
-		DecepticonFactory factory = new DecepticonFactory();
-		Decepticon frenzy = factory.crearFrenzy();
 		assertEquals("Frenzy", frenzy.getNombre());
 		assertEquals(400, frenzy.getVida());
 		assertEquals(10, frenzy.getAtaque());
@@ -62,6 +72,21 @@ public class DecepticonFactoryTest {
 		assertEquals(6, frenzy.getVelocidad());
 		assertEquals(2, frenzy.getDistAtaque());
 		assertEquals(frenzy.getEstadoActivo().getClass(), FormaTerrestre.class);
+	}
+	
+	@Test
+	public void testMenasorSeCreaCorrectamente(){
+		List<AlgoFormer> decepticons = new ArrayList<AlgoFormer>();
+		decepticons.add(megatron);
+		decepticons.add(bonecrusher);
+		decepticons.add(frenzy);
+		Decepticon menasor = factory.crearCombinado(decepticons);
+		
+		assertEquals("Menasor", menasor.getNombre());
+		assertEquals(115, menasor.getAtaque());
+		assertEquals(2, menasor.getVelocidad());
+		assertEquals(2, menasor.getDistAtaque());
+		assertEquals(menasor.getEstadoActivo().getClass(), FormaTerrestre.class);
 	}
 	
 }

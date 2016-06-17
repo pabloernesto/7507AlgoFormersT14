@@ -8,6 +8,7 @@ import fiuba.algo3.algoformers.algoformers.Decepticon;
 import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.escenario.superficies.Nube;
 import fiuba.algo3.algoformers.escenario.superficies.Rocosa;
+import fiuba.algo3.algoformers.excepciones.AlgoformerNoTieneIntegrantesException;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
 import fiuba.algo3.algoformers.factories.DecepticonFactory;
 
@@ -92,5 +93,10 @@ public class DecepticonTest {
 		assertTrue(movimientos > decepticon.getMovimientosRestantes());
 		decepticon.reiniciarMovimientosRestantes();
 		assertTrue(movimientos == decepticon.getMovimientosRestantes());
+	}
+	
+	@Test(expected=AlgoformerNoTieneIntegrantesException.class)
+	public void testDevolverIntegrantesLanzaExcepcion(){
+		decepticon.devolverIntegrantes();
 	}
 }

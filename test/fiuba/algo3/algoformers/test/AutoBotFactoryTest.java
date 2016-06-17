@@ -2,8 +2,13 @@ package fiuba.algo3.algoformers.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
 import org.junit.Test;
 
+import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.algoformers.AutoBot;
 import fiuba.algo3.algoformers.algoformers.FormaAerea;
 import fiuba.algo3.algoformers.algoformers.FormaHumanoide;
@@ -12,11 +17,21 @@ import fiuba.algo3.algoformers.factories.AutoBotFactory;
 
 public class AutoBotFactoryTest {
 
+	private AutoBotFactory factory = new AutoBotFactory();
+	private AutoBot optimus;
+	private AutoBot bumblebee;
+	private AutoBot ratchet;
+	
+	@Before
+	public void setUp(){
+		optimus = factory.crearOptimusPrime();
+		bumblebee = factory.crearBumblebee();
+		ratchet = factory.crearRatchet();
+	}
+
 	@Test
 	public void testOptimusPrimeSeCreaCorrectamente(){
-		AutoBotFactory factory = new AutoBotFactory();
-		AutoBot optimus = factory.crearOptimusPrime();
-		
+
 		assertEquals("Optimus Prime", optimus.getNombre());
 		assertEquals(500, optimus.getVida());
 		assertEquals(50, optimus.getAtaque());
@@ -35,9 +50,7 @@ public class AutoBotFactoryTest {
 	
 	@Test
 	public void testBumblebeeSeCreaCorrectamente(){
-		AutoBotFactory factory = new AutoBotFactory();
-		AutoBot bumblebee = factory.crearBumblebee();
-		
+
 		assertEquals("Bumblebee", bumblebee.getNombre());
 		assertEquals(350, bumblebee.getVida());
 		assertEquals(40, bumblebee.getAtaque());
@@ -56,9 +69,7 @@ public class AutoBotFactoryTest {
 	
 	@Test
 	public void testRatchetSeCreaCorrectamente(){
-		AutoBotFactory factory = new AutoBotFactory();
-		AutoBot ratchet = factory.crearRatchet();
-		
+
 		assertEquals("Ratchet", ratchet.getNombre());
 		assertEquals(150, ratchet.getVida());
 		assertEquals(5, ratchet.getAtaque());
@@ -73,6 +84,21 @@ public class AutoBotFactoryTest {
 		assertEquals(8, ratchet.getVelocidad());
 		assertEquals(2, ratchet.getDistAtaque());
 		assertEquals(ratchet.getEstadoActivo().getClass(), FormaAerea.class);
+	}
+	
+	@Test
+	public void testSuperionSeCreaCorrectamente(){
+		List<AlgoFormer> autobots = new ArrayList<AlgoFormer>();
+		autobots.add(optimus);
+		autobots.add(bumblebee);
+		autobots.add(ratchet);
+		AutoBot superion = factory.crearCombinado(autobots);
+		
+		assertEquals("Superion", superion.getNombre());
+		assertEquals(100, superion.getAtaque());
+		assertEquals(3, superion.getVelocidad());
+		assertEquals(2, superion.getDistAtaque());
+		assertEquals(superion.getEstadoActivo().getClass(), FormaTerrestre.class);
 	}
 	
 }

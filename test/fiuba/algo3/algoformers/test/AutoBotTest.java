@@ -8,6 +8,7 @@ import fiuba.algo3.algoformers.algoformers.AutoBot;
 import fiuba.algo3.algoformers.escenario.Celda;
 import fiuba.algo3.algoformers.escenario.superficies.Nube;
 import fiuba.algo3.algoformers.escenario.superficies.Rocosa;
+import fiuba.algo3.algoformers.excepciones.AlgoformerNoTieneIntegrantesException;
 import fiuba.algo3.algoformers.excepciones.NoHayMasMovimientosException;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
 
@@ -92,5 +93,10 @@ public class AutoBotTest {
 		assertTrue(movimientos > autobot.getMovimientosRestantes());
 		autobot.reiniciarMovimientosRestantes();
 		assertTrue(movimientos == autobot.getMovimientosRestantes());
+	}
+	
+	@Test(expected=AlgoformerNoTieneIntegrantesException.class)
+	public void testDevolverIntegrantesLanzaExcepcion(){
+		autobot.devolverIntegrantes();
 	}
 }

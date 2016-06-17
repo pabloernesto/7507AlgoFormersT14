@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -238,4 +240,21 @@ public class TableroTest {
     	assertEquals(0,
     	    tablero.distancia(algoformer, algoformer));
     }
+	
+	@Test
+    public void testTableroBorrarAlgoformerLoBorraDelMapa(){
+		Posicion posicion = new Posicion(1,1);
+    	tablero.colocarAlgoformer(algoformer, posicion);
+    	tablero.borrarAlgoformer(algoformer);
+    	assertFalse(tablero.posicionEstaOcupada(posicion));
+	}
+	
+	@Test
+    public void testTableroConseguirPosicionesAdyacentesLibres(){
+		tablero.colocarAlgoformer(algoformer, new Posicion(1, 2));
+		List<Posicion> posicionesLibres = tablero.posicionesAdyacentesLibres(new Posicion(1,1));
+		assertEquals(2, posicionesLibres.size());
+		assertTrue(posicionesLibres.contains(new Posicion(2, 2)));
+		assertTrue(posicionesLibres.contains(new Posicion(2, 1)));
+	}
 }
