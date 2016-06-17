@@ -29,46 +29,32 @@ public class EstadoJugador_ModoPrueba extends EstadoJugador
 	{
 		if (jugador.combinado)
 			throw new YaEstaCombinadoException();
-		Tablero tablero = Tablero.getInstance();
+		
 		if (jugador.equipo.size() < 3)
 			throw new EquipoIncompletoException();
+		
+		Tablero tablero = Tablero.getInstance();
 		AlgoFormer capitan = jugador.equipo.get(0);
 		for (AlgoFormer algoformer: jugador.equipo){
 			int distancia = tablero.distancia(capitan, algoformer);
 			if (distancia > 2)
 				throw new AlgoformerMuyLejosException();
 		}
-		AlgoFormer combinado = jugador.algoformerFactory.crearCombinado(jugador.equipo);
-		List<AlgoFormer> nuevoEquipo = new ArrayList<AlgoFormer>();
-		nuevoEquipo.add(combinado);
-		Posicion posicionCombinado = tablero.getPosicionAlgoformer(capitan);
-		for (AlgoFormer algoformer : jugador.equipo)
-			tablero.borrarAlgoformer(algoformer);
-		tablero.colocarAlgoformer(combinado, posicionCombinado);
-		jugador.equipo = nuevoEquipo;
-		jugador.combinado = true;
+		
+        jugador._combinar();
 	}
 	
-	public void descombinar(Jugador jugador)
-	{
-		if (!jugador.combinado)
-			throw new NoEstaCombinadoException();
-		Tablero tablero = Tablero.getInstance();
-		AlgoFormer combinado = jugador.equipo.get(0);
-        List<Posicion> posicionesDisponibles =
-            tablero.movimientosValidos(combinado);
-		if (posicionesDisponibles.size() < 3)
-			throw new SinLugarParaDescombinarseException();
-		List<AlgoFormer> nuevoEquipo = combinado.devolverIntegrantes();
-		jugador.equipo = nuevoEquipo;
-		tablero.borrarAlgoformer(combinado);
-		int posicion = 0;
-		for (AlgoFormer algoformer : jugador.equipo){
-			tablero.colocarAlgoformer(algoformer, posicionesDisponibles.get(posicion));
-			posicion++;
-		}
-		jugador.combinado = false;
-	}
+    public void descombinar(Jugador jugador)
+    {
+        if (!jugador.combinado)
+            throw new NoEstaCombinadoException();
+
+        AlgoFormer superion = jugador.getListaAlgoformers().get(0);
+        if (Tablero.getInstance().movimientosValidos(superion).size() < 3)
+            throw new SinLugarParaDescombinarseException();
+
+        jugador._descombinar();
+    }
 	
 	public void transformar(Jugador jugador)
 	{

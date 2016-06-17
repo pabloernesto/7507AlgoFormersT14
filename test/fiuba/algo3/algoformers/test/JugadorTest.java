@@ -152,17 +152,26 @@ public class JugadorTest
 	
 	@Test
 	public void testDescombinarse(){
+        Tablero tablero = Tablero.getInstance();
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
 		Jugador jugador = juego.jugadorActual();
+        
 		jugador.combinar();
-		Tablero tablero = Tablero.getInstance();
-		AlgoFormer combinado = jugador.getListaAlgoformers().get(0);
-		Posicion posicionCombinado = tablero.getPosicionAlgoformer(combinado);
-		List<Posicion> posicionesLibresAntes = tablero.movimientosValidos(posicionCombinado);
+        
+        Posicion posicionCombinado =
+            tablero.getPosicionAlgoformer(jugador.getListaAlgoformers().get(0));
+        List<Posicion> posicionesLibresAntes =
+            tablero.movimientosValidos(posicionCombinado);
+        
 		jugador.descombinar();
-		List<Posicion> posicionesLibresDespues = tablero.movimientosValidos(posicionCombinado);
-		assertEquals(posicionesLibresDespues.size(), posicionesLibresAntes.size() - 3);
+        
+        List<Posicion> posicionesLibresDespues =
+            tablero.movimientosValidos(posicionCombinado);
+        
+        assertEquals(
+            posicionesLibresDespues.size(),
+            posicionesLibresAntes.size() - 3);
 	}
 }
 

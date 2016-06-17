@@ -125,13 +125,13 @@ public class Jugador
     {
         AlgoFormer superion = equipo.get(0);
         Tablero tablero = Tablero.getInstance();
-        
-        tablero.borrarAlgoformer(superion);
-        equipo = superion.devolverIntegrantes();
-        
         List<Posicion> posicionesDisponibles =
             tablero.movimientosValidos(superion);
         
+        equipo = superion.devolverIntegrantes();
+        tablero.borrarAlgoformer(superion);
+        
+        // Ubicar el nuevo equipo en el tablero
         int posicion = 0;
         for (AlgoFormer algoformer : equipo){
             tablero.colocarAlgoformer(
