@@ -1,9 +1,12 @@
 package fiuba.algo3.algoformers.juego;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.escenario.Movimiento;
+import fiuba.algo3.algoformers.escenario.Tablero;
+import fiuba.algo3.algoformers.escenario.Posicion;
 import fiuba.algo3.algoformers.factories.AlgoFormerFactory;
 
 public class Jugador
@@ -11,10 +14,10 @@ public class Jugador
 	private EstadoJugador estado = new EstadoJugador_ModoPrueba();
     private Juego juego;
 	
-	protected List<AlgoFormer> equipo;
-	protected AlgoFormer algoformerActual;
+	List<AlgoFormer> equipo;
+	AlgoFormer algoformerActual;
 	
-	protected AlgoFormerFactory algoformerFactory;
+	AlgoFormerFactory algoformerFactory;
 	public boolean combinado = false;
 	
 	public Jugador(AlgoFormerFactory factory)
@@ -99,6 +102,23 @@ public class Jugador
     void setJuego(Juego juego)
     {
         this.juego = juego;
+    }
+
+    void _combinar()
+    {
+        Tablero tablero = Tablero.getInstance();
+
+        AlgoFormer combinacion = algoformerFactory.crearCombinado(equipo);
+        Posicion posicionCapitan = tablero.getPosicionAlgoformer(equipo.get(0));
+
+        for (AlgoFormer algoformer : equipo)
+            tablero.borrarAlgoformer(algoformer);
+        tablero.colocarAlgoformer(combinacion, posicionCapitan);
+
+        equipo = new ArrayList<AlgoFormer>();
+        equipo.add(combinacion);
+
+        combinado = true;
     }
 }
 

@@ -49,17 +49,7 @@ public class EstadoJugador_Activo extends EstadoJugador
 				throw new AlgoformerMuyLejosException();
 		}
 		
-		AlgoFormer combinado =
-		    jugador.algoformerFactory.crearCombinado(jugador.equipo);
-		List<AlgoFormer> nuevoEquipo = new ArrayList<AlgoFormer>();
-		nuevoEquipo.add(combinado);
-		Posicion posicionCombinado = tablero.getPosicionAlgoformer(capitan);
-		for (AlgoFormer algoformer : jugador.equipo)
-			tablero.borrarAlgoformer(algoformer);
-		tablero.colocarAlgoformer(combinado, posicionCombinado);
-		jugador.equipo = nuevoEquipo;
-		jugador.combinado = true;
-	    
+        jugador._combinar();
         jugador.setEstado(new EstadoJugador_Combinando());
         terminarTurno(jugador);
 	}
