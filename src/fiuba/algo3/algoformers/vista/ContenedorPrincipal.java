@@ -119,12 +119,10 @@ public class ContenedorPrincipal extends BorderPane {
 
     }
 
-    
-   /*
 
     public BarraDeMenu getBarraDeMenu() {
         return menuBar;
     }
-	*/
+	
  
 }

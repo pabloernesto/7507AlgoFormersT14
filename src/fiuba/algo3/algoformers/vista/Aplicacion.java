@@ -1,6 +1,7 @@
 package fiuba.algo3.algoformers.vista;
 
 import fiuba.algo3.algoformers.escenario.Tablero;
+import fiuba.algo3.algoformers.vista.eventos.AplicacionOnKeyPressEventHandler;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -19,10 +20,10 @@ import javafx.stage.Stage;
 	        stage.setTitle("Juego Algoformers");
 	        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage,tablero); //, algoformer);
 	        Scene escenaJuego = new Scene(contenedorPrincipal, 640, 480);
-	        /*
+	        
 	        AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler = new AplicacionOnKeyPressEventHandler(stage, contenedorPrincipal.getBarraDeMenu());
 	        escenaJuego.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
-	        */
+	        
 	        ContenedorReglas contenedorReglas = new ContenedorReglas(stage, escenaJuego);
 	        Scene escenaReglas = new Scene(contenedorReglas, 640, 480);
 	        

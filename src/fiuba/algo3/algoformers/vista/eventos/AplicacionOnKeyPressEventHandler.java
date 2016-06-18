@@ -1,5 +1,6 @@
 package fiuba.algo3.algoformers.vista.eventos;
 
+import fiuba.algo3.algoformers.vista.BarraDeMenu;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -8,9 +9,11 @@ import javafx.stage.Stage;
 public class AplicacionOnKeyPressEventHandler implements EventHandler<KeyEvent> {
 
     private Stage stage;
+    private BarraDeMenu menuBar;
 
-    public AplicacionOnKeyPressEventHandler(Stage stage) {
+    public AplicacionOnKeyPressEventHandler(Stage stage, BarraDeMenu menuBar) {
         this.stage = stage;
+        this.menuBar= menuBar;
     }
 
     @Override
@@ -18,6 +21,7 @@ public class AplicacionOnKeyPressEventHandler implements EventHandler<KeyEvent> 
 
         if (event.getCode() == KeyCode.ESCAPE) {
             stage.setMaximized(true);
+            menuBar.aplicacionMaximizada(false);
         }
     }
 }

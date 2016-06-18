@@ -26,6 +26,7 @@ public class OpcionMinimizarHandler implements EventHandler<ActionEvent> {
             stage.hide();
             stage.setFullScreen(false);
             opcionMinimizar.setDisable(true);
+            stage.setMaximized(true);
             stage.show();
             menuBar.aplicacionMaximizada(false);
         }
