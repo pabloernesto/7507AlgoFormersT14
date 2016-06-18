@@ -1,5 +1,9 @@
 package fiuba.algo3.algoformers.vista;
 
+import fiuba.algo3.algoformers.vista.eventos.OpcionInformacionEventHandler;
+import fiuba.algo3.algoformers.vista.eventos.OpcionMinimizarHandler;
+import fiuba.algo3.algoformers.vista.eventos.OpcionPantallaCompletaHandler;
+import fiuba.algo3.algoformers.vista.eventos.OpcionSalirEventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -9,44 +13,47 @@ import javafx.stage.Stage;
 
 
 public class BarraDeMenu extends MenuBar {
-/*
+	
     MenuItem opcionPantallaCompleta = new MenuItem("Pantalla completa");
+    MenuItem opcionMinimizar = new MenuItem("Minimizar");
 
     public BarraDeMenu(Stage stage) {
 
         Menu menuArchivo = new Menu("Archivo");
         Menu menuVer = new Menu("Ver");
-        Menu menuAyuda = new Menu("Ayuda");
+        Menu menuInformacion = new Menu("Informacion");
 
         MenuItem opcionSalir = new MenuItem("Salir");
         MenuItem opcionAbrir = new MenuItem("Abrir");
-        MenuItem opcionAcercaDe = new MenuItem("Acerca de...");
+        MenuItem opcionInformacion = new MenuItem("Informacion");
 
-        OpcionSalirEventHandler opcionSalirHandler = new OpcionSalirEventHandler();
+        OpcionSalirEventHandler opcionSalirHandler = new OpcionSalirEventHandler(stage);
         opcionSalir.setOnAction(opcionSalirHandler);
 
-        OpcionMinimizarEventHandler opcionAcercaDeHandler = new OpcionAcercaDeEventHandler();
-        opcionAcercaDe.setOnAction(opcionAcercaDeHandler);
+        OpcionInformacionEventHandler opcionInformacionHandler = new OpcionInformacionEventHandler();
+        opcionInformacion.setOnAction(opcionInformacionHandler);
 
-        OpcionPantallaCompletaEventHandler opcionPantallaCompletaHandler = new OpcionPantallaCompletaEventHandler(stage, opcionPantallaCompleta);
+        OpcionPantallaCompletaHandler opcionPantallaCompletaHandler = new OpcionPantallaCompletaHandler(stage, opcionPantallaCompleta,this);
         opcionPantallaCompleta.setOnAction(opcionPantallaCompletaHandler);
+        
+
+        OpcionMinimizarHandler opcionMinimizarHandler = new OpcionMinimizarHandler(stage, opcionMinimizar,this);
+        opcionMinimizar.setOnAction(opcionMinimizarHandler);
 
         opcionPantallaCompleta.setDisable(true);
 
-        OpcionVolverAlMenuPrincipalEventHandler opcionVolver = new OpcionVolverAlMenuPrincipalEventHandler();
-        opcionVolver.setOnAction(opcionVolver);
-        
+        opcionMinimizar.setDisable(false);
         
         menuArchivo.getItems().addAll(opcionAbrir, new SeparatorMenuItem(), opcionSalir);
-        menuAyuda.getItems().addAll(opcionAcercaDe);
-        menuVer.getItems().addAll(opcionPantallaCompleta);
+        menuInformacion.getItems().addAll(opcionInformacion);
+        menuVer.getItems().addAll(opcionPantallaCompleta,opcionMinimizar);
 
-        this.getMenus().addAll(menuArchivo, menuVer, menuAyuda);
+        this.getMenus().addAll(menuArchivo, menuVer, menuInformacion);
     }
 
-    public void aplicacionMaximizada() {
-        opcionPantallaCompleta.setDisable(false);
-
+    public void aplicacionMaximizada(Boolean estaMaximizada) {
+        opcionPantallaCompleta.setDisable(estaMaximizada);
+        opcionMinimizar.setDisable(!estaMaximizada);
     }
-*/
+
 }
