@@ -5,33 +5,27 @@ import org.junit.Before;
 import org.junit.After;
 import static org.junit.Assert.*;
 
-import org.mockito.*;
-import static org.mockito.Mockito.*;
 
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
+import fiuba.algo3.algoformers.factories.DecepticonFactory;
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.algoformers.Forma;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Posicion;
 import fiuba.algo3.algoformers.escenario.Tablero;
-import fiuba.algo3.algoformers.excepciones.AlgoformerMuyLejosException;
-import fiuba.algo3.algoformers.excepciones.EquipoIncompletoException;
-import fiuba.algo3.algoformers.excepciones.NoEstaCombinadoException;
-import fiuba.algo3.algoformers.excepciones.SinLugarParaDescombinarseException;
-import fiuba.algo3.algoformers.excepciones.YaEstaCombinadoException;
+import fiuba.algo3.algoformers.excepciones.*;
 
 import java.util.List;
 import java.lang.NullPointerException;
 
-public class JugadorTest
-{
-    @Mock protected AlgoFormer algoformerActual;
-    @InjectMocks Jugador jugador;
+public class JugadorTest{
     
+	public Jugador jugador;
+	
     @Before
-    public void setUp()
-    {
+    public void setUp(){
         jugador = new Jugador(new AutoBotFactory());
     }
     
@@ -41,54 +35,57 @@ public class JugadorTest
     }
     
     @Test(expected = NullPointerException.class)
-    public void testAtacarSinElegirAlgoFormerCausaExcepcion()
-    {
+    public void testAtacarSinElegirAlgoFormerCausaExcepcion(){
         jugador = new Jugador(new AutoBotFactory());
-
         List<AlgoFormer> equipo = jugador.getListaAlgoformers();
         jugador.atacar(equipo.get(0));
 	}
 	
 	@Test
-    public void testAtacarHaceQueElAlgoFormerActualAtaque()
-    {
-        jugador.elegirAlgoFormer("Optimus Prime");
-        MockitoAnnotations.initMocks(this);
-        
-        AlgoFormer objetivo = jugador.getListaAlgoformers().get(0);
+    public void testAtacarHaceQueElAlgoFormerActualAtaque(){
+		Jugador jugador2 = new Jugador(new DecepticonFactory());
+        jugador.elegirAlgoFormer("Optimus Prime");  
+        jugador2.elegirAlgoFormer("Megatron");
+        Tablero tablero = Tablero.getInstance();
+        AlgoFormer objetivo = jugador2.getAlgoformerElegido();
+        Posicion posicionInicial = new Posicion(5,5);
+        Posicion posicionInicialObjetivo = new Posicion(6,5);
+        tablero.colocarAlgoformer(jugador.getAlgoformerElegido(),posicionInicial);
+        tablero.colocarAlgoformer(jugador2.getAlgoformerElegido(), posicionInicialObjetivo);
+        int vidaInicial = objetivo.getVida();
         jugador.atacar(objetivo);
-        
-        verify(algoformerActual).atacar(objetivo);
+        int ataque=jugador.getListaAlgoformers().get(0).getAtaque();
+        assertTrue(objetivo.getVida()<vidaInicial);
+        assertTrue(objetivo.getVida()+ataque==vidaInicial);
 	}
 
+	
 	@Test
-    public void testMoverHaceQueElAlgoFormerActualSeMueva()
-    {
+    public void testMoverHaceQueElAlgoFormerActualSeMueva(){
         jugador.elegirAlgoFormer("Optimus Prime");
-        MockitoAnnotations.initMocks(this);
-        
-        jugador.mover(Movimiento.DERECHA);
-        
-        verify(algoformerActual).moverse(Movimiento.DERECHA);
+        Tablero tablero = Tablero.getInstance();
+        Posicion posicionInicial = new Posicion(5,5);
+        tablero.colocarAlgoformer(jugador.getAlgoformerElegido(),posicionInicial);
+        jugador.mover(Movimiento.IZQUIERDA);
+        assertTrue(tablero.getPosicionAlgoformer(jugador.getAlgoformerElegido())!=posicionInicial);
 	}
 
+	
 	@Test
-    public void testTransformarHaceQueElAlgoFormerActualSeTransforme()
-    {
+    public void testTransformarHaceQueElAlgoFormerActualSeTransforme(){
         jugador.elegirAlgoFormer("Optimus Prime");
-        MockitoAnnotations.initMocks(this);
-        
+        Forma formaInicial=jugador.getAlgoformerElegido().getEstadoActivo();
         jugador.transformar();
-        
-        verify(algoformerActual).transformarse();
+        assertTrue(jugador.getAlgoformerElegido().getEstadoActivo()!=formaInicial);
 	}
 	
+	
 	@Test(expected=NoEstaCombinadoException.class)
-    public void testDesombinarseSinEstarCombinadoLanzaExcepcion()
-    {
+    public void testDesombinarseSinEstarCombinadoLanzaExcepcion(){
 		Jugador jugador = new Jugador(new AutoBotFactory());
 		jugador.descombinar();
     }
+	
 	
 	@Test(expected=AlgoformerMuyLejosException.class)
 	public void testCombinarseEstandoFueraRangoDeRangoLanzaExcepcion(){
@@ -102,6 +99,7 @@ public class JugadorTest
 		jugador.combinar();
 	}
 	
+	
 	@Test(expected=EquipoIncompletoException.class)
 	public void testCombinarseSinEquipoCompletoLanzaExcepcion(){
 		Juego juego = new Juego();
@@ -113,6 +111,7 @@ public class JugadorTest
 		tablero.borrarAlgoformer(algoformer); //Borro al algoformer del mapa
 		jugador.combinar();
 	}
+	
 	
 	@Test(expected=SinLugarParaDescombinarseException.class)
 	public void testDescombinarseSinSuficienteEspacioLanzaExcepcion(){
@@ -150,6 +149,7 @@ public class JugadorTest
 		jugador.combinar(); //esto lanza la excepcion
 	}
 	
+	
 	@Test
 	public void testDescombinarse(){
         Tablero tablero = Tablero.getInstance();
@@ -166,12 +166,9 @@ public class JugadorTest
         
 		jugador.descombinar();
         
-        List<Posicion> posicionesLibresDespues =
-            tablero.movimientosValidos(posicionCombinado);
+        List<Posicion> posicionesLibresDespues = tablero.movimientosValidos(posicionCombinado);
         
-        assertEquals(
-            posicionesLibresDespues.size(),
-            posicionesLibresAntes.size() - 3);
+        assertEquals(posicionesLibresDespues.size(),posicionesLibresAntes.size() - 3);
 	}
 }
 
