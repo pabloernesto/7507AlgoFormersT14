@@ -35,14 +35,14 @@ public class JugadorDecepticonTest {
     }
     
     @Test(expected = NullPointerException.class)
-    public void testAtacarSinElegirAlgoFormerCausaExcepcion(){
+    public void test01AtacarSinElegirAlgoFormerCausaExcepcion(){
         jugador = new Jugador(new DecepticonFactory());
         List<AlgoFormer> equipo = jugador.getListaAlgoformers();
         jugador.atacar(equipo.get(0));
 	}
 	
 	@Test
-    public void testAtacarHaceQueElAlgoFormerActualAtaque(){
+    public void test02AtacarHaceQueElAlgoFormerActualAtaque(){
 		Jugador jugador2 = new Jugador(new AutoBotFactory());
         jugador.elegirAlgoFormer("Bonecrusher");  
         jugador2.elegirAlgoFormer("Bumblebee");
@@ -60,7 +60,7 @@ public class JugadorDecepticonTest {
 	}
 
 	@Test(expected=FuegoAmigoException.class)
-	public void testAtacarAAlgunAgoformerPropioLanzaException(){
+	public void test03AtacarAAlgunAgoformerPropioLanzaException(){
         jugador.elegirAlgoFormer("Bonecrusher");  
         Tablero tablero = Tablero.getInstance();
         AlgoFormer objetivo = jugador.getAlgoformerElegido();
@@ -70,7 +70,7 @@ public class JugadorDecepticonTest {
 	}
 	
 	@Test
-    public void testMoverHaceQueElAlgoFormerActualSeMueva(){
+    public void test04MoverHaceQueElAlgoFormerActualSeMueva(){
         jugador.elegirAlgoFormer("Bonecrusher");
         Tablero tablero = Tablero.getInstance();
         Posicion posicionInicial = new Posicion(5,5);
@@ -81,7 +81,7 @@ public class JugadorDecepticonTest {
 
 	
 	@Test
-    public void testTransformarHaceQueElAlgoFormerActualSeTransforme(){
+    public void test05TransformarHaceQueElAlgoFormerActualSeTransforme(){
         jugador.elegirAlgoFormer("Bonecrusher");
         Forma formaInicial=jugador.getAlgoformerElegido().getEstadoActivo();
         jugador.transformar();
@@ -90,14 +90,14 @@ public class JugadorDecepticonTest {
 	
 	
 	@Test(expected=NoEstaCombinadoException.class)
-    public void testDesombinarseSinEstarCombinadoLanzaExcepcion(){
+    public void test06DesombinarseSinEstarCombinadoLanzaExcepcion(){
 		Jugador jugador = new Jugador(new DecepticonFactory());
 		jugador.descombinar();
     }
 	
 	
 	@Test(expected=AlgoformerMuyLejosException.class)
-	public void testCombinarseEstandoFueraRangoDeRangoLanzaExcepcion(){
+	public void test07CombinarseEstandoFueraRangoDeRangoLanzaExcepcion(){
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
 		Jugador jugador = juego.jugadorActual();
@@ -110,7 +110,7 @@ public class JugadorDecepticonTest {
 	
 	
 	@Test(expected=EquipoIncompletoException.class)
-	public void testCombinarseSinEquipoCompletoLanzaExcepcion(){
+	public void test08CombinarseSinEquipoCompletoLanzaExcepcion(){
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
 		Jugador jugador = juego.jugadorActual();
@@ -123,7 +123,7 @@ public class JugadorDecepticonTest {
 	
 	
 	@Test(expected=SinLugarParaDescombinarseException.class)
-	public void testDescombinarseSinSuficienteEspacioLanzaExcepcion(){
+	public void test09DescombinarseSinSuficienteEspacioLanzaExcepcion(){
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
 		Jugador jugador = juego.jugadorActual();
@@ -140,7 +140,7 @@ public class JugadorDecepticonTest {
 	}
 	
 	@Test(expected=YaEstaCombinadoException.class)
-	public void testCombinarseEstandoEnRangoEIntentarVolverACombinarseLanzaExcepcion(){
+	public void test10CombinarseEstandoEnRangoEIntentarVolverACombinarseLanzaExcepcion(){
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
 		Jugador jugador = juego.jugadorActual();
@@ -160,7 +160,7 @@ public class JugadorDecepticonTest {
 	
 	
 	@Test
-	public void testDescombinarse(){
+	public void test11Descombinarse(){
         Tablero tablero = Tablero.getInstance();
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
