@@ -58,7 +58,17 @@ public class JugadorTest{
         assertTrue(objetivo.getVida()<vidaInicial);
         assertTrue(objetivo.getVida()+ataque==vidaInicial);
 	}
-
+	
+	
+	@Test(expected=FuegoAmigoException.class)
+	public void testAtacarAAlgunAgoformerPropioLanzaException(){
+        jugador.elegirAlgoFormer("Optimus Prime");  
+        Tablero tablero = Tablero.getInstance();
+        AlgoFormer objetivo = jugador.getAlgoformerElegido();
+        Posicion posicionInicial = new Posicion(5,5);
+        tablero.colocarAlgoformer(jugador.getAlgoformerElegido(),posicionInicial);
+        jugador.atacar(objetivo);
+	}
 	
 	@Test
     public void testMoverHaceQueElAlgoFormerActualSeMueva(){
