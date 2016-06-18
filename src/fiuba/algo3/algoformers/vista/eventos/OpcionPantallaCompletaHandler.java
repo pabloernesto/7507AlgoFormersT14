@@ -15,6 +15,7 @@ public class OpcionPantallaCompletaHandler implements EventHandler<ActionEvent> 
 	    public OpcionPantallaCompletaHandler(Stage stage, MenuItem opcionPantallaCompleta,BarraDeMenu menuBar) {
 	        this.stage = stage;
 	        this.opcionPantallaCompleta = opcionPantallaCompleta;
+	        this.menuBar = menuBar;
 	    }
 
 	    @Override
