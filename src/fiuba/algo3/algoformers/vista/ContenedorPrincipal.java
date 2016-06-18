@@ -30,19 +30,26 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 
+
 public class ContenedorPrincipal extends BorderPane {
 
-    //BarraDeMenu menuBar;
+    BarraDeMenu menuBar;
     //VistaAlgoformer vistaAlgoformer; Implementar
    	
 
     public ContenedorPrincipal(Stage stage,Tablero tablero){ //ArrayList<AlgoFormer> ListaAlgoformers ??) {
     	
+    	setMenu(stage);
         //this.setConsola();
     	this.setCentro(tablero);
         this.setBotonera();//Agregar Algoformer!!);
     }
 
+    private void setMenu(Stage stage) {
+        this.menuBar = new BarraDeMenu(stage);
+        this.setTop(menuBar);
+    }
+    
     private void setBotonera(){//AlgoFormer algoformer) {
 
         Button botonMover = new Button("Mover");
