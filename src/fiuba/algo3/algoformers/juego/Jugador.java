@@ -142,5 +142,9 @@ public class Jugador
         
         combinado = false;
     }
+    
+    public AlgoFormer getAlgoformerElegido(){
+    	return algoformerActual;
+    }
 }
 
