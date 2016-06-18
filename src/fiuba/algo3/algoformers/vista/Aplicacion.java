@@ -23,7 +23,10 @@ import javafx.stage.Stage;
 	        AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler = new AplicacionOnKeyPressEventHandler(stage, contenedorPrincipal.getBarraDeMenu());
 	        escenaJuego.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
 	        */
-	        Bienvenida contenedorBienvenidos = new Bienvenida(stage, escenaJuego);
+	        ContenedorReglas contenedorReglas = new ContenedorReglas(stage, escenaJuego);
+	        Scene escenaReglas = new Scene(contenedorReglas, 640, 480);
+	        
+	        Bienvenida contenedorBienvenidos = new Bienvenida(stage, escenaReglas);
 	        Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 640, 480);
 
 
