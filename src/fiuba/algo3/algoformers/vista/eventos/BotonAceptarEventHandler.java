@@ -42,7 +42,7 @@ public class BotonAceptarEventHandler implements EventHandler<ActionEvent>{
             etiqueta.setTextFill(Color.web("#FF0000")); // Rojo
         }
     	else if (nombresJugadores.contains(texto.getText())){
-    		etiqueta.setText("Ese nombre ya está en uso");
+    		etiqueta.setText("Ese nombre ya esta en uso. Elija otro");
         	etiqueta.setTextFill(Color.web("#FF0000"));
     	}
     	else {
