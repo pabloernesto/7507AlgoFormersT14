@@ -13,17 +13,17 @@ public class Jugador
 {
 	private EstadoJugador estado = new EstadoJugador_ModoPrueba();
     private Juego juego;
-	
 	List<AlgoFormer> equipo;
 	AlgoFormer algoformerActual;
-	
 	AlgoFormerFactory algoformerFactory;
 	public boolean combinado = false;
+	String nombre;
 	
-	public Jugador(AlgoFormerFactory factory)
+	public Jugador(AlgoFormerFactory factory, String nombre)
 	{
 	    equipo = factory.crearEquipo();
 	    algoformerFactory = factory;
+	    this.nombre = nombre;
  	}
 	
     public void elegirAlgoFormer(String nombre)
@@ -145,6 +145,10 @@ public class Jugador
     
     public AlgoFormer getAlgoformerElegido(){
     	return algoformerActual;
+    }
+    
+    public String getNombre(){
+    	return nombre;
     }
 }
 

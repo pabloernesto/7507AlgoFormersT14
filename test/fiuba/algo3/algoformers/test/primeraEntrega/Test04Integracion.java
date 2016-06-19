@@ -31,6 +31,7 @@ public class Test04Integracion {
 		
 		Tablero tablero = Tablero.getInstance();
 		
+		juego.crearJugadores("Nombre1", "Nombre2");
 		juego.inicializar();
 		Jugador jugador1 = juego.jugadorActual();
 		Jugador jugador2 = juego.jugadorInactivo();

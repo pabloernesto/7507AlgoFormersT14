@@ -35,6 +35,7 @@ public class JuegoTest
     
     @Test
     public void testAlgoFormersEnemigosComienzanEnfrentadosEnEltablero(){
+    	juego.crearJugadores("Nombre1", "Nombre2");
 		juego.inicializar();
 		Jugador jugador1 = juego.jugadorActual();
 		List<AlgoFormer> equipo1 = jugador1.getListaAlgoformers();
@@ -57,6 +58,7 @@ public class JuegoTest
 	@Test
     public void testAlgoFormersDeUnEquipoComienzanJuntos()
     {
+		juego.crearJugadores("Nombre1", "Nombre2");
         juego.inicializar();
         
         Jugador jugador = juego.jugadorActual();

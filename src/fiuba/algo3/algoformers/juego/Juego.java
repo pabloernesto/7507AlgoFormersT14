@@ -23,6 +23,7 @@ public class Juego {
     
 	public Juego() {}
 	
+	//Antes de llamar a esta funcion hay que llamar a crearJugadores SI O SI
 	public void inicializar()
 	{
 		tablero = Tablero.getInstance();
@@ -31,18 +32,18 @@ public class Juego {
 		ubicarAlgoformers();
 		ubicarChispaSuprema();
 	}
+	
+	public void crearJugadores(String nombreJugadorAutobots, String nombreJugadorDecepticons){
+		jugadores = new Jugador[2];
+		jugadores[0] = new Jugador(new AutoBotFactory(), nombreJugadorAutobots);
+		jugadores[1] = new Jugador(new DecepticonFactory(), nombreJugadorDecepticons);
+		jugadores[0].setJuego(this);
+		jugadores[1].setJuego(this);
+	}
 
     private void inicializarJugadores()
     {
-        jugadores = new Jugador [2];
         jugadorActual = new Random().nextInt(2);
-
-        jugadores[0] = new Jugador(new AutoBotFactory());
-        jugadores[1] = new Jugador(new DecepticonFactory());
-
-        jugadores[0].setJuego(this);
-        jugadores[1].setJuego(this);
-        
         jugadores[jugadorActual].setEstado(new EstadoJugador_Activo());
         jugadores[siguienteJugador()].setEstado(new EstadoJugador_Inactivo());
     }
@@ -155,8 +156,8 @@ public class Juego {
 		jugadores = new Jugador [2];
         jugadorActual = 0;
 
-        jugadores[0] = new Jugador(new AutoBotFactory());
-        jugadores[1] = new Jugador(new DecepticonFactory());
+        jugadores[0] = new Jugador(new AutoBotFactory(), "Autobots");
+        jugadores[1] = new Jugador(new DecepticonFactory(), "Decepticons");
 
         jugadores[0].setJuego(this);
         jugadores[1].setJuego(this);

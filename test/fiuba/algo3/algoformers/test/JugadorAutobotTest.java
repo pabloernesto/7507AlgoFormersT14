@@ -26,7 +26,7 @@ public class JugadorAutobotTest{
 	
     @Before
     public void setUp(){
-        jugador = new Jugador(new AutoBotFactory());
+        jugador = new Jugador(new AutoBotFactory(), "Nombre");
     }
     
     @After
@@ -36,14 +36,14 @@ public class JugadorAutobotTest{
     
     @Test(expected = NullPointerException.class)
     public void test01AtacarSinElegirAlgoFormerCausaExcepcion(){
-        jugador = new Jugador(new AutoBotFactory());
+        jugador = new Jugador(new AutoBotFactory(), "Nombre");
         List<AlgoFormer> equipo = jugador.getListaAlgoformers();
         jugador.atacar(equipo.get(0));
 	}
 	
 	@Test
     public void test02AtacarHaceQueElAlgoFormerActualAtaque(){
-		Jugador jugador2 = new Jugador(new DecepticonFactory());
+		Jugador jugador2 = new Jugador(new DecepticonFactory(), "Nombre");
         jugador.elegirAlgoFormer("Optimus Prime");  
         jugador2.elegirAlgoFormer("Megatron");
         Tablero tablero = Tablero.getInstance();
@@ -91,7 +91,7 @@ public class JugadorAutobotTest{
 	
 	@Test(expected=NoEstaCombinadoException.class)
     public void test06DesombinarseSinEstarCombinadoLanzaExcepcion(){
-		Jugador jugador = new Jugador(new AutoBotFactory());
+		Jugador jugador = new Jugador(new AutoBotFactory(), "Nombre");
 		jugador.descombinar();
     }
 	
