@@ -1,6 +1,7 @@
 package fiuba.algo3.algoformers.vista;
 
 import fiuba.algo3.algoformers.vista.eventos.BotonEntrarEventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -37,7 +38,7 @@ public class ContenedorReglas extends VBox{
 
         BotonEntrarEventHandler botonEntrarHandler = new BotonEntrarEventHandler(stage, proximaEscena);
         botonEntrar.setOnAction(botonEntrarHandler);
-
+        this.setPadding(new Insets(0, 10, 100, 0));
         this.getChildren().addAll(botonEntrar);
     }
 
