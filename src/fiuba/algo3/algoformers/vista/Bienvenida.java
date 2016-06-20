@@ -30,7 +30,6 @@ public class Bienvenida extends VBox
         
         this.setAlignment(Pos.CENTER_LEFT);
         this.setSpacing(20);
-        this.setPadding(new Insets(480, 50, 50, 50));
         
         Image imagen = new Image("file:" + 
             "src/fiuba/algo3/algoformers/vista/imagenes/intro/" +
