@@ -17,16 +17,26 @@ public class Aplicacion extends Application {
     	
     	Juego juego = new Juego();
         stage.setTitle("Juego Algoformers");
-        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage, juego);
+        ContenedorPrincipal contenedorPrincipal =
+        	new ContenedorPrincipal(stage, juego);
         Scene escenaJuego = new Scene(contenedorPrincipal, 640, 480);
         
-        AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler = new AplicacionOnKeyPressEventHandler(stage, contenedorPrincipal.getBarraDeMenu());
+        AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler =
+        	new AplicacionOnKeyPressEventHandler(
+        		stage,
+        		contenedorPrincipal.getBarraDeMenu());
         escenaJuego.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
         
-        ContenedorEleccionJugador contenedorEleccion = new ContenedorEleccionJugador(stage, escenaJuego, juego, contenedorPrincipal);
+        ContenedorEleccionJugador contenedorEleccion =
+        	new ContenedorEleccionJugador(
+        		stage, 
+        		escenaJuego,
+        		juego,
+        		contenedorPrincipal);
         Scene escenaEleccion = new Scene(contenedorEleccion, 640, 480);
         
-        ContenedorReglas contenedorReglas = new ContenedorReglas(stage, escenaEleccion);
+        ContenedorReglas contenedorReglas =
+        	new ContenedorReglas(stage, escenaEleccion);
         Scene escenaReglas = new Scene(contenedorReglas, 640, 480);
         
         Bienvenida contenedorBienvenidos = new Bienvenida(stage, escenaReglas);
@@ -38,6 +48,6 @@ public class Aplicacion extends Application {
         stage.setFullScreenExitHint("");
 
         stage.show();
-
     }
 }
+
