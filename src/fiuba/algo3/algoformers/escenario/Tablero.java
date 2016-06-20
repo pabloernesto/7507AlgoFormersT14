@@ -19,7 +19,7 @@ public class Tablero {
 
 	private ArrayList<Posicion> posicionesCeldasOcupadas;
 	private HashMap <Posicion,Celda> celdas;
-	private final int ANCHO = 60;
+	private final int ANCHO = 40;
 	private final int ALTO = 20;
 	private static Tablero instanciaTablero = null;
 	
