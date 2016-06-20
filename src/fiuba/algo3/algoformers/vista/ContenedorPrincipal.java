@@ -80,7 +80,8 @@ public class ContenedorPrincipal extends BorderPane {
         contenedorHorizontal.setPadding(new Insets(50,0,50,450)); //el primero es para el alto.. el ultimo para el lugar horizontal
         //contenedorVertical.setMinHeight(100);
         
-        Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/intro/FondoGris.jpg", 300, 0, false, true);
+        Image imagen = 
+        new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/intro/FondoGris.jpg", 300, 0, false, true);
         BackgroundImage imagenDeFondo = 
         new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         contenedorHorizontal.setBackground(new Background(imagenDeFondo));
@@ -105,7 +106,8 @@ public class ContenedorPrincipal extends BorderPane {
                 StackPane square = new StackPane();
                 BackgroundImage imagenDeFondo;
                 if ((row + col) % 2 == 0) {
-                	Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/escenario/espinas-nebulosa.jpg", 80, 80, true, true);
+                	Image imagen = 
+                	new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/escenario/espinas-nebulosa.jpg", 80, 80, true, true);
                     imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
                 } else {
                 	Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/escenario/espinas-nubes.jpg", 80, 80, true, true);
