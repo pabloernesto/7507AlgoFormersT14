@@ -81,7 +81,8 @@ public class ContenedorPrincipal extends BorderPane {
         //contenedorVertical.setMinHeight(100);
         
         Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/intro/FondoGris.jpg", 300, 0, false, true);
-        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        BackgroundImage imagenDeFondo = 
+        new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         contenedorHorizontal.setBackground(new Background(imagenDeFondo));
         
         this.setBottom(contenedorHorizontal);
