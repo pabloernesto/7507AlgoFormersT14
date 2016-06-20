@@ -10,10 +10,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.stage.Stage;
 
-
-
 public class BarraDeMenu extends MenuBar {
-	
+
     MenuItem opcionPantallaCompleta = new MenuItem("Pantalla completa");
     MenuItem opcionMinimizar = new MenuItem("Minimizar");
 
@@ -27,24 +25,29 @@ public class BarraDeMenu extends MenuBar {
         MenuItem opcionAbrir = new MenuItem("Abrir");
         MenuItem opcionInformacion = new MenuItem("Informacion");
 
-        OpcionSalirEventHandler opcionSalirHandler = new OpcionSalirEventHandler(stage);
+        OpcionSalirEventHandler opcionSalirHandler =
+            new OpcionSalirEventHandler(stage);
         opcionSalir.setOnAction(opcionSalirHandler);
 
-        OpcionInformacionEventHandler opcionInformacionHandler = new OpcionInformacionEventHandler(stage);
+        OpcionInformacionEventHandler opcionInformacionHandler =
+            new OpcionInformacionEventHandler(stage);
         opcionInformacion.setOnAction(opcionInformacionHandler);
 
-        OpcionPantallaCompletaHandler opcionPantallaCompletaHandler = new OpcionPantallaCompletaHandler(stage, opcionPantallaCompleta,this);
+        OpcionPantallaCompletaHandler opcionPantallaCompletaHandler =
+            new OpcionPantallaCompletaHandler(stage, opcionPantallaCompleta,this);
         opcionPantallaCompleta.setOnAction(opcionPantallaCompletaHandler);
         
 
-        OpcionMinimizarHandler opcionMinimizarHandler = new OpcionMinimizarHandler(stage, opcionMinimizar,this);
+        OpcionMinimizarHandler opcionMinimizarHandler =
+            new OpcionMinimizarHandler(stage, opcionMinimizar,this);
         opcionMinimizar.setOnAction(opcionMinimizarHandler);
 
         opcionPantallaCompleta.setDisable(true);
 
         opcionMinimizar.setDisable(false);
         
-        menuArchivo.getItems().addAll(opcionAbrir, new SeparatorMenuItem(), opcionSalir);
+        menuArchivo.getItems()
+            .addAll(opcionAbrir, new SeparatorMenuItem(), opcionSalir);
         menuInformacion.getItems().addAll(opcionInformacion);
         menuVer.getItems().addAll(opcionPantallaCompleta,opcionMinimizar);
 
@@ -55,5 +58,5 @@ public class BarraDeMenu extends MenuBar {
         opcionPantallaCompleta.setDisable(estaMaximizada);
         opcionMinimizar.setDisable(!estaMaximizada);
     }
-
 }
+
