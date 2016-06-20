@@ -1,6 +1,5 @@
 package fiuba.algo3.algoformers.vista;
 
-import fiuba.algo3.algoformers.vista.eventos.OpcionInformacionEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionMinimizarHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionPantallaCompletaHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionSalirEventHandler;
@@ -30,7 +29,7 @@ public class BarraDeMenu extends MenuBar {
         OpcionSalirEventHandler opcionSalirHandler = new OpcionSalirEventHandler(stage);
         opcionSalir.setOnAction(opcionSalirHandler);
 
-        OpcionInformacionEventHandler opcionInformacionHandler = new OpcionInformacionEventHandler();
+        OpcionInformacionEventHandler opcionInformacionHandler = new OpcionInformacionEventHandler(stage);
         opcionInformacion.setOnAction(opcionInformacionHandler);
 
         OpcionPantallaCompletaHandler opcionPantallaCompletaHandler = new OpcionPantallaCompletaHandler(stage, opcionPantallaCompleta,this);
