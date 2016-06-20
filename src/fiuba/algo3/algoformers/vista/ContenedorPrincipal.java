@@ -63,7 +63,8 @@ public class ContenedorPrincipal extends BorderPane {
         
         Button botonCombinarse = new Button();
         botonCombinarse.setText("Combinarse");
-        //BotonElegirCombinarse moveButtonHandler = new BotonMoverHandler(vistaAlgoformer, algoformer);
+        //BotonElegirCombinarse moveButtonHandler = 
+        //new BotonMoverHandler(vistaAlgoformer, algoformer);
         //botonMover.setOnAction(moveButtonHandler);
 
 
