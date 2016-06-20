@@ -41,7 +41,7 @@ public class TableroTest {
 
 	@Test
 	public void tableroEsRectangularDe60x20(){
-		assertEquals(60, tablero.ancho());
+		assertEquals(40, tablero.ancho());
 		assertEquals(20, tablero.altura());
 	}
 	
