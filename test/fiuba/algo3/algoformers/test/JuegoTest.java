@@ -52,7 +52,7 @@ public class JuegoTest
 		
 		assertTrue(new Posicion(ancho, alturaMedia).equals(tablero.getPosicionAlgoformer(algoformer2)));
 		
-		assertEquals(59, tablero.distancia(algoformer1, algoformer2));
+		assertEquals(39, tablero.distancia(algoformer1, algoformer2));
 	}
     
 	@Test
