@@ -46,8 +46,10 @@ import javafx.stage.Stage;
 	        new ContenedorReglas(stage, escenaEleccion);
 	        Scene escenaReglas = new Scene(contenedorReglas, 640, 480);
 	        
-	        Bienvenida contenedorBienvenidos = new Bienvenida(stage, escenaReglas);
-	        Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 640, 480);
+	        Bienvenida contenedorBienvenidos = 
+	        new Bienvenida(stage, escenaReglas);
+	        Scene escenaBienvenidos = 
+	        new Scene(contenedorBienvenidos, 640, 480);
 	        
 	        stage.setScene(escenaBienvenidos);
 	        stage.setFullScreen(true);
