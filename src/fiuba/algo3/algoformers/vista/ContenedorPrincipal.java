@@ -30,11 +30,11 @@ public class ContenedorPrincipal extends BorderPane {
     //VistaAlgoformer vistaAlgoformer; Implementar
    	
 
-    public ContenedorPrincipal(Stage stage,Tablero tablero){ //ArrayList<AlgoFormer> ListaAlgoformers ??) {
+    public ContenedorPrincipal(Stage stage){ //ArrayList<AlgoFormer> ListaAlgoformers ??) {
     	
     	setMenu(stage);
         //this.setConsola();
-    	this.setCentro(tablero);
+    	this.setCentro();
         this.setBotonera();//Agregar Algoformer!!);
     }
 
@@ -92,13 +92,14 @@ public class ContenedorPrincipal extends BorderPane {
     
    
 
-    private void setCentro(Tablero tablero){
+    private void setCentro(){
 
         //Como hago para dibujar cada Algoformer??
         //Capaz tengo que preguntarle a cada celda si contiene un algoformer y
         //Segun la respuesta actuar...
     	//Button[][] matriz;
 
+        Tablero tablero = Tablero.getInstance();
         
     	GridPane root = new GridPane();
         for (int row = 0; row < tablero.altura(); row++) {

@@ -1,6 +1,5 @@
 package fiuba.algo3.algoformers.vista;
 
-import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.vista.eventos.AplicacionOnKeyPressEventHandler;
 import javafx.application.Application;
@@ -19,10 +18,9 @@ import javafx.stage.Stage;
 
 	    	
 	    	Juego juego = new Juego();
-	    	Tablero tablero = Tablero.getInstance();
 	        stage.setTitle("Juego Algoformers");
 	        ContenedorPrincipal contenedorPrincipal = 
-	        new ContenedorPrincipal(stage,tablero); //, algoformer);
+	        new ContenedorPrincipal(stage); //, algoformer);
 	        Scene escenaJuego = 
 	        new Scene(contenedorPrincipal, 640, 480);
 	        
