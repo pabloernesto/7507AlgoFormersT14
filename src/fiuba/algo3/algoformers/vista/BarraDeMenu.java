@@ -15,7 +15,7 @@ import javafx.event.EventHandler;
 public class BarraDeMenu extends MenuBar {
 
     MenuItem opcionPantallaCompleta = new MenuItem("Pantalla completa");
-    MenuItem opcionVentana = new MenuItem("Minimizar");
+    MenuItem opcionVentana = new MenuItem("Vista Ventana");
 
     public BarraDeMenu(Stage stage){
         Menu menuArchivo = nuevoMenuArchivo(stage);
