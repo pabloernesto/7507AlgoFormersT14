@@ -97,9 +97,10 @@ public class ContenedorPrincipal extends BorderPane {
         //Como hago para dibujar cada Algoformer??
         //Capaz tengo que preguntarle a cada celda si contiene un algoformer y
         //Segun la respuesta actuar...
-    	//Button[][] matriz;
+        //Button[][] matriz;
 
         Tablero tablero = Tablero.getInstance();
+<<<<<<< HEAD
 
     	GridPane root = new GridPane();
         for (int row = 0; row < tablero.altura(); row++) {
@@ -132,7 +133,43 @@ public class ContenedorPrincipal extends BorderPane {
     	this.setCenter(root);
     	root.setMaxWidth(600);
     	root.setMaxHeight(700);
+=======
+        
+        GridPane root = new GridPane();
+        for (int row = 0; row < tablero.altura(); row++) {
+            for (int col = 0; col < tablero.ancho(); col ++)
+            {
+                StackPane celda = new VistaDeCelda(tablero.getCelda(col, row));
+                root.add(celda, col, row);
+            }
+        }
 
+        for (int i = 0; i < tablero.ancho(); i++)
+            root.getColumnConstraints().add(new ColumnConstraints(5,
+                Control.USE_COMPUTED_SIZE,
+                Double.POSITIVE_INFINITY, Priority.ALWAYS, HPos.CENTER, true));
+        
+        for (int i = 0; i < tablero.altura(); i++)
+            root.getRowConstraints().add(new RowConstraints(5,
+                Control.USE_COMPUTED_SIZE, Double.POSITIVE_INFINITY,
+                Priority.ALWAYS, VPos.CENTER, true));
+        
+
+    	/*matriz = new Button[tablero.ancho()][tablero.altura()];
+    	for (int y=0;y<tablero.altura();y++){
+    		for (int x=0;x<tablero.ancho();x++){
+    			/*
+    			SuperficieAerea superficieAerea= tablero.getCelda(new Posicion(x,y)).getSuperficieAerea();
+    			SuperficieTerrestre superficieTerrestre= tablero.getCelda(new Posicion(x,y)).getSuperficieTerrestre();
+    			//Image imagen = new Image(getClass().getResourceAsStream("src/fiuba/algo3/algoformers/vista/imagenes/escenario/rocoso-nubes.jpg"));
+    			matriz[y][x]= new Button ("");//,new ImageView(imagen));
+    	    	contenedorCentral.getChildren().add(matriz[x][y]);
+    		}
+    	}
+		*/
+>>>>>>> origin/master
+
+        this.setCenter(root);
     }
 
 
