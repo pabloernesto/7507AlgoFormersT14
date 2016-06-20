@@ -1,7 +1,5 @@
 package fiuba.algo3.algoformers.vista;
 
-import java.io.File;
-
 import fiuba.algo3.algoformers.vista.eventos.BotonEntrarEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonSalirEventHandler;
 import javafx.geometry.Insets;
@@ -16,7 +14,6 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
