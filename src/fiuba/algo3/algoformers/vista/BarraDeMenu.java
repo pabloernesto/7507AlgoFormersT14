@@ -15,43 +15,59 @@ public class BarraDeMenu extends MenuBar {
     MenuItem opcionPantallaCompleta = new MenuItem("Pantalla completa");
     MenuItem opcionMinimizar = new MenuItem("Minimizar");
 
-    public BarraDeMenu(Stage stage) {
+    public BarraDeMenu(Stage stage)
+    {
+        Menu menuArchivo = nuevoMenuArchivo();
+        Menu menuVer = nuevoMenuVer();
+        Menu menuInformacion = nuevoMenuInformacion();
 
-        Menu menuArchivo = new Menu("Archivo");
-        Menu menuVer = new Menu("Ver");
-        Menu menuInformacion = new Menu("Informacion");
+        this.getMenus().addAll(menuArchivo, menuVer, menuInformacion);
+    }
 
-        MenuItem opcionSalir = new MenuItem("Salir");
+    private Menu nuevoMenuArchivo()
+    {
+        Menu menu = new Menu("Archivo");
         MenuItem opcionAbrir = new MenuItem("Abrir");
-        MenuItem opcionInformacion = new MenuItem("Informacion");
+        MenuItem opcionSalir = new MenuItem("Salir");
+        menuArchivo.getItems()
+            .addAll(opcionAbrir, new SeparatorMenuItem(), opcionSalir);
 
         OpcionSalirEventHandler opcionSalirHandler =
             new OpcionSalirEventHandler(stage);
         opcionSalir.setOnAction(opcionSalirHandler);
 
-        OpcionInformacionEventHandler opcionInformacionHandler =
-            new OpcionInformacionEventHandler(stage);
-        opcionInformacion.setOnAction(opcionInformacionHandler);
+        return menu;
+    }
+
+    private Menu nuevoMenuVer()
+    {
+        Menu menu = new Menu("Ver");
+        menuVer.getItems().addAll(opcionPantallaCompleta, opcionMinimizar);
 
         OpcionPantallaCompletaHandler opcionPantallaCompletaHandler =
             new OpcionPantallaCompletaHandler(stage, opcionPantallaCompleta,this);
         opcionPantallaCompleta.setOnAction(opcionPantallaCompletaHandler);
-        
+        opcionPantallaCompleta.setDisable(true);
 
         OpcionMinimizarHandler opcionMinimizarHandler =
             new OpcionMinimizarHandler(stage, opcionMinimizar,this);
         opcionMinimizar.setOnAction(opcionMinimizarHandler);
-
-        opcionPantallaCompleta.setDisable(true);
-
         opcionMinimizar.setDisable(false);
-        
-        menuArchivo.getItems()
-            .addAll(opcionAbrir, new SeparatorMenuItem(), opcionSalir);
-        menuInformacion.getItems().addAll(opcionInformacion);
-        menuVer.getItems().addAll(opcionPantallaCompleta,opcionMinimizar);
 
-        this.getMenus().addAll(menuArchivo, menuVer, menuInformacion);
+        return menu;
+    }
+
+    private Menu nuevoMenuInformacion()
+    {
+        Menu menu = new Menu("Informacion");
+        MenuItem opcionInformacion = new MenuItem("Informacion");
+        menuInformacion.getItems().addAll(opcionInformacion);
+
+        OpcionInformacionEventHandler opcionInformacionHandler =
+            new OpcionInformacionEventHandler(stage);
+        opcionInformacion.setOnAction(opcionInformacionHandler);
+
+        return menu;
     }
 
     public void aplicacionMaximizada(Boolean estaMaximizada) {
