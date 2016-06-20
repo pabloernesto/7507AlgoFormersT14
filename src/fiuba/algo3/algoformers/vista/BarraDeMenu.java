@@ -9,6 +9,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.stage.Stage;
+import javafx.event.EventHandler;
 
 public class BarraDeMenu extends MenuBar {
 
@@ -32,8 +33,7 @@ public class BarraDeMenu extends MenuBar {
         menu.getItems()
             .addAll(opcionAbrir, new SeparatorMenuItem(), opcionSalir);
 
-        OpcionSalirEventHandler opcionSalirHandler =
-            new OpcionSalirEventHandler(stage);
+        EventHandler opcionSalirHandler = new OpcionSalirEventHandler(stage);
         opcionSalir.setOnAction(opcionSalirHandler);
 
         return menu;
@@ -44,13 +44,14 @@ public class BarraDeMenu extends MenuBar {
         Menu menu = new Menu("Ver");
         menu.getItems().addAll(opcionPantallaCompleta, opcionMinimizar);
 
-        OpcionPantallaCompletaHandler opcionPantallaCompletaHandler =
-            new OpcionPantallaCompletaHandler(stage, opcionPantallaCompleta,this);
+        EventHandler opcionPantallaCompletaHandler =
+            new OpcionPantallaCompletaHandler(stage, opcionPantallaCompleta,
+                this);
         opcionPantallaCompleta.setOnAction(opcionPantallaCompletaHandler);
         opcionPantallaCompleta.setDisable(true);
 
-        OpcionMinimizarHandler opcionMinimizarHandler =
-            new OpcionMinimizarHandler(stage, opcionMinimizar,this);
+        EventHandler opcionMinimizarHandler =
+            new OpcionMinimizarHandler(stage, opcionMinimizar, this);
         opcionMinimizar.setOnAction(opcionMinimizarHandler);
         opcionMinimizar.setDisable(false);
 
@@ -63,7 +64,7 @@ public class BarraDeMenu extends MenuBar {
         MenuItem opcionInformacion = new MenuItem("Informacion");
         menu.getItems().addAll(opcionInformacion);
 
-        OpcionInformacionEventHandler opcionInformacionHandler =
+        EventHandler opcionInformacionHandler =
             new OpcionInformacionEventHandler(stage);
         opcionInformacion.setOnAction(opcionInformacionHandler);
 
