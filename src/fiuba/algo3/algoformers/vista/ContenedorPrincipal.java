@@ -108,20 +108,25 @@ public class ContenedorPrincipal extends BorderPane {
                 if ((row + col) % 2 == 0) {
                 	Image imagen = 
                 	new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/escenario/espinas-nebulosa.jpg", 80, 80, true, true);
-                    imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+                    imagenDeFondo = 
+                    new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
                 } else {
-                	Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/escenario/espinas-nubes.jpg", 80, 80, true, true);
-                    imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+                	Image imagen = 
+                	new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/escenario/espinas-nubes.jpg", 80, 80, true, true);
+                    imagenDeFondo = 
+                    new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
                 }
                 square.setBackground(new Background(imagenDeFondo));
                 root.add(square, col, row);
             }
         }
         for (int i = 0; i < tablero.ancho(); i++) {
-            root.getColumnConstraints().add(new ColumnConstraints(5, Control.USE_COMPUTED_SIZE, Double.POSITIVE_INFINITY, Priority.ALWAYS, HPos.CENTER, true));
+            root.getColumnConstraints().add(
+            		new ColumnConstraints(5, Control.USE_COMPUTED_SIZE, Double.POSITIVE_INFINITY, Priority.ALWAYS, HPos.CENTER, true));
         }
         for (int i = 0; i < tablero.altura(); i++) {
-            root.getRowConstraints().add(new RowConstraints(5, Control.USE_COMPUTED_SIZE, Double.POSITIVE_INFINITY, Priority.ALWAYS, VPos.CENTER, true));
+            root.getRowConstraints().add(
+            		new RowConstraints(5, Control.USE_COMPUTED_SIZE, Double.POSITIVE_INFINITY, Priority.ALWAYS, VPos.CENTER, true));
         }
         
 
