@@ -1,7 +1,7 @@
 package fiuba.algo3.algoformers.vista;
 
 import fiuba.algo3.algoformers.vista.eventos.OpcionInformacionEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.OpcionMinimizarHandler;
+import fiuba.algo3.algoformers.vista.eventos.OpcionVentanaHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionPantallaCompletaHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionSalirEventHandler;
 import javafx.scene.control.Menu;
@@ -15,7 +15,7 @@ import javafx.event.EventHandler;
 public class BarraDeMenu extends MenuBar {
 
     MenuItem opcionPantallaCompleta = new MenuItem("Pantalla completa");
-    MenuItem opcionMinimizar = new MenuItem("Minimizar");
+    MenuItem opcionVentana = new MenuItem("Minimizar");
 
     public BarraDeMenu(Stage stage){
         Menu menuArchivo = nuevoMenuArchivo(stage);
@@ -40,7 +40,7 @@ public class BarraDeMenu extends MenuBar {
 
     private Menu nuevoMenuVer(Stage stage){
         Menu menu = new Menu("Ver");
-        menu.getItems().addAll(opcionPantallaCompleta, opcionMinimizar);
+        menu.getItems().addAll(opcionPantallaCompleta, opcionVentana);
 
         EventHandler<ActionEvent> opcionPantallaCompletaHandler =
             new OpcionPantallaCompletaHandler(stage, opcionPantallaCompleta,
@@ -48,10 +48,10 @@ public class BarraDeMenu extends MenuBar {
         opcionPantallaCompleta.setOnAction(opcionPantallaCompletaHandler);
         opcionPantallaCompleta.setDisable(true);
 
-        EventHandler<ActionEvent> opcionMinimizarHandler =
-            new OpcionMinimizarHandler(stage, opcionMinimizar, this);
-        opcionMinimizar.setOnAction(opcionMinimizarHandler);
-        opcionMinimizar.setDisable(false);
+        EventHandler<ActionEvent> opcionVentanaHandler =
+            new OpcionVentanaHandler(stage, opcionVentana, this);
+        opcionVentana.setOnAction(opcionVentanaHandler);
+        opcionVentana.setDisable(false);
 
         return menu;
     }
@@ -70,7 +70,7 @@ public class BarraDeMenu extends MenuBar {
 
     public void aplicacionMaximizada(Boolean estaMaximizada) {
         opcionPantallaCompleta.setDisable(estaMaximizada);
-        opcionMinimizar.setDisable(!estaMaximizada);
+        opcionVentana.setDisable(!estaMaximizada);
     }
 }
 
