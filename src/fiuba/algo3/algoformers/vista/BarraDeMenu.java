@@ -1,5 +1,6 @@
 package fiuba.algo3.algoformers.vista;
 
+import fiuba.algo3.algoformers.vista.eventos.OpcionInformacionEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionMinimizarHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionPantallaCompletaHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionSalirEventHandler;
