@@ -100,7 +100,7 @@ public class ContenedorPrincipal extends BorderPane {
     	//Button[][] matriz;
 
         Tablero tablero = Tablero.getInstance();
-        
+
     	GridPane root = new GridPane();
         for (int row = 0; row < tablero.altura(); row++) {
             for (int col = 0; col < tablero.ancho(); col ++) {
@@ -108,12 +108,12 @@ public class ContenedorPrincipal extends BorderPane {
                 BackgroundImage imagenDeFondo;
                 if ((row + col) % 2 == 0) {
                 	Image imagen = 
-                	new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/escenario/espinas-nebulosa.jpg", 80, 80, true, true);
+                	new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/escenario/espinas-nebulosa.jpg");
                     imagenDeFondo = 
                     new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
                 } else {
                 	Image imagen = 
-                	new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/escenario/espinas-nubes.jpg", 80, 80, true, true);
+                	new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/escenario/espinas-nubes.jpg");
                     imagenDeFondo = 
                     new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
                 }
@@ -123,29 +123,19 @@ public class ContenedorPrincipal extends BorderPane {
         }
         for (int i = 0; i < tablero.ancho(); i++) {
             root.getColumnConstraints().add(
-            		new ColumnConstraints(5, Control.USE_COMPUTED_SIZE, Double.POSITIVE_INFINITY, Priority.ALWAYS, HPos.CENTER, true));
+            		new ColumnConstraints(32));
         }
         for (int i = 0; i < tablero.altura(); i++) {
             root.getRowConstraints().add(
-            		new RowConstraints(5, Control.USE_COMPUTED_SIZE, Double.POSITIVE_INFINITY, Priority.ALWAYS, VPos.CENTER, true));
+            		new RowConstraints(32));
         }
-        
-
-    	/*matriz = new Button[tablero.ancho()][tablero.altura()];
-    	for (int y=0;y<tablero.altura();y++){
-    		for (int x=0;x<tablero.ancho();x++){
-    			/*
-    			SuperficieAerea superficieAerea= tablero.getCelda(new Posicion(x,y)).getSuperficieAerea();
-    			SuperficieTerrestre superficieTerrestre= tablero.getCelda(new Posicion(x,y)).getSuperficieTerrestre();
-    			//Image imagen = new Image(getClass().getResourceAsStream("src/fiuba/algo3/algoformers/vista/imagenes/escenario/rocoso-nubes.jpg"));
-    			matriz[y][x]= new Button ("");//,new ImageView(imagen));
-    	    	contenedorCentral.getChildren().add(matriz[x][y]);
-    		}
-    	}
-		*/
     	this.setCenter(root);
+    	root.setMaxWidth(600);
+    	root.setMaxHeight(700);
 
     }
+
+
 
 
     public BarraDeMenu getBarraDeMenu() {
