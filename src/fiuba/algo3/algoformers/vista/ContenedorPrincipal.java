@@ -105,33 +105,8 @@ public class ContenedorPrincipal extends BorderPane {
         for (int row = 0; row < tablero.altura(); row++) {
             for (int col = 0; col < tablero.ancho(); col ++)
             {
-                StackPane square = new StackPane();
-                BackgroundImage imagenDeFondo;
-                if ((row + col) % 2 == 0)
-                {
-                    Image imagen = 
-                        new Image("file:" +
-                            "src/fiuba/algo3/algoformers/" +
-                            "vista/imagenes/escenario/espinas-nebulosa.jpg",
-                            80, 80, true, true);
-                    imagenDeFondo = 
-                        new BackgroundImage(imagen, BackgroundRepeat.REPEAT,
-                            BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
-                            BackgroundSize.DEFAULT);
-                } else
-                {
-                    Image imagen = 
-                        new Image("file:" +
-                            "src/fiuba/algo3/algoformers/" +
-                            "vista/imagenes/escenario/espinas-nubes.jpg",
-                            80, 80, true, true);
-                    imagenDeFondo = 
-                        new BackgroundImage(imagen, BackgroundRepeat.REPEAT,
-                        BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
-                        BackgroundSize.DEFAULT);
-                }
-                square.setBackground(new Background(imagenDeFondo));
-                root.add(square, col, row);
+                StackPane celda = new VistaDeCelda(tablero.getCelda(col, row));
+                root.add(celda, col, row);
             }
         }
 

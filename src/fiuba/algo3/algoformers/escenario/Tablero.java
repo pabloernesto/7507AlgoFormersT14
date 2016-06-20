@@ -178,4 +178,9 @@ public class Tablero {
   		return celdas.get(new Posicion(1, 1));
   	}
 
+    public Celda getCelda(int x, int y)
+    {
+        return celdas.get(new Posicion(x,y));
+    }
 }
+
