@@ -52,7 +52,8 @@ public class ContenedorPrincipal extends BorderPane {
         
         Button botonAtacar = new Button();
         botonAtacar.setText("Atacar");
-        //BotonElegirAtacar moveButtonHandler = newBotonElegirAtacar(vistaAlgoformer, algoformer);
+        //BotonElegirAtacar moveButtonHandler = 
+        //newBotonElegirAtacar(vistaAlgoformer, algoformer);
         //botonMover.setOnAction(moveButtonHandler);
         
         Button botonTransformarse = new Button();
