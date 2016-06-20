@@ -28,10 +28,13 @@ import javafx.stage.Stage;
 	    	Juego juego = new Juego();
 	    	Tablero tablero = Tablero.getInstance();
 	        stage.setTitle("Juego Algoformers");
-	        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage,tablero); //, algoformer);
-	        Scene escenaJuego = new Scene(contenedorPrincipal, 640, 480);
+	        ContenedorPrincipal contenedorPrincipal = 
+	        new ContenedorPrincipal(stage,tablero); //, algoformer);
+	        Scene escenaJuego = 
+	        new Scene(contenedorPrincipal, 640, 480);
 	        
-	        AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler = new AplicacionOnKeyPressEventHandler(stage, contenedorPrincipal.getBarraDeMenu());
+	        AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler = 
+	        new AplicacionOnKeyPressEventHandler(stage, contenedorPrincipal.getBarraDeMenu());
 	        escenaJuego.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
 	        
 	        ContenedorEleccionJugador contenedorEleccion = new ContenedorEleccionJugador(stage, escenaJuego, juego);
