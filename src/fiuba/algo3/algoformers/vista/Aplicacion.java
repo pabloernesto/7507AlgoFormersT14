@@ -1,17 +1,10 @@
 package fiuba.algo3.algoformers.vista;
 
-import java.io.File;
-
-import javax.sound.sampled.AudioFormat;
-
 import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.vista.eventos.AplicacionOnKeyPressEventHandler;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 	public class Aplicacion extends Application {
