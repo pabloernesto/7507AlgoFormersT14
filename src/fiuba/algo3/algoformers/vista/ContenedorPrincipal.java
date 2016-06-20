@@ -58,7 +58,8 @@ public class ContenedorPrincipal extends BorderPane {
         
         Button botonTransformarse = new Button();
         botonTransformarse.setText("Transformarse");
-        //BotonElegirTransformarse moveButtonHandler = new BotonElegirTransformarse(vistaAlgoformer, algoformer);
+        //BotonElegirTransformarse moveButtonHandler = 
+        //new BotonElegirTransformarse(vistaAlgoformer, algoformer);
         //botonMover.setOnAction(moveButtonHandler);
         
         Button botonCombinarse = new Button();
@@ -73,7 +74,8 @@ public class ContenedorPrincipal extends BorderPane {
         botonCombinarse.setMinSize(100, 60);
         botonTransformarse.setMinSize(100, 60);
         
-        HBox contenedorHorizontal = new HBox(botonMover, botonAtacar,botonTransformarse,botonCombinarse);
+        HBox contenedorHorizontal = 
+        new HBox(botonMover, botonAtacar,botonTransformarse,botonCombinarse);
         contenedorHorizontal.setSpacing(30);
         contenedorHorizontal.setPadding(new Insets(50,0,50,450)); //el primero es para el alto.. el ultimo para el lugar horizontal
         //contenedorVertical.setMinHeight(100);
