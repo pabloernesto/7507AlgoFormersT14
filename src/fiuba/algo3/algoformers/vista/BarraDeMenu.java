@@ -17,19 +17,19 @@ public class BarraDeMenu extends MenuBar {
 
     public BarraDeMenu(Stage stage)
     {
-        Menu menuArchivo = nuevoMenuArchivo();
-        Menu menuVer = nuevoMenuVer();
-        Menu menuInformacion = nuevoMenuInformacion();
+        Menu menuArchivo = nuevoMenuArchivo(stage);
+        Menu menuVer = nuevoMenuVer(stage);
+        Menu menuInformacion = nuevoMenuInformacion(stage);
 
         this.getMenus().addAll(menuArchivo, menuVer, menuInformacion);
     }
 
-    private Menu nuevoMenuArchivo()
+    private Menu nuevoMenuArchivo(Stage stage)
     {
         Menu menu = new Menu("Archivo");
         MenuItem opcionAbrir = new MenuItem("Abrir");
         MenuItem opcionSalir = new MenuItem("Salir");
-        menuArchivo.getItems()
+        menu.getItems()
             .addAll(opcionAbrir, new SeparatorMenuItem(), opcionSalir);
 
         OpcionSalirEventHandler opcionSalirHandler =
@@ -39,10 +39,10 @@ public class BarraDeMenu extends MenuBar {
         return menu;
     }
 
-    private Menu nuevoMenuVer()
+    private Menu nuevoMenuVer(Stage stage)
     {
         Menu menu = new Menu("Ver");
-        menuVer.getItems().addAll(opcionPantallaCompleta, opcionMinimizar);
+        menu.getItems().addAll(opcionPantallaCompleta, opcionMinimizar);
 
         OpcionPantallaCompletaHandler opcionPantallaCompletaHandler =
             new OpcionPantallaCompletaHandler(stage, opcionPantallaCompleta,this);
@@ -57,11 +57,11 @@ public class BarraDeMenu extends MenuBar {
         return menu;
     }
 
-    private Menu nuevoMenuInformacion()
+    private Menu nuevoMenuInformacion(Stage stage)
     {
         Menu menu = new Menu("Informacion");
         MenuItem opcionInformacion = new MenuItem("Informacion");
-        menuInformacion.getItems().addAll(opcionInformacion);
+        menu.getItems().addAll(opcionInformacion);
 
         OpcionInformacionEventHandler opcionInformacionHandler =
             new OpcionInformacionEventHandler(stage);
