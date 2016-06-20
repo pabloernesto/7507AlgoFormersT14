@@ -37,10 +37,13 @@ import javafx.stage.Stage;
 	        new AplicacionOnKeyPressEventHandler(stage, contenedorPrincipal.getBarraDeMenu());
 	        escenaJuego.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
 	        
-	        ContenedorEleccionJugador contenedorEleccion = new ContenedorEleccionJugador(stage, escenaJuego, juego);
-	        Scene escenaEleccion = new Scene(contenedorEleccion, 640, 480);
+	        ContenedorEleccionJugador contenedorEleccion = 
+	        new ContenedorEleccionJugador(stage, escenaJuego, juego);
+	        Scene escenaEleccion = 
+	        new Scene(contenedorEleccion, 640, 480);
 	        
-	        ContenedorReglas contenedorReglas = new ContenedorReglas(stage, escenaEleccion);
+	        ContenedorReglas contenedorReglas = 
+	        new ContenedorReglas(stage, escenaEleccion);
 	        Scene escenaReglas = new Scene(contenedorReglas, 640, 480);
 	        
 	        Bienvenida contenedorBienvenidos = new Bienvenida(stage, escenaReglas);
