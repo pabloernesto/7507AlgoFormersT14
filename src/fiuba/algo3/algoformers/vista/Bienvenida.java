@@ -1,5 +1,7 @@
 package fiuba.algo3.algoformers.vista;
 
+import java.io.File;
+
 import fiuba.algo3.algoformers.vista.eventos.BotonEntrarEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonSalirEventHandler;
 import javafx.geometry.Insets;
@@ -14,6 +16,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -28,8 +31,11 @@ public class Bienvenida extends VBox{
 
             super();
 
+	        
             this.stage = stage;
 
+
+	        
             this.setAlignment(Pos.CENTER_LEFT);
             this.setSpacing(20);
             this.setPadding(new Insets(480, 50, 50, 50));
@@ -66,6 +72,7 @@ public class Bienvenida extends VBox{
             BotonSalirEventHandler botonSalirHandler = new BotonSalirEventHandler();
             botonSalir.setOnAction(botonSalirHandler);
             this.getChildren().addAll(etiqueta, botonEntrar,botonSalir);
+            
         }
 
     
