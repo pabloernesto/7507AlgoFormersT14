@@ -46,7 +46,8 @@ public class ContenedorPrincipal extends BorderPane {
     private void setBotonera(){//AlgoFormer algoformer) {
 
         Button botonMover = new Button("Mover");
-        //BotonElegirMoverHandler moveButtonHandler = new BotonElegirMoverHandler(vistaAlgoformer, algoformer);
+        //BotonElegirMoverHandler moveButtonHandler = 
+        //new BotonElegirMoverHandler(vistaAlgoformer, algoformer);
         //botonMover.setOnAction(moveButtonHandler);
         
         Button botonAtacar = new Button();
