@@ -31,12 +31,12 @@ public class OpcionInformacionEventHandler implements EventHandler<ActionEvent>{
 		VBox root = new VBox();
 		Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/intro/ImagenReglas.jpg");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        Button volverAlJuego = new Button("Volver al juego");
+        Button volverAlJuego = new Button("Volver");
         BotonVolverAlJuegoEventHandler salir = new BotonVolverAlJuegoEventHandler(stage,stagePrincipal);
         volverAlJuego.setOnAction(salir);
         volverAlJuego.setMinSize(100, 50);
         volverAlJuego.setFont(Font.font("Courier New",FontWeight.BOLD, 20));
-        root.setPadding(new Insets(50,0,50,50));
+        root.setPadding(new Insets(0,10,100,0));
         root.setAlignment(Pos.BOTTOM_CENTER);
         root.getChildren().add(volverAlJuego);
         root.setBackground(new Background(imagenDeFondo));
