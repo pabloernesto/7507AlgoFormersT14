@@ -1,9 +1,7 @@
 package fiuba.algo3.algoformers.vista;
 
-import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.juego.Juego;
 import javafx.geometry.Pos;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -12,28 +10,23 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
 public class ContenedorPrincipal extends BorderPane {
 
 	BarraDeMenu barraMenu;
-	Canvas canvasCentral;
 	Juego juego;
 	Stage stage;
-	//VistaTablero vistaTablero
-   	
+	VistaTablero vistaTablero;
 
     public ContenedorPrincipal(Stage stage, Juego juego, BarraDeMenu barraMenu){
     	
     	this.juego = juego;
     	this.stage = stage;
     	this.barraMenu = barraMenu;
+    	this.vistaTablero = new VistaTablero();
     }
     
     public void inicializar(){
@@ -92,42 +85,11 @@ public class ContenedorPrincipal extends BorderPane {
         this.setBottom(contenedorHorizontal);
 
     }
-    
-   
 
     private void setCentro(){
-
-        //Como hago para dibujar cada Algoformer??
-        //Capaz tengo que preguntarle a cada celda si contiene un algoformer y
-        //Segun la respuesta actuar...
-        //Button[][] matriz;
-
-        Tablero tablero = Tablero.getInstance();
-
-    	       
-        GridPane root = new GridPane();
-        for (int row = 1; row <= tablero.altura(); row++) {
-            for (int col = 1; col <= tablero.ancho(); col ++){
-                StackPane celda = new VistaDeCelda(tablero.getCelda(col, row));
-                root.add(celda, col, row);
-            }
-        }
-
-        for (int i = 0; i <= tablero.ancho(); i++) {
-            root.getColumnConstraints().add(
-            		new ColumnConstraints(32));
-        }
-        for (int i = 0; i <= tablero.altura(); i++) {
-            root.getRowConstraints().add(
-            		new RowConstraints(32));
-        }
-    	this.setCenter(root);
-    	root.setMaxWidth(600);
-    	root.setMaxHeight(700);
+    	vistaTablero.dibujar();
+    	this.setCenter(vistaTablero);
     }
-
-
-
 
     public BarraDeMenu getBarraDeMenu() {
         return barraMenu;
