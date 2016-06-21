@@ -21,7 +21,7 @@ public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
         stage.setScene(proximaEscena);
         stage.setFullScreenExitHint("");
         stage.setFullScreen(true);
-        AudioClip audioIntro = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/boton.mp3");
-        audioIntro.play();
+        AudioClip audioBoton = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/boton.mp3");
+        audioBoton.play();
     }
 }
