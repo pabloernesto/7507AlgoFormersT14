@@ -1,6 +1,7 @@
 package fiuba.algo3.algoformers.vista;
 
 import fiuba.algo3.algoformers.escenario.Celda;
+import fiuba.algo3.algoformers.escenario.bonus.ChispaSuprema;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Background;
@@ -20,6 +21,12 @@ public class VistaDeCelda extends StackPane
 
         if (celda.estaOcupada())
             this.getChildren().add(new VistaAlgoFormer(celda.getAlgoformer()));
+        
+        else if (celda.contieneChispaSuprema())
+            this.getChildren().add(new VistaBonus(new ChispaSuprema()));
+
+        else
+            this.getChildren().add(new VistaBonus(celda.getBonus()));
     }
 
     private void setBackground(String nombreImagen)

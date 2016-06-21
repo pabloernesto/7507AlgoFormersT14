@@ -16,4 +16,9 @@ public class BurbujaInmaculada implements Bonus{
 		return new EfectoBurbuja();
 	}
 
+    public String nombre()
+    {
+        return "burbuja";
+    }
 }
+

@@ -14,4 +14,9 @@ public class BonusNulo implements Bonus{
 		return null;
 	}
 
+    public String nombre()
+    {
+        return "BonusNulo";
+    }
 }
+

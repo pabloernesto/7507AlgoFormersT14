@@ -14,4 +14,8 @@ public class ChispaSuprema implements Bonus{
 		return new EfectoChispa();
 	}
 
+    public String nombre()
+    {
+        return "chispaSuprema";
+    }
 }

@@ -16,4 +16,9 @@ public class Flash implements Bonus{
 		return new EfectoFlash();
 	}
 
+    public String nombre()
+    {
+        return "flash";
+    }
 }
+

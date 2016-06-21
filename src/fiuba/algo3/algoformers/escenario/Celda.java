@@ -56,7 +56,12 @@ public class Celda {
 	public void setBonus(Bonus bonus){
 		this.bonus = bonus;
 	}
-	
+
+    public Bonus getBonus()
+    {
+        return bonus;
+    }
+
 	public String getNombreSuperficieTerrestre(){
 		return suelo.getNombre();
 	}

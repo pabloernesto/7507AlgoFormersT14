@@ -16,4 +16,9 @@ public class DobleCanion implements Bonus{
 		return new EfectoDobleCanion();
 	}
 
+    public String nombre()
+    {
+        return "dobleCanion";
+    }
 }
+
