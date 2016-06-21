@@ -35,10 +35,11 @@ public class ContenedorPrincipal extends BorderPane {
 	//VistaTablero vistaTablero
    	
 
-    public ContenedorPrincipal(Stage stage, Juego juego){ //ArrayList<AlgoFormer> ListaAlgoformers ??) {
+    public ContenedorPrincipal(Stage stage, Juego juego, BarraDeMenu menuBar){
     	
     	this.juego = juego;
     	this.stage = stage;
+    	this.menuBar = menuBar;
     }
     
     public void inicializar(){
@@ -48,7 +49,6 @@ public class ContenedorPrincipal extends BorderPane {
     }
 
     private void setMenu() {
-        this.menuBar = new BarraDeMenu(stage);
         this.setTop(menuBar);
     }
     

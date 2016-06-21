@@ -16,12 +16,16 @@ import javafx.scene.media.AudioClip;
 	    @Override
 	    public void start(final Stage stage) throws Exception {
 	    	
-
+	    	AudioClip audioIntro = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/musicaFondo.mp3");
+	        audioIntro.setCycleCount(2);
+	        audioIntro.play();
+	        
+	        BarraDeMenu menuBar = new BarraDeMenu(stage, audioIntro);
 	    	
 	    	Juego juego = new Juego();
 	        stage.setTitle("Juego Algoformers");
 	        ContenedorPrincipal contenedorPrincipal = 
-	        		new ContenedorPrincipal(stage, juego);
+	        		new ContenedorPrincipal(stage, juego, menuBar);
 	        Scene escenaJuego = 
 	        		new Scene(contenedorPrincipal, 640, 480);
 	        
@@ -48,10 +52,6 @@ import javafx.scene.media.AudioClip;
 	        stage.setFullScreenExitHint("");
 
 	        stage.show();
-		
-	    	AudioClip audioIntro = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/musicaFondo.mp3");
-	        audioIntro.setCycleCount(2);
-	        audioIntro.play();
 	        
 	    }
 

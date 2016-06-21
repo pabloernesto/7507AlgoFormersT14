@@ -3,11 +3,14 @@ package fiuba.algo3.algoformers.vista;
 import fiuba.algo3.algoformers.vista.eventos.OpcionInformacionEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionVentanaHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionPantallaCompletaHandler;
+import fiuba.algo3.algoformers.vista.eventos.OpcionReproducirHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionSalirEventHandler;
+import fiuba.algo3.algoformers.vista.eventos.OpcionSilenciarHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,13 +19,18 @@ public class BarraDeMenu extends MenuBar {
 
     MenuItem opcionPantallaCompleta = new MenuItem("Pantalla completa");
     MenuItem opcionVentana = new MenuItem("Vista Ventana");
+    MenuItem opcionReproducir = new MenuItem("Reproducir");
+    MenuItem opcionSilenciar = new MenuItem("Silenciar");
+    AudioClip musica;
 
-    public BarraDeMenu(Stage stage){
+    public BarraDeMenu(Stage stage, AudioClip musica){
         Menu menuArchivo = nuevoMenuArchivo(stage);
         Menu menuVer = nuevoMenuVer(stage);
+        Menu menuMusica = nuevoMenuMusica(stage, musica);
         Menu menuInformacion = nuevoMenuInformacion(stage);
+        this.musica = musica;
 
-        this.getMenus().addAll(menuArchivo, menuVer, menuInformacion);
+        this.getMenus().addAll(menuArchivo, menuVer, menuMusica, menuInformacion);
     }
 
     private Menu nuevoMenuArchivo(Stage stage){
@@ -67,10 +75,32 @@ public class BarraDeMenu extends MenuBar {
 
         return menu;
     }
+    
+    private Menu nuevoMenuMusica(Stage stage, AudioClip musica){
+        Menu menu = new Menu("Reproducir/Silenciar");
+        menu.getItems().addAll(opcionReproducir, opcionSilenciar);
+
+        EventHandler<ActionEvent> opcionReproducirHandler =
+            new OpcionReproducirHandler(stage, opcionReproducir, this, musica);
+        opcionReproducir.setOnAction(opcionReproducirHandler);
+        opcionReproducir.setDisable(true);
+
+        EventHandler<ActionEvent> opcionSilenciarHandler =
+            new OpcionSilenciarHandler(stage, opcionSilenciar, this, musica);
+        opcionSilenciar.setOnAction(opcionSilenciarHandler);
+        opcionSilenciar.setDisable(false);
+
+        return menu;
+    }
 
     public void aplicacionMaximizada(Boolean estaMaximizada) {
         opcionPantallaCompleta.setDisable(estaMaximizada);
         opcionVentana.setDisable(!estaMaximizada);
+    }
+    
+    public void reproduciendoMusica(Boolean estaReproduciendo){
+    	opcionReproducir.setDisable(estaReproduciendo);
+    	opcionSilenciar.setDisable(!estaReproduciendo);
     }
 }
 
