@@ -39,10 +39,14 @@ public class BotonAceptarEventHandler implements EventHandler<ActionEvent>{
     	if (texto.getText().trim().equals("")){
             etiqueta.setText("Debe ingresar un texto");
             etiqueta.setTextFill(Color.web("#FF0000")); // Rojo
+            AudioClip audioIncorrecto = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/incorrecto.mp3");
+	    audioIncorrecto.play();
         }
     	else if (nombresJugadores.contains(texto.getText())){
     		etiqueta.setText("Ese nombre ya esta en uso. Elija otro");
         	etiqueta.setTextFill(Color.web("#FF0000"));
+        	AudioClip audioIncorrecto = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/incorrecto.mp3");
+	    	audioIncorrecto.play();
     	}
     	else {
         	nombresJugadores.add(texto.getText());
