@@ -18,8 +18,7 @@ public class VistaDeCelda extends StackPane
 
         Image imagen = 
             new Image("file:src/fiuba/algo3/algoformers/vista/" +
-                "imagenes/escenario/rocoso-nubes.jpg",
-                80, 80, true, true);
+                "imagenes/escenario/rocoso-nubes.jpg");
         imagenDeFondo = 
             new BackgroundImage(imagen, BackgroundRepeat.REPEAT,
                 BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
