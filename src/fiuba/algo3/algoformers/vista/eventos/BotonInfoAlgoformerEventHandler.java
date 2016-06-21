@@ -1,8 +1,5 @@
 package fiuba.algo3.algoformers.vista.eventos;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,24 +17,19 @@ public class BotonInfoAlgoformerEventHandler implements EventHandler<ActionEvent
 		this.contenedor = contenedor;
 	}
 
-	//No se acomodan bien los strings, hay que ponerlos de alguna forma que se vean mejor
 	public void handle(ActionEvent event) {
-		//Si el contenedor ya tiene tres cajas, borrar la ultima
-		List<Label> listaEtiquetas = new ArrayList<Label>();
-		Label nombre = new Label(algoformer.getNombre());
-    	Label vida = new Label("Vida: " + String.valueOf(algoformer.getVida()));
-    	Label ataque = new Label("Ataque: " + String.valueOf(algoformer.getAtaque()));
-    	Label movimientosRestantes = new Label("\nMovimientos restantes: " + String.valueOf(algoformer.getMovimientosRestantes()));
-    	Label distAtaque = new Label("Distancia ataque: " + String.valueOf(algoformer.getDistAtaque()));
-    	listaEtiquetas.add(nombre);
-    	listaEtiquetas.add(vida);
-    	listaEtiquetas.add(ataque);
-    	listaEtiquetas.add(movimientosRestantes);
-    	listaEtiquetas.add(distAtaque);
-    	for (Label etiqueta : listaEtiquetas)
-    		etiqueta.setTextFill(Color.web("#FF0000"));
-		HBox info = new HBox();
-		info.getChildren().addAll(listaEtiquetas);
+		//Si el contenedor tiene 3 elementos, entonces ya se pidio info de otro algoformer
+		//hay que borrarla, si no se ve mal
+		if (contenedor.getChildren().size() > 2)
+			contenedor.getChildren().remove(2);
+		String vida = "Vida: " + String.valueOf(algoformer.getVida());
+		String ataque = "\nAtaque: " + String.valueOf(algoformer.getAtaque());
+		String movRestantes = "\nMovimientos restantes: " + String.valueOf(algoformer.getMovimientosRestantes());
+		String distAtaque = "\nDistancia ataque: " + String.valueOf(algoformer.getDistAtaque());
+		String informacion = vida + ataque + movRestantes + distAtaque;
+    	Label etiqueta = new Label(informacion);
+    	etiqueta.setTextFill(Color.web("#FF0000"));
+		HBox info = new HBox(etiqueta);
 		contenedor.getChildren().add(info);
 	}
 	
