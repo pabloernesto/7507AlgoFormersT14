@@ -11,11 +11,6 @@ public abstract class EstadoJugador
 	public abstract void descombinar(Jugador jugador);
 	public abstract void transformar(Jugador j);
     
-    public void elegirAlgoFormer(Jugador jugador, String nombre)
-    {
-        jugador._elegirAlgoFormer(nombre);
-    }
-    
     public void terminarTurno(Jugador jugador)
     {
         jugador.setEstado(new EstadoJugador_Inactivo());

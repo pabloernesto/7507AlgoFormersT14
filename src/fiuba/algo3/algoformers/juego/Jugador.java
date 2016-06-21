@@ -25,13 +25,12 @@ public class Jugador
 	    algoformerFactory = factory;
 	    this.nombre = nombre;
  	}
-	
-    public void elegirAlgoFormer(String nombre)
-    {
-        estado.elegirAlgoFormer(this, nombre);
+    
+    public void elegirAlgoformer(AlgoFormer algoformer){
+    	algoformerActual = algoformer;
     }
     
-    void _elegirAlgoFormer(String nombre)
+    public void elegirAlgoFormer(String nombre)
     {
         AlgoFormer algoformerElegido = null;
         for (AlgoFormer algoformer : equipo){
