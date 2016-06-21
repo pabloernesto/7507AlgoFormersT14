@@ -2,6 +2,7 @@ package fiuba.algo3.algoformers.vista.eventos;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 public class BotonVolverAlJuegoEventHandler implements EventHandler<ActionEvent>{
@@ -16,6 +17,8 @@ public class BotonVolverAlJuegoEventHandler implements EventHandler<ActionEvent>
 	
 	@Override
 	public void handle(ActionEvent actionEvent) {
+		AudioClip audioBoton = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/boton2.mp3");
+        audioBoton.play();
 		stage.close();
 		stagePrincipal.setFullScreen(true);
 	}

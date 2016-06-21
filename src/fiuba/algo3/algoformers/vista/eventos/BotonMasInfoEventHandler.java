@@ -40,7 +40,7 @@ public class BotonMasInfoEventHandler implements EventHandler<ActionEvent> {
         volverAlJuego.setMinSize(100, 50);
         volverAlJuego.setFont(Font.font("Courier New",FontWeight.BOLD, 20));
         volverAlJuego.setOnAction(salir);
-        root.setPadding(new Insets(50,0,50,50));
+        root.setPadding(new Insets(50,0,100,50));
         root.setAlignment(Pos.BOTTOM_CENTER);
         root.getChildren().addAll(volverAlJuego);
         root.setBackground(new Background(imagenDeFondo));

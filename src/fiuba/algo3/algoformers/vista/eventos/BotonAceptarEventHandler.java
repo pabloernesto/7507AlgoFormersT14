@@ -44,7 +44,7 @@ public class BotonAceptarEventHandler implements EventHandler<ActionEvent>{
             etiqueta.setText("Debe ingresar un texto");
             etiqueta.setTextFill(Color.web("#FF0000")); // Rojo
             AudioClip audioIncorrecto = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/incorrecto.mp3");
-	    audioIncorrecto.play();
+            audioIncorrecto.play();
         }
     	else if (nombresJugadores.contains(texto.getText())){
     		etiqueta.setText("Ese nombre ya esta en uso. Elija otro");
