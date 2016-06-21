@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.media.AudioClip;
 
 public class BotonAceptarEventHandler implements EventHandler<ActionEvent>{
 
@@ -56,6 +57,8 @@ public class BotonAceptarEventHandler implements EventHandler<ActionEvent>{
 			texto.setPromptText("Ingrese su nombre");
 			etiqueta.setText("");
 			jugador.setText("Jugador Decepticons");
+			AudioClip audioBoton = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/boton2.mp3");
+			 audioBoton.play();
 			}
     }
 }
