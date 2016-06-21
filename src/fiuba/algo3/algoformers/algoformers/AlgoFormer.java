@@ -295,5 +295,10 @@ public abstract class AlgoFormer {
 			return false;
 		return true;
 	}
-	
+
+    public String nombreEstadoActivo()
+    {
+        return getEstadoActivo().nombre();
+    }
 }
+

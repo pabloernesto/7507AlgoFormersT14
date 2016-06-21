@@ -10,7 +10,8 @@ public class VistaAlgoFormer extends ImageView
     public VistaAlgoFormer(AlgoFormer algoformer)
     {
         setImage(new Image("file:src/fiuba/algo3/algoformers/vista/" +
-            "imagenes/algoformers/" + algoformer.getNombre() + ".jpg"));
+            "imagenes/algoformers/" + algoformer.getNombre() +
+            algoformer.nombreEstadoActivo() + ".jpg"));
 
         setFitWidth(20);
         setFitHeight(20);

@@ -10,7 +10,6 @@ public abstract class Forma {
 	protected int distAtaque;
 	protected int movimientosRestantes;
 	protected FormaFactory formaFactory;
-	
 
 	public Forma (int ataque, int velocidad, int distAtaque, FormaFactory formaFactory){
 		this.ataque = ataque;
@@ -67,5 +66,6 @@ public abstract class Forma {
 
 	public abstract void afectarCon(AlgoFormer algoFormer, EfectoChispa efecto);
 	
+    public abstract String nombre();
 }
 

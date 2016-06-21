@@ -39,4 +39,8 @@ public class FormaHumanoide extends Forma {
 		Juego.chispaCapturada(algoformer);
 	}
 	
+    public String nombre()
+    {
+        return "Humanoide";
+    }
 }
