@@ -2,7 +2,7 @@ package fiuba.algo3.algoformers.vista;
 
 import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.juego.Juego;
-import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -71,17 +71,17 @@ public class ContenedorPrincipal extends BorderPane {
         //new BotonMoverHandler(vistaAlgoformer, algoformer);
         //botonMover.setOnAction(moveButtonHandler);
 
-
-        botonAtacar.setMinSize(100, 60);
-        botonMover.setMinSize(100, 60);
-        botonCombinarse.setMinSize(100, 60);
-        botonTransformarse.setMinSize(100, 60);
+        botonAtacar.setMaxSize(100, 30);
+        botonMover.setMaxSize(100, 30);
+        botonCombinarse.setMaxSize(100, 30);
+        botonTransformarse.setMaxSize(100, 30);
         
         HBox contenedorHorizontal = 
-        new HBox(botonMover, botonAtacar,botonTransformarse,botonCombinarse);
+        		new HBox(botonMover, botonAtacar,botonTransformarse,botonCombinarse);
         contenedorHorizontal.setSpacing(30);
-        contenedorHorizontal.setPadding(new Insets(50,0,50,450)); //el primero es para el alto.. el ultimo para el lugar horizontal
-        //contenedorVertical.setMinHeight(100);
+        contenedorHorizontal.setAlignment(Pos.CENTER);
+        //contenedorHorizontal.setPadding(new Insets(50,0,50,450)); //el primero es para el alto.. el ultimo para el lugar horizontal
+        contenedorHorizontal.setMinHeight(75);
         
         Image imagen = 
         new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/intro/FondoGris.jpg", 300, 0, false, true);
