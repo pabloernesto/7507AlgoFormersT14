@@ -57,6 +57,14 @@ public class Celda {
 		this.bonus = bonus;
 	}
 	
+	public String getNombreSuperficieTerrestre(){
+		return suelo.getNombre();
+	}
+	
+	public String getNombreSuperficieAerea(){
+		return cielo.getNombre();
+	}
+	
 	//Metodos para pruebas+
 	public SuperficieTerrestre getSuperficieTerrestre() {
 		return suelo;

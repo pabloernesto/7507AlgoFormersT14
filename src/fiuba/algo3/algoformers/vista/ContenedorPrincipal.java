@@ -103,8 +103,8 @@ public class ContenedorPrincipal extends BorderPane {
 
     	       
         GridPane root = new GridPane();
-        for (int row = 0; row < tablero.altura(); row++) {
-            for (int col = 0; col < tablero.ancho(); col ++){
+        for (int row = 1; row < tablero.altura(); row++) {
+            for (int col = 1; col < tablero.ancho(); col ++){
                 StackPane celda = new VistaDeCelda(tablero.getCelda(col, row));
                 root.add(celda, col, row);
             }

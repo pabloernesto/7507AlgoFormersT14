@@ -15,5 +15,11 @@ public class NebulosaDeAndromeda extends SuperficieAerea{
 	public Efecto getEfecto() {
 		return new EfectoNebulosa();
 	}
+	
+	@Override
+	public String getNombre() {
+		return "nebulosa";
+	}
+
 
 }

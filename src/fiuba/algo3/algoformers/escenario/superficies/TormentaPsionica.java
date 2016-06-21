@@ -16,4 +16,9 @@ public class TormentaPsionica extends SuperficieAerea{
 		return new EfectoTormenta();
 	}
 
+	@Override
+	public String getNombre() {
+		return "tormenta";
+	}
+
 }

@@ -14,5 +14,11 @@ public class Rocosa extends SuperficieTerrestre{
 	public Efecto getEfecto() {
 		return null;
 	}
+	
+	@Override
+	public String getNombre() {
+		return "rocosa";
+	}
+
 
 }

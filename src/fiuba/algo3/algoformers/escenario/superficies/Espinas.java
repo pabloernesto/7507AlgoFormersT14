@@ -15,5 +15,11 @@ public class Espinas extends SuperficieTerrestre{
 	public Efecto getEfecto() {
 		return new EfectoEspinas();
 	}
+	
+	@Override
+	public String getNombre() {
+		return "espinas";
+	}
+
 
 }

@@ -23,6 +23,7 @@ public class ControlDeTurnosTest
 	{
 		Tablero.setGeneradorDeCeldas(new RocasYNubesFactory());
 		Tablero.setGeneradorDeBonus(new BonusNuloFactory());
+		juego.crearJugadores("Nombre1", "Nombre2");
 		juego.inicializar();
 	}
 	

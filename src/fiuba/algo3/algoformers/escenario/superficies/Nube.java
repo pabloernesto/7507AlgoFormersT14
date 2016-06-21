@@ -14,5 +14,11 @@ public class Nube extends SuperficieAerea{
 	public Efecto getEfecto() {
 		return null;
 	}
+	
+	@Override
+	public String getNombre() {
+		return "nubes";
+	}
+
 
 }

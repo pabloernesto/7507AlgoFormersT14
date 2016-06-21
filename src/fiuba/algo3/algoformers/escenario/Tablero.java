@@ -13,7 +13,7 @@ import fiuba.algo3.algoformers.excepciones.PosicionInvalidaException;
 import fiuba.algo3.algoformers.factories.BonusFactory;
 import fiuba.algo3.algoformers.factories.BonusRandomFactory;
 import fiuba.algo3.algoformers.factories.CeldaFactory;
-import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
+import fiuba.algo3.algoformers.factories.CeldaRandomFactory;
 
 public class Tablero {
 
@@ -23,7 +23,7 @@ public class Tablero {
 	private final int ALTO = 20;
 	private static Tablero instanciaTablero = null;
 	
-	private static CeldaFactory generadorCeldas = new RocasYNubesFactory();
+	private static CeldaFactory generadorCeldas = new CeldaRandomFactory();
 	private static BonusFactory generadorBonus = new BonusRandomFactory();
 	
 	public static void setGeneradorDeCeldas(CeldaFactory generador){

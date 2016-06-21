@@ -16,5 +16,11 @@ public class Pantano extends SuperficieTerrestre{
 	public Efecto getEfecto() {
 		return new EfectoPantano();
 	}
+	
+	@Override
+	public String getNombre() {
+		return "pantano";
+	}
+
 
 }
