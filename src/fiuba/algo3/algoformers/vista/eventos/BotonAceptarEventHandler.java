@@ -54,6 +54,8 @@ public class BotonAceptarEventHandler implements EventHandler<ActionEvent>{
     	}
     	else {
         	nombresJugadores.add(texto.getText());
+        	AudioClip audioBoton = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/boton2.mp3");
+			audioBoton.play();
         	if (nombresJugadores.size() == 2){
         		juego.crearJugadores(nombresJugadores.get(0), nombresJugadores.get(1));
         		juego.inicializar();
@@ -66,9 +68,7 @@ public class BotonAceptarEventHandler implements EventHandler<ActionEvent>{
 			texto.setFocusTraversable(false);
 			texto.setPromptText("Ingrese su nombre");
 			etiqueta.setText("");
-			jugador.setText("Jugador Decepticons");
-			AudioClip audioBoton = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/boton2.mp3");
-			 audioBoton.play();
+			jugador.setText("Jugador Decepticons");	
 			}
     }
 }

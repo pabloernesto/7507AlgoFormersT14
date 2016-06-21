@@ -22,18 +22,18 @@ import javafx.stage.Stage;
 
 public class ContenedorPrincipal extends BorderPane {
 
-	BarraDeMenu menuBar;
+	BarraDeMenu barraMenu;
 	Canvas canvasCentral;
 	Juego juego;
 	Stage stage;
 	//VistaTablero vistaTablero
    	
 
-    public ContenedorPrincipal(Stage stage, Juego juego, BarraDeMenu menuBar){
+    public ContenedorPrincipal(Stage stage, Juego juego, BarraDeMenu barraMenu){
     	
     	this.juego = juego;
     	this.stage = stage;
-    	this.menuBar = menuBar;
+    	this.barraMenu = barraMenu;
     }
     
     public void inicializar(){
@@ -43,7 +43,7 @@ public class ContenedorPrincipal extends BorderPane {
     }
 
     private void setMenu() {
-        this.setTop(menuBar);
+        this.setTop(barraMenu);
     }
     
     private void setBotonera(){//AlgoFormer algoformer) {
@@ -130,7 +130,7 @@ public class ContenedorPrincipal extends BorderPane {
 
 
     public BarraDeMenu getBarraDeMenu() {
-        return menuBar;
+        return barraMenu;
     }
 	
  

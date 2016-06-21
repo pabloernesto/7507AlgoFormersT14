@@ -20,12 +20,12 @@ import javafx.scene.media.AudioClip;
 	        audioIntro.setCycleCount(2);
 	        audioIntro.play();
 	        
-	        BarraDeMenu menuBar = new BarraDeMenu(stage, audioIntro);
+	        BarraDeMenu barraMenu = new BarraDeMenu(stage, audioIntro);
 	    	
 	    	Juego juego = new Juego();
 	        stage.setTitle("Juego Algoformers");
 	        ContenedorPrincipal contenedorPrincipal = 
-	        		new ContenedorPrincipal(stage, juego, menuBar);
+	        		new ContenedorPrincipal(stage, juego, barraMenu);
 	        Scene escenaJuego = 
 	        		new Scene(contenedorPrincipal, 640, 480);
 	        
@@ -36,16 +36,19 @@ import javafx.scene.media.AudioClip;
 	        ContenedorEleccionJugador contenedorEleccion = 
 	        		new ContenedorEleccionJugador(stage, escenaJuego, juego, contenedorPrincipal);
 	        Scene escenaEleccion = 
-	        new Scene(contenedorEleccion, 640, 480);
+	        		new Scene(contenedorEleccion, 640, 480);
+	        escenaEleccion.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
 	        
 	        ContenedorReglas contenedorReglas = 
 	        		new ContenedorReglas(stage, escenaEleccion);
 	        Scene escenaReglas = new Scene(contenedorReglas, 640, 480);
+	        escenaReglas.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
 	        
 	        Bienvenida contenedorBienvenidos = 
-	        		new Bienvenida(stage, escenaReglas);
+	        		new Bienvenida(stage, barraMenu, audioIntro, escenaReglas);
 	        Scene escenaBienvenidos = 
 	        		new Scene(contenedorBienvenidos, 640, 480);
+	        escenaBienvenidos.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
 	        
 	        stage.setScene(escenaBienvenidos);
 	        stage.setFullScreen(true);

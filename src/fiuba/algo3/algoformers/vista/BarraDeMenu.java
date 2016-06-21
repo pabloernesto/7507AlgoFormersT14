@@ -79,12 +79,12 @@ public class BarraDeMenu extends MenuBar {
         menu.getItems().addAll(opcionReproducir, opcionSilenciar);
 
         EventHandler<ActionEvent> opcionReproducirHandler =
-            new OpcionReproducirHandler(stage, opcionReproducir, this, musica);
+            new OpcionReproducirHandler(this, musica);
         opcionReproducir.setOnAction(opcionReproducirHandler);
         opcionReproducir.setDisable(true);
 
         EventHandler<ActionEvent> opcionSilenciarHandler =
-            new OpcionSilenciarHandler(stage, opcionSilenciar, this, musica);
+            new OpcionSilenciarHandler(this, musica);
         opcionSilenciar.setOnAction(opcionSilenciarHandler);
         opcionSilenciar.setDisable(false);
 

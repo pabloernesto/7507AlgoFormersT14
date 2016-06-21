@@ -2,10 +2,10 @@ package fiuba.algo3.algoformers.vista;
 
 import fiuba.algo3.algoformers.vista.eventos.BotonEntrarEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonSalirEventHandler;
+import fiuba.algo3.algoformers.vista.eventos.OpcionSilenciarHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -13,7 +13,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -22,13 +22,13 @@ public class Bienvenida extends VBox
 {
     Stage stage;
 
-    public Bienvenida(Stage stage, Scene proximaEscena)
+    public Bienvenida(Stage stage, BarraDeMenu barraMenu, AudioClip musica, Scene proximaEscena)
     {
         super();
         this.stage = stage;
         
-        this.setAlignment(Pos.CENTER_LEFT);
-        this.setSpacing(20);
+        this.setAlignment(Pos.BOTTOM_LEFT);
+        this.setSpacing(50);
         
         Image imagen = new Image("file:" + 
             "src/fiuba/algo3/algoformers/vista/imagenes/intro/" +
@@ -47,18 +47,11 @@ public class Bienvenida extends VBox
         Button botonSalir = new Button();
         botonSalir.setText("Salir :(");
         botonSalir.setFont(Font.font("", 20));
-
-        Button botonMaximizar= new Button();
-        botonMaximizar.setText("Maximizar Pantalla");
         
-        Button botonMinimizar= new Button();
-        botonMinimizar.setText("Minimizar Pantalla");
+        Button botonSilenciar = new Button();
+        botonSilenciar.setText("Silenciar musica");
+        botonSilenciar.setFont(Font.font("", 16));
 
-        Label etiqueta = new Label();
-        etiqueta.setFont(Font.font("Tahoma", FontWeight.BOLD, 80));
-
-        etiqueta.setText("AlgoFormers");
-        etiqueta.setTextFill(Color.web("#66A7C5"));
 
         BotonEntrarEventHandler botonEntrarHandler =
             new BotonEntrarEventHandler(stage, proximaEscena);
@@ -66,7 +59,11 @@ public class Bienvenida extends VBox
         
         BotonSalirEventHandler botonSalirHandler = new BotonSalirEventHandler();
         botonSalir.setOnAction(botonSalirHandler);
-        this.getChildren().addAll(etiqueta, botonEntrar,botonSalir);
+        
+        OpcionSilenciarHandler botonSilenciarHandler = new OpcionSilenciarHandler(barraMenu, musica);
+        botonSilenciar.setOnAction(botonSilenciarHandler);
+        
+        this.getChildren().addAll(botonEntrar, botonSalir, botonSilenciar);
     }
 }
 

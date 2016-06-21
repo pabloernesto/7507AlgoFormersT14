@@ -12,12 +12,12 @@ public class OpcionVentanaHandler implements EventHandler<ActionEvent> {
 
     Stage stage;
     MenuItem opcionMinimizar;
-    BarraDeMenu menuBar;
+    BarraDeMenu barraMenu;
     
-    public OpcionVentanaHandler(Stage stage, MenuItem opcionMinimizar,BarraDeMenu menuBar) {
+    public OpcionVentanaHandler(Stage stage, MenuItem opcionMinimizar,BarraDeMenu barraMenu) {
         this.stage = stage;
         this.opcionMinimizar = opcionMinimizar;
-        this.menuBar=menuBar;
+        this.barraMenu = barraMenu;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class OpcionVentanaHandler implements EventHandler<ActionEvent> {
             opcionMinimizar.setDisable(true);
             stage.setMaximized(true);
             stage.show();
-            menuBar.aplicacionMaximizada(false);
+            barraMenu.aplicacionMaximizada(false);
         }
     }
 }

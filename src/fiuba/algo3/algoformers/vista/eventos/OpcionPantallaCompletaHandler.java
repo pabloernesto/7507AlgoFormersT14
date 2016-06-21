@@ -8,14 +8,14 @@ import javafx.stage.Stage;
 
 public class OpcionPantallaCompletaHandler implements EventHandler<ActionEvent> {
 
-	 Stage stage;
+	 	Stage stage;
 	    MenuItem opcionPantallaCompleta;
-	    BarraDeMenu menuBar;
+	    BarraDeMenu barraMenu;
 
-	    public OpcionPantallaCompletaHandler(Stage stage, MenuItem opcionPantallaCompleta,BarraDeMenu menuBar) {
+	    public OpcionPantallaCompletaHandler(Stage stage, MenuItem opcionPantallaCompleta,BarraDeMenu barraMenu) {
 	        this.stage = stage;
 	        this.opcionPantallaCompleta = opcionPantallaCompleta;
-	        this.menuBar = menuBar;
+	        this.barraMenu = barraMenu;
 	    }
 
 	    @Override
@@ -25,7 +25,7 @@ public class OpcionPantallaCompletaHandler implements EventHandler<ActionEvent> 
 	            stage.setFullScreen(true);
 	            opcionPantallaCompleta.setDisable(true);
 	            stage.show();
-	            menuBar.aplicacionMaximizada(true);
+	            barraMenu.aplicacionMaximizada(true);
 	        }
     }
 
