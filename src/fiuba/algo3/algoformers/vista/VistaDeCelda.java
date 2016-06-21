@@ -17,6 +17,9 @@ public class VistaDeCelda extends StackPane
         String tierra = celda.getNombreSuperficieTerrestre();
         String aire = celda.getNombreSuperficieAerea();
         setBackground(tierra + "-" + aire + ".jpg");
+
+        if (celda.estaOcupada())
+            this.getChildren().add(new VistaAlgoFormer(celda.getAlgoformer()));
     }
 
     private void setBackground(String nombreImagen)
