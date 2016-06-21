@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.media.AudioClip;
 
 public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
 
@@ -20,5 +21,7 @@ public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
         stage.setScene(proximaEscena);
         stage.setFullScreenExitHint("");
         stage.setFullScreen(true);
+        AudioClip audioIntro = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/boton.mp3");
+        audioIntro.play();
     }
 }
