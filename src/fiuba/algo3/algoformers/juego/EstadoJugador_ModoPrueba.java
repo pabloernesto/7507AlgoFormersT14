@@ -1,11 +1,7 @@
 package fiuba.algo3.algoformers.juego;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.escenario.Movimiento;
-import fiuba.algo3.algoformers.escenario.Posicion;
 import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.excepciones.AlgoformerMuyLejosException;
 import fiuba.algo3.algoformers.excepciones.EquipoIncompletoException;

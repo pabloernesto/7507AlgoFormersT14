@@ -1,15 +1,14 @@
 package fiuba.algo3.algoformers.vista;
 
+import fiuba.algo3.algoformers.vista.eventos.BotonSalirEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionInformacionEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionVentanaHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionPantallaCompletaHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionReproducirHandler;
-import fiuba.algo3.algoformers.vista.eventos.OpcionSalirEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.OpcionSilenciarHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -35,12 +34,11 @@ public class BarraDeMenu extends MenuBar {
 
     private Menu nuevoMenuArchivo(Stage stage){
         Menu menu = new Menu("Archivo");
-        MenuItem opcionAbrir = new MenuItem("Abrir");
         MenuItem opcionSalir = new MenuItem("Salir");
         menu.getItems()
-            .addAll(opcionAbrir, new SeparatorMenuItem(), opcionSalir);
+            .addAll(opcionSalir);
 
-        EventHandler<ActionEvent> opcionSalirHandler = new OpcionSalirEventHandler(stage);
+        EventHandler<ActionEvent> opcionSalirHandler = new BotonSalirEventHandler();
         opcionSalir.setOnAction(opcionSalirHandler);
 
         return menu;
