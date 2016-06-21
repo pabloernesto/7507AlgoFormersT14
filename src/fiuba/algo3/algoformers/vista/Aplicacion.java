@@ -5,6 +5,7 @@ import fiuba.algo3.algoformers.vista.eventos.AplicacionOnKeyPressEventHandler;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.media.AudioClip;
 
 	public class Aplicacion extends Application {
 
@@ -47,7 +48,11 @@ import javafx.stage.Stage;
 	        stage.setFullScreenExitHint("");
 
 	        stage.show();
-
+		
+	    	AudioClip audioIntro = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/musicaFondo.mp3");
+	        audioIntro.setCycleCount(2);
+	        audioIntro.play();
+	        
 	    }
 
 }
