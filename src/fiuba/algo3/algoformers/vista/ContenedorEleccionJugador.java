@@ -29,11 +29,13 @@ public class ContenedorEleccionJugador extends VBox{
 	Stage stage;
 	Juego juego;
 	Scene proximaEscena;
+	ContenedorPrincipal contenedorPrincipal;
 	
-	public ContenedorEleccionJugador(Stage stage, Scene proximaEscena, Juego juego){
+	public ContenedorEleccionJugador(Stage stage, Scene proximaEscena, Juego juego, ContenedorPrincipal contenedor){
 		super();
 		this.stage = stage;
 		this.proximaEscena = proximaEscena;
+		this.contenedorPrincipal = contenedor;
 		
 		this.setAlignment(Pos.CENTER);
 		Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/intro/eleccionJugadores.jpg");
@@ -54,17 +56,18 @@ public class ContenedorEleccionJugador extends VBox{
 		
 		
         Label etiqueta = new Label();
-        VBox contenedorPrincipal = new VBox(jugador, texto, botonAceptar, etiqueta);
-        contenedorPrincipal.setSpacing(30);
-        contenedorPrincipal.setPadding(new Insets(100, 100, 100, 100));
+        VBox contenedorIngreso = new VBox(jugador, texto, botonAceptar, etiqueta);
+        contenedorIngreso.setSpacing(30);
+        contenedorIngreso.setPadding(new Insets(100, 100, 100, 100));
         
         List<String> nombresJugadores = new ArrayList<String>();
         // Asociar botonEnviar a su comportamiento
-        BotonAceptarEventHandler botonAceptarEventHandler = new BotonAceptarEventHandler(texto, etiqueta, jugador, nombresJugadores, juego, proximaEscena, stage);
+        BotonAceptarEventHandler botonAceptarEventHandler =
+        new BotonAceptarEventHandler(texto, etiqueta, jugador, nombresJugadores, juego, proximaEscena, stage, contenedorPrincipal);
         botonAceptar.setOnAction(botonAceptarEventHandler);
         texto.setOnAction(botonAceptarEventHandler);
         
-        this.getChildren().add(contenedorPrincipal);
+        this.getChildren().add(contenedorIngreso);
 	}
 
 }

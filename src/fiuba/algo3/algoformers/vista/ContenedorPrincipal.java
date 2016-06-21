@@ -2,9 +2,11 @@ package fiuba.algo3.algoformers.vista;
 
 
 import fiuba.algo3.algoformers.escenario.Tablero;
+import fiuba.algo3.algoformers.juego.Juego;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.image.Image;
@@ -26,19 +28,26 @@ import javafx.stage.Stage;
 
 public class ContenedorPrincipal extends BorderPane {
 
-    BarraDeMenu menuBar;
-    //VistaAlgoformer vistaAlgoformer; Implementar
+	BarraDeMenu menuBar;
+	Canvas canvasCentral;
+	Juego juego;
+	Stage stage;
+	//VistaTablero vistaTablero
    	
 
-    public ContenedorPrincipal(Stage stage){ //ArrayList<AlgoFormer> ListaAlgoformers ??) {
+    public ContenedorPrincipal(Stage stage, Juego juego){ //ArrayList<AlgoFormer> ListaAlgoformers ??) {
     	
-    	setMenu(stage);
-        //this.setConsola();
-    	this.setCentro();
-        this.setBotonera();//Agregar Algoformer!!);
+    	this.juego = juego;
+    	this.stage = stage;
+    }
+    
+    public void inicializar(){
+    	setMenu();
+    	setCentro();
+    	this.setBotonera();
     }
 
-    private void setMenu(Stage stage) {
+    private void setMenu() {
         this.menuBar = new BarraDeMenu(stage);
         this.setTop(menuBar);
     }
