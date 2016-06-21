@@ -11,6 +11,9 @@ public class VistaAlgoFormer extends ImageView
     {
         setImage(new Image("file:src/fiuba/algo3/algoformers/vista/" +
             "imagenes/algoformers/" + "optimus.jpg"));
+
+        setFitWidth(20);
+        setFitHeight(20);
     }
 }
 
