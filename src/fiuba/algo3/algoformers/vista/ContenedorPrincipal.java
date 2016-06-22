@@ -6,7 +6,6 @@ import java.util.List;
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
-import fiuba.algo3.algoformers.vista.eventos.BotonAlgoformer;
 import fiuba.algo3.algoformers.vista.eventos.BotonElegirAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonInfo;
 import fiuba.algo3.algoformers.vista.eventos.BotonInfoAlgoformerEventHandler;
@@ -94,7 +93,7 @@ public class ContenedorPrincipal extends BorderPane
 
         for (AlgoFormer algoformer : jugador.getListaAlgoformers())
         {
-            BotonAlgoformer boton = new BotonAlgoformer(algoformer);
+            Button boton = new Button();
             boton.setText(algoformer.getNombre());
             boton.setMinSize(100, 30);
 

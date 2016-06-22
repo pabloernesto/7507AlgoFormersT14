@@ -6,15 +6,18 @@ import fiuba.algo3.algoformers.vista.ContenedorPrincipal;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class BotonElegirAlgoformerEventHandler implements EventHandler<ActionEvent>{
-
-	private Jugador jugador;
-	private AlgoFormer algoformer;
-	private ContenedorPrincipal contenedorPrincipal;
-	private BotonInfoAlgoformerEventHandler infoHandler;
-	
-	public BotonElegirAlgoformerEventHandler(Jugador jugador, AlgoFormer algoformer,
-											BotonInfoAlgoformerEventHandler infoHandler, ContenedorPrincipal contenedor) {
+public class BotonElegirAlgoformerEventHandler
+    implements EventHandler<ActionEvent>
+{
+    private Jugador jugador;
+    private AlgoFormer algoformer;
+    private ContenedorPrincipal contenedorPrincipal;
+    private BotonInfoAlgoformerEventHandler infoHandler;
+    
+    public BotonElegirAlgoformerEventHandler(Jugador jugador,
+        AlgoFormer algoformer, BotonInfoAlgoformerEventHandler infoHandler,
+        ContenedorPrincipal contenedor)
+    {
         this.jugador = jugador;
         this.algoformer = algoformer;
         this.contenedorPrincipal = contenedor;
@@ -22,10 +25,13 @@ public class BotonElegirAlgoformerEventHandler implements EventHandler<ActionEve
     }
 
     @Override
-    public void handle(ActionEvent actionEvent) {
+    public void handle(ActionEvent actionEvent)
+    {
         jugador.elegirAlgoformer(algoformer);
         infoHandler.handle(new ActionEvent());
-        contenedorPrincipal.setMensajeConsola("eligio a: " + algoformer.getNombre());
+        contenedorPrincipal.setMensajeConsola("eligio a: " +
+            algoformer.getNombre());
         contenedorPrincipal.setBotoneraAcciones();
     }
 }
+
