@@ -27,7 +27,7 @@ public class BotonElegirAlgoformerEventHandler
     @Override
     public void handle(ActionEvent actionEvent)
     {
-        jugador.elegirAlgoformer(algoformer);
+        jugador.elegirAlgoFormer(algoformer);
         infoHandler.handle(new ActionEvent());
         contenedorPrincipal.setMensajeConsola("eligio a: " +
             algoformer.getNombre());

@@ -26,7 +26,7 @@ public class Jugador
 	    this.nombre = nombre;
  	}
 
-    public void elegirAlgoformer(AlgoFormer algoformer){
+    public void elegirAlgoFormer(AlgoFormer algoformer){
         elegirAlgoFormer(algoformer.getNombre());
     }
 
