@@ -11,16 +11,20 @@ public class BotonElegirAlgoformerEventHandler implements EventHandler<ActionEve
 	private Jugador jugador;
 	private AlgoFormer algoformer;
 	private ContenedorPrincipal contenedorPrincipal;
+	private BotonInfoAlgoformerEventHandler infoHandler;
 	
-	public BotonElegirAlgoformerEventHandler(Jugador jugador, AlgoFormer algoformer, ContenedorPrincipal contenedor) {
+	public BotonElegirAlgoformerEventHandler(Jugador jugador, AlgoFormer algoformer,
+											BotonInfoAlgoformerEventHandler infoHandler, ContenedorPrincipal contenedor) {
         this.jugador = jugador;
         this.algoformer = algoformer;
         this.contenedorPrincipal = contenedor;
+        this.infoHandler = infoHandler;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
         jugador.elegirAlgoformer(algoformer);
+        infoHandler.handle(new ActionEvent());
         contenedorPrincipal.setMensajeConsola("eligio a: " + algoformer.getNombre());
         contenedorPrincipal.setBotoneraAcciones();
     }

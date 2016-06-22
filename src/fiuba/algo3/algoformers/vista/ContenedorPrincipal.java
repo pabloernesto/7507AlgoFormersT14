@@ -88,10 +88,10 @@ public class ContenedorPrincipal extends BorderPane {
     		BotonInfo botonInfo = new BotonInfo(algoformer);
     		botonInfo.setText("Info");
     		botonInfo.setMinSize(50, 10);
-    		BotonElegirAlgoformerEventHandler elegirHandler = new BotonElegirAlgoformerEventHandler(jugador, algoformer, this);
-    		boton.setOnAction(elegirHandler);
     		BotonInfoAlgoformerEventHandler infoHandler = new BotonInfoAlgoformerEventHandler(algoformer, contenedorAbajo);
     		botonInfo.setOnAction(infoHandler);
+    		BotonElegirAlgoformerEventHandler elegirHandler = new BotonElegirAlgoformerEventHandler(jugador, algoformer, infoHandler , this);
+    		boton.setOnAction(elegirHandler);
     		VBox caja = new VBox(boton, botonInfo);
     		caja.setSpacing(5);
     		listaBotones.add(caja);
@@ -103,7 +103,7 @@ public class ContenedorPrincipal extends BorderPane {
     	contenedorAbajo.getChildren().add(contenedor);
     }
     
-    public void setBotoneraAcciones(){//AlgoFormer algoformer) {
+    public void setBotoneraAcciones(){
     	Button botonMover = new Button("Mover");
         //BotonMoverEventHandler moverHandler = new BotonElegirMoverHandler(vistaTablero, juego, this);
         //botonMover.setOnAction(moverHandler);
