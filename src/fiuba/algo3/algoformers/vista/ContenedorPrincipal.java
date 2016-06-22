@@ -6,11 +6,12 @@ import java.util.List;
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
+import fiuba.algo3.algoformers.vista.eventos.BotonElegirAlgoformerEventHandler;
+import fiuba.algo3.algoformers.vista.eventos.BotonInfoAlgoformerEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -86,23 +87,38 @@ public class ContenedorPrincipal extends BorderPane
 
     private void setBotoneraEleccion()
     {
-        ChoiceBox cb = new ChoiceBox();
+        Jugador jugador = juego.jugadorActual();
+        List<VBox> listaBotones = new ArrayList<VBox>();
 
-        for (AlgoFormer af : juego.jugadorActual().getListaAlgoformers())
-            cb.getItems().add(af.getNombre());
+        for (AlgoFormer algoformer : jugador.getListaAlgoformers())
+        {
+            Button boton = new Button();
+            boton.setText(algoformer.getNombre());
+            boton.setMinSize(100, 30);
 
-        // Explicarle al ChoiceBox que debe hacer cuando se selecciona uno de
-        // sus elementos.
-        cb.getSelectionModel().selectedItemProperty().addListener(
-            (observableValue, oldValue, newValue) ->
-            {
-                juego.jugadorActual().elegirAlgoFormer((String) newValue);
-                this.setMensajeConsola("eligio a: " + (String) newValue);
-                this.setBotoneraAcciones();
-            }
-        );
+            Button botonInfo = new Button();
+            botonInfo.setText("Info");
+            botonInfo.setMinSize(50, 10);
 
-        contenedorAbajo.getChildren().add(cb);
+            BotonInfoAlgoformerEventHandler infoHandler =
+                new BotonInfoAlgoformerEventHandler(algoformer,
+                    contenedorAbajo);
+            BotonElegirAlgoformerEventHandler elegirHandler =
+                new BotonElegirAlgoformerEventHandler(jugador, algoformer,
+                    infoHandler , this);
+
+            botonInfo.setOnAction(infoHandler);
+            boton.setOnAction(elegirHandler);
+
+            VBox caja = new VBox(boton, botonInfo);
+            caja.setSpacing(5);
+            listaBotones.add(caja);
+        }
+        HBox contenedor = new HBox();
+        contenedor.setSpacing(30);
+        contenedor.setMinHeight(75);
+        contenedor.getChildren().addAll(listaBotones);
+        contenedorAbajo.getChildren().add(contenedor);
     }
 
     public void setBotoneraAcciones()
