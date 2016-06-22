@@ -6,11 +6,11 @@ import java.util.List;
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
+import fiuba.algo3.algoformers.vista.eventos.BotonCombinarEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonElegirAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonInfoAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonMoverEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonTransformarseEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.BotonCombinarEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -168,10 +168,11 @@ public class ContenedorPrincipal extends BorderPane
         botonTransformarse.setOnAction(transformarHandler);
 
         Button botonCombinarse = new Button("Combinarse");
-        botonCombinarse.setOnAction(
-            new BotonCombinarEventHandler(vistaTablero, juego, this));
         
         Button botonDescombinarse = new Button("Descombinarse");
+        
+        botonCombinarse.setOnAction(
+                new BotonCombinarEventHandler(vistaTablero, juego, botonDescombinarse, this));
         
         //BotonCombinarseEventHandler combinarseHandler =
             //new BotonCombinarseEventHandler(vistaTablero, juego, botonDescombinarse, this);
