@@ -123,20 +123,22 @@ public class Jugador
     void _descombinar()
     {
         AlgoFormer superion = equipo.get(0);
+        int vidaSuperion = superion.getVida();
         Tablero tablero = Tablero.getInstance();
         List<Posicion> posicionesDisponibles =
             tablero.movimientosValidos(superion);
         
         equipo = superion.devolverIntegrantes();
+        for (AlgoFormer algoformer : equipo)
+        	algoformer.borrarTodosLosEfectos();
         tablero.borrarAlgoformer(superion);
-        
+        int vidaIntegrantes = vidaSuperion / equipo.size();
         // Ubicar el nuevo equipo en el tablero
         int posicion = 0;
         for (AlgoFormer algoformer : equipo){
-            tablero.colocarAlgoformer(
-                algoformer,
-                posicionesDisponibles.get(posicion));
+            tablero.colocarAlgoformer(algoformer, posicionesDisponibles.get(posicion));
             posicion++;
+            algoformer.setVida(vidaIntegrantes);
         }
         
         combinado = false;

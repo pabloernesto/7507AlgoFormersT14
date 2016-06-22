@@ -13,11 +13,14 @@ import fiuba.algo3.algoformers.factories.BonusNuloFactory;
 import fiuba.algo3.algoformers.factories.DecepticonFactory;
 import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.algoformers.Decepticon;
 import fiuba.algo3.algoformers.algoformers.Forma;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Posicion;
 import fiuba.algo3.algoformers.escenario.Tablero;
+import fiuba.algo3.algoformers.escenario.bonus.BurbujaInmaculada;
 import fiuba.algo3.algoformers.escenario.bonus.DobleCanion;
+import fiuba.algo3.algoformers.escenario.bonus.Flash;
 import fiuba.algo3.algoformers.excepciones.*;
 
 import java.util.List;
@@ -193,9 +196,21 @@ public class JugadorAutobotTest{
 		Tablero tablero = Tablero.getInstance();
 		AlgoFormer algoformer = jugador.getListaAlgoformers().get(0);
 		Posicion posicionAlgoformer = tablero.getPosicionAlgoformer(algoformer);
-		Posicion posicionBonus = posicionAlgoformer.sumarMovimiento(Movimiento.DERECHA);
-		tablero.getCelda(posicionBonus).setBonus(new DobleCanion()); //El capitan agarra un doble canion
-		algoformer.moverse(Movimiento.DERECHA);
+		Posicion posicionCanion = posicionAlgoformer.sumarMovimiento(Movimiento.ARRIBA_DERECHA);
+		Posicion posicionFlash = posicionCanion.sumarMovimiento(Movimiento.ABAJO);
+		Posicion posicionBurbuja = posicionFlash.sumarMovimiento(Movimiento.ABAJO);
+		tablero.getCelda(posicionCanion).setBonus(new DobleCanion());
+		tablero.getCelda(posicionFlash).setBonus(new Flash());
+		tablero.getCelda(posicionBurbuja).setBonus(new BurbujaInmaculada());
+		algoformer.moverse(Movimiento.ARRIBA_DERECHA);
+		algoformer.finalizarTurno();
+		algoformer.iniciarTurno();
+		algoformer.moverse(Movimiento.ABAJO);
+		algoformer.finalizarTurno();
+		algoformer.iniciarTurno();
+		algoformer.moverse(Movimiento.ABAJO);
+		algoformer.finalizarTurno();
+		algoformer.iniciarTurno();
 		List<AlgoFormer> integrantes = jugador.getListaAlgoformers();
 		jugador.combinar();
 		
@@ -205,6 +220,14 @@ public class JugadorAutobotTest{
 		AlgoFormer superionOriginal = factory.crearCombinado(integrantes);
 		
 		assertEquals(superionOriginal.getAtaque(), combinado.getAtaque());
+		assertEquals(superionOriginal.getMovimientosRestantes(), combinado.getMovimientosRestantes());
+		
+		DecepticonFactory decepticonFactory = new DecepticonFactory();
+		Decepticon decepticon = decepticonFactory.crearMegatron();
+		Posicion posicionCombinado = tablero.getPosicionAlgoformer(combinado);
+		tablero.colocarAlgoformer(decepticon, posicionCombinado.sumarMovimiento(Movimiento.DERECHA));
+		decepticon.atacar(combinado);
+		assertTrue(combinado.getVida() < superionOriginal.getVida());
 	}
 	
 	@Test
@@ -217,15 +240,54 @@ public class JugadorAutobotTest{
 		jugador.combinar();
 		AlgoFormer combinado = jugador.getListaAlgoformers().get(0);
 		Posicion posicionCombinado = tablero.getPosicionAlgoformer(combinado);
-		Posicion posicionBonus = posicionCombinado.sumarMovimiento(Movimiento.DERECHA);
-		tablero.getCelda(posicionBonus).setBonus(new DobleCanion()); //Setea el bonus
-		combinado.moverse(Movimiento.DERECHA); //Agarra el bonus
+		Posicion posicionCanion = posicionCombinado.sumarMovimiento(Movimiento.DERECHA);
+		Posicion posicionFlash = posicionCanion.sumarMovimiento(Movimiento.DERECHA);
+		Posicion posicionBurbuja = posicionFlash.sumarMovimiento(Movimiento.DERECHA);
+		tablero.getCelda(posicionCanion).setBonus(new DobleCanion()); //Setea el bonus
+		tablero.getCelda(posicionFlash).setBonus(new Flash());
+		tablero.getCelda(posicionBurbuja).setBonus(new BurbujaInmaculada());
+		combinado.moverse(Movimiento.DERECHA);
+		combinado.finalizarTurno();
+		combinado.iniciarTurno();
+		combinado.moverse(Movimiento.DERECHA);
+		combinado.finalizarTurno();
+		combinado.iniciarTurno();
+		combinado.moverse(Movimiento.DERECHA);
+		combinado.finalizarTurno();
+		combinado.iniciarTurno();
+		posicionCombinado = tablero.getPosicionAlgoformer(combinado);
 		jugador.descombinar();
+		
+		DecepticonFactory decepticonFactory = new DecepticonFactory();
+		Decepticon decepticon = decepticonFactory.crearMegatron();
+		tablero.colocarAlgoformer(decepticon, posicionCombinado);
+		
 		for (int i = 0 ; i < 3 ; i++){
 			AlgoFormer algoformerOriginal = integrantesAnteriores.get(i);
 			AlgoFormer algoformerDescombinado = jugador.getListaAlgoformers().get(i);
 			assertEquals(algoformerOriginal.getAtaque(), algoformerDescombinado.getAtaque());
+			assertEquals(algoformerOriginal.getMovimientosRestantes(), algoformerDescombinado.getMovimientosRestantes());
+			
+			int vidaOriginal = algoformerOriginal.getVida();
+			decepticon.atacar(algoformerDescombinado);
+			assertTrue(vidaOriginal > algoformerDescombinado.getVida());
 		}
+	}
+	
+	@Test
+	public void test14VidaDeCombinadoEsSumatoriaDeIntegrantesYSeReparteEnPartesIgualesAlDescombinarse(){
+		Juego juego = new Juego();
+		juego.inicializarSinAleatoridad();
+		Jugador jugador = juego.jugadorActual();
+		int vidaSumada = 0;
+		for (AlgoFormer algoformer : jugador.getListaAlgoformers())
+			vidaSumada += algoformer.getVida();
+		jugador.combinar();
+		int vidaCombinado = jugador.getListaAlgoformers().get(0).getVida();
+		assertEquals(vidaSumada, vidaCombinado);
+		jugador.descombinar();
+		for (AlgoFormer algoformer : jugador.getListaAlgoformers())
+			assertEquals(vidaCombinado / 3, algoformer.getVida());
 	}
 }
 

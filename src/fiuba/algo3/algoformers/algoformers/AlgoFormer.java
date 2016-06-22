@@ -120,6 +120,11 @@ public abstract class AlgoFormer {
 		efectosActivos.removeAll(efectosABorrar);
 	}
 	
+	public void borrarTodosLosEfectos(){
+		efectosActivos = new ArrayList<Efecto>();
+		efectosABorrar = new ArrayList<Efecto>();
+	}
+	
 	
 	public void ubicarseEnSuperficie(Rocosa superficie) {		
 	}
