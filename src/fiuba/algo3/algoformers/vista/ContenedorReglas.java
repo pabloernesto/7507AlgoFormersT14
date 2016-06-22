@@ -35,6 +35,7 @@ public class ContenedorReglas extends VBox{
         botonEntrar.setText("Entendido");
         botonEntrar.setMinSize(100, 50);
         botonEntrar.setFont(Font.font("Courier New",FontWeight.BOLD, 20));
+        botonEntrar.setStyle("-fx-base: #FF0000");
 
         BotonEntrarEventHandler botonEntrarHandler = new BotonEntrarEventHandler(stage, proximaEscena);
         botonEntrar.setOnAction(botonEntrarHandler);

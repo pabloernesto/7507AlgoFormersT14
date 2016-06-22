@@ -44,6 +44,7 @@ public class ContenedorEleccionJugador extends VBox{
         
         Button botonAceptar = new Button();
         botonAceptar.setText("Aceptar");
+        botonAceptar.setStyle("-fx-base: #001234");
         
         Text jugador = new Text("Jugador Autobots");
         jugador.setFill(Color.DARKORANGE);

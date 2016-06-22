@@ -39,6 +39,7 @@ public class BotonMasInfoEventHandler implements EventHandler<ActionEvent> {
         BotonVolverAlJuegoEventHandler salir = new BotonVolverAlJuegoEventHandler(stage,stagePrincipal);
         volverAlJuego.setMinSize(100, 50);
         volverAlJuego.setFont(Font.font("Courier New",FontWeight.BOLD, 20));
+        volverAlJuego.setStyle("-fx-base: #123400");
         volverAlJuego.setOnAction(salir);
         root.setPadding(new Insets(50,0,100,50));
         root.setAlignment(Pos.BOTTOM_CENTER);

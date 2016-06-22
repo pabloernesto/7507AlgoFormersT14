@@ -43,14 +43,17 @@ public class Bienvenida extends VBox
         botonEntrar.setText("Jugar!");
         botonEntrar.setMinSize(200, 120);
         botonEntrar.setFont(Font.font("Courier New",FontWeight.BOLD, 56));
+        botonEntrar.setStyle("-fx-base: #1234");
         
         Button botonSalir = new Button();
         botonSalir.setText("Salir :(");
         botonSalir.setFont(Font.font("", 20));
+        botonSalir.setStyle("-fx-base: #1234");
         
         Button botonSilenciar = new Button();
         botonSilenciar.setText("Silenciar musica");
         botonSilenciar.setFont(Font.font("", 16));
+        botonSilenciar.setStyle("-fx-base: #1234");
 
 
         BotonEntrarEventHandler botonEntrarHandler =

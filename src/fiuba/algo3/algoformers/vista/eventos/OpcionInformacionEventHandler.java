@@ -36,6 +36,7 @@ public class OpcionInformacionEventHandler implements EventHandler<ActionEvent>{
         volverAlJuego.setOnAction(salir);
         volverAlJuego.setMinSize(200, 50);
         volverAlJuego.setFont(Font.font("Courier New",FontWeight.BOLD, 20));
+        volverAlJuego.setStyle("-fx-base: #123400");
         Button masInfo = new Button ("Mas Informacion");
         BotonMasInfoEventHandler masInformacion= new BotonMasInfoEventHandler(salir,stagePrincipal);
         masInfo.setMinSize(200, 50);
