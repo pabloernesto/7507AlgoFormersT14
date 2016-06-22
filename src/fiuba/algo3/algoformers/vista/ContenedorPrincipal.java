@@ -8,6 +8,7 @@ import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
 import fiuba.algo3.algoformers.vista.eventos.BotonElegirAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonInfoAlgoformerEventHandler;
+import fiuba.algo3.algoformers.vista.eventos.BotonMoverEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonTransformarseEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -151,9 +152,9 @@ public class ContenedorPrincipal extends BorderPane
     public void setBotoneraAcciones()
     {
         Button botonMover = new Button("Mover");
-        //BotonMoverEventHandler moverHandler =
-            //new BotonElegirMoverHandler(vistaTablero, juego, this);
-        //botonMover.setOnAction(moverHandler);
+        BotonMoverEventHandler moverHandler =
+            new BotonMoverEventHandler(vistaTablero, juego, contenedorAbajo);
+        botonMover.setOnAction(moverHandler);
 
         Button botonAtacar = new Button("Atacar");
         //BotonAtacarEventHandler atacarHandler =
@@ -200,6 +201,7 @@ public class ContenedorPrincipal extends BorderPane
         // ScrollPane permite ver el tablero aunque no entre en la pantalla.
         ScrollPane sp = new ScrollPane();
         sp.setContent(vistaTablero);
+        
         
         this.setCenter(sp);
     }

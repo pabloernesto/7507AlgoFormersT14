@@ -12,8 +12,8 @@ public class VistaBonus extends ImageView
         setImage(new Image("file:src/fiuba/algo3/algoformers/vista/" +
             "imagenes/bonus/" + bonus.nombre() + ".png"));
 
-        setFitWidth(20);
-        setFitHeight(20);
+        setFitWidth(35);
+        setFitHeight(35);
     }
 }
 

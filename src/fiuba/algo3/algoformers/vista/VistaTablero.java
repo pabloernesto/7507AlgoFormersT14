@@ -17,11 +17,11 @@ public class VistaTablero extends GridPane{
     	
     	 for (int i = 0; i <= tablero.ancho(); i++) {
              this.getColumnConstraints().add(
-             		new ColumnConstraints(32));
+             		new ColumnConstraints(80));
          }
          for (int i = 0; i <= tablero.altura(); i++) {
              this.getRowConstraints().add(
-             		new RowConstraints(32));
+             		new RowConstraints(80));
          }
 	}
 	

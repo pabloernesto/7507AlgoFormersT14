@@ -13,8 +13,8 @@ public class VistaAlgoFormer extends ImageView
             "imagenes/algoformers/" + algoformer.getNombre() +
             algoformer.nombreEstadoActivo() + ".jpg"));
 
-        setFitWidth(20);
-        setFitHeight(20);
+        setFitWidth(60);
+        setFitHeight(60);
     }
 }
 
