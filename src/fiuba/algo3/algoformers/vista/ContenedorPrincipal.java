@@ -13,6 +13,7 @@ import fiuba.algo3.algoformers.vista.eventos.BotonInfoAlgoformerEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -163,7 +164,12 @@ public class ContenedorPrincipal extends BorderPane
     private void setCentro()
     {
         vistaTablero.dibujar();
-        this.setCenter(vistaTablero);
+        
+        // ScrollPane permite ver el tablero aunque no entre en la pantalla.
+        ScrollPane sp = new ScrollPane();
+        sp.setContent(vistaTablero);
+        
+        this.setCenter(sp);
     }
 
     public BarraDeMenu getBarraDeMenu()
