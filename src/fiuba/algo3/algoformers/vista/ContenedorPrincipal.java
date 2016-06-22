@@ -84,8 +84,7 @@ public class ContenedorPrincipal extends BorderPane
         etiqueta.setTextFill(Color.WHITE);
 
         HBox consola = (HBox) contenedorAbajo.getChildren().get(0);
-        consola.getChildren().remove(0);
-        consola.getChildren().add(etiqueta);
+        consola.getChildren().set(0, etiqueta);
     }
 
     private void setBotoneraEleccion()
