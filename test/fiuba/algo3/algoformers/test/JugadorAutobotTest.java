@@ -9,7 +9,9 @@ import static org.junit.Assert.*;
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
+import fiuba.algo3.algoformers.factories.BonusNuloFactory;
 import fiuba.algo3.algoformers.factories.DecepticonFactory;
+import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.algoformers.Forma;
 import fiuba.algo3.algoformers.escenario.Movimiento;
@@ -22,11 +24,13 @@ import java.lang.NullPointerException;
 
 public class JugadorAutobotTest{
     
-	public Jugador jugador;
+	private Jugador jugador;
 	
     @Before
     public void setUp(){
         jugador = new Jugador(new AutoBotFactory(), "Nombre");
+        Tablero.setGeneradorDeCeldas(new RocasYNubesFactory());
+        Tablero.setGeneradorDeBonus(new BonusNuloFactory());
     }
     
     @After
@@ -161,9 +165,9 @@ public class JugadorAutobotTest{
 	
 	@Test
 	public void test11Descombinarse(){
-        Tablero tablero = Tablero.getInstance();
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
+		Tablero tablero = Tablero.getInstance();
 		Jugador jugador = juego.jugadorActual();
         
 		jugador.combinar();
