@@ -235,7 +235,10 @@ public abstract class AlgoFormer {
 		movimientosRestantes = 0;
 	}
 	
-	public void afectarConEfectoPantanoFormaHumanoide() {
+	public void afectarConEfectoPantanoFormaHumanoide(EfectoPantano efecto) {
+		if (!afectadoPor(efecto)){
+			efectosActivos.add(efecto);
+		}
 		movimientosRestantes = 0;
 	}
 

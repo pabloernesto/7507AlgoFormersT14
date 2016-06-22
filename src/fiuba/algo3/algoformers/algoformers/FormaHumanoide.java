@@ -23,7 +23,7 @@ public class FormaHumanoide extends Forma {
 	
 	@Override
 	public void afectarCon(AlgoFormer algoformer, EfectoPantano efecto){
-		algoformer.afectarConEfectoPantanoFormaHumanoide();
+		algoformer.afectarConEfectoPantanoFormaHumanoide(efecto);
 	}
 	
 	@Override
