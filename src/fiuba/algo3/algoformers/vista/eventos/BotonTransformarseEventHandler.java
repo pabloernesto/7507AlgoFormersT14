@@ -22,11 +22,10 @@ public class BotonTransformarseEventHandler implements EventHandler<ActionEvent>
 
 	public void handle(ActionEvent event) {
 		AlgoFormer algoformerElegido = juego.jugadorActual().getAlgoformerElegido();
-		algoformerElegido.transformarse();
+		juego.jugadorActual().transformar();
 		AudioClip audioTransformarse = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/transformar.mp3");
 		audioTransformarse.play();
 		contenedorPrincipal.setMensajeConsola(algoformerElegido.getNombre() + " se transformo!");
-		juego.jugadorActual().terminarTurno();
 		vistaTablero.actualizar(); //es importante que se dibuje despues de que haya terminado el turno
 		contenedorPrincipal.setBotoneraEleccion();
 		//Con este no hace falta, pero con el resto de los botones hay que chequear si hubo un ganador
