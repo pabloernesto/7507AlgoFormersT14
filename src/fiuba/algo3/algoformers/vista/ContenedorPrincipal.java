@@ -8,6 +8,7 @@ import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
 import fiuba.algo3.algoformers.vista.eventos.BotonElegirAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonInfoAlgoformerEventHandler;
+import fiuba.algo3.algoformers.vista.eventos.BotonTransformarseEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -54,20 +55,22 @@ public class ContenedorPrincipal extends BorderPane
 
     public void inicializar()
     {
+    	inicializarContenedorAbajo();
         setMenu();
         setCentro();
-        setConsola();
-        setMensajeConsola("debe elegir un algoformer");
+        //setMensajeConsola("debe elegir un algoformer");
         setBotoneraEleccion();
         setBottom(contenedorAbajo);
     }
-
-    private void setMenu()
-    {
-        this.setTop(barraMenu);
+    
+    private void inicializarContenedorAbajo(){ //Esto hace que siempre haya tres HBox en contenedorAbajo
+    											//Sirve para poder hacer contenedorAbajo.getChildren().set(1, cajaNueva)
+    	inicializarConsola();
+    	inicializarContenedor();
+    	inicializarContenedor();
     }
-
-    private void setConsola()
+    
+    private void inicializarConsola()
     {
         HBox consola = new HBox(new Label(""));
         consola.setMinSize(350, 75);
@@ -75,20 +78,39 @@ public class ContenedorPrincipal extends BorderPane
 
         contenedorAbajo.getChildren().add(consola);
     }
+    
+    private void inicializarContenedor(){
+    	HBox contenedor = new HBox();
+    	contenedorAbajo.getChildren().add(contenedor);
+    }
+
+    private void setMenu()
+    {
+        this.setTop(barraMenu);
+    }
 
     public void setMensajeConsola(String mensaje)
     {
         Label etiqueta = new Label();
-        etiqueta.setText(juego.jugadorActual().getNombre() + " " + mensaje);
+        etiqueta.setText(mensaje);
         etiqueta.setTextFill(Color.WHITE);
 
         HBox consola = (HBox) contenedorAbajo.getChildren().get(0);
         consola.getChildren().set(0, etiqueta);
     }
+    
+    public void agregarMensajeConsola(String mensaje){
+    	HBox consola = (HBox) contenedorAbajo.getChildren().get(0);
+    	Label etiqueta = (Label) consola.getChildren().get(0);
+    	etiqueta.setTextFill(Color.WHITE);
+    	etiqueta.setText(etiqueta.getText() + "\n" + mensaje);
+    }
 
-    private void setBotoneraEleccion()
+    public void setBotoneraEleccion()
     {
+    	contenedorAbajo.getChildren().remove(2);
         Jugador jugador = juego.jugadorActual();
+    	agregarMensajeConsola(jugador.getNombre() + " debe elegir un algoformer");
         List<VBox> listaBotones = new ArrayList<VBox>();
 
         for (AlgoFormer algoformer : jugador.getListaAlgoformers())
@@ -124,7 +146,8 @@ public class ContenedorPrincipal extends BorderPane
         contenedor.setSpacing(30);
         contenedor.setMinHeight(75);
         contenedor.getChildren().addAll(listaBotones);
-        contenedorAbajo.getChildren().add(contenedor);
+        contenedorAbajo.getChildren().set(1, contenedor);
+        //contenedorAbajo.getChildren().add(contenedor);
     }
 
     public void setBotoneraAcciones()
@@ -140,9 +163,9 @@ public class ContenedorPrincipal extends BorderPane
         //botonAtacar.setOnAction(atacarHandler);
 
         Button botonTransformarse = new Button("Transformarse");
-        //BotonTransformarseEventHandler transformarHandler =
-            //new BotonTransformarseEventHandler(vistaTablero, juego, this);
-        //botonTransformarse.setOnAction(transformarHandler);
+        BotonTransformarseEventHandler transformarHandler =
+            new BotonTransformarseEventHandler(vistaTablero, juego, this);
+        botonTransformarse.setOnAction(transformarHandler);
 
         Button botonCombinarse = new Button("Combinarse");
         //BotonCombinarseEventHandler combinarseHandler =

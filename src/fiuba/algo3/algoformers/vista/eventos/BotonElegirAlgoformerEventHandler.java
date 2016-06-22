@@ -29,7 +29,7 @@ public class BotonElegirAlgoformerEventHandler
     {
         jugador.elegirAlgoFormer(algoformer);
         infoHandler.handle(new ActionEvent());
-        contenedorPrincipal.setMensajeConsola("eligio a: " +
+        contenedorPrincipal.setMensajeConsola(jugador.getNombre() + " eligio a " +
             algoformer.getNombre());
         contenedorPrincipal.setBotoneraAcciones();
     }
