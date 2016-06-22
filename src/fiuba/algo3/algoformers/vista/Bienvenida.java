@@ -40,7 +40,7 @@ public class Bienvenida extends VBox
         this.setBackground(new Background(imagenDeFondo));
 
         Button botonEntrar = new Button();
-        botonEntrar.setText("Jugar!");
+        botonEntrar.setText("کوردیی ناوەندی");
         botonEntrar.setMinSize(200, 120);
         botonEntrar.setFont(Font.font("Courier New",FontWeight.BOLD, 56));
         botonEntrar.setStyle("-fx-base: #1234");
