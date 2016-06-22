@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -92,20 +93,25 @@ public class ContenedorPrincipal extends BorderPane
 
         for (AlgoFormer algoformer : jugador.getListaAlgoformers())
         {
-            Button boton = new Button();
-            boton.setText(algoformer.getNombre());
-            boton.setMinSize(100, 30);
+        	
+        	Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/" +
+					"imagenes/algoformers/" + algoformer.getNombre() +
+						algoformer.nombreEstadoActivo() + ".jpg");
+        	ImageView imagenView = new ImageView(imagen);
+        	imagenView.setPreserveRatio(true);
+        	imagenView.setFitHeight(30);
+        	
+            Button boton = new Button(algoformer.getNombre(), imagenView);
+            boton.setMinSize(100, 50);
 
             Button botonInfo = new Button();
             botonInfo.setText("Info");
             botonInfo.setMinSize(50, 10);
 
             BotonInfoAlgoformerEventHandler infoHandler =
-                new BotonInfoAlgoformerEventHandler(algoformer,
-                    contenedorAbajo);
+                new BotonInfoAlgoformerEventHandler(algoformer, contenedorAbajo);
             BotonElegirAlgoformerEventHandler elegirHandler =
-                new BotonElegirAlgoformerEventHandler(jugador, algoformer,
-                    infoHandler , this);
+                new BotonElegirAlgoformerEventHandler(jugador, algoformer, infoHandler , this);
 
             botonInfo.setOnAction(infoHandler);
             boton.setOnAction(elegirHandler);
