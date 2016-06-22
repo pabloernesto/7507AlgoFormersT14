@@ -6,6 +6,7 @@ import fiuba.algo3.algoformers.vista.ContenedorPrincipal;
 import fiuba.algo3.algoformers.vista.VistaTablero;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.media.AudioClip;
 
 public class BotonTransformarseEventHandler implements EventHandler<ActionEvent>{
 
@@ -22,6 +23,8 @@ public class BotonTransformarseEventHandler implements EventHandler<ActionEvent>
 	public void handle(ActionEvent event) {
 		AlgoFormer algoformerElegido = juego.jugadorActual().getAlgoformerElegido();
 		algoformerElegido.transformarse();
+		AudioClip audioTransformarse = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/transformar.mp3");
+		audioTransformarse.play();
 		contenedorPrincipal.setMensajeConsola(algoformerElegido.getNombre() + " se transformo!");
 		juego.jugadorActual().terminarTurno();
 		vistaTablero.actualizar(); //es importante que se dibuje despues de que haya terminado el turno

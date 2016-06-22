@@ -166,9 +166,17 @@ public class ContenedorPrincipal extends BorderPane
         botonTransformarse.setOnAction(transformarHandler);
 
         Button botonCombinarse = new Button("Combinarse");
+        
+        Button botonDescombinarse = new Button("Descombinarse");
+        
         //BotonCombinarseEventHandler combinarseHandler =
-            //new BotonCombinarseEventHandler(vistaTablero, juego, this);
+            //new BotonCombinarseEventHandler(vistaTablero, juego, botonDescombinarse, this);
         //botonCombinarse.setOnAction(combinarseHandler);
+        
+        botonDescombinarse.setDisable(true);
+        //BotonDescombinarseEventHandler descombinarseHandler =
+            //new BotonDescombinarseEventHandler(vistaTablero, juego, botonCombinarse, this);
+        //botonDescombinarse.setOnAction(descombinarseHandler);
 
         botonAtacar.setMaxSize(100, 30);
         botonMover.setMaxSize(100, 30);
@@ -177,7 +185,7 @@ public class ContenedorPrincipal extends BorderPane
 
         HBox contenedorHorizontal =
             new HBox(botonMover, botonAtacar, botonTransformarse,
-                botonCombinarse);
+                botonCombinarse, botonDescombinarse);
         contenedorHorizontal.setSpacing(30);
         contenedorHorizontal.setAlignment(Pos.CENTER);
         contenedorHorizontal.setMinHeight(75);
