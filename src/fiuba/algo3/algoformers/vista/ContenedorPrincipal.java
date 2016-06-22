@@ -58,7 +58,6 @@ public class ContenedorPrincipal extends BorderPane
     	inicializarContenedorAbajo();
         setMenu();
         setCentro();
-        //setMensajeConsola("debe elegir un algoformer");
         setBotoneraEleccion();
         setBottom(contenedorAbajo);
     }
@@ -147,7 +146,6 @@ public class ContenedorPrincipal extends BorderPane
         contenedor.setMinHeight(75);
         contenedor.getChildren().addAll(listaBotones);
         contenedorAbajo.getChildren().set(1, contenedor);
-        //contenedorAbajo.getChildren().add(contenedor);
     }
 
     public void setBotoneraAcciones()

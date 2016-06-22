@@ -25,5 +25,9 @@ public class EstadoJugador_Combinando extends EstadoJugador
             terminarTurno(jugador);
         }
     }
+    
+    public void terminarTurno (Jugador jugador){
+    	jugador._terminarTurno();
+    }
 }
 

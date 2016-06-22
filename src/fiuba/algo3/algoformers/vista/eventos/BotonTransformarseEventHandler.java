@@ -23,8 +23,10 @@ public class BotonTransformarseEventHandler implements EventHandler<ActionEvent>
 		AlgoFormer algoformerElegido = juego.jugadorActual().getAlgoformerElegido();
 		algoformerElegido.transformarse();
 		contenedorPrincipal.setMensajeConsola(algoformerElegido.getNombre() + " se transformo!");
-		vistaTablero.actualizar();
 		juego.jugadorActual().terminarTurno();
+		vistaTablero.actualizar(); //es importante que se dibuje despues de que haya terminado el turno
 		contenedorPrincipal.setBotoneraEleccion();
+		//Con este no hace falta, pero con el resto de los botones hay que chequear si hubo un ganador
+		//y si es asi, cambiar de escena, a la escena de ganador.
 	}
 }
