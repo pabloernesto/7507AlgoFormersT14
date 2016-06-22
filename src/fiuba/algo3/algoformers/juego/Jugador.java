@@ -82,7 +82,7 @@ public class Jugador
         estado.terminarTurno(this);
     }
 	
-    void iniciarTurno()
+    public void iniciarTurno()
     {
         for (AlgoFormer algoformer : equipo)
             algoformer.iniciarTurno();

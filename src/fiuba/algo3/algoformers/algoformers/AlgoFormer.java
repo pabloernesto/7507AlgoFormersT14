@@ -277,6 +277,10 @@ public abstract class AlgoFormer {
 		return vida;
 	}
 	
+	public void setVida(int vida){
+		this.vida = vida;
+	}
+	
 	public String getNombre (){
 		return nombre;
 	}

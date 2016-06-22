@@ -17,6 +17,7 @@ import fiuba.algo3.algoformers.algoformers.Forma;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Posicion;
 import fiuba.algo3.algoformers.escenario.Tablero;
+import fiuba.algo3.algoformers.escenario.bonus.DobleCanion;
 import fiuba.algo3.algoformers.excepciones.*;
 
 import java.util.List;
@@ -182,6 +183,51 @@ public class JugadorDecepticonTest {
         List<Posicion> posicionesLibresDespues = tablero.movimientosValidos(posicionCombinado);
         
         assertEquals(posicionesLibresDespues.size(),posicionesLibresAntes.size() - 3);
+	}
+	
+	@Test
+	public void test12CombinarseHacePerdeLosBonus(){
+		Juego juego = new Juego();
+		juego.inicializarSinAleatoridad();
+		Jugador jugador = juego.jugadorInactivo();
+		jugador.iniciarTurno();
+		Tablero tablero = Tablero.getInstance();
+		AlgoFormer algoformer = jugador.getListaAlgoformers().get(0);
+		Posicion posicionAlgoformer = tablero.getPosicionAlgoformer(algoformer);
+		Posicion posicionBonus = posicionAlgoformer.sumarMovimiento(Movimiento.IZQUIERDA);
+		tablero.getCelda(posicionBonus).setBonus(new DobleCanion()); //El capitan agarra un doble canion
+		algoformer.moverse(Movimiento.IZQUIERDA);
+		List<AlgoFormer> integrantes = jugador.getListaAlgoformers();
+		jugador.combinar();
+		
+		AlgoFormer combinado = jugador.getListaAlgoformers().get(0);
+		
+		DecepticonFactory factory = new DecepticonFactory();
+		AlgoFormer menasorOriginal = factory.crearCombinado(integrantes);
+		
+		assertEquals(menasorOriginal.getAtaque(), combinado.getAtaque());
+	}
+	
+	@Test
+	public void test13DescombinarseHacerPerderLosBonus(){
+		Juego juego = new Juego();
+		juego.inicializarSinAleatoridad();
+		Tablero tablero = Tablero.getInstance();
+		Jugador jugador = juego.jugadorInactivo();
+		jugador.iniciarTurno();
+		List<AlgoFormer> integrantesAnteriores = jugador.getListaAlgoformers();
+		jugador.combinar();
+		AlgoFormer combinado = jugador.getListaAlgoformers().get(0);
+		Posicion posicionCombinado = tablero.getPosicionAlgoformer(combinado);
+		Posicion posicionBonus = posicionCombinado.sumarMovimiento(Movimiento.IZQUIERDA);
+		tablero.getCelda(posicionBonus).setBonus(new DobleCanion()); //Setea el bonus
+		combinado.moverse(Movimiento.IZQUIERDA); //Agarra el bonus
+		jugador.descombinar();
+		for (int i = 0 ; i < 3 ; i++){
+			AlgoFormer algoformerOriginal = integrantesAnteriores.get(i);
+			AlgoFormer algoformerDescombinado = jugador.getListaAlgoformers().get(i);
+			assertEquals(algoformerOriginal.getAtaque(), algoformerDescombinado.getAtaque());
+		}
 	}
 }
 

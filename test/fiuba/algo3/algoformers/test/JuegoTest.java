@@ -10,6 +10,7 @@ import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Posicion;
 import fiuba.algo3.algoformers.escenario.Tablero;
 
@@ -24,7 +25,7 @@ public class JuegoTest
     public void setUp()
     {
         juego = new Juego();
-        tablero = Tablero.getInstance();
+        juego.crearJugadores("Nombre1", "Nombre2");
     }
     
     @After
@@ -35,8 +36,8 @@ public class JuegoTest
     
     @Test
     public void testAlgoFormersEnemigosComienzanEnfrentadosEnEltablero(){
-    	juego.crearJugadores("Nombre1", "Nombre2");
 		juego.inicializar();
+		Tablero tablero = Tablero.getInstance();
 		Jugador jugador1 = juego.jugadorActual();
 		List<AlgoFormer> equipo1 = jugador1.getListaAlgoformers();
 		AlgoFormer algoformer1 = equipo1.get(0);
@@ -58,8 +59,8 @@ public class JuegoTest
 	@Test
     public void testAlgoFormersDeUnEquipoComienzanJuntos()
     {
-		juego.crearJugadores("Nombre1", "Nombre2");
         juego.inicializar();
+        Tablero tablero = Tablero.getInstance();
         
         Jugador jugador = juego.jugadorActual();
         List<AlgoFormer> equipo = jugador.getListaAlgoformers();
@@ -72,5 +73,41 @@ public class JuegoTest
         
         assertEquals(2,
             tablero.distancia(equipo.get(0), equipo.get(2)));
-    }	
+    }
+	
+	@Test
+	public void testJuegoTerminaSiSeCapturaLaChispa(){
+		juego.inicializarSinAleatoridad();
+		assertFalse(juego.hayGanador());
+		Jugador jugador = juego.jugadorActual();
+		AlgoFormer algoformer = jugador.getListaAlgoformers().get(0);
+		Tablero tablero = Tablero.getInstance();
+		Posicion posicionAlgoformer = tablero.getPosicionAlgoformer(algoformer);
+		Posicion posicionChispa = posicionAlgoformer.sumarMovimiento(Movimiento.DERECHA);
+		tablero.colocarChispaSuprema(posicionChispa);
+		algoformer.moverse(Movimiento.DERECHA);
+		assertTrue(juego.hayGanador());
+	}
+	
+	@Test
+	public void testJuegoTerminaSiSeEliminaUnEquipo(){
+		juego.inicializar();
+		assertFalse(juego.hayGanador());
+		Jugador jugador = juego.jugadorActual();
+		for (AlgoFormer algoformer : jugador.getListaAlgoformers())
+			algoformer.setVida(0);
+		juego.limpiarMuertos();
+		juego.chequearGanadorPorMuertes();
+		assertTrue(juego.hayGanador());
+	}
+	
+	@Test
+	public void testLimpiarMuertosBorraALosAlgoformersMuertos(){
+		juego.inicializar();
+		Jugador jugador = juego.jugadorActual();
+		int vivos = jugador.getListaAlgoformers().size();
+		jugador.getListaAlgoformers().get(0).setVida(0);
+		juego.limpiarMuertos();
+		assertEquals(vivos - 1, jugador.getListaAlgoformers().size());
+	}
 }

@@ -177,6 +177,10 @@ public class Tablero {
   	public Celda devolverPrimerCelda() {
   		return celdas.get(new Posicion(1, 1));
   	}
+  	
+  	public Celda getCelda(Posicion posicion){
+  		return celdas.get(posicion);
+  	}
 
     public Celda getCelda(int x, int y)
     {

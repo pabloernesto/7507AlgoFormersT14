@@ -16,12 +16,14 @@ import fiuba.algo3.algoformers.escenario.Movimiento;
 public class Juego {
 
 	Tablero tablero;
-	private static Jugador ganador = null;
+	private static Jugador ganador;
     
     private static Jugador [] jugadores;
     private static int jugadorActual;
     
-	public Juego() {}
+	public Juego() {
+		ganador = null;
+	}
 	
 	//Antes de llamar a esta funcion hay que llamar a crearJugadores SI O SI
 	public void inicializar()
@@ -116,7 +118,7 @@ public class Juego {
 	    jugadorActual().iniciarTurno();
 	}
 	
-	private void limpiarMuertos(){
+	public void limpiarMuertos(){
 		for (Jugador jugador : jugadores){
 			List<AlgoFormer> muertos = new ArrayList<AlgoFormer>();
 			for (AlgoFormer algoformer : jugador.getListaAlgoformers()){
@@ -131,7 +133,7 @@ public class Juego {
 		}
 	}
 	
-	private void chequearGanadorPorMuertes(){
+	public void chequearGanadorPorMuertes(){
 		for (int i = 0 ; i < 2 ; i++){
 			if (jugadores[i].getListaAlgoformers().size() == 0){
 				ganador = jugadores[(i + 1) % jugadores.length];
