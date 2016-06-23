@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.escenario.Posicion;
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
+import fiuba.algo3.algoformers.vista.eventos.BotonAtacarEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonCombinarEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonElegirAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonInfoAlgoformerEventHandler;
@@ -36,6 +38,9 @@ public class ContenedorPrincipal extends BorderPane
     Stage stage;
     VistaTablero vistaTablero;
     HBox contenedorAbajo;
+    ScrollPane scrollPane;
+    Posicion posicionUltimoAlgoformerEquipo1;
+    Posicion posicionUltimoAlgoformerEquipo2;
 
     public ContenedorPrincipal(Stage stage, Juego juego, BarraDeMenu barraMenu)
     {
@@ -108,6 +113,7 @@ public class ContenedorPrincipal extends BorderPane
     	etiqueta.setText(etiqueta.getText() + "\n" + mensaje);
     }
 
+
     public void setBotoneraEleccion()
     {
     	contenedorAbajo.getChildren().remove(2);
@@ -155,13 +161,13 @@ public class ContenedorPrincipal extends BorderPane
     {
         Button botonMover = new Button("Mover");
         BotonMoverEventHandler moverHandler =
-            new BotonMoverEventHandler(vistaTablero, juego, contenedorAbajo, this);
+            new BotonMoverEventHandler(vistaTablero, juego, contenedorAbajo,this);
         botonMover.setOnAction(moverHandler);
 
         Button botonAtacar = new Button("Atacar");
-        //BotonAtacarEventHandler atacarHandler =
-            //new BotonAtacarEventHandler(vistaTablero, juego, this);
-        //botonAtacar.setOnAction(atacarHandler);
+        BotonAtacarEventHandler atacarHandler =
+            new BotonAtacarEventHandler(juego.jugadorActual(),this);
+        botonAtacar.setOnAction(atacarHandler);
 
         Button botonTransformarse = new Button("Transformarse");
         BotonTransformarseEventHandler transformarHandler =
@@ -207,16 +213,59 @@ public class ContenedorPrincipal extends BorderPane
         contenedorAbajo.getChildren().set(1, contenedorHorizontal);
     }
 
+    public void setBotoneraAtaque()
+    {
+    	agregarMensajeConsola(juego.jugadorActual() + " elegi a quien mechar");
+        List<VBox> listaBotones = new ArrayList<VBox>();
+
+        for (AlgoFormer algoformer : juego.jugadorInactivo().getListaAlgoformers())
+        {
+        	
+        	Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/" +
+					"imagenes/algoformers/" + algoformer.getNombre() +
+						algoformer.nombreEstadoActivo() + ".jpg");
+        	ImageView imagenView = new ImageView(imagen);
+        	imagenView.setPreserveRatio(true);
+        	imagenView.setFitHeight(30);
+        	
+            Button boton = new Button(algoformer.getNombre(), imagenView);
+            boton.setMinSize(100, 50);
+
+            BotonAtacarAlgoformerEventHandler elegirHandler =
+                new BotonAtacarAlgoformerEventHandler(juego.jugadorActual(),algoformer,this.stage);
+
+            boton.setOnAction(elegirHandler);
+
+            VBox caja = new VBox(boton);
+            caja.setSpacing(5);
+            listaBotones.add(caja);
+        }
+        Button botonVolver= new Button("Volver");
+        BotonVolverAElegirAccionEventHandler botonVolverHandler= 
+        		new BotonVolverAElegirAccionEventHandler(this);
+        botonVolver.setOnAction(botonVolverHandler);
+        botonVolver.setMinSize(100, 50);
+        HBox contenedor = new HBox();
+        contenedor.setSpacing(30);
+        contenedor.setMinHeight(75);
+        VBox caja = new VBox(botonVolver);
+        caja.setSpacing(5);
+        listaBotones.add(caja);
+        contenedor.getChildren().addAll(listaBotones);
+        contenedorAbajo.getChildren().set(1, contenedor);
+    }
+
+    
     private void setCentro()
     {
         vistaTablero.dibujar();
         
         // ScrollPane permite ver el tablero aunque no entre en la pantalla.
-        ScrollPane sp = new ScrollPane();
-        sp.setContent(vistaTablero);
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(vistaTablero);
+        this.scrollPane = scrollPane;
         
-        
-        this.setCenter(sp);
+        this.setCenter(scrollPane);
     }
 
     public BarraDeMenu getBarraDeMenu()
