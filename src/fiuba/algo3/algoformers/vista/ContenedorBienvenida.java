@@ -19,11 +19,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class Bienvenida extends VBox
+public class ContenedorBienvenida extends VBox
 {
     Stage stage;
 
-    public Bienvenida(Stage stage, BarraDeMenu barraMenu, AudioClip musica, Scene proximaEscena)
+    public ContenedorBienvenida(Stage stage, BarraDeMenu barraMenu, AudioClip musica, Scene proximaEscena)
     {
         super();
         this.stage = stage;

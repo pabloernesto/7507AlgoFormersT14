@@ -45,8 +45,8 @@ import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 	        escenaEleccion.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
 	        
 	        
-	        Bienvenida contenedorBienvenidos = 
-	        		new Bienvenida(stage, barraMenu, audioIntro,escenaEleccion);
+	        ContenedorBienvenida contenedorBienvenidos = 
+	        		new ContenedorBienvenida(stage, barraMenu, audioIntro,escenaEleccion);
 	        Scene escenaBienvenidos = 
 	        		new Scene(contenedorBienvenidos, 640, 480);
 	        escenaBienvenidos.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
