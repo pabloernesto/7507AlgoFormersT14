@@ -38,11 +38,15 @@ public class BotonMoverEventHandler implements EventHandler<ActionEvent>{
 		etiqueta.setFont(Font.font("", FontWeight.BOLD, 16));
 		etiqueta.setTextFill(Color.GREEN);
 		
+		Button volver = new Button("Volver");
+		BotonVolverAElegirAccionEventHandler volverHandler = new BotonVolverAElegirAccionEventHandler(contenedorPrincipal);
+		volver.setOnAction(volverHandler);
+		
 		for (Movimiento movimiento : Movimiento.values())
 		{
 		    Button boton = new Button(movimiento.flecha());
 		    boton.setOnAction(new MovimientoHandler(movimiento, vistaTablero,
-		        juego, movimientosRestantes, etiqueta));
+		        juego, movimientosRestantes, etiqueta, volver));
 	        
 	        int posicionHorizontal = movimiento.getMovimientoEnX() + 1;
 	        int posicionVertical = movimiento.getMovimientoEnY() + 1;
@@ -52,10 +56,13 @@ public class BotonMoverEventHandler implements EventHandler<ActionEvent>{
 		Button terminarTurno = new Button("Terminar turno");
 		BotonTerminarTurnoEventHandler terminarTurnoHandler = new BotonTerminarTurnoEventHandler(juego.jugadorActual(), contenedorPrincipal);
 		terminarTurno.setOnAction(terminarTurnoHandler);
+		
+		matrizBotones.add(terminarTurno, 4, 0);
+		matrizBotones.add(volver, 4, 2);
 
 		HBox contenedorMovimientos = new HBox(etiqueta);
 		contenedor.getChildren().set(2, contenedorMovimientos);
-		botonesDireccion.getChildren().addAll(matrizBotones, terminarTurno);
+		botonesDireccion.getChildren().addAll(matrizBotones);
 		contenedor.getChildren().set(1, botonesDireccion);
 	}
 	

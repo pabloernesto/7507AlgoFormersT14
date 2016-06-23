@@ -37,6 +37,7 @@ public class ContenedorVictoria extends VBox{
             botonAceptar.setText("Aceptar Victoria!");
             botonAceptar.setMinSize(300, 170);
             botonAceptar.setFont(Font.font("Courier New",FontWeight.BOLD, 72));
+            botonAceptar.setStyle("-fx-base: #123400");
             
             BotonAceptarVictoriaEventHandler botonVictoria = new BotonAceptarVictoriaEventHandler(stage, proximaEscena);
             botonAceptar.setOnAction(botonVictoria);

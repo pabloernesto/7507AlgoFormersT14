@@ -9,6 +9,7 @@ import fiuba.algo3.algoformers.juego.Juego;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 //import javafx.scene.control.Alert;
 //import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
@@ -21,14 +22,16 @@ class MovimientoHandler implements EventHandler<ActionEvent>
     private Juego juego;
     private static int movimientosRestantes;
     private Label etiqueta;
+    private Button botonVolver;
     
     public MovimientoHandler(Movimiento direccion, VistaTablero vistaTablero,
-        Juego juego, int movimientosRestantes, Label etiqueta)
+        Juego juego, int movimientosRestantes, Label etiqueta, Button volver)
     {
         this.direccion = direccion;
         this.vistaTablero = vistaTablero;
         this.juego = juego;
         this.etiqueta = etiqueta;
+        this.botonVolver = volver;
         MovimientoHandler.movimientosRestantes = movimientosRestantes;
     }
 
@@ -36,6 +39,7 @@ class MovimientoHandler implements EventHandler<ActionEvent>
     {
     	//try{
     		juego.jugadorActual().mover(direccion);
+    		botonVolver.setDisable(true);
             movimientosRestantes--;
             etiqueta.setText("Movimientos restantes: " + String.valueOf(movimientosRestantes));
             new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/" +

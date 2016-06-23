@@ -13,6 +13,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -29,6 +30,8 @@ public class BotonReglasEventHandler implements EventHandler<ActionEvent>{
 	public void handle(ActionEvent event) {
 		Stage stage= new Stage();
 		VBox root = new VBox();
+		AudioClip audioBoton = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/boton.mp3");
+		audioBoton.play();
 		Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/intro/ImagenReglas.jpg");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Button volverAlJuego = new Button("Volver al menu principal");

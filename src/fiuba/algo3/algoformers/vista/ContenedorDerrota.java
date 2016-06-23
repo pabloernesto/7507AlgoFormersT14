@@ -35,6 +35,7 @@ public class ContenedorDerrota extends VBox{
             botonAceptar.setText("Aceptar Derrota");
             botonAceptar.setMinSize(200, 130);
             botonAceptar.setFont(Font.font("Courier New",FontWeight.BOLD, 42));
+            botonAceptar.setStyle("-fx-base: #FF0000");
             
             BotonSalirEventHandler botonSalirHandler = new BotonSalirEventHandler();
             botonAceptar.setOnAction(botonSalirHandler);
