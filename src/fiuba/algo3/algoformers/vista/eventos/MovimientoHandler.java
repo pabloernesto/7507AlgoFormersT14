@@ -34,14 +34,14 @@ class MovimientoHandler implements EventHandler<ActionEvent>
 
     public void handle(ActionEvent actionEvent)
     {
-    	try{
+    	//try{
     		juego.jugadorActual().mover(direccion);
             movimientosRestantes--;
             etiqueta.setText("Movimientos restantes: " + String.valueOf(movimientosRestantes));
             new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/" +
                 "mover.mp3").play();
             vistaTablero.actualizar();
-    	}
+    	/*}
     	catch (PosicionInvalidaException e){
     		crearError("ERROR", "Movimiento invalido", "Fin del tablero");
     	}
@@ -50,16 +50,16 @@ class MovimientoHandler implements EventHandler<ActionEvent>
     	}
     	catch (NoHayMasMovimientosException e){
     		crearError("ERROR", "Imposible moverse", "Se acabaron los movimientos por turno del algoformer");
-    	}
+    	}*/
         
     }
     
-    private void crearError(String titulo, String encabezado, String mensaje){
+    /*private void crearError(String titulo, String encabezado, String mensaje){
     	Alert alert = new Alert(AlertType.INFORMATION);
     	alert.setTitle(titulo);
     	alert.setHeaderText(encabezado);
     	alert.setContentText(mensaje);
     	alert.show();
-    }
+    }*/
 }
 
