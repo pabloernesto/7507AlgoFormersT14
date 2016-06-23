@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.escenario.Posicion;
-import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
 import fiuba.algo3.algoformers.vista.eventos.BotonAtacarEventHandler;
@@ -31,6 +29,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 
 public class ContenedorPrincipal extends BorderPane
 {

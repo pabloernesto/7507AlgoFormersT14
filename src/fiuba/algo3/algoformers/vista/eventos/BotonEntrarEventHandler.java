@@ -3,6 +3,7 @@ package fiuba.algo3.algoformers.vista.eventos;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.scene.media.AudioClip;
 

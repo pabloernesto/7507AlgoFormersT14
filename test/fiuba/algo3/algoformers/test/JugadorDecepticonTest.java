@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.After;
 import static org.junit.Assert.*;
 
-import fiuba.algo3.algoformers.juego.EstadoJugador_ModoPrueba;
+
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
 import fiuba.algo3.algoformers.factories.AutoBotFactory;
@@ -108,12 +108,11 @@ public class JugadorDecepticonTest {
 	public void test07CombinarseEstandoFueraRangoDeRangoLanzaExcepcion(){
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
-		Jugador jugador = juego.jugadorInactivo();
-		jugador.setEstado(new EstadoJugador_ModoPrueba());
+		Jugador jugador = juego.jugadorActual();
 		AlgoFormer algoformer = jugador.getListaAlgoformers().get(0);
 		algoformer.transformarse();
 		for (int i = 0 ; i < algoformer.getVelocidad() ; i++)
-			algoformer.moverse(Movimiento.IZQUIERDA);
+			algoformer.moverse(Movimiento.DERECHA);
 		jugador.combinar();
 	}
 	
@@ -122,8 +121,7 @@ public class JugadorDecepticonTest {
 	public void test08CombinarseSinEquipoCompletoLanzaExcepcion(){
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
-		Jugador jugador = juego.jugadorInactivo();
-		jugador.setEstado(new EstadoJugador_ModoPrueba());
+		Jugador jugador = juego.jugadorActual();
 		AlgoFormer algoformer = jugador.getListaAlgoformers().get(1);
 		jugador.getListaAlgoformers().remove(algoformer); //Saco a un algoformer del equipo
 		Tablero tablero = Tablero.getInstance();
@@ -136,8 +134,7 @@ public class JugadorDecepticonTest {
 	public void test09DescombinarseSinSuficienteEspacioLanzaExcepcion(){
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
-		Jugador jugador = juego.jugadorInactivo();
-		jugador.setEstado(new EstadoJugador_ModoPrueba());
+		Jugador jugador = juego.jugadorActual();
 		AlgoFormer algoformer = jugador.getListaAlgoformers().get(0);
 		jugador.combinar();
 		AlgoFormer combinado = jugador.getListaAlgoformers().get(0);
@@ -154,8 +151,7 @@ public class JugadorDecepticonTest {
 	public void test10CombinarseEstandoEnRangoEIntentarVolverACombinarseLanzaExcepcion(){
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
-		Jugador jugador = juego.jugadorInactivo();
-		jugador.setEstado(new EstadoJugador_ModoPrueba());
+		Jugador jugador = juego.jugadorActual();
 		List<AlgoFormer> autobots = jugador.getListaAlgoformers();
 		Tablero tablero = Tablero.getInstance();
 		Posicion posicionCapitan = tablero.getPosicionAlgoformer(autobots.get(0));
@@ -172,12 +168,11 @@ public class JugadorDecepticonTest {
 	
 	
 	@Test
-	public void test11DescombinarseFuncionaCorrectamente(){
+	public void test11Descombinarse(){
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
 		Tablero tablero = Tablero.getInstance();
-		Jugador jugador = juego.jugadorInactivo();
-		jugador.setEstado(new EstadoJugador_ModoPrueba());
+		Jugador jugador = juego.jugadorActual();
         
 		jugador.combinar();
         
@@ -198,7 +193,7 @@ public class JugadorDecepticonTest {
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
 		Jugador jugador = juego.jugadorInactivo();
-		jugador.setEstado(new EstadoJugador_ModoPrueba());
+		jugador.iniciarTurno();
 		Tablero tablero = Tablero.getInstance();
 		AlgoFormer algoformer = jugador.getListaAlgoformers().get(0);
 		Posicion posicionAlgoformer = tablero.getPosicionAlgoformer(algoformer);
@@ -242,7 +237,7 @@ public class JugadorDecepticonTest {
 		juego.inicializarSinAleatoridad();
 		Tablero tablero = Tablero.getInstance();
 		Jugador jugador = juego.jugadorInactivo();
-		jugador.setEstado(new EstadoJugador_ModoPrueba());
+		jugador.iniciarTurno();
 		List<AlgoFormer> integrantesAnteriores = jugador.getListaAlgoformers();
 		jugador.combinar();
 		AlgoFormer combinado = jugador.getListaAlgoformers().get(0);
@@ -285,8 +280,7 @@ public class JugadorDecepticonTest {
 	public void test14VidaDeCombinadoEsSumatoriaDeIntegrantesYSeReparteEnPartesIgualesAlDescombinarse(){
 		Juego juego = new Juego();
 		juego.inicializarSinAleatoridad();
-		Jugador jugador = juego.jugadorInactivo();
-		jugador.setEstado(new EstadoJugador_ModoPrueba());
+		Jugador jugador = juego.jugadorActual();
 		int vidaSumada = 0;
 		for (AlgoFormer algoformer : jugador.getListaAlgoformers())
 			vidaSumada += algoformer.getVida();
@@ -297,20 +291,5 @@ public class JugadorDecepticonTest {
 		for (AlgoFormer algoformer : jugador.getListaAlgoformers())
 			assertEquals(vidaCombinado / 3, algoformer.getVida());
 	}
-	
-	@Test(expected = RuntimeException.class)
-    public void test15ElegirAlgoFormerMientrasMoviendoCausaExcepcion()
-    {
-        Juego juego = new Juego();
-        juego.crearJugadores("juan", "pedro");
-        juego.inicializar();
-
-        Jugador jugador = juego.jugadorInactivo();
-        jugador.iniciarTurno();
-        jugador.elegirAlgoFormer("Frenzy");
-        jugador.mover(Movimiento.IZQUIERDA);
-
-        jugador.elegirAlgoFormer("Megatron");
-    }
 }
 

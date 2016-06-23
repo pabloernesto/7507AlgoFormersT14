@@ -33,7 +33,7 @@ public class BotonMasInfoEventHandler implements EventHandler<ActionEvent> {
 		eventHandlerSalir.handle(event);
 		Stage stage= new Stage();
 		VBox root = new VBox();
-		Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/intro/ImagenReglas2.jpg");
+		Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/intro/ImagenReglas.jpg");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Button volverAlJuego = new Button("Volver al juego");
         BotonVolverAlJuegoEventHandler salir = new BotonVolverAlJuegoEventHandler(stage,stagePrincipal);
