@@ -172,13 +172,17 @@ public class ContenedorPrincipal extends BorderPane
         Button botonDescombinarse = new Button("Descombinarse");
         
         botonCombinarse.setOnAction(
-                new BotonCombinarEventHandler(vistaTablero, juego, botonDescombinarse, this));
+                new BotonCombinarEventHandler(vistaTablero, juego, this));
         
+        if (juego.jugadorActual().combinado)
+        	botonCombinarse.setDisable(true);
+        else{
+        	botonDescombinarse.setDisable(true);
+        }
         //BotonCombinarseEventHandler combinarseHandler =
             //new BotonCombinarseEventHandler(vistaTablero, juego, botonDescombinarse, this);
         //botonCombinarse.setOnAction(combinarseHandler);
         
-        botonDescombinarse.setDisable(true);
         //BotonDescombinarseEventHandler descombinarseHandler =
             //new BotonDescombinarseEventHandler(vistaTablero, juego, botonCombinarse, this);
         //botonDescombinarse.setOnAction(descombinarseHandler);
