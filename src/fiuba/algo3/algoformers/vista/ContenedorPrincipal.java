@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.escenario.Posicion;
+import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
 import fiuba.algo3.algoformers.vista.eventos.BotonAtacarAlgoformerEventHandler;
@@ -115,12 +117,18 @@ public class ContenedorPrincipal extends BorderPane
     	etiqueta.setTextFill(Color.WHITE);
     	etiqueta.setText(etiqueta.getText() + "\n" + mensaje);
     }
+    
+    
 
 
     public void setBotoneraEleccion()
     {
     	contenedorAbajo.getChildren().remove(2);
         Jugador jugador = juego.jugadorActual();
+        double x = calcularPosicionHorizontal(jugador);
+        double y = calcularPosicionVertical(jugador);
+        scrollPane.setHvalue(x);
+        scrollPane.setVvalue(y);
     	agregarMensajeConsola(jugador.getNombre() + " debe elegir un algoformer");
         List<VBox> listaBotones = new ArrayList<VBox>();
 
@@ -284,6 +292,34 @@ public class ContenedorPrincipal extends BorderPane
     
     public Scene getSiguienteEscena(){
     	return siguienteEscena;
+    }
+    
+    private double calcularPosicionHorizontal(Jugador jugador){
+    	jugador = juego.jugadorActual();
+        Tablero tablero = Tablero.getInstance();
+        Posicion posicionAlgoformer = tablero.getPosicionAlgoformer(jugador.getAlgoformerElegido());
+        double x;
+        if (posicionAlgoformer != null){
+        	x = posicionAlgoformer.getPosicionX();
+        }
+        else {
+        	x = tablero.ancho() / 2;
+        }
+        return x / tablero.ancho();
+    }
+    
+    private double calcularPosicionVertical(Jugador jugador){
+    	jugador = juego.jugadorActual();
+        Tablero tablero = Tablero.getInstance();
+        Posicion posicionAlgoformer = tablero.getPosicionAlgoformer(jugador.getAlgoformerElegido());
+        double y;
+        if (posicionAlgoformer != null){
+        	y = posicionAlgoformer.getPosicionY();
+        }
+        else {
+        	y = tablero.altura() / 2;
+        }
+        return y / tablero.altura();
     }
 }
 

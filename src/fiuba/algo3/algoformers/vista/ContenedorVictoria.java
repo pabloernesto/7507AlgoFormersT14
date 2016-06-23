@@ -48,6 +48,8 @@ public class ContenedorVictoria extends VBox{
             botonAceptar.setOnAction(botonVictoria);
 	        
             this.getChildren().addAll(etiqueta, botonAceptar);
+            stage.setFullScreenExitHint("");
+            stage.setFullScreen(true);
             stage.show();
         }
         

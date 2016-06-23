@@ -22,6 +22,14 @@ public class Posicion {
 	    int distanciaY = Math.abs(y - otraPosicion.y);
 		return (Math.max(distanciaX, distanciaY));
 	}
+	
+	public int getPosicionX(){
+		return x;
+	}
+	
+	public int getPosicionY(){
+		return y;
+	}
 
 	public int hashCode (){
 		final int prime = 31;
