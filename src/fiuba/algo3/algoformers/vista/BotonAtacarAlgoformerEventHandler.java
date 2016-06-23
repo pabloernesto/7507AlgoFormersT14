@@ -1,16 +1,13 @@
 package fiuba.algo3.algoformers.vista;
 
-import java.util.Optional;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.excepciones.*;
 import fiuba.algo3.algoformers.juego.Jugador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
+//import javafx.scene.control.Alert;
+//import javafx.scene.control.Alert.AlertType;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
@@ -28,12 +25,12 @@ public class BotonAtacarAlgoformerEventHandler implements EventHandler<ActionEve
 
 	@Override
 	public void handle(ActionEvent event) {
-	try{
+	//try{
 		jugadorAtacante.atacar(algoformerAtacado);
 		AudioClip audioAtacar = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/atacar.mp3");
 		audioAtacar.play();
-	}
-	
+	//}
+	/*
 	catch (FuegoAmigoException exception){
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Error Dialog");
@@ -51,6 +48,7 @@ public class BotonAtacarAlgoformerEventHandler implements EventHandler<ActionEve
 
 		alert.showAndWait();
 	}
+	*/
 	}
 	
 
