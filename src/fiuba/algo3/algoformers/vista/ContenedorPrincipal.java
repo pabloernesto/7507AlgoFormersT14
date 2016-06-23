@@ -9,6 +9,7 @@ import fiuba.algo3.algoformers.juego.Jugador;
 import fiuba.algo3.algoformers.vista.eventos.BotonAtacarAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonAtacarEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonCombinarEventHandler;
+import fiuba.algo3.algoformers.vista.eventos.BotonDescombinarEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonElegirAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonInfoAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonMoverEventHandler;
@@ -165,7 +166,7 @@ public class ContenedorPrincipal extends BorderPane
 
         Button botonAtacar = new Button("Atacar");
         BotonAtacarEventHandler atacarHandler =
-            new BotonAtacarEventHandler(juego.jugadorActual(),this);
+            new BotonAtacarEventHandler(juego.jugadorActual(), vistaTablero, this);
         botonAtacar.setOnAction(atacarHandler);
 
         Button botonTransformarse = new Button("Transformarse");
@@ -184,18 +185,20 @@ public class ContenedorPrincipal extends BorderPane
         botonCombinarse.setOnAction(
                 new BotonCombinarEventHandler(vistaTablero, juego, this));
         
-        if (juego.jugadorActual().combinado)
+        if (juego.jugadorActual().combinado){
         	botonCombinarse.setDisable(true);
+        	botonTransformarse.setDisable(true);
+        }
         else{
         	botonDescombinarse.setDisable(true);
         }
-        //BotonCombinarseEventHandler combinarseHandler =
-            //new BotonCombinarseEventHandler(vistaTablero, juego, botonDescombinarse, this);
-        //botonCombinarse.setOnAction(combinarseHandler);
+        BotonCombinarEventHandler combinarseHandler =
+            new BotonCombinarEventHandler(vistaTablero, juego, this);
+        botonCombinarse.setOnAction(combinarseHandler);
         
-        //BotonDescombinarseEventHandler descombinarseHandler =
-            //new BotonDescombinarseEventHandler(vistaTablero, juego, botonCombinarse, this);
-        //botonDescombinarse.setOnAction(descombinarseHandler);
+        BotonDescombinarEventHandler descombinarseHandler =
+            new BotonDescombinarEventHandler(vistaTablero, juego, this);
+        botonDescombinarse.setOnAction(descombinarseHandler);
 
         botonAtacar.setMaxSize(100, 30);
         botonMover.setMaxSize(100, 30);
@@ -231,7 +234,7 @@ public class ContenedorPrincipal extends BorderPane
             boton.setMinSize(100, 50);
 
             BotonAtacarAlgoformerEventHandler elegirHandler =
-                new BotonAtacarAlgoformerEventHandler(juego.jugadorActual(),algoformer,this.stage);
+                new BotonAtacarAlgoformerEventHandler(juego.jugadorActual(), algoformer, vistaTablero, this);
 
             boton.setOnAction(elegirHandler);
 

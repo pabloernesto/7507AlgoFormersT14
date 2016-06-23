@@ -33,10 +33,11 @@ public class BotonCombinarEventHandler implements EventHandler<ActionEvent>
             "combinar.mp3").play();
         contenedorPrincipal.setMensajeConsola(
             juego.jugadorActual().getNombre() + " se ha combinado");
+        //crearError("Atencion", "No podras realizar acciones", "La combinacion tarda dos turnos en completarse");
         vistaTablero.actualizar();
         contenedorPrincipal.setBotoneraEleccion();
     	/*}
-    	/*catch (EquipoIncompletoException e){
+    	catch (EquipoIncompletoException e){
     		crearError("ERROR", "Los algoformers no se pueden combinar", "Todos los algoformers deben estar vivos para poder combinarse");
     	}
     	catch (AlgoformerMuyLejosException e){
@@ -44,7 +45,7 @@ public class BotonCombinarEventHandler implements EventHandler<ActionEvent>
     	}*/
     }
     
-    /*private void crearError(String titulo, String encabezado, String mensaje){
+  /*  private void crearError(String titulo, String encabezado, String mensaje){
     	Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(encabezado);

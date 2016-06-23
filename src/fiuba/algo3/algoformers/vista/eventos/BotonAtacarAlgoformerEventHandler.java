@@ -4,52 +4,53 @@ package fiuba.algo3.algoformers.vista.eventos;
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.excepciones.*;
 import fiuba.algo3.algoformers.juego.Jugador;
+import fiuba.algo3.algoformers.vista.ContenedorPrincipal;
+import fiuba.algo3.algoformers.vista.VistaTablero;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 //import javafx.scene.control.Alert;
 //import javafx.scene.control.Alert.AlertType;
 import javafx.scene.media.AudioClip;
-import javafx.stage.Stage;
 
 public class BotonAtacarAlgoformerEventHandler implements EventHandler<ActionEvent> {
 
-	Jugador jugadorAtacante;
-	AlgoFormer algoformerAtacado;
-	Stage stage;
+	private Jugador jugadorAtacante;
+	private AlgoFormer algoformerAtacado;
+	private ContenedorPrincipal contenedorPrincipal;
+	private VistaTablero vistaTablero;
 	
-	public BotonAtacarAlgoformerEventHandler(Jugador jugadorActual, AlgoFormer algoformer,Stage stage) {
+	public BotonAtacarAlgoformerEventHandler(Jugador jugadorActual, AlgoFormer algoformer,
+												VistaTablero vistaTablero, ContenedorPrincipal contenedor) {
 		this.jugadorAtacante = jugadorActual;
 		this.algoformerAtacado = algoformer;
-		this.stage=stage;
+		this.contenedorPrincipal = contenedor;
+		this.vistaTablero = vistaTablero;
 	}
 
-	@Override
 	public void handle(ActionEvent event) {
 	//try{
 		jugadorAtacante.atacar(algoformerAtacado);
+		contenedorPrincipal.setMensajeConsola(jugadorAtacante.getAlgoformerElegido().getNombre() +
+													"ataco a " + algoformerAtacado.getNombre());
 		AudioClip audioAtacar = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/atacar.mp3");
 		audioAtacar.play();
-	//}
-	/*
-	catch (FuegoAmigoException exception){
-		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Error Dialog");
-		alert.setHeaderText("Look, an Error Dialog");
-		alert.setContentText("Ooops, there was an error!");
-
-		alert.showAndWait();
-	}
+		vistaTablero.actualizar();
+		contenedorPrincipal.setBotoneraEleccion();
+	/*}
+	
 	catch (FueraDeAlcanceException exception){
-		Alert alert = new Alert(AlertType.ERROR);
-		alert.initOwner(stage);
-		alert.setTitle("Error Dialog");
-		alert.setHeaderText("Look, an Error Dialog");
-		alert.setContentText("Ooops, there was an error!");
-
-		alert.showAndWait();
+		crearError("ERROR", "Algoformer no puede atacar", "El algoformer atacado esta fuera de alcance");
+	}*/
 	}
-	*/
-	}
+	
+	/*private void crearError(String titulo, String encabezado, String mensaje){
+    	Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(encabezado);
+        alert.setContentText(mensaje);
+        alert.show();
+	
+	}*/
 	
 
 }

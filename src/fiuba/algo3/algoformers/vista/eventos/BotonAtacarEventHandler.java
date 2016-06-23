@@ -7,20 +7,22 @@ import javafx.event.EventHandler;
 
 public class BotonAtacarEventHandler implements EventHandler<ActionEvent>{
 
-	ContenedorPrincipal contenedorPrincipal;
-	Jugador jugadorAtacante;
+	private ContenedorPrincipal contenedorPrincipal;
+	private Jugador jugadorAtacante;
+	private VistaTablero vistaTablero;
 	
-	public BotonAtacarEventHandler(Jugador jugadorAtacante,ContenedorPrincipal contenedor)
+	public BotonAtacarEventHandler(Jugador jugadorAtacante, VistaTablero vistaTablero, ContenedorPrincipal contenedor)
 	{
 		this.contenedorPrincipal = contenedor;
         this.jugadorAtacante = jugadorAtacante;
+        this.vistaTablero = vistaTablero;
     }
 	
 	
 	@Override
 	public void handle(ActionEvent event){
-		this.contenedorPrincipal.setMensajeConsola(jugadorAtacante.getNombre() + "va a atacar con "
-				+jugadorAtacante.getAlgoformerElegido().getNombre());
+		this.contenedorPrincipal.setMensajeConsola(jugadorAtacante.getNombre() + " va a atacar con "
+												+ jugadorAtacante.getAlgoformerElegido().getNombre());
 		contenedorPrincipal.setBotoneraAtaque();
 	}
 	
