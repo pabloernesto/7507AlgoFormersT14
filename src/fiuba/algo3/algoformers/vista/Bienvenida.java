@@ -1,8 +1,7 @@
 package fiuba.algo3.algoformers.vista;
 
-import fiuba.algo3.algoformers.vista.eventos.BotonEntrarEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.BotonSalirEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.OpcionSilenciarHandler;
+import fiuba.algo3.algoformers.vista.eventos.*;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -47,28 +46,43 @@ public class Bienvenida extends VBox
         etiqueta.setPadding(new Insets(40, 0, 0, 0));
 
         etiqueta.setText("AlgoFormers");
-        etiqueta.setTextFill(Color.web("#66A7C5"));
+        etiqueta.setTextFill(Color.web("#0000ff"));
 
         Button botonEntrar = new Button();
         botonEntrar.setText("Jugar!");
         botonEntrar.setMinSize(200, 120);
         botonEntrar.setFont(Font.font("Courier New",FontWeight.BOLD, 56));
         botonEntrar.setStyle("-fx-base: #1234");
+        botonEntrar.defaultButtonProperty().bind(botonEntrar.focusedProperty());
+        
+        Button botonReglas = new Button();
+        botonReglas.setText("Reglas de juego");
+        botonReglas.setFont(Font.font("", 20));
+        botonReglas.setStyle("-fx-base: #1234");
+        botonReglas.defaultButtonProperty().bind(botonReglas.focusedProperty());
+        botonReglas.setMinSize(180, 40);
         
         Button botonSalir = new Button();
         botonSalir.setText("Salir :(");
         botonSalir.setFont(Font.font("", 20));
         botonSalir.setStyle("-fx-base: #1234");
+        botonSalir.defaultButtonProperty().bind(botonSalir.focusedProperty());
+        botonSalir.setMinSize(180, 40);
         
         Button botonSilenciar = new Button();
         botonSilenciar.setText("Silenciar musica");
         botonSilenciar.setFont(Font.font("", 16));
         botonSilenciar.setStyle("-fx-base: #1234");
-
-
+        botonSilenciar.defaultButtonProperty().bind(botonSilenciar.focusedProperty());
+        botonSilenciar.setMinSize(180, 40);
+        
         BotonEntrarEventHandler botonEntrarHandler =
             new BotonEntrarEventHandler(stage, proximaEscena);
         botonEntrar.setOnAction(botonEntrarHandler);
+        
+        BotonReglasEventHandler botonReglasHandler =
+        		new BotonReglasEventHandler(stage);
+        botonReglas.setOnAction(botonReglasHandler);
         
         BotonSalirEventHandler botonSalirHandler = new BotonSalirEventHandler();
         botonSalir.setOnAction(botonSalirHandler);
@@ -76,7 +90,9 @@ public class Bienvenida extends VBox
         OpcionSilenciarHandler botonSilenciarHandler = new OpcionSilenciarHandler(barraMenu, musica);
         botonSilenciar.setOnAction(botonSilenciarHandler);
         
-        this.getChildren().addAll(etiqueta, botonEntrar, botonSalir, botonSilenciar);
+        this.getChildren().addAll(etiqueta,botonEntrar, botonSilenciar,botonReglas, botonSalir);
+        this.setPadding(new Insets(30));
+        this.setSpacing(20);
     }
 }
 
