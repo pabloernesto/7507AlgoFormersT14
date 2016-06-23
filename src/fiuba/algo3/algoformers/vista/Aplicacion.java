@@ -7,6 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.media.AudioClip;
 
+// Imports para juego rocas y nubes.
+import fiuba.algo3.algoformers.escenario.Tablero;
+import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
+
 	public class Aplicacion extends Application {
 
 	    public static void main(String[] args) {
@@ -15,6 +19,7 @@ import javafx.scene.media.AudioClip;
 
 	    @Override
 	    public void start(final Stage stage) throws Exception {
+	        Tablero.setGeneradorDeCeldas(new RocasYNubesFactory());
 	    	
 	    	AudioClip audioIntro = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/musicaFondo.mp3");
 	        audioIntro.setCycleCount(2);
