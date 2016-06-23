@@ -1,8 +1,10 @@
 package fiuba.algo3.algoformers.vista.eventos;
 
 import fiuba.algo3.algoformers.juego.Juego;
+import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.vista.ContenedorPrincipal;
 import fiuba.algo3.algoformers.vista.VistaTablero;
+import fiuba.algo3.algoformers.vista.eventos.MovimientoHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -30,14 +32,42 @@ public class BotonMoverEventHandler implements EventHandler<ActionEvent>{
 	public void handle(ActionEvent event) {
 		HBox botonesDireccion = new HBox();
 		GridPane matrizBotones = new GridPane();
+		
 		Button arriba = new Button("↑");
+		arriba.setOnAction(new MovimientoHandler(Movimiento.ARRIBA,
+		    vistaTablero, juego));
+
 		Button abajo = new Button("↓");
+		abajo.setOnAction(new MovimientoHandler(Movimiento.ABAJO,
+		    vistaTablero, juego));
+
 		Button derecha = new Button("→");
+		derecha.setOnAction(new MovimientoHandler(Movimiento.DERECHA,
+		    vistaTablero, juego));
+
 		Button izquierda = new Button("←");
+		izquierda.setOnAction(new MovimientoHandler(Movimiento.IZQUIERDA,
+		    vistaTablero, juego));
+
 		Button arribaDerecha = new Button("↗");
+		arribaDerecha.setOnAction(
+		    new MovimientoHandler(Movimiento.ARRIBA_DERECHA, vistaTablero,
+		        juego));
+
 		Button arribaIzquierda = new Button("↖");
+		arribaIzquierda.setOnAction(
+		    new MovimientoHandler(Movimiento.ARRIBA_IZQUIERDA, vistaTablero,
+		        juego));
+
 		Button abajoDerecha = new Button("↘");
+		abajoDerecha.setOnAction(new MovimientoHandler(Movimiento.ABAJO_DERECHA,
+		    vistaTablero, juego));
+
 		Button abajoIzquierda = new Button("↙");
+		abajoIzquierda.setOnAction(
+		    new MovimientoHandler(Movimiento.ABAJO_IZQUIERDA, vistaTablero,
+		        juego));
+
 		Button terminarTurno = new Button("Terminar turno");
 		
 		
