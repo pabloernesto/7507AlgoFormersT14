@@ -118,11 +118,12 @@ public abstract class AlgoFormer {
 	
 	public void borrarEfectos() {
 		efectosActivos.removeAll(efectosABorrar);
+		efectosABorrar.clear();
 	}
 	
 	public void borrarTodosLosEfectos(){
-		efectosActivos = new ArrayList<Efecto>();
-		efectosABorrar = new ArrayList<Efecto>();
+		efectosActivos.clear();
+		efectosABorrar.clear();
 	}
 	
 	
