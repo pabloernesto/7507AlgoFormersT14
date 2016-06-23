@@ -40,6 +40,9 @@ public class Test10AtravesarTormentaEnModoAereoRestaAtaqueSoloUnaVezTest {
 		ratchet.transformarse();
 		int ataqueAnterior = ratchet.getAtaque();
 		ratchet.entrarACelda(celda);
+		assertEquals(ataqueAnterior * 60 / 100, ratchet.getAtaque());
+		ratchet.finalizarTurno();
+		ratchet.iniciarTurno();
 		ratchet.entrarACelda(otraCelda);
 		assertEquals(ataqueAnterior * 60 / 100, ratchet.getAtaque());
 	}
@@ -50,6 +53,9 @@ public class Test10AtravesarTormentaEnModoAereoRestaAtaqueSoloUnaVezTest {
 		megatron.transformarse();
 		int ataqueAnterior = megatron.getAtaque();
 		megatron.entrarACelda(celda);
+		assertEquals(ataqueAnterior * 60 / 100, megatron.getAtaque());
+		megatron.finalizarTurno();
+		megatron.iniciarTurno();
 		megatron.entrarACelda(otraCelda);
 		assertEquals(ataqueAnterior * 60 / 100, megatron.getAtaque());
 	}

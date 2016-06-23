@@ -149,7 +149,7 @@ public abstract class AlgoFormer {
 	}
 	
 	public void ubicarseEnSuperficie(TormentaPsionica superficie){
-		recibirEfectoPorTurnos(superficie);
+		recibirEfectoInstantaneo(superficie);
 	}
 	
 	public void recibirBonus(DobleCanion bonus) {
