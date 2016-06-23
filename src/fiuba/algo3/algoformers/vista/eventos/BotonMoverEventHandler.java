@@ -1,6 +1,7 @@
 package fiuba.algo3.algoformers.vista.eventos;
 
 import fiuba.algo3.algoformers.juego.Juego;
+import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.vista.ContenedorPrincipal;
 import fiuba.algo3.algoformers.vista.VistaTablero;
@@ -33,20 +34,20 @@ public class BotonMoverEventHandler implements EventHandler<ActionEvent>{
 		HBox botonesDireccion = new HBox();
 		GridPane matrizBotones = new GridPane();
 		
-		int movimientosRestantes = juego.jugadorActual().getAlgoformerElegido().getMovimientosRestantes();
-		Label etiqueta = new Label("Movimientos restantes: " + String.valueOf(movimientosRestantes));
-		etiqueta.setFont(Font.font("", FontWeight.BOLD, 16));
-		etiqueta.setTextFill(Color.GREEN);
-		
 		Button volver = new Button("Volver");
 		BotonVolverAElegirAccionEventHandler volverHandler = new BotonVolverAElegirAccionEventHandler(contenedorPrincipal);
 		volver.setOnAction(volverHandler);
+		
+		AlgoFormer algoformerElegido = juego.jugadorActual().getAlgoformerElegido();
+		Label etiqueta = new Label("Movimientos restantes: " + String.valueOf(algoformerElegido.getMovimientosRestantes()));
+		etiqueta.setFont(Font.font("", FontWeight.BOLD, 16));
+		etiqueta.setTextFill(Color.GREEN);
 		
 		for (Movimiento movimiento : Movimiento.values())
 		{
 		    Button boton = new Button(movimiento.flecha());
 		    boton.setOnAction(new MovimientoHandler(movimiento, vistaTablero,
-		        juego, movimientosRestantes, etiqueta, volver, contenedorPrincipal));
+		        juego, etiqueta, volver, contenedorPrincipal));
 	        
 	        int posicionHorizontal = movimiento.getMovimientoEnX() + 1;
 	        int posicionVertical = movimiento.getMovimientoEnY() + 1;
@@ -60,6 +61,7 @@ public class BotonMoverEventHandler implements EventHandler<ActionEvent>{
 		matrizBotones.add(terminarTurno, 4, 0);
 		matrizBotones.add(volver, 4, 2);
 
+		
 		HBox contenedorMovimientos = new HBox(etiqueta);
 		contenedor.getChildren().set(2, contenedorMovimientos);
 		botonesDireccion.getChildren().addAll(matrizBotones);

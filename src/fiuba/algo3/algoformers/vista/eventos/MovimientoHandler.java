@@ -19,12 +19,11 @@ class MovimientoHandler extends AccionAlgoformerEventHandler implements EventHan
     private Movimiento direccion;
     private VistaTablero vistaTablero;
     private Juego juego;
-    private static int movimientosRestantes;
     private Label etiqueta;
     private Button botonVolver;
     
     public MovimientoHandler(Movimiento direccion, VistaTablero vistaTablero,
-        Juego juego, int movimientosRestantes, Label etiqueta, Button volver, ContenedorPrincipal contenedorPrincipal)
+        Juego juego, Label etiqueta, Button volver, ContenedorPrincipal contenedorPrincipal)
     {
         this.direccion = direccion;
         this.vistaTablero = vistaTablero;
@@ -32,7 +31,6 @@ class MovimientoHandler extends AccionAlgoformerEventHandler implements EventHan
         this.etiqueta = etiqueta;
         this.botonVolver = volver;
         this.contenedorPrincipal = contenedorPrincipal;
-        MovimientoHandler.movimientosRestantes = movimientosRestantes;
     }
 
     public void handle(ActionEvent actionEvent)
@@ -40,8 +38,10 @@ class MovimientoHandler extends AccionAlgoformerEventHandler implements EventHan
     	try{
     		juego.jugadorActual().mover(direccion);
     		botonVolver.setDisable(true);
-            movimientosRestantes--;
-            etiqueta.setText("Movimientos restantes: " + String.valueOf(movimientosRestantes));
+            int movRestantes = juego.jugadorActual().getAlgoformerElegido().getMovimientosRestantes();
+            if (movRestantes < 0)
+            	movRestantes = 0;
+            etiqueta.setText("Movimientos restantes: " + String.valueOf(movRestantes));
             new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/" +
                 "mover.mp3").play();
             vistaTablero.actualizar();
