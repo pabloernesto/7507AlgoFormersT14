@@ -17,6 +17,7 @@ import fiuba.algo3.algoformers.vista.eventos.BotonTerminarTurnoEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonTransformarseEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonVolverAElegirAccionEventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -41,8 +42,9 @@ public class ContenedorPrincipal extends BorderPane
     VistaTablero vistaTablero;
     HBox contenedorAbajo;
     ScrollPane scrollPane;
+    Scene siguienteEscena;
 
-    public ContenedorPrincipal(Stage stage, Juego juego, BarraDeMenu barraMenu)
+    public ContenedorPrincipal(Stage stage, Scene siguienteEscena, Juego juego, BarraDeMenu barraMenu)
     {
         this.juego = juego;
         this.stage = stage;
@@ -166,7 +168,7 @@ public class ContenedorPrincipal extends BorderPane
 
         Button botonAtacar = new Button("Atacar");
         BotonAtacarEventHandler atacarHandler =
-            new BotonAtacarEventHandler(juego.jugadorActual(), vistaTablero, this);
+            new BotonAtacarEventHandler(juego, this);
         botonAtacar.setOnAction(atacarHandler);
 
         Button botonTransformarse = new Button("Transformarse");
@@ -234,7 +236,7 @@ public class ContenedorPrincipal extends BorderPane
             boton.setMinSize(100, 50);
 
             BotonAtacarAlgoformerEventHandler elegirHandler =
-                new BotonAtacarAlgoformerEventHandler(juego.jugadorActual(), algoformer, vistaTablero, this);
+                new BotonAtacarAlgoformerEventHandler(juego, algoformer, vistaTablero, this);
 
             boton.setOnAction(elegirHandler);
 
@@ -273,6 +275,14 @@ public class ContenedorPrincipal extends BorderPane
     public BarraDeMenu getBarraDeMenu()
     {
         return barraMenu;
+    }
+    
+    public Stage getStage(){
+    	return stage;
+    }
+    
+    public Scene getSiguienteEscena(){
+    	return siguienteEscena;
     }
 }
 

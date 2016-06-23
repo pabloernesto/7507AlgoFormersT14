@@ -71,11 +71,13 @@ public class Juego {
 	    Posicion inicio;
 	    int medioDelTablero = tablero.altura() / 2;
 	    
-		inicio = new Posicion(1, medioDelTablero);
+		//inicio = new Posicion(1, medioDelTablero);
+	    inicio = new Posicion(20, 10);
 	    equipo = jugadorActual().getListaAlgoformers();
 		colocarEquipo(equipo, inicio);
 	    
-		inicio = new Posicion(tablero.ancho(), medioDelTablero);
+		//inicio = new Posicion(tablero.ancho(), medioDelTablero);
+		inicio = new Posicion(11, 10);
 	    equipo = jugadorInactivo().getListaAlgoformers();
 		colocarEquipo(equipo, inicio);
 	}
@@ -106,7 +108,7 @@ public class Juego {
 		}
 	}
 
-	public static void chispaCapturada(AlgoFormer algoformer) {
+	public static void chispaCapturada() {
 		ganador = jugadores[jugadorActual];
 	}
 	
@@ -145,6 +147,10 @@ public class Juego {
 	//cuando ya haya un ganador, la interfaz termina el juego
 	public boolean hayGanador(){
 		return ganador != null;
+	}
+	
+	public Jugador getJugadorGanador(){
+		return ganador;
 	}
 	
 	//Metodos para pruebas

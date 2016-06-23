@@ -29,8 +29,12 @@ import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 	    	
 	    	Juego juego = new Juego();
 	        stage.setTitle("Juego Algoformers");
+	        
+	        ContenedorVictoria contenedorVictoria = new ContenedorVictoria(stage, audioIntro);
+	        Scene escenaVictoria = new Scene(contenedorVictoria, 640, 480);
+	        
 	        ContenedorPrincipal contenedorPrincipal = 
-	        		new ContenedorPrincipal(stage, juego, barraMenu);
+	        		new ContenedorPrincipal(stage, escenaVictoria, juego, barraMenu);
 	        Scene escenaJuego = 
 	        		new Scene(contenedorPrincipal, 640, 480);
 	        

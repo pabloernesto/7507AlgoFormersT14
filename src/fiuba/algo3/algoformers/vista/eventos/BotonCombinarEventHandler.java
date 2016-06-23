@@ -7,11 +7,9 @@ import fiuba.algo3.algoformers.vista.ContenedorPrincipal;
 import fiuba.algo3.algoformers.vista.VistaTablero;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-//import javafx.scene.control.Alert;
-//import javafx.scene.control.Alert.AlertType;
 import javafx.scene.media.AudioClip;
 
-public class BotonCombinarEventHandler implements EventHandler<ActionEvent>
+public class BotonCombinarEventHandler extends AccionAlgoformerEventHandler implements EventHandler<ActionEvent>
 {
     private VistaTablero vistaTablero;
     private Juego juego;
@@ -26,31 +24,23 @@ public class BotonCombinarEventHandler implements EventHandler<ActionEvent>
 
     public void handle(ActionEvent event)
     {
-    	//try{
+    	try{
     		
-        juego.jugadorActual().combinar();
-        new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/" +
-            "combinar.mp3").play();
-        contenedorPrincipal.setMensajeConsola(
-            juego.jugadorActual().getNombre() + " se ha combinado");
-        //crearError("Atencion", "No podras realizar acciones", "La combinacion tarda dos turnos en completarse");
-        vistaTablero.actualizar();
-        contenedorPrincipal.setBotoneraEleccion();
-    	/*}
+    		juego.jugadorActual().combinar();
+    		new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/" +
+    				"combinar.mp3").play();
+    		contenedorPrincipal.setMensajeConsola(
+    				juego.jugadorActual().getNombre() + " se ha combinado");
+    		crearError("Atencion", "No podras realizar acciones", "La combinacion tarda dos turnos en completarse");
+    		vistaTablero.actualizar();
+    		contenedorPrincipal.setBotoneraEleccion();
+    		}
     	catch (EquipoIncompletoException e){
     		crearError("ERROR", "Los algoformers no se pueden combinar", "Todos los algoformers deben estar vivos para poder combinarse");
     	}
     	catch (AlgoformerMuyLejosException e){
     		crearError("Error", "Los algoformers no se pueden combinar", "Todos los algoformers deben estar a 2 casilleros del capitan");
-    	}*/
+    	}
     }
-    
-  /*  private void crearError(String titulo, String encabezado, String mensaje){
-    	Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle(titulo);
-        alert.setHeaderText(encabezado);
-        alert.setContentText(mensaje);
-        alert.show();
-    }*/
 }
 

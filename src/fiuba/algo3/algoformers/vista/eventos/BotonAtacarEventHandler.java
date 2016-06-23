@@ -9,13 +9,13 @@ public class BotonAtacarEventHandler implements EventHandler<ActionEvent>{
 
 	private ContenedorPrincipal contenedorPrincipal;
 	private Jugador jugadorAtacante;
-	private VistaTablero vistaTablero;
+	Juego juego;
 	
-	public BotonAtacarEventHandler(Jugador jugadorAtacante, VistaTablero vistaTablero, ContenedorPrincipal contenedor)
+	public BotonAtacarEventHandler(Juego juego, ContenedorPrincipal contenedor)
 	{
 		this.contenedorPrincipal = contenedor;
-        this.jugadorAtacante = jugadorAtacante;
-        this.vistaTablero = vistaTablero;
+		this.juego = juego;
+        this.jugadorAtacante = juego.jugadorActual();
     }
 	
 	

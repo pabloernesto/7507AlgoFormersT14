@@ -46,7 +46,7 @@ public class BotonMoverEventHandler implements EventHandler<ActionEvent>{
 		{
 		    Button boton = new Button(movimiento.flecha());
 		    boton.setOnAction(new MovimientoHandler(movimiento, vistaTablero,
-		        juego, movimientosRestantes, etiqueta, volver));
+		        juego, movimientosRestantes, etiqueta, volver, contenedorPrincipal));
 	        
 	        int posicionHorizontal = movimiento.getMovimientoEnX() + 1;
 	        int posicionVertical = movimiento.getMovimientoEnY() + 1;
