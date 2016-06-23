@@ -53,13 +53,13 @@ public class ContenedorEleccionJugador extends VBox{
 		TextField texto = new TextField();
 		texto.setPromptText("Ingrese su nombre");
 		texto.setMaxWidth(200);
-		texto.setFocusTraversable(false);
+		texto.requestFocus();
 		
 		
         Label etiqueta = new Label();
         VBox contenedorIngreso = new VBox(jugador, texto, botonAceptar, etiqueta);
         contenedorIngreso.setSpacing(30);
-        contenedorIngreso.setPadding(new Insets(100, 100, 100, 100));
+        contenedorIngreso.setPadding(new Insets(100));
         
         List<String> nombresJugadores = new ArrayList<String>();
         // Asociar botonEnviar a su comportamiento
