@@ -49,7 +49,7 @@ public class EstadoJugador_Activo extends EstadoJugador
 		
         jugador._combinar();
         jugador.setEstado(new EstadoJugador_Combinando());
-        terminarTurno(jugador);
+        jugador._terminarTurno();
 	}
 	
 	public void descombinar (Jugador jugador){
