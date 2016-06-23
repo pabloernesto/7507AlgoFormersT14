@@ -19,7 +19,7 @@ class MovimientoHandler implements EventHandler<ActionEvent>
     private Movimiento direccion;
     private VistaTablero vistaTablero;
     private Juego juego;
-    private int movimientosRestantes;
+    private static int movimientosRestantes;
     private Label etiqueta;
     
     public MovimientoHandler(Movimiento direccion, VistaTablero vistaTablero,
@@ -28,8 +28,8 @@ class MovimientoHandler implements EventHandler<ActionEvent>
         this.direccion = direccion;
         this.vistaTablero = vistaTablero;
         this.juego = juego;
-        this.movimientosRestantes = movimientosRestantes;
         this.etiqueta = etiqueta;
+        MovimientoHandler.movimientosRestantes = movimientosRestantes;
     }
 
     public void handle(ActionEvent actionEvent)
