@@ -1,5 +1,6 @@
-package fiuba.algo3.algoformers.vista;
+package fiuba.algo3.algoformers.vista.eventos;
 
+import fiuba.algo3.algoformers.vista.ContenedorPrincipal;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
