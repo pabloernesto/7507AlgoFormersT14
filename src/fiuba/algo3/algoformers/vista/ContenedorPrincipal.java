@@ -51,6 +51,7 @@ public class ContenedorPrincipal extends BorderPane
         this.barraMenu = barraMenu;
         this.contenedorAbajo = new HBox();
         this.contenedorAbajo.setSpacing(75);
+        this.siguienteEscena = siguienteEscena;
 
         contenedorAbajo.setBackground(
             new Background(

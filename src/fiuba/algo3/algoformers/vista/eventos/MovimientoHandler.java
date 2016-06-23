@@ -45,10 +45,9 @@ class MovimientoHandler extends AccionAlgoformerEventHandler implements EventHan
             new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/" +
                 "mover.mp3").play();
             vistaTablero.actualizar();
-            System.out.println("Se esta por llamar a chequearGanador desde movimientoHandler");
             chequearGanador(juego);
-            System.out.println("Se volvio de chequearGanador, no deberia pasar");
     	}
+    	
     	catch (PosicionInvalidaException e){
     		crearError("ERROR", "Movimiento invalido", "Fin del tablero");
     	}

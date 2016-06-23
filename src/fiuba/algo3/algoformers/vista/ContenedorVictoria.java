@@ -18,20 +18,16 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class ContenedorVictoria extends VBox{  
-        Stage stage;
-        static String nombreGanador = "";
+public class ContenedorVictoria extends VBox{
+	
+        private static Label etiqueta = new Label("");
+        private static AudioClip audioViejo;
 
-        public ContenedorVictoria(Stage stage, AudioClip audioViejo) {//Scene proximaEscena
+        public ContenedorVictoria(Stage stage, AudioClip audio) {
 
             super();
-            this.stage = stage;
-            if (nombreGanador != ""){
-            	audioViejo.stop();
-            	AudioClip audioVictoria = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/victoria.mp3");
-    	        audioVictoria.play();
-            }
-            
+            audioViejo = audio;
+
             this.setAlignment(Pos.CENTER);
             this.setSpacing(20);
             this.setPadding(new Insets(480, 50, 50, 50));
@@ -45,23 +41,20 @@ public class ContenedorVictoria extends VBox{
             botonAceptar.setFont(Font.font("Courier New",FontWeight.BOLD, 72));
             botonAceptar.setStyle("-fx-base: #123400");
             
-            Label ganador = new Label("Ganador: " + nombreGanador);
-            ganador.setFont(Font.font("Courier New",FontWeight.BOLD, 56));
-            ganador.setTextFill(Color.ORANGE);
+            etiqueta.setFont(Font.font("Courier New",FontWeight.BOLD, 60));
+            etiqueta.setTextFill(Color.ORANGE);
             
-            //BotonAceptarVictoriaEventHandler botonVictoria = new BotonAceptarVictoriaEventHandler(stage, proximaEscena);
             BotonSalirEventHandler botonVictoria = new BotonSalirEventHandler();
             botonAceptar.setOnAction(botonVictoria);
 	        
-            this.getChildren().addAll(ganador, botonAceptar);
+            this.getChildren().addAll(etiqueta, botonAceptar);
             stage.show();
         }
         
-        public static void recibirGanador(String nombre){
-        	nombreGanador = nombre;
+        public static void recibirGanador(String ganador){
+        	etiqueta.setText("Ganador: " + ganador);
+        	audioViejo.stop();
+        	AudioClip audioVictoria = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/victoria.mp3");
+    	    audioVictoria.play();
         }
-
-		public static void imprimirGanador() {
-			System.out.print("Ganador es: " + nombreGanador);
-		}
 }

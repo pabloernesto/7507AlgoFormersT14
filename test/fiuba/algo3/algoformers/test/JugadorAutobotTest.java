@@ -289,19 +289,5 @@ public class JugadorAutobotTest{
 		for (AlgoFormer algoformer : jugador.getListaAlgoformers())
 			assertEquals(vidaCombinado / 3, algoformer.getVida());
 	}
-
-    @Test(expected = RuntimeException.class)
-    public void test15ElegirAlgoFormerMientrasMoviendoCausaExcepcion()
-    {
-        Juego juego = new Juego();
-        juego.crearJugadores("juan", "pedro");
-        juego.inicializar();
-
-        Jugador jugador = juego.jugadorActual();
-        jugador.elegirAlgoFormer("Bumblebee");
-        jugador.mover(Movimiento.DERECHA);
-
-        jugador.elegirAlgoFormer("Ratchet");
-    }
 }
 

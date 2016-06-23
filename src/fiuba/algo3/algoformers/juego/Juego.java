@@ -71,13 +71,11 @@ public class Juego {
 	    Posicion inicio;
 	    int medioDelTablero = tablero.altura() / 2;
 	    
-		//inicio = new Posicion(1, medioDelTablero);
-	    inicio = new Posicion(20, 10);
+		inicio = new Posicion(1, medioDelTablero);
 	    equipo = jugadorActual().getListaAlgoformers();
 		colocarEquipo(equipo, inicio);
 	    
-		//inicio = new Posicion(tablero.ancho(), medioDelTablero);
-		inicio = new Posicion(11, 10);
+		inicio = new Posicion(tablero.ancho(), medioDelTablero);
 	    equipo = jugadorInactivo().getListaAlgoformers();
 		colocarEquipo(equipo, inicio);
 	}
