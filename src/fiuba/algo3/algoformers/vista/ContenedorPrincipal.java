@@ -39,8 +39,6 @@ public class ContenedorPrincipal extends BorderPane
     VistaTablero vistaTablero;
     HBox contenedorAbajo;
     ScrollPane scrollPane;
-    Posicion posicionUltimoAlgoformerEquipo1;
-    Posicion posicionUltimoAlgoformerEquipo2;
 
     public ContenedorPrincipal(Stage stage, Juego juego, BarraDeMenu barraMenu)
     {
@@ -215,7 +213,7 @@ public class ContenedorPrincipal extends BorderPane
 
     public void setBotoneraAtaque()
     {
-    	agregarMensajeConsola(juego.jugadorActual() + " elegi a quien mechar");
+    	agregarMensajeConsola(juego.jugadorActual().getNombre() + " elegi a quien ATACAR");
         List<VBox> listaBotones = new ArrayList<VBox>();
 
         for (AlgoFormer algoformer : juego.jugadorInactivo().getListaAlgoformers())
