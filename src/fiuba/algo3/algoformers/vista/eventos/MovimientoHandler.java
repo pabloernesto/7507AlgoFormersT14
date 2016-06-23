@@ -62,4 +62,3 @@ class MovimientoHandler implements EventHandler<ActionEvent>
     	alert.show();
     }*/
 }
-
