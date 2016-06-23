@@ -20,8 +20,7 @@ public class EstadoJugador_Activo extends EstadoJugador
 	
 	public void mover(Jugador jugador, Movimiento direccion)
 	{
-		jugador.setEstado(new EstadoJugador_Moviendo());
-		jugador.mover(direccion);
+		jugador.algoformerActual.moverse(direccion);
 	}
 	
 	public void transformar(Jugador jugador)
