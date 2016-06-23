@@ -10,6 +10,7 @@ import fiuba.algo3.algoformers.vista.eventos.BotonCombinarEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonElegirAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonInfoAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonMoverEventHandler;
+import fiuba.algo3.algoformers.vista.eventos.BotonTerminarTurnoEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonTransformarseEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -154,7 +155,7 @@ public class ContenedorPrincipal extends BorderPane
     {
         Button botonMover = new Button("Mover");
         BotonMoverEventHandler moverHandler =
-            new BotonMoverEventHandler(vistaTablero, juego, contenedorAbajo);
+            new BotonMoverEventHandler(vistaTablero, juego, contenedorAbajo, this);
         botonMover.setOnAction(moverHandler);
 
         Button botonAtacar = new Button("Atacar");
@@ -166,6 +167,10 @@ public class ContenedorPrincipal extends BorderPane
         BotonTransformarseEventHandler transformarHandler =
             new BotonTransformarseEventHandler(vistaTablero, juego, this);
         botonTransformarse.setOnAction(transformarHandler);
+        
+        Button botonTerminarTurno = new Button("Terminar turno");
+        BotonTerminarTurnoEventHandler terminarTurno = new BotonTerminarTurnoEventHandler(juego.jugadorActual(), this);
+        botonTerminarTurno.setOnAction(terminarTurno);
 
         Button botonCombinarse = new Button("Combinarse");
         
@@ -194,7 +199,7 @@ public class ContenedorPrincipal extends BorderPane
 
         HBox contenedorHorizontal =
             new HBox(botonMover, botonAtacar, botonTransformarse,
-                botonCombinarse, botonDescombinarse);
+                botonCombinarse, botonDescombinarse, botonTerminarTurno);
         contenedorHorizontal.setSpacing(30);
         contenedorHorizontal.setAlignment(Pos.CENTER);
         contenedorHorizontal.setMinHeight(75);
