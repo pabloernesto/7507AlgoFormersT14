@@ -9,8 +9,8 @@ import fiuba.algo3.algoformers.juego.Juego;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+//import javafx.scene.control.Alert;
+//import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.media.AudioClip;
 
