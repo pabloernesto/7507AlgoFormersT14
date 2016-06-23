@@ -125,10 +125,7 @@ public class ContenedorPrincipal extends BorderPane
     {
     	contenedorAbajo.getChildren().remove(2);
         Jugador jugador = juego.jugadorActual();
-        double x = calcularPosicionHorizontal(jugador);
-        double y = calcularPosicionVertical(jugador);
-        scrollPane.setHvalue(x);
-        scrollPane.setVvalue(y);
+        ubicarseEnAlgoformer(jugador);
     	agregarMensajeConsola(jugador.getNombre() + " debe elegir un algoformer");
         List<VBox> listaBotones = new ArrayList<VBox>();
 
@@ -166,6 +163,13 @@ public class ContenedorPrincipal extends BorderPane
         contenedor.setMinHeight(75);
         contenedor.getChildren().addAll(listaBotones);
         contenedorAbajo.getChildren().set(1, contenedor);
+    }
+    
+    public void ubicarseEnAlgoformer(Jugador jugador){
+    	double x = calcularPosicionHorizontal(jugador);
+        double y = calcularPosicionVertical(jugador);
+        scrollPane.setHvalue(x);
+        scrollPane.setVvalue(y);
     }
 
     public void setBotoneraAcciones()
