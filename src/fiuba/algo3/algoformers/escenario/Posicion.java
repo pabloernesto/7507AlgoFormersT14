@@ -31,14 +31,6 @@ public class Posicion {
 		return result;
 	}
 
-	public int getCoordenadaX(){
-		return this.x;
-	}
-	
-	public int getCoordenadaY(){
-		return this.y;
-	}
-	
 	public boolean equals (Object obj){
 		if (this == obj)
 			return true;
