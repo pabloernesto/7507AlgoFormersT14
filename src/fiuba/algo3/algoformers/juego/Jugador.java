@@ -52,7 +52,7 @@ public class Jugador
 		return equipo;
 	}
 	
-	void setEstado(EstadoJugador nuevoEstado)
+	public void setEstado(EstadoJugador nuevoEstado)
 	{
 	    estado = nuevoEstado;
 	}

@@ -291,7 +291,7 @@ public class JugadorAutobotTest{
 	}
 
     @Test(expected = RuntimeException.class)
-    public void testElegirAlgoFormerMientrasMoviendoCausaExcepcion()
+    public void test15ElegirAlgoFormerMientrasMoviendoCausaExcepcion()
     {
         Juego juego = new Juego();
         juego.crearJugadores("juan", "pedro");
