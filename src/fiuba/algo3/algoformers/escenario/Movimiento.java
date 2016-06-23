@@ -2,15 +2,18 @@ package fiuba.algo3.algoformers.escenario;
 
 public enum Movimiento {
 	
-	ARRIBA(0,-1), ABAJO(0,1), DERECHA(1,0), IZQUIERDA(-1,0),
-	ARRIBA_DERECHA(1,-1), ARRIBA_IZQUIERDA(-1,-1), ABAJO_DERECHA(1,1), ABAJO_IZQUIERDA(-1,1);
+	ARRIBA(0,-1,"↑"), ABAJO(0,1,"↓"), DERECHA(1,0,"→"), IZQUIERDA(-1,0,"←"),
+	ARRIBA_DERECHA(1,-1,"↗"), ARRIBA_IZQUIERDA(-1,-1,"↖"),
+	ABAJO_DERECHA(1,1,"↘"), ABAJO_IZQUIERDA(-1,1,"↙");
 	
 	private int movEnX;
 	private int movEnY;
+	private String flecha;
 	
-	private Movimiento (int movEnX, int movEnY){
+	private Movimiento (int movEnX, int movEnY, String flecha){
 		this.movEnX = movEnX;
 		this.movEnY = movEnY;
+		this.flecha = flecha;
 	}
 	
 	public int getMovimientoEnX (){
@@ -20,5 +23,9 @@ public enum Movimiento {
 	public int getMovimientoEnY (){
 		return movEnY;
 	}
-	
+
+    public String flecha()
+    {
+        return flecha;
+    }
 }
