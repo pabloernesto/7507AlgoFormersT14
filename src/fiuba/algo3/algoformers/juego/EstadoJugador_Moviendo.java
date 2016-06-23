@@ -34,7 +34,5 @@ public class EstadoJugador_Moviendo extends EstadoJugador
     {
 		throw new RuntimeException("Estas moviendo");
     }
-    
-    
 }
 
