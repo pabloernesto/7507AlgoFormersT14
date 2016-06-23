@@ -1,7 +1,6 @@
 package fiuba.algo3.algoformers.vista;
 
 import fiuba.algo3.algoformers.vista.eventos.*;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

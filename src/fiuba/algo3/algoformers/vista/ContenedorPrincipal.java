@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.escenario.Posicion;
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
 import fiuba.algo3.algoformers.vista.eventos.BotonAtacarEventHandler;
