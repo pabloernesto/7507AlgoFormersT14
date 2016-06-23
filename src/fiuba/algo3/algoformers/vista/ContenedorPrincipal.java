@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.escenario.Posicion;
+import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
-import fiuba.algo3.algoformers.vista.eventos.BotonAtacarAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonAtacarEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonCombinarEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonElegirAlgoformerEventHandler;
@@ -14,7 +15,6 @@ import fiuba.algo3.algoformers.vista.eventos.BotonInfoAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonMoverEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonTerminarTurnoEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonTransformarseEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.BotonVolverAElegirAccionEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -39,7 +39,7 @@ public class ContenedorPrincipal extends BorderPane
     Stage stage;
     VistaTablero vistaTablero;
     HBox contenedorAbajo;
-    ScrollPane scrollPane;
+    AlgoFormer algoformerActual;
 
     public ContenedorPrincipal(Stage stage, Juego juego, BarraDeMenu barraMenu)
     {
@@ -48,7 +48,7 @@ public class ContenedorPrincipal extends BorderPane
         this.barraMenu = barraMenu;
         this.contenedorAbajo = new HBox();
         this.contenedorAbajo.setSpacing(75);
-
+        
         contenedorAbajo.setBackground(
             new Background(
                 new BackgroundImage(
@@ -258,12 +258,16 @@ public class ContenedorPrincipal extends BorderPane
     private void setCentro()
     {
         vistaTablero.dibujar();
-        
+
         // ScrollPane permite ver el tablero aunque no entre en la pantalla.
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(vistaTablero);
-        this.scrollPane = scrollPane;
-        
+        /*this.algoformerActual=juego.jugadorActual().getListaAlgoformers().get(0);
+        Tablero tablero=Tablero.getInstance();
+        Posicion posicion = tablero.getPosicionAlgoformer(this.algoformerActual);
+        scrollPane.setVvalue(posicion.getCoordenadaY());
+        scrollPane.setHvalue(posicion.getCoordenadaX());
+        */
         this.setCenter(scrollPane);
     }
 
