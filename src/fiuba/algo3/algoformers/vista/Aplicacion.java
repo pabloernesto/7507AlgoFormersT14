@@ -44,9 +44,13 @@ import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 	        		new Scene(contenedorEleccion, 640, 480);
 	        escenaEleccion.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
 	        
+	        ContenedorReglas contenedorReglas = 
+	        		new ContenedorReglas(stage, escenaEleccion);
+	        Scene escenaReglas = new Scene(contenedorReglas, 640, 480);
+	        escenaReglas.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
 	        
 	        Bienvenida contenedorBienvenidos = 
-	        		new Bienvenida(stage, barraMenu, audioIntro,escenaEleccion);
+	        		new Bienvenida(stage, barraMenu, audioIntro, escenaReglas);
 	        Scene escenaBienvenidos = 
 	        		new Scene(contenedorBienvenidos, 640, 480);
 	        escenaBienvenidos.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
@@ -60,4 +64,3 @@ import fiuba.algo3.algoformers.factories.RocasYNubesFactory;
 	    }
 
 }
-
