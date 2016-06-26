@@ -25,8 +25,8 @@ public class BotonDescombinarEventHandler extends AccionAlgoformerEventHandler i
 			juego.jugadorActual().descombinar();
 	        new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/" +
 	            "combinar.mp3").play();
-	        contenedorPrincipal.setMensajeConsola(
-	            juego.jugadorActual().getNombre() + " se ha descombinado");
+            contenedorPrincipal.consola.setMensaje(
+                juego.jugadorActual().getNombre() + " se ha descombinado");
 	        vistaTablero.actualizar();
 	        chequearGanador(juego);
 	        contenedorPrincipal.setBotoneraEleccion();

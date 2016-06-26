@@ -29,7 +29,7 @@ public class BotonCombinarEventHandler extends AccionAlgoformerEventHandler impl
     		juego.jugadorActual().combinar();
     		new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/" +
     				"combinar.mp3").play();
-    		contenedorPrincipal.setMensajeConsola(
+    		contenedorPrincipal.consola.setMensaje(
     				juego.jugadorActual().getNombre() + " se ha combinado");
     		crearError("Atencion", "No podras realizar acciones", "La combinacion tarda dos turnos en completarse");
     		vistaTablero.actualizar();

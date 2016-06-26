@@ -29,8 +29,9 @@ public class BotonAtacarAlgoformerEventHandler extends AccionAlgoformerEventHand
 	public void handle(ActionEvent event) {
 	try{
 		jugadorAtacante.atacar(algoformerAtacado);
-		contenedorPrincipal.setMensajeConsola(jugadorAtacante.getAlgoformerElegido().getNombre() +
-													"ataco a " + algoformerAtacado.getNombre());
+        contenedorPrincipal.consola.setMensaje(
+            jugadorAtacante.getAlgoformerElegido().getNombre() + "ataco a " +
+            algoformerAtacado.getNombre());
 		AudioClip audioAtacar = new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/atacar.mp3");
 		audioAtacar.play();
 		vistaTablero.actualizar();

@@ -45,6 +45,7 @@ public class ContenedorPrincipal extends BorderPane
     HBox contenedorAbajo;
     ScrollPane scrollPane;
     Scene siguienteEscena;
+    public Consola consola;
 
     public ContenedorPrincipal(Stage stage, Scene siguienteEscena, Juego juego, BarraDeMenu barraMenu)
     {
@@ -72,61 +73,31 @@ public class ContenedorPrincipal extends BorderPane
         setMenu();
         setCentro();
         setBotoneraEleccion();
+    }
+    
+    private void inicializarContenedorAbajo()
+    {
+        consola = new Consola();
+
+        contenedorAbajo.getChildren().add(new VistaConsola(consola));
+        contenedorAbajo.getChildren().add(new HBox());
+        contenedorAbajo.getChildren().add(new HBox());
+
         setBottom(contenedorAbajo);
     }
     
-    private void inicializarContenedorAbajo(){ //Esto hace que siempre haya tres HBox en contenedorAbajo
-    											//Sirve para poder hacer contenedorAbajo.getChildren().set(1, cajaNueva)
-    	inicializarConsola();
-    	inicializarContenedor();
-    	inicializarContenedor();
-    }
-    
-    private void inicializarConsola()
-    {
-        HBox consola = new HBox(new Label(""));
-        consola.setMinSize(350, 75);
-        consola.setStyle("-fx-background-color: black;");
-
-        contenedorAbajo.getChildren().add(consola);
-    }
-    
-    private void inicializarContenedor(){
-    	HBox contenedor = new HBox();
-    	contenedorAbajo.getChildren().add(contenedor);
-    }
-
     private void setMenu()
     {
         this.setTop(barraMenu);
     }
-
-    public void setMensajeConsola(String mensaje)
-    {
-        Label etiqueta = new Label();
-        etiqueta.setText(mensaje);
-        etiqueta.setTextFill(Color.WHITE);
-
-        HBox consola = (HBox) contenedorAbajo.getChildren().get(0);
-        consola.getChildren().set(0, etiqueta);
-    }
-    
-    public void agregarMensajeConsola(String mensaje){
-    	HBox consola = (HBox) contenedorAbajo.getChildren().get(0);
-    	Label etiqueta = (Label) consola.getChildren().get(0);
-    	etiqueta.setTextFill(Color.WHITE);
-    	etiqueta.setText(etiqueta.getText() + "\n" + mensaje);
-    }
-    
-    
-
 
     public void setBotoneraEleccion()
     {
     	contenedorAbajo.getChildren().remove(2);
         Jugador jugador = juego.jugadorActual();
         ubicarseEnAlgoformer(jugador);
-    	agregarMensajeConsola(jugador.getNombre() + " debe elegir un algoformer");
+        consola.agregarMensaje(jugador.getNombre() +
+            " debe elegir un algoformer");
         List<VBox> listaBotones = new ArrayList<VBox>();
 
         for (AlgoFormer algoformer : jugador.getListaAlgoformers())
@@ -232,7 +203,8 @@ public class ContenedorPrincipal extends BorderPane
 
     public void setBotoneraAtaque()
     {
-    	agregarMensajeConsola(juego.jugadorActual().getNombre() + " elegi a quien ATACAR");
+        consola.agregarMensaje(juego.jugadorActual().getNombre() +
+            " elegi a quien ATACAR");
         List<VBox> listaBotones = new ArrayList<VBox>();
 
         for (AlgoFormer algoformer : juego.jugadorInactivo().getListaAlgoformers())

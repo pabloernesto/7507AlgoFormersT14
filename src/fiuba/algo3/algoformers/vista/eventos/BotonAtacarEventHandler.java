@@ -19,13 +19,13 @@ public class BotonAtacarEventHandler implements EventHandler<ActionEvent>{
     }
 	
 	
-	@Override
-	public void handle(ActionEvent event){
-		this.contenedorPrincipal.setMensajeConsola(jugadorAtacante.getNombre() + " va a atacar con "
-												+ jugadorAtacante.getAlgoformerElegido().getNombre());
-		contenedorPrincipal.setBotoneraAtaque();
-	}
-	
-
-
+    @Override
+    public void handle(ActionEvent event)
+    {
+        contenedorPrincipal.consola.setMensaje(jugadorAtacante.getNombre() +
+            " va a atacar con " +
+            jugadorAtacante.getAlgoformerElegido().getNombre());
+        contenedorPrincipal.setBotoneraAtaque();
+    }
 }
+
