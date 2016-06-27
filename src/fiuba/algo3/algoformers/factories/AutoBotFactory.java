@@ -49,4 +49,9 @@ public class AutoBotFactory implements AlgoFormerFactory{
 		return superion;
 	}
 	
+	@Override
+	public String getNombreFactory(){
+		return "autobot";
+	}
+	
 }
