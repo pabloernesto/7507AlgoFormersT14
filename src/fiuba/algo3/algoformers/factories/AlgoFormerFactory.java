@@ -8,4 +8,6 @@ public interface AlgoFormerFactory {
 	public List<AlgoFormer> crearEquipo();
 	
 	public AlgoFormer crearCombinado(List<AlgoFormer> integrantes);
+
+	public abstract String getNombreFactory();
 }
