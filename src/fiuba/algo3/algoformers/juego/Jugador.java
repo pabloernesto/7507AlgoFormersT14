@@ -156,5 +156,9 @@ public class Jugador
     public String getNombre(){
     	return nombre;
     }
+
+	public String getEquipo() {
+		return algoformerFactory.getNombreFactory();
+	}
 }
 
