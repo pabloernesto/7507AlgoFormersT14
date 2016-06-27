@@ -69,12 +69,12 @@ public class ContenedorPrincipal extends BorderPane
 
     public void inicializar()
     {
-    	inicializarContenedorAbajo();
+        inicializarContenedorAbajo();
         setMenu();
         setCentro();
         setBotoneraEleccion();
     }
-    
+
     private void inicializarContenedorAbajo()
     {
         consola = new Consola();
@@ -85,7 +85,7 @@ public class ContenedorPrincipal extends BorderPane
 
         setBottom(contenedorAbajo);
     }
-    
+
     private void setMenu()
     {
         this.setTop(barraMenu);
@@ -93,7 +93,7 @@ public class ContenedorPrincipal extends BorderPane
 
     public void setBotoneraEleccion()
     {
-    	contenedorAbajo.getChildren().remove(2);
+        contenedorAbajo.getChildren().remove(2);
         Jugador jugador = juego.jugadorActual();
         ubicarseEnAlgoformer(jugador);
         consola.agregarMensaje(jugador.getNombre() +
@@ -102,14 +102,14 @@ public class ContenedorPrincipal extends BorderPane
 
         for (AlgoFormer algoformer : jugador.getListaAlgoformers())
         {
-        	
-        	Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/" +
-					"imagenes/algoformers/" + algoformer.getNombre() +
-						algoformer.nombreEstadoActivo() + ".jpg");
-        	ImageView imagenView = new ImageView(imagen);
-        	imagenView.setPreserveRatio(true);
-        	imagenView.setFitHeight(30);
-        	
+
+            Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/" +
+                    "imagenes/algoformers/" + algoformer.getNombre() +
+                        algoformer.nombreEstadoActivo() + ".jpg");
+            ImageView imagenView = new ImageView(imagen);
+            imagenView.setPreserveRatio(true);
+            imagenView.setFitHeight(30);
+
             Button boton = new Button(algoformer.getNombre(), imagenView);
             boton.setMinSize(100, 50);
 
@@ -135,9 +135,9 @@ public class ContenedorPrincipal extends BorderPane
         contenedor.getChildren().addAll(listaBotones);
         contenedorAbajo.getChildren().set(1, contenedor);
     }
-    
+
     public void ubicarseEnAlgoformer(Jugador jugador){
-    	double x = calcularPosicionHorizontal(jugador);
+        double x = calcularPosicionHorizontal(jugador);
         double y = calcularPosicionVertical(jugador);
         scrollPane.setHvalue(x);
         scrollPane.setVvalue(y);
@@ -159,29 +159,29 @@ public class ContenedorPrincipal extends BorderPane
         BotonTransformarseEventHandler transformarHandler =
             new BotonTransformarseEventHandler(vistaTablero, juego, this);
         botonTransformarse.setOnAction(transformarHandler);
-        
+
         Button botonTerminarTurno = new Button("Terminar turno");
         BotonTerminarTurnoEventHandler terminarTurno = new BotonTerminarTurnoEventHandler(juego.jugadorActual(), this);
         botonTerminarTurno.setOnAction(terminarTurno);
 
         Button botonCombinarse = new Button("Combinarse");
-        
+
         Button botonDescombinarse = new Button("Descombinarse");
-        
+
         botonCombinarse.setOnAction(
                 new BotonCombinarEventHandler(vistaTablero, juego, this));
-        
+
         if (juego.jugadorActual().combinado){
-        	botonCombinarse.setDisable(true);
-        	botonTransformarse.setDisable(true);
+            botonCombinarse.setDisable(true);
+            botonTransformarse.setDisable(true);
         }
         else{
-        	botonDescombinarse.setDisable(true);
+            botonDescombinarse.setDisable(true);
         }
         BotonCombinarEventHandler combinarseHandler =
             new BotonCombinarEventHandler(vistaTablero, juego, this);
         botonCombinarse.setOnAction(combinarseHandler);
-        
+
         BotonDescombinarEventHandler descombinarseHandler =
             new BotonDescombinarEventHandler(vistaTablero, juego, this);
         botonDescombinarse.setOnAction(descombinarseHandler);
@@ -209,14 +209,14 @@ public class ContenedorPrincipal extends BorderPane
 
         for (AlgoFormer algoformer : juego.jugadorInactivo().getListaAlgoformers())
         {
-        	
-        	Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/" +
-					"imagenes/algoformers/" + algoformer.getNombre() +
-						algoformer.nombreEstadoActivo() + ".jpg");
-        	ImageView imagenView = new ImageView(imagen);
-        	imagenView.setPreserveRatio(true);
-        	imagenView.setFitHeight(30);
-        	
+
+            Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/" +
+                    "imagenes/algoformers/" + algoformer.getNombre() +
+                        algoformer.nombreEstadoActivo() + ".jpg");
+            ImageView imagenView = new ImageView(imagen);
+            imagenView.setPreserveRatio(true);
+            imagenView.setFitHeight(30);
+
             Button boton = new Button(algoformer.getNombre(), imagenView);
             boton.setMinSize(100, 50);
 
@@ -230,8 +230,8 @@ public class ContenedorPrincipal extends BorderPane
             listaBotones.add(caja);
         }
         Button botonVolver= new Button("Volver");
-        BotonVolverAElegirAccionEventHandler botonVolverHandler= 
-        		new BotonVolverAElegirAccionEventHandler(this);
+        BotonVolverAElegirAccionEventHandler botonVolverHandler=
+                new BotonVolverAElegirAccionEventHandler(this);
         botonVolver.setOnAction(botonVolverHandler);
         botonVolver.setMinSize(100, 50);
         HBox contenedor = new HBox();
@@ -244,16 +244,16 @@ public class ContenedorPrincipal extends BorderPane
         contenedorAbajo.getChildren().set(1, contenedor);
     }
 
-    
+
     private void setCentro()
     {
         vistaTablero.dibujar();
-        
+
         // ScrollPane permite ver el tablero aunque no entre en la pantalla.
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(vistaTablero);
         this.scrollPane = scrollPane;
-        
+
         this.setCenter(scrollPane);
     }
 
@@ -261,39 +261,39 @@ public class ContenedorPrincipal extends BorderPane
     {
         return barraMenu;
     }
-    
+
     public Stage getStage(){
-    	return stage;
+        return stage;
     }
-    
+
     public Scene getSiguienteEscena(){
-    	return siguienteEscena;
+        return siguienteEscena;
     }
-    
+
     private double calcularPosicionHorizontal(Jugador jugador){
-    	jugador = juego.jugadorActual();
+        jugador = juego.jugadorActual();
         Tablero tablero = Tablero.getInstance();
         Posicion posicionAlgoformer = tablero.getPosicionAlgoformer(jugador.getAlgoformerElegido());
         double x;
         if (posicionAlgoformer != null){
-        	x = posicionAlgoformer.getPosicionX();
+            x = posicionAlgoformer.getPosicionX();
         }
         else {
-        	x = tablero.ancho() / 2;
+            x = tablero.ancho() / 2;
         }
         return x / tablero.ancho();
     }
-    
+
     private double calcularPosicionVertical(Jugador jugador){
-    	jugador = juego.jugadorActual();
+        jugador = juego.jugadorActual();
         Tablero tablero = Tablero.getInstance();
         Posicion posicionAlgoformer = tablero.getPosicionAlgoformer(jugador.getAlgoformerElegido());
         double y;
         if (posicionAlgoformer != null){
-        	y = posicionAlgoformer.getPosicionY();
+            y = posicionAlgoformer.getPosicionY();
         }
         else {
-        	y = tablero.altura() / 2;
+            y = tablero.altura() / 2;
         }
         return y / tablero.altura();
     }
