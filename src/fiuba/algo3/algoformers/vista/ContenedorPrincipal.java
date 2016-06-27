@@ -248,12 +248,10 @@ public class ContenedorPrincipal extends BorderPane
 
     public void setBotoneraMover()
     {
-        GridPane matrizBotones = new GridPane();
-
         Button volver = new Button("Volver");
         volver.setOnAction(evento -> setBotoneraAcciones());
-        matrizBotones.add(volver, 4, 2);
 
+        GridPane matrizBotones = new GridPane();
         for (Movimiento movimiento : Movimiento.values())
         {
             Button boton = new Button(movimiento.flecha());
@@ -268,10 +266,11 @@ public class ContenedorPrincipal extends BorderPane
         Button terminarTurno = new Button("Terminar turno");
         terminarTurno.setOnAction(
             new BotonTerminarTurnoEventHandler(juego.jugadorActual(), this));
-        matrizBotones.add(terminarTurno, 4, 0);
 
         botonera.getChildren().clear();
         botonera.getChildren().add(matrizBotones);
+        botonera.getChildren().add(terminarTurno);
+        botonera.getChildren().add(volver);
     }
 
     private void setCentro()
