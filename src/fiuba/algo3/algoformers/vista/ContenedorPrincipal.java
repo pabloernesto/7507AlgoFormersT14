@@ -17,7 +17,6 @@ import fiuba.algo3.algoformers.vista.eventos.BotonInfoAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonMoverEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonTerminarTurnoEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonTransformarseEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.BotonVolverAElegirAccionEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -42,27 +41,18 @@ public class ContenedorPrincipal extends BorderPane
     Juego juego;
     Stage stage;
     VistaTablero vistaTablero;
-    HBox contenedorAbajo;
     ScrollPane scrollPane;
     Scene siguienteEscena;
     public Consola consola;
+    public Consola infoPanel;
+    public HBox botonera;
 
     public ContenedorPrincipal(Stage stage, Scene siguienteEscena, Juego juego, BarraDeMenu barraMenu)
     {
         this.juego = juego;
         this.stage = stage;
         this.barraMenu = barraMenu;
-        this.contenedorAbajo = new HBox();
-        this.contenedorAbajo.setSpacing(75);
         this.siguienteEscena = siguienteEscena;
-
-        contenedorAbajo.setBackground(
-            new Background(
-                new BackgroundImage(
-                    new Image("file:src/fiuba/algo3/algoformers/vista/" +
-                        "imagenes/intro/FondoGris.jpg"),
-                    BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
-                    BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 
         this.vistaTablero = new VistaTablero();
     }
@@ -78,10 +68,22 @@ public class ContenedorPrincipal extends BorderPane
     private void inicializarContenedorAbajo()
     {
         consola = new Consola();
+        infoPanel = new Consola();
+        botonera = new HBox();
+
+        HBox contenedorAbajo = new HBox();
+        contenedorAbajo.setSpacing(75);
+        contenedorAbajo.setBackground(
+            new Background(
+                new BackgroundImage(
+                    new Image("file:src/fiuba/algo3/algoformers/vista/" +
+                        "imagenes/intro/FondoGris.jpg"),
+                    BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                    BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 
         contenedorAbajo.getChildren().add(new VistaConsola(consola));
-        contenedorAbajo.getChildren().add(new HBox());
-        contenedorAbajo.getChildren().add(new HBox());
+        contenedorAbajo.getChildren().add(botonera);
+        contenedorAbajo.getChildren().add(new VistaConsola(infoPanel));
 
         setBottom(contenedorAbajo);
     }
@@ -93,19 +95,17 @@ public class ContenedorPrincipal extends BorderPane
 
     public void setBotoneraEleccion()
     {
-        contenedorAbajo.getChildren().remove(2);
         Jugador jugador = juego.jugadorActual();
         ubicarseEnAlgoformer(jugador);
         consola.agregarMensaje(jugador.getNombre() +
             " debe elegir un algoformer");
-        List<VBox> listaBotones = new ArrayList<VBox>();
 
+        List<VBox> listaBotones = new ArrayList<VBox>();
         for (AlgoFormer algoformer : jugador.getListaAlgoformers())
         {
-
             Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/" +
                     "imagenes/algoformers/" + algoformer.getNombre() +
-                        algoformer.nombreEstadoActivo() + ".jpg");
+                    algoformer.nombreEstadoActivo() + ".jpg");
             ImageView imagenView = new ImageView(imagen);
             imagenView.setPreserveRatio(true);
             imagenView.setFitHeight(30);
@@ -118,9 +118,10 @@ public class ContenedorPrincipal extends BorderPane
             botonInfo.setMinSize(50, 10);
 
             BotonInfoAlgoformerEventHandler infoHandler =
-                new BotonInfoAlgoformerEventHandler(algoformer, contenedorAbajo);
+                new BotonInfoAlgoformerEventHandler(algoformer, this);
             BotonElegirAlgoformerEventHandler elegirHandler =
-                new BotonElegirAlgoformerEventHandler(jugador, algoformer, infoHandler , this);
+                new BotonElegirAlgoformerEventHandler(jugador, algoformer,
+                infoHandler , this);
 
             botonInfo.setOnAction(infoHandler);
             boton.setOnAction(elegirHandler);
@@ -129,11 +130,9 @@ public class ContenedorPrincipal extends BorderPane
             caja.setSpacing(5);
             listaBotones.add(caja);
         }
-        HBox contenedor = new HBox();
-        contenedor.setSpacing(30);
-        contenedor.setMinHeight(75);
-        contenedor.getChildren().addAll(listaBotones);
-        contenedorAbajo.getChildren().set(1, contenedor);
+
+        botonera.getChildren().clear();
+        botonera.getChildren().addAll(listaBotones);
     }
 
     public void ubicarseEnAlgoformer(Jugador jugador){
@@ -147,7 +146,7 @@ public class ContenedorPrincipal extends BorderPane
     {
         Button botonMover = new Button("Mover");
         BotonMoverEventHandler moverHandler =
-            new BotonMoverEventHandler(vistaTablero, juego, contenedorAbajo,this);
+            new BotonMoverEventHandler(vistaTablero, juego, this);
         botonMover.setOnAction(moverHandler);
 
         Button botonAtacar = new Button("Atacar");
@@ -161,7 +160,8 @@ public class ContenedorPrincipal extends BorderPane
         botonTransformarse.setOnAction(transformarHandler);
 
         Button botonTerminarTurno = new Button("Terminar turno");
-        BotonTerminarTurnoEventHandler terminarTurno = new BotonTerminarTurnoEventHandler(juego.jugadorActual(), this);
+        BotonTerminarTurnoEventHandler terminarTurno =
+            new BotonTerminarTurnoEventHandler(juego.jugadorActual(), this);
         botonTerminarTurno.setOnAction(terminarTurno);
 
         Button botonCombinarse = new Button("Combinarse");
@@ -191,25 +191,21 @@ public class ContenedorPrincipal extends BorderPane
         botonCombinarse.setMaxSize(100, 30);
         botonTransformarse.setMaxSize(100, 30);
 
-        HBox contenedorHorizontal =
-            new HBox(botonMover, botonAtacar, botonTransformarse,
-                botonCombinarse, botonDescombinarse, botonTerminarTurno);
-        contenedorHorizontal.setSpacing(30);
-        contenedorHorizontal.setAlignment(Pos.CENTER);
-        contenedorHorizontal.setMinHeight(75);
-
-        contenedorAbajo.getChildren().set(1, contenedorHorizontal);
+        botonera.getChildren().clear();
+        botonera.getChildren().addAll(botonMover, botonAtacar,
+            botonTransformarse, botonCombinarse, botonDescombinarse,
+            botonTerminarTurno);
     }
 
     public void setBotoneraAtaque()
     {
         consola.agregarMensaje(juego.jugadorActual().getNombre() +
             " elegi a quien ATACAR");
-        List<VBox> listaBotones = new ArrayList<VBox>();
 
-        for (AlgoFormer algoformer : juego.jugadorInactivo().getListaAlgoformers())
+        botonera.getChildren().clear();
+        for (AlgoFormer algoformer :
+            juego.jugadorInactivo().getListaAlgoformers())
         {
-
             Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/" +
                     "imagenes/algoformers/" + algoformer.getNombre() +
                         algoformer.nombreEstadoActivo() + ".jpg");
@@ -221,27 +217,18 @@ public class ContenedorPrincipal extends BorderPane
             boton.setMinSize(100, 50);
 
             BotonAtacarAlgoformerEventHandler elegirHandler =
-                new BotonAtacarAlgoformerEventHandler(juego, algoformer, vistaTablero, this);
+                new BotonAtacarAlgoformerEventHandler(juego, algoformer,
+                    vistaTablero, this);
 
             boton.setOnAction(elegirHandler);
 
-            VBox caja = new VBox(boton);
-            caja.setSpacing(5);
-            listaBotones.add(caja);
+            botonera.getChildren().add(boton);
         }
-        Button botonVolver= new Button("Volver");
-        BotonVolverAElegirAccionEventHandler botonVolverHandler=
-                new BotonVolverAElegirAccionEventHandler(this);
-        botonVolver.setOnAction(botonVolverHandler);
+
+        Button botonVolver = new Button("Volver");
+        botonVolver.setOnAction(evento -> setBotoneraEleccion());
         botonVolver.setMinSize(100, 50);
-        HBox contenedor = new HBox();
-        contenedor.setSpacing(30);
-        contenedor.setMinHeight(75);
-        VBox caja = new VBox(botonVolver);
-        caja.setSpacing(5);
-        listaBotones.add(caja);
-        contenedor.getChildren().addAll(listaBotones);
-        contenedorAbajo.getChildren().set(1, contenedor);
+        botonera.getChildren().add(botonVolver);
     }
 
 

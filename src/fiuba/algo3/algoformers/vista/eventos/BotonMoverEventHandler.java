@@ -16,38 +16,33 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class BotonMoverEventHandler implements EventHandler<ActionEvent>{
-
+public class BotonMoverEventHandler implements EventHandler<ActionEvent>
+{
     private VistaTablero vistaTablero;
     private Juego juego;
-    private HBox contenedor;
     private ContenedorPrincipal contenedorPrincipal;
 
-    public BotonMoverEventHandler(VistaTablero vistaTablero, Juego juego, HBox contenedor, ContenedorPrincipal contenedorPrincipal){
+    public BotonMoverEventHandler(VistaTablero vistaTablero, Juego juego,
+        ContenedorPrincipal contenedorPrincipal)
+    {
         this.vistaTablero = vistaTablero;
         this.juego = juego;
-        this.contenedor = contenedor;
         this.contenedorPrincipal = contenedorPrincipal;
     }
 
-    public void handle(ActionEvent event) {
-        HBox botonesDireccion = new HBox();
+    public void handle(ActionEvent event)
+    {
         GridPane matrizBotones = new GridPane();
 
         Button volver = new Button("Volver");
-        BotonVolverAElegirAccionEventHandler volverHandler = new BotonVolverAElegirAccionEventHandler(contenedorPrincipal);
-        volver.setOnAction(volverHandler);
-
-        AlgoFormer algoformerElegido = juego.jugadorActual().getAlgoformerElegido();
-        Label etiqueta = new Label("Movimientos restantes: " + String.valueOf(algoformerElegido.getMovimientosRestantes()));
-        etiqueta.setFont(Font.font("", FontWeight.BOLD, 16));
-        etiqueta.setTextFill(Color.GREEN);
-
+        volver.setOnAction(evento -> contenedorPrincipal.setBotoneraAcciones());
+        matrizBotones.add(volver, 4, 2);
+        
         for (Movimiento movimiento : Movimiento.values())
         {
             Button boton = new Button(movimiento.flecha());
             boton.setOnAction(new MovimientoHandler(movimiento, vistaTablero,
-                juego, etiqueta, volver, contenedorPrincipal));
+                juego, volver, contenedorPrincipal));
 
             int posicionHorizontal = movimiento.getMovimientoEnX() + 1;
             int posicionVertical = movimiento.getMovimientoEnY() + 1;
@@ -55,19 +50,13 @@ public class BotonMoverEventHandler implements EventHandler<ActionEvent>{
         }
 
         Button terminarTurno = new Button("Terminar turno");
-        BotonTerminarTurnoEventHandler terminarTurnoHandler = new BotonTerminarTurnoEventHandler(juego.jugadorActual(), contenedorPrincipal);
-        terminarTurno.setOnAction(terminarTurnoHandler);
-
+        terminarTurno.setOnAction(
+            new BotonTerminarTurnoEventHandler(juego.jugadorActual(),
+                contenedorPrincipal));
         matrizBotones.add(terminarTurno, 4, 0);
-        matrizBotones.add(volver, 4, 2);
 
-
-        HBox contenedorMovimientos = new HBox(etiqueta);
-        contenedor.getChildren().set(2, contenedorMovimientos);
-        botonesDireccion.getChildren().addAll(matrizBotones);
-        contenedor.getChildren().set(1, botonesDireccion);
+        contenedorPrincipal.botonera.getChildren().clear();
+        contenedorPrincipal.botonera.getChildren().add(matrizBotones);
     }
-
-
-
 }
+
