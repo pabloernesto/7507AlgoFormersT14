@@ -24,13 +24,14 @@ public class ContenedorBienvenida extends VBox
     Stage stage;
 	private Button botonSilenciar;
 	private Button botonReproducir;
+	private BarraDeMenu barraDeMenu;
     
     
     public ContenedorBienvenida(Stage stage, BarraDeMenu barraMenu, AudioClip musica, Scene proximaEscena)
     {
         super();
         this.stage = stage;
-        
+        this.barraDeMenu = barraMenu;
         this.setAlignment(Pos.BOTTOM_LEFT);
         this.setSpacing(50);
         
@@ -113,6 +114,7 @@ public class ContenedorBienvenida extends VBox
 	public void musicaEstaReproduciendo(boolean estaReproduciendo) {
 		this.botonSilenciar.setDisable(!estaReproduciendo);
 		this.botonReproducir.setDisable(estaReproduciendo);
+		barraDeMenu.reproduciendoMusica(estaReproduciendo);
 	}
 	
 }
