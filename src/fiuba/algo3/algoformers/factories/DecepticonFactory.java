@@ -49,5 +49,9 @@ public class DecepticonFactory implements AlgoFormerFactory {
 		return menasor;
 	}
 	
+	public String getNombreFactory(){
+		return "decepticon";
+	}
+	
 	
 }
