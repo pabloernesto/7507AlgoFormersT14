@@ -4,21 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.escenario.Posicion;
 import fiuba.algo3.algoformers.escenario.Movimiento;
+import fiuba.algo3.algoformers.escenario.Posicion;
 import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
-import fiuba.algo3.algoformers.vista.eventos.BotonAtacarAlgoformerEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.BotonAtacarEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.BotonCombinarEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.BotonDescombinarEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.BotonElegirAlgoformerEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.BotonInfoAlgoformerEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.MovimientoHandler;
-import fiuba.algo3.algoformers.vista.eventos.BotonTerminarTurnoEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.BotonTransformarseEventHandler;
-import javafx.geometry.Pos;
+import fiuba.algo3.algoformers.vista.eventos.*;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -31,7 +23,6 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -46,7 +37,8 @@ public class ContenedorPrincipal extends BorderPane
     Scene siguienteEscena;
     public Consola consola;
     public Consola infoPanel;
-    public Pane botonera;
+    public VBox botonera;
+    public VBox imagenEquipoActual;
 
     public ContenedorPrincipal(Stage stage, Scene siguienteEscena, Juego juego, BarraDeMenu barraMenu)
     {
@@ -54,10 +46,10 @@ public class ContenedorPrincipal extends BorderPane
         this.stage = stage;
         this.barraMenu = barraMenu;
         this.siguienteEscena = siguienteEscena;
-        consola = new Consola();
-        infoPanel = new Consola();
-        botonera = new VBox();
-
+        this.consola = new Consola();
+        this.infoPanel = new Consola();
+        this.botonera = new VBox();
+        this.imagenEquipoActual= new VBox();
         this.vistaTablero = new VistaTablero();
     }
 
@@ -68,6 +60,7 @@ public class ContenedorPrincipal extends BorderPane
         setMenu();
         setCentro();
         setBotoneraEleccion();
+        setImagenEquipo();
     }
 
     private void inicializarContenedorAbajo()
@@ -90,8 +83,8 @@ public class ContenedorPrincipal extends BorderPane
 
     private void inicializarContenedorIzquierdo()
     {
-        HBox contenedor = new HBox();
-        contenedor.setSpacing(75);
+        VBox contenedor = new VBox();
+        contenedor.setPadding(new Insets(30));
         contenedor.setBackground(
             new Background(
                 new BackgroundImage(
@@ -101,7 +94,7 @@ public class ContenedorPrincipal extends BorderPane
                     BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 
         contenedor.getChildren().add(botonera);
-
+        contenedor.getChildren().add(imagenEquipoActual);
         setLeft(contenedor);
     }
 
@@ -147,9 +140,18 @@ public class ContenedorPrincipal extends BorderPane
             caja.setSpacing(5);
             listaBotones.add(caja);
         }
-
+        botonera.setSpacing(20);
         botonera.getChildren().clear();
         botonera.getChildren().addAll(listaBotones);
+    }
+    
+    public void setImagenEquipo(){
+    	String equipo = juego.jugadorActual().getEquipo();
+    	Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/algoformers/"+equipo+".jpg");
+        ImageView imagenView = new ImageView(imagen);
+    	imagenEquipoActual.getChildren().clear();
+    	imagenEquipoActual.setPadding(new Insets(30,0,0,0));
+    	imagenEquipoActual.getChildren().addAll(imagenView);
     }
 
     public void ubicarseEnAlgoformer(Jugador jugador){
