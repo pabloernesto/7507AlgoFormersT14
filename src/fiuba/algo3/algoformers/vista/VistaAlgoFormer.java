@@ -30,6 +30,17 @@ public class VistaAlgoFormer
         return vista;
     }
 
+    public String estadisticas()
+    {
+        String info = "Vida: " + algoformer.getVida() + "\n";
+        info += "Ataque: " + algoformer.getAtaque() + "\n";
+        info += "Distancia ataque: " + algoformer.getDistAtaque() + "\n";
+        info += "Movimientos restantes: " +
+            algoformer.getMovimientosRestantes();
+
+        return info;
+    }
+
     private Image imagen(String nombreImagen)
     {
         if (!imagenes.keySet().contains(nombreImagen))
