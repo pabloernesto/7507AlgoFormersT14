@@ -22,7 +22,10 @@ import javafx.stage.Stage;
 public class ContenedorBienvenida extends VBox
 {
     Stage stage;
-
+	private Button botonSilenciar;
+	private Button botonReproducir;
+    
+    
     public ContenedorBienvenida(Stage stage, BarraDeMenu barraMenu, AudioClip musica, Scene proximaEscena)
     {
         super();
@@ -74,6 +77,7 @@ public class ContenedorBienvenida extends VBox
         botonSilenciar.setStyle("-fx-base: #1234");
         botonSilenciar.defaultButtonProperty().bind(botonSilenciar.focusedProperty());
         botonSilenciar.setMinSize(180, 40);
+        this.botonSilenciar =botonSilenciar;
         
         Button botonReproducir = new Button();
         botonReproducir.setText("Reproducir musica");
@@ -81,6 +85,8 @@ public class ContenedorBienvenida extends VBox
         botonReproducir.setStyle("-fx-base: #1234");
         botonReproducir.defaultButtonProperty().bind(botonReproducir.focusedProperty());
         botonReproducir.setMinSize(180, 40);
+        botonReproducir.setDisable(true);
+        this.botonReproducir=botonReproducir;
         
         BotonEntrarEventHandler botonEntrarHandler =
             new BotonEntrarEventHandler(stage, proximaEscena);
@@ -93,15 +99,21 @@ public class ContenedorBienvenida extends VBox
         BotonSalirEventHandler botonSalirHandler = new BotonSalirEventHandler();
         botonSalir.setOnAction(botonSalirHandler);
         
-        OpcionSilenciarHandler botonSilenciarHandler = new OpcionSilenciarHandler(barraMenu, musica);
+        BotonSilenciarHandler botonSilenciarHandler = new BotonSilenciarHandler(musica,this);
         botonSilenciar.setOnAction(botonSilenciarHandler);
         
-        OpcionReproducirHandler botonReproducirHandler = new OpcionReproducirHandler(barraMenu, musica);
+        BotonReproducirHandler botonReproducirHandler = new BotonReproducirHandler(musica,this);
         botonReproducir.setOnAction(botonReproducirHandler);
         
         this.getChildren().addAll(etiqueta,botonEntrar, botonSilenciar,botonReproducir, botonReglas, botonSalir);
         this.setPadding(new Insets(30));
         this.setSpacing(20);
     }
+
+	public void musicaEstaReproduciendo(boolean estaReproduciendo) {
+		this.botonSilenciar.setDisable(!estaReproduciendo);
+		this.botonReproducir.setDisable(estaReproduciendo);
+	}
+	
 }
 
