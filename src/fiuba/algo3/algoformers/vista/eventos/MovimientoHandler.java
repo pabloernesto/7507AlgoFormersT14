@@ -1,6 +1,7 @@
 package fiuba.algo3.algoformers.vista.eventos;
 
 import fiuba.algo3.algoformers.vista.ContenedorPrincipal;
+import fiuba.algo3.algoformers.vista.VistaAlgoFormer;
 import fiuba.algo3.algoformers.vista.VistaTablero;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
@@ -45,7 +46,12 @@ public class MovimientoHandler
             	movRestantes = 0;
             new AudioClip("file:src/fiuba/algo3/algoformers/sonidos/" +
                 "mover.mp3").play();
+
             vistaTablero.actualizar();
+            contenedorPrincipal.infoPanel.setMensaje(
+                new VistaAlgoFormer(
+                    juego.jugadorActual().getAlgoformerElegido()
+                ).estadisticas());
             chequearGanador(juego);
     	}
 
