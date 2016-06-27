@@ -75,6 +75,13 @@ public class ContenedorBienvenida extends VBox
         botonSilenciar.defaultButtonProperty().bind(botonSilenciar.focusedProperty());
         botonSilenciar.setMinSize(180, 40);
         
+        Button botonReproducir = new Button();
+        botonReproducir.setText("Reproducir musica");
+        botonReproducir.setFont(Font.font("", 16));
+        botonReproducir.setStyle("-fx-base: #1234");
+        botonReproducir.defaultButtonProperty().bind(botonReproducir.focusedProperty());
+        botonReproducir.setMinSize(180, 40);
+        
         BotonEntrarEventHandler botonEntrarHandler =
             new BotonEntrarEventHandler(stage, proximaEscena);
         botonEntrar.setOnAction(botonEntrarHandler);
@@ -89,7 +96,10 @@ public class ContenedorBienvenida extends VBox
         OpcionSilenciarHandler botonSilenciarHandler = new OpcionSilenciarHandler(barraMenu, musica);
         botonSilenciar.setOnAction(botonSilenciarHandler);
         
-        this.getChildren().addAll(etiqueta,botonEntrar, botonSilenciar,botonReglas, botonSalir);
+        OpcionReproducirHandler botonReproducirHandler = new OpcionReproducirHandler(barraMenu, musica);
+        botonReproducir.setOnAction(botonReproducirHandler);
+        
+        this.getChildren().addAll(etiqueta,botonEntrar, botonSilenciar,botonReproducir, botonReglas, botonSalir);
         this.setPadding(new Insets(30));
         this.setSpacing(20);
     }
