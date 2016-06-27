@@ -27,7 +27,8 @@ public class VistaDeCelda extends StackPane
         setBackground(tierra + "-" + aire);
 
         if (celda.estaOcupada())
-            this.getChildren().add(new VistaAlgoFormer(celda.getAlgoformer()));
+            this.getChildren().add(
+                new VistaAlgoFormer(celda.getAlgoformer()).imageView());
         
         if (celda.contieneChispaSuprema())
             this.getChildren().add(new VistaBonus(new ChispaSuprema()));
