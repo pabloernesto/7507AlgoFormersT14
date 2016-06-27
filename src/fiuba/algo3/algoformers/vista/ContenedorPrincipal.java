@@ -39,6 +39,8 @@ public class ContenedorPrincipal extends BorderPane
     public Consola infoPanel;
     public VBox botonera;
     public VBox imagenEquipoActual;
+    private int posicionPorDefectoAlto=0;
+    private int posicionPorDefectoAncho=0;
 
     public ContenedorPrincipal(Stage stage, Scene siguienteEscena, Juego juego, BarraDeMenu barraMenu)
     {
@@ -51,6 +53,8 @@ public class ContenedorPrincipal extends BorderPane
         this.botonera = new VBox();
         this.imagenEquipoActual= new VBox();
         this.vistaTablero = new VistaTablero();
+        Tablero tablero=Tablero.getInstance();
+        posicionPorDefectoAlto=tablero.altura()/2;
     }
 
     public void inicializar()
@@ -309,7 +313,8 @@ public class ContenedorPrincipal extends BorderPane
             x = posicionAlgoformer.getPosicionX();
         }
         else {
-            x = tablero.ancho() / 2;
+            x = posicionPorDefectoAncho;
+            posicionPorDefectoAncho=tablero.ancho();
         }
         return x / tablero.ancho();
     }
@@ -323,7 +328,7 @@ public class ContenedorPrincipal extends BorderPane
             y = posicionAlgoformer.getPosicionY();
         }
         else {
-            y = tablero.altura() / 2;
+            y = posicionPorDefectoAlto;
         }
         return y / tablero.altura();
     }
