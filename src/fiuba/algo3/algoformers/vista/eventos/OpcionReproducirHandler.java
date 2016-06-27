@@ -17,7 +17,9 @@ public class OpcionReproducirHandler implements EventHandler<ActionEvent>{
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        musica.play();
-        barraMenu.reproduciendoMusica(true);
+    	if(!musica.isPlaying()){
+    		musica.play();
+    		barraMenu.reproduciendoMusica(true);
+    	}
     }
 }
