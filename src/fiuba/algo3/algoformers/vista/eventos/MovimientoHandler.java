@@ -14,7 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.media.AudioClip;
 
-class MovimientoHandler
+public class MovimientoHandler
     extends AccionAlgoformerEventHandler
     implements EventHandler<ActionEvent>
 {

@@ -5,6 +5,7 @@ import java.util.List;
 
 import fiuba.algo3.algoformers.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.escenario.Posicion;
+import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.escenario.Tablero;
 import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
@@ -14,13 +15,12 @@ import fiuba.algo3.algoformers.vista.eventos.BotonCombinarEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonDescombinarEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonElegirAlgoformerEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonInfoAlgoformerEventHandler;
-import fiuba.algo3.algoformers.vista.eventos.BotonMoverEventHandler;
+import fiuba.algo3.algoformers.vista.eventos.MovimientoHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonTerminarTurnoEventHandler;
 import fiuba.algo3.algoformers.vista.eventos.BotonTransformarseEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,9 +30,9 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class ContenedorPrincipal extends BorderPane
@@ -145,9 +145,7 @@ public class ContenedorPrincipal extends BorderPane
     public void setBotoneraAcciones()
     {
         Button botonMover = new Button("Mover");
-        BotonMoverEventHandler moverHandler =
-            new BotonMoverEventHandler(vistaTablero, juego, this);
-        botonMover.setOnAction(moverHandler);
+        botonMover.setOnAction(evento -> setBotoneraMover());
 
         Button botonAtacar = new Button("Atacar");
         BotonAtacarEventHandler atacarHandler =
@@ -231,6 +229,33 @@ public class ContenedorPrincipal extends BorderPane
         botonera.getChildren().add(botonVolver);
     }
 
+    public void setBotoneraMover()
+    {
+        GridPane matrizBotones = new GridPane();
+
+        Button volver = new Button("Volver");
+        volver.setOnAction(evento -> setBotoneraAcciones());
+        matrizBotones.add(volver, 4, 2);
+
+        for (Movimiento movimiento : Movimiento.values())
+        {
+            Button boton = new Button(movimiento.flecha());
+            boton.setOnAction(new MovimientoHandler(movimiento, vistaTablero,
+                juego, volver, this));
+
+            int posicionHorizontal = movimiento.getMovimientoEnX() + 1;
+            int posicionVertical = movimiento.getMovimientoEnY() + 1;
+            matrizBotones.add(boton, posicionHorizontal, posicionVertical);
+        }
+
+        Button terminarTurno = new Button("Terminar turno");
+        terminarTurno.setOnAction(
+            new BotonTerminarTurnoEventHandler(juego.jugadorActual(), this));
+        matrizBotones.add(terminarTurno, 4, 0);
+
+        botonera.getChildren().clear();
+        botonera.getChildren().add(matrizBotones);
+    }
 
     private void setCentro()
     {
