@@ -31,6 +31,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -45,7 +46,7 @@ public class ContenedorPrincipal extends BorderPane
     Scene siguienteEscena;
     public Consola consola;
     public Consola infoPanel;
-    public HBox botonera;
+    public Pane botonera;
 
     public ContenedorPrincipal(Stage stage, Scene siguienteEscena, Juego juego, BarraDeMenu barraMenu)
     {
@@ -53,6 +54,9 @@ public class ContenedorPrincipal extends BorderPane
         this.stage = stage;
         this.barraMenu = barraMenu;
         this.siguienteEscena = siguienteEscena;
+        consola = new Consola();
+        infoPanel = new Consola();
+        botonera = new VBox();
 
         this.vistaTablero = new VistaTablero();
     }
@@ -60,6 +64,7 @@ public class ContenedorPrincipal extends BorderPane
     public void inicializar()
     {
         inicializarContenedorAbajo();
+        inicializarContenedorIzquierdo();
         setMenu();
         setCentro();
         setBotoneraEleccion();
@@ -67,10 +72,6 @@ public class ContenedorPrincipal extends BorderPane
 
     private void inicializarContenedorAbajo()
     {
-        consola = new Consola();
-        infoPanel = new Consola();
-        botonera = new HBox();
-
         HBox contenedorAbajo = new HBox();
         contenedorAbajo.setSpacing(75);
         contenedorAbajo.setBackground(
@@ -81,11 +82,27 @@ public class ContenedorPrincipal extends BorderPane
                     BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                     BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 
-        contenedorAbajo.getChildren().add(new VistaConsola(consola));
-        contenedorAbajo.getChildren().add(botonera);
         contenedorAbajo.getChildren().add(new VistaConsola(infoPanel));
+        contenedorAbajo.getChildren().add(new VistaConsola(consola));
 
         setBottom(contenedorAbajo);
+    }
+
+    private void inicializarContenedorIzquierdo()
+    {
+        HBox contenedor = new HBox();
+        contenedor.setSpacing(75);
+        contenedor.setBackground(
+            new Background(
+                new BackgroundImage(
+                    new Image("file:src/fiuba/algo3/algoformers/vista/" +
+                        "imagenes/intro/FondoGris.jpg"),
+                    BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                    BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+
+        contenedor.getChildren().add(botonera);
+
+        setLeft(contenedor);
     }
 
     private void setMenu()
