@@ -260,7 +260,12 @@ public class ContenedorPrincipal extends BorderPane
         GridPane matrizBotones = new GridPane();
         for (Movimiento movimiento : Movimiento.values())
         {
-            Button boton = new Button(movimiento.flecha());
+        	Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/" +
+                    "imagenes/escenario/" + movimiento.flecha() +
+                     ".jpg");
+            ImageView imagenView = new ImageView(imagen);
+            Button boton = new Button();
+            boton.setGraphic(imagenView);
             boton.setOnAction(new MovimientoHandler(movimiento, vistaTablero,
                 juego, volver, this));
 
@@ -272,7 +277,6 @@ public class ContenedorPrincipal extends BorderPane
         Button terminarTurno = new Button("Terminar turno");
         terminarTurno.setOnAction(
             new BotonTerminarTurnoEventHandler(juego.jugadorActual(), this));
-
         botonera.getChildren().clear();
         botonera.getChildren().add(matrizBotones);
         botonera.getChildren().add(terminarTurno);
