@@ -34,6 +34,7 @@ public class BotonCombinarEventHandler extends AccionAlgoformerEventHandler impl
     		crearError("Atencion", "No podras realizar acciones", "La combinacion tarda dos turnos en completarse");
     		vistaTablero.actualizar();
     		contenedorPrincipal.setBotoneraEleccion();
+    		contenedorPrincipal.setImagenEquipo();
     		}
     	catch (EquipoIncompletoException e){
     		crearError("ERROR", "Los algoformers no se pueden combinar", "Todos los algoformers deben estar vivos para poder combinarse");
