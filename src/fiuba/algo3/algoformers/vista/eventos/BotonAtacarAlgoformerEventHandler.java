@@ -37,6 +37,7 @@ public class BotonAtacarAlgoformerEventHandler extends AccionAlgoformerEventHand
 		vistaTablero.actualizar();
 		chequearGanador(juego);
 		contenedorPrincipal.setBotoneraEleccion();
+		contenedorPrincipal.setImagenEquipo();
 	}
 	
 	catch (FueraDeAlcanceException exception){
