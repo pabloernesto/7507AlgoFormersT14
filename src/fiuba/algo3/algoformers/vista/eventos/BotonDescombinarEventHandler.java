@@ -31,6 +31,7 @@ public class BotonDescombinarEventHandler extends AccionAlgoformerEventHandler i
 	        chequearGanador(juego);
 	        contenedorPrincipal.setBotoneraEleccion();
 	        contenedorPrincipal.setImagenEquipo();
+	        contenedorPrincipal.setImagenAlgoformersJugadorActual();
 		}
 		catch (SinLugarParaDescombinarseException e){
 			crearError("ERROR", "No se puede descombinar", "No hay suficiente lugar para descombinarse");

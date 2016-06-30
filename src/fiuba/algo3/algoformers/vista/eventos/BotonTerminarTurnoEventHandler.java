@@ -19,5 +19,6 @@ public class BotonTerminarTurnoEventHandler implements EventHandler<ActionEvent>
 		jugador.terminarTurno();
 		contenedorPrincipal.setBotoneraEleccion();
 		contenedorPrincipal.setImagenEquipo();
+		contenedorPrincipal.setImagenAlgoformersJugadorActual();
 	}
 }

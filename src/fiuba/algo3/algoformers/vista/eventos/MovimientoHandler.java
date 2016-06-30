@@ -48,10 +48,10 @@ public class MovimientoHandler
                 "mover.mp3").play();
 
             vistaTablero.actualizar();
-            contenedorPrincipal.infoPanel.setMensaje(
-                new VistaAlgoFormer(
-                    juego.jugadorActual().getAlgoformerElegido()
-                ).estadisticas());
+            contenedorPrincipal.consola.setMensaje(
+                    "Moviste a: "+juego.jugadorActual().getAlgoformerElegido().getNombre()+"\nTe quedan "
+                    +juego.jugadorActual().getAlgoformerElegido().getMovimientosRestantes()+" movimientos restantes"
+                );
             chequearGanador(juego);
     	}
 

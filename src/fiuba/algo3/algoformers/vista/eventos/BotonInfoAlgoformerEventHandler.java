@@ -14,7 +14,8 @@ public class BotonInfoAlgoformerEventHandler
 {
     private VistaAlgoFormer vistaAlgoFormer;
     private ContenedorPrincipal contenedor;
-
+    private AlgoFormer algoformer;
+    
     public BotonInfoAlgoformerEventHandler(AlgoFormer algoformer,
         ContenedorPrincipal contenedor)
     {
@@ -24,7 +25,7 @@ public class BotonInfoAlgoformerEventHandler
 
     public void handle(ActionEvent event)
     {
-        contenedor.infoPanel.setMensaje(vistaAlgoFormer.estadisticas());
+        contenedor.consola.setMensaje(vistaAlgoFormer.estadisticas());
     }
 }
 

@@ -11,8 +11,11 @@ import fiuba.algo3.algoformers.juego.Juego;
 import fiuba.algo3.algoformers.juego.Jugador;
 import fiuba.algo3.algoformers.vista.eventos.*;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,9 +25,15 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class ContenedorPrincipal extends BorderPane
@@ -36,11 +45,11 @@ public class ContenedorPrincipal extends BorderPane
     ScrollPane scrollPane;
     Scene siguienteEscena;
     public Consola consola;
-    public Consola infoPanel;
-    public VBox botonera;
+    public HBox botonera;
     public VBox imagenEquipoActual;
     private int posicionPorDefectoAlto=0;
     private int posicionPorDefectoAncho=0;
+	public VBox imagenAlgoformersJugadorActual;
 
     public ContenedorPrincipal(Stage stage, Scene siguienteEscena, Juego juego, BarraDeMenu barraMenu)
     {
@@ -49,57 +58,75 @@ public class ContenedorPrincipal extends BorderPane
         this.barraMenu = barraMenu;
         this.siguienteEscena = siguienteEscena;
         this.consola = new Consola();
-        this.infoPanel = new Consola();
-        this.botonera = new VBox();
+        this.botonera = new HBox();
         this.imagenEquipoActual= new VBox();
         this.vistaTablero = new VistaTablero();
+        this.imagenAlgoformersJugadorActual= new VBox();
         Tablero tablero=Tablero.getInstance();
         posicionPorDefectoAlto=tablero.altura()/2;
     }
 
     public void inicializar()
     {
-        inicializarContenedorAbajo();
+        inicializarContenedorDerecha();
         inicializarContenedorIzquierdo();
+        inicializarContenedorAbajo();
         setMenu();
         setCentro();
         setBotoneraEleccion();
         setImagenEquipo();
+        setImagenAlgoformersJugadorActual();
     }
 
-    private void inicializarContenedorAbajo()
+    private void inicializarContenedorDerecha()
     {
-        HBox contenedorAbajo = new HBox();
-        contenedorAbajo.setSpacing(75);
-        contenedorAbajo.setBackground(
-            new Background(
-                new BackgroundImage(
-                    new Image("file:src/fiuba/algo3/algoformers/vista/" +
-                        "imagenes/intro/FondoGris.jpg"),
-                    BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
-                    BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
-
-        contenedorAbajo.getChildren().add(new VistaConsola(infoPanel));
-        contenedorAbajo.getChildren().add(new VistaConsola(consola));
-
-        setBottom(contenedorAbajo);
+        VBox contenedorDerecha = new VBox();
+        contenedorDerecha.setSpacing(15);
+        contenedorDerecha.setBackground(
+                new Background(
+                        new BackgroundImage(
+                            new Image("file:src/fiuba/algo3/algoformers/vista/" +
+                                "imagenes/intro/FondoDerecha.jpg"),
+                            BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                            BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+        contenedorDerecha.getChildren().add(imagenAlgoformersJugadorActual);
+        setRight(contenedorDerecha);
     }
 
     private void inicializarContenedorIzquierdo()
     {
         VBox contenedor = new VBox();
-        contenedor.setPadding(new Insets(30));
-        contenedor.setBackground(
-            new Background(
-                new BackgroundImage(
-                    new Image("file:src/fiuba/algo3/algoformers/vista/" +
-                        "imagenes/intro/FondoGris.jpg"),
-                    BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
-                    BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
-
-        contenedor.getChildren().add(botonera);
+        contenedor.setPadding(new Insets(10));
         contenedor.getChildren().add(imagenEquipoActual);
+       	contenedor.setBackground(
+                new Background(
+                        new BackgroundImage(
+                            new Image("file:src/fiuba/algo3/algoformers/vista/" +
+                                "imagenes/intro/FondoJuegoIzquierda.jpg",this.getPrefWidth(),this.getPrefHeight(),true,true),
+                            BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                            BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+       	VistaConsola vistaConsola = new VistaConsola(consola);
+       	vistaConsola.setAlignment(Pos.TOP_LEFT);
+       	vistaConsola.setMinSize(100, 200);
+       	contenedor.getChildren().add(vistaConsola);
         setLeft(contenedor);
+    }
+    
+
+    private void inicializarContenedorAbajo(){
+    	HBox contenedor = new HBox();
+    	contenedor.setPadding(new Insets(20,0,20,0));
+        contenedor.setBackground(
+                new Background(
+                        new BackgroundImage(
+                            new Image("file:src/fiuba/algo3/algoformers/vista/" +
+                                "imagenes/intro/FondoNegro.jpg"),
+                            BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                            BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+        contenedor.setPrefHeight(100);
+        contenedor.getChildren().add(botonera);
+        contenedor.setAlignment(Pos.CENTER);
+        setBottom(contenedor);
     }
 
     private void setMenu()
@@ -114,7 +141,7 @@ public class ContenedorPrincipal extends BorderPane
         consola.agregarMensaje(jugador.getNombre() +
             " debe elegir un algoformer");
 
-        List<VBox> listaBotones = new ArrayList<VBox>();
+        List<HBox> listaBotones = new ArrayList<HBox>();
         for (AlgoFormer algoformer : jugador.getListaAlgoformers())
         {
             Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/" +
@@ -126,21 +153,16 @@ public class ContenedorPrincipal extends BorderPane
 
             Button boton = new Button(algoformer.getNombre(), imagenView);
             boton.setMinSize(100, 50);
-
-            Button botonInfo = new Button();
-            botonInfo.setText("Info");
-            botonInfo.setMinSize(50, 10);
-
+            boton.setStyle("-fx-base: #1234");
             BotonInfoAlgoformerEventHandler infoHandler =
                 new BotonInfoAlgoformerEventHandler(algoformer, this);
             BotonElegirAlgoformerEventHandler elegirHandler =
                 new BotonElegirAlgoformerEventHandler(jugador, algoformer,
                 infoHandler , this);
 
-            botonInfo.setOnAction(infoHandler);
             boton.setOnAction(elegirHandler);
 
-            VBox caja = new VBox(boton, botonInfo);
+            HBox caja = new HBox(boton);
             caja.setSpacing(5);
             listaBotones.add(caja);
         }
@@ -153,11 +175,45 @@ public class ContenedorPrincipal extends BorderPane
     	String equipo = juego.jugadorActual().getEquipo();
     	Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/imagenes/algoformers/"+equipo+".jpg");
         ImageView imagenView = new ImageView(imagen);
+        imagenView.setStyle("-fx-background-color:#1234");
     	imagenEquipoActual.getChildren().clear();
-    	imagenEquipoActual.setPadding(new Insets(30,0,0,0));
+    	imagenEquipoActual.setPadding(new Insets(20));
     	imagenEquipoActual.getChildren().addAll(imagenView);
+    	imagenEquipoActual.setAlignment(Pos.CENTER);
     }
 
+    public void setImagenAlgoformersJugadorActual(){
+    	imagenAlgoformersJugadorActual.getChildren().clear();
+    	Jugador jugador = juego.jugadorActual();
+    	List<HBox> listaBotones = new ArrayList<HBox>();
+        for (AlgoFormer algoformer : jugador.getListaAlgoformers())
+        {
+            Image imagen = new Image("file:src/fiuba/algo3/algoformers/vista/" +
+                    "imagenes/algoformers/" + algoformer.getNombre() + 
+                    "humanoide.jpg");
+            ImageView imagenView = new ImageView(imagen);
+            imagenView.setPreserveRatio(true);
+            imagenView.setFitHeight(30);
+            String info ="Algoformer:"+ algoformer.getNombre()+ "\n"; 
+            info +="Vida: " + algoformer.getVida() + "\n";
+            info += "Ataque: " + algoformer.getAtaque() + "\n";
+            info += "Distancia ataque: " + algoformer.getDistAtaque() + "\n";
+            info += "Velocidad: " +
+                algoformer.getMovimientosRestantes();
+            Label etiqueta =new Label(info);
+            etiqueta.setTextFill(Color.web("white"));
+            etiqueta.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
+            HBox hbox = new HBox();
+            hbox.getChildren().add(imagenView);
+            hbox.getChildren().add(etiqueta);
+            hbox.setPadding(new Insets(10));
+            hbox.setStyle("-fx-background-color:#1234");
+            listaBotones.add(hbox);
+        }
+        imagenAlgoformersJugadorActual.getChildren().addAll(listaBotones);
+    }
+    
+    
     public void ubicarseEnAlgoformer(Jugador jugador){
         double x = calcularPosicionHorizontal(jugador);
         double y = calcularPosicionVertical(jugador);
@@ -268,12 +324,10 @@ public class ContenedorPrincipal extends BorderPane
             boton.setGraphic(imagenView);
             boton.setOnAction(new MovimientoHandler(movimiento, vistaTablero,
                 juego, volver, this));
-
             int posicionHorizontal = movimiento.getMovimientoEnX() + 1;
             int posicionVertical = movimiento.getMovimientoEnY() + 1;
             matrizBotones.add(boton, posicionHorizontal, posicionVertical);
         }
-
         Button terminarTurno = new Button("Terminar turno");
         terminarTurno.setOnAction(
             new BotonTerminarTurnoEventHandler(juego.jugadorActual(), this));

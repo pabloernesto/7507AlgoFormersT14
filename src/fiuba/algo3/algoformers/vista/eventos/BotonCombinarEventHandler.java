@@ -35,6 +35,7 @@ public class BotonCombinarEventHandler extends AccionAlgoformerEventHandler impl
     		vistaTablero.actualizar();
     		contenedorPrincipal.setBotoneraEleccion();
     		contenedorPrincipal.setImagenEquipo();
+    		contenedorPrincipal.setImagenAlgoformersJugadorActual();
     		}
     	catch (EquipoIncompletoException e){
     		crearError("ERROR", "Los algoformers no se pueden combinar", "Todos los algoformers deben estar vivos para poder combinarse");

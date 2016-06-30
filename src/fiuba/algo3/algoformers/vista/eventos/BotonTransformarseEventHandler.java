@@ -30,6 +30,7 @@ public class BotonTransformarseEventHandler implements EventHandler<ActionEvent>
 		vistaTablero.actualizar(); //es importante que se dibuje despues de que haya terminado el turno
 		contenedorPrincipal.setBotoneraEleccion();
 		contenedorPrincipal.setImagenEquipo();
+		contenedorPrincipal.setImagenAlgoformersJugadorActual();
 		//Con este no hace falta, pero con el resto de los botones hay que chequear si hubo un ganador
 		//y si es asi, cambiar de escena, a la escena de ganador.
 	}
