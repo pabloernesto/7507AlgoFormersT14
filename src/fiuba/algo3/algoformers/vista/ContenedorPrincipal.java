@@ -93,6 +93,7 @@ public class ContenedorPrincipal extends BorderPane
     {
         VBox contenedor = new VBox();
         contenedor.setPadding(new Insets(10));
+        contenedor.setMinHeight(100);
         contenedor.getChildren().add(imagenEquipoActual);
        	contenedor.setBackground(
                 new Background(
