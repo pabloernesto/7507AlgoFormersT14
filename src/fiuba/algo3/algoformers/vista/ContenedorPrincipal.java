@@ -12,7 +12,6 @@ import fiuba.algo3.algoformers.juego.Jugador;
 import fiuba.algo3.algoformers.vista.eventos.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,11 +24,8 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -303,7 +299,7 @@ public class ContenedorPrincipal extends BorderPane
         }
 
         Button botonVolver = new Button("Volver");
-        botonVolver.setOnAction(evento -> setBotoneraEleccion());
+        botonVolver.setOnAction(evento -> setBotoneraAcciones());
         botonVolver.setMinSize(100, 50);
         botonera.getChildren().add(botonVolver);
     }
