@@ -13,7 +13,6 @@ public class BotonCombinarEventHandler extends AccionAlgoformerEventHandler impl
 {
     private VistaTablero vistaTablero;
     private Juego juego;
-    private ContenedorPrincipal contenedorPrincipal;
 
     public BotonCombinarEventHandler(VistaTablero vistaTablero, Juego juego, ContenedorPrincipal contenedor)
     {
