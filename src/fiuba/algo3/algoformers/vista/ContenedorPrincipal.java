@@ -288,6 +288,7 @@ public class ContenedorPrincipal extends BorderPane
 
             Button boton = new Button(algoformer.getNombre(), imagenView);
             boton.setMinSize(100, 50);
+            boton.setStyle("-fx-base: #1234");
 
             BotonAtacarAlgoformerEventHandler elegirHandler =
                 new BotonAtacarAlgoformerEventHandler(juego, algoformer,
