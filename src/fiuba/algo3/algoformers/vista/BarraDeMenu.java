@@ -64,7 +64,7 @@ public class BarraDeMenu extends MenuBar {
 
     private Menu nuevoMenuInformacion(Stage stage){
         Menu menu = new Menu("Informacion");
-        MenuItem opcionInformacion = new MenuItem("Informacion");
+        MenuItem opcionInformacion = new MenuItem("Ver reglas");
         menu.getItems().addAll(opcionInformacion);
 
         EventHandler<ActionEvent> opcionInformacionHandler =
