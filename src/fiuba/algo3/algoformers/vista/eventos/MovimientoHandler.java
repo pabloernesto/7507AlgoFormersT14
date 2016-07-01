@@ -1,7 +1,6 @@
 package fiuba.algo3.algoformers.vista.eventos;
 
 import fiuba.algo3.algoformers.vista.ContenedorPrincipal;
-import fiuba.algo3.algoformers.vista.VistaAlgoFormer;
 import fiuba.algo3.algoformers.vista.VistaTablero;
 import fiuba.algo3.algoformers.escenario.Movimiento;
 import fiuba.algo3.algoformers.excepciones.CeldaOcupadaException;
@@ -12,7 +11,6 @@ import fiuba.algo3.algoformers.juego.Juego;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.media.AudioClip;
 
 public class MovimientoHandler
